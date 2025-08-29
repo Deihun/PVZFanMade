@@ -659,6 +659,18 @@ tracks/25/keys = {
 "update": 0,
 "values": [Vector2(-8, 11)]
 }
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("main_control:rotation")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_ihsx0"]
 resource_name = "running_with_pole"
@@ -826,10 +838,10 @@ tracks/13/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg/PoleVau
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.677606),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.21809]
+"values": [-0.21809, -0.453786]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
@@ -927,10 +939,22 @@ tracks/21/keys = {
 "update": 0,
 "values": [Vector2(-8, 11), Vector2(-8, 14), Vector2(-7, 2), Vector2(-8, 14)]
 }
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("main_control:rotation")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_ns6if"]
 resource_name = "walking_animation"
-length = 2.5
+length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1143,10 +1167,10 @@ tracks/17/path = NodePath("main_control/PoleVaultZombieMainBody:rotation")
 tracks/17/interp = 2
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.633333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.633333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.111701, 0.0]
+"values": [0.0, -0.111701, 0.0, 0.0]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
