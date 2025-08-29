@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx52ikgicwr5a"]
+
+[ext_resource type="Script" uid="uid://co2mtjbckxs7n" path="res://unit/Zombie/bucket_head.gd" id="1_max16"]
+[ext_resource type="Texture2D" uid="uid://bfdk1ne1fyino" path="res://unit/Zombie/basic_zombie/bucket_head_full.png" id="2_w5v2h"]
+
+[node name="Bucket_Head" type="Node2D"]
+script = ExtResource("1_max16")
+
+[node name="imagge" type="Sprite2D" parent="."]
+position = Vector2(1, -12)
+texture = ExtResource("2_w5v2h")

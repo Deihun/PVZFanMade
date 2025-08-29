@@ -1,0 +1,228 @@
+[gd_scene load_steps=14 format=3 uid="uid://c4plv33152tx3"]
+
+[ext_resource type="Script" uid="uid://b28pydk6w0crq" path="res://HUD/mode_hud/mode_normal_selection.gd" id="1_7rrtk"]
+[ext_resource type="Script" uid="uid://dxi0jr3mbci1s" path="res://HUD/mode_hud/location_where_evolution_tree_goes.gd" id="2_lt5ew"]
+[ext_resource type="Texture2D" uid="uid://bhjq6m1ay6hyq" path="res://HUD/borders/border_2.png" id="4_0j4rj"]
+[ext_resource type="PackedScene" uid="uid://j6g46jpbivhf" path="res://HUD/borders/border_1.tscn" id="5_2dpvk"]
+[ext_resource type="Script" uid="uid://b7xtie63ke36r" path="res://HUD/EvolutionUI/evolution_power_bank_ui.gd" id="6_68cfs"]
+[ext_resource type="Script" uid="uid://d27xixl13o84o" path="res://HUD/mode_hud/shovel.gd" id="6_euww4"]
+[ext_resource type="PackedScene" uid="uid://cbt1b1l5fkbhv" path="res://Resource/Sun/sun_animation.tscn" id="6_f5nnv"]
+[ext_resource type="PackedScene" uid="uid://b1gfd0gx8ncph" path="res://HUD/EvolutionUI/evolution_power_bank_ui.tscn" id="7_5r5te"]
+[ext_resource type="Texture2D" uid="uid://dednq0baij7wn" path="res://HUD/mode_hud/shovel_background.png" id="7_euww4"]
+[ext_resource type="Texture2D" uid="uid://blp5yuw8ekxdb" path="res://HUD/mode_hud/shovel.png" id="8_68cfs"]
+[ext_resource type="PackedScene" uid="uid://6jgrs4q1aq01" path="res://HUD/borders/seed_packet.tscn" id="8_ugelk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68cfs"]
+size = Vector2(334, 84.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_euww4"]
+radius = 66.0076
+
+[node name="HUD_normal_selection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_7rrtk")
+
+[node name="location_where_sun_goes" type="Node2D" parent="."]
+
+[node name="location_where_evolution_tree_goes" type="Node2D" parent="."]
+script = ExtResource("2_lt5ew")
+
+[node name="mode_normal_pick" type="Control" parent="."]
+custom_minimum_size = Vector2(280, 1000)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="sun_" parent="mode_normal_pick" instance=ExtResource("5_2dpvk")]
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 0
+offset_right = 283.0
+
+[node name="SunPlacementSpecific_ForAnimation" type="Node2D" parent="mode_normal_pick/sun_"]
+position = Vector2(6, 20)
+
+[node name="Sun Count" type="Label" parent="mode_normal_pick/sun_"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 36.0
+offset_right = 264.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 56
+text = "25"
+horizontal_alignment = 1
+
+[node name="sun_animation" parent="mode_normal_pick/sun_" instance=ExtResource("6_f5nnv")]
+position = Vector2(6, 13)
+scale = Vector2(1.19827, 1.25218)
+size = 1.0
+auto_start = false
+click_to_collect = false
+
+[node name="plant_seed_selection" type="NinePatchRect" parent="mode_normal_pick"]
+custom_minimum_size = Vector2(250, 180)
+layout_mode = 1
+offset_top = 125.0
+offset_right = 250.0
+offset_bottom = 305.0
+texture = ExtResource("4_0j4rj")
+patch_margin_left = 50
+patch_margin_top = 49
+patch_margin_right = 50
+patch_margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="mode_normal_pick/plant_seed_selection"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 34.0
+offset_right = 255.0
+offset_bottom = 650.0
+localize_numeral_system = false
+theme_override_constants/separation = 5
+
+[node name="Tools_UI" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(350, 700)
+layout_mode = 0
+offset_left = 285.0
+offset_top = 11.0
+offset_right = 635.0
+offset_bottom = 711.0
+
+[node name="EvolutionPowerBank" type="Control" parent="Tools_UI"]
+custom_minimum_size = Vector2(335, 100)
+layout_mode = 2
+script = ExtResource("6_68cfs")
+
+[node name="EvolutionPowerBank_UI" parent="Tools_UI/EvolutionPowerBank" instance=ExtResource("7_5r5te")]
+position = Vector2(5, 44)
+
+[node name="Area2D" type="Area2D" parent="Tools_UI/EvolutionPowerBank"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tools_UI/EvolutionPowerBank/Area2D"]
+position = Vector2(171, 50.75)
+shape = SubResource("RectangleShape2D_68cfs")
+
+[node name="Shovel" type="Control" parent="Tools_UI"]
+visible = false
+z_index = 14
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_filter = 1
+script = ExtResource("6_euww4")
+
+[node name="ShovelBackground" type="Sprite2D" parent="Tools_UI/Shovel"]
+position = Vector2(68, 71)
+scale = Vector2(1.28, 1.3)
+texture = ExtResource("7_euww4")
+
+[node name="Shovel2" type="Sprite2D" parent="Tools_UI/Shovel"]
+position = Vector2(40, 23)
+scale = Vector2(1.14, 1.09)
+texture = ExtResource("8_68cfs")
+offset = Vector2(20.1754, 40.367)
+
+[node name="clickable_area" type="Area2D" parent="Tools_UI/Shovel"]
+collision_layer = 2147483648
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tools_UI/Shovel/clickable_area"]
+position = Vector2(66, 71)
+shape = SubResource("CircleShape2D_euww4")
+
+[node name="seed_picker_boarder" type="NinePatchRect" parent="."]
+visible = false
+z_index = 250
+custom_minimum_size = Vector2(900, 1050)
+layout_mode = 0
+offset_left = 313.0
+offset_right = 1213.0
+offset_bottom = 1050.0
+texture = ExtResource("4_0j4rj")
+patch_margin_left = 50
+patch_margin_top = 50
+patch_margin_right = 50
+patch_margin_bottom = 50
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="GridContainer" type="GridContainer" parent="seed_picker_boarder"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 118.0
+offset_right = 867.0
+offset_bottom = 933.0
+columns = 4
+
+[node name="peashooter" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
+layout_mode = 2
+mode = "only-for-plant-selection"
+plant_name = "peashooter"
+cooldown = 5
+start_up_cooldown = 2
+suncost = 100
+image_path = "uid://cr2fjf7qmen82"
+plant_tscn = "uid://l0ap6weeoiby"
+plant_animation_only_tscn = "uid://diuw5jn1y4wfg"
+seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")
+
+[node name="sunflower" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
+layout_mode = 2
+mode = "only-for-plant-selection"
+plant_name = "sunflower"
+cooldown = 5
+start_up_cooldown = 0
+image_path = "uid://263vj11nyjjn"
+plant_tscn = "uid://xeuq18wltltm"
+plant_animation_only_tscn = "uid://cq356nfdqih64"
+seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")
+
+[node name="wallnut" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
+layout_mode = 2
+mode = "only-for-plant-selection"
+plant_name = "wallnut"
+cooldown = 30
+image_path = "uid://p7axs27j7smr"
+plant_tscn = "uid://bpnwr5oe20tfl"
+plant_animation_only_tscn = "uid://1586jc7ht8x0"
+seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")
+
+[node name="potatomine" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
+layout_mode = 2
+mode = "only-for-plant-selection"
+plant_name = "potatomine"
+cooldown = 40
+suncost = 25
+image_path = "uid://ds5acfqn0heye"
+plant_tscn = "uid://c8jsaoed5yq02"
+plant_animation_only_tscn = "uid://cs1eh8rbbrj0r"
+seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")
+
+[node name="cherrybomb" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
+layout_mode = 2
+mode = "only-for-plant-selection"
+plant_name = "cherrybomb"
+cooldown = 80
+suncost = 150
+plant_tscn = "uid://crnr4m2b2ilqr"
+plant_animation_only_tscn = "uid://dsyw8ad0cd20q"
+seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")
+
+[node name="LETS ROCK!" type="Button" parent="seed_picker_boarder"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 941.0
+offset_right = 258.0
+offset_bottom = 1019.0
+text = "LETS ROCK!"
+
+[connection signal="child_entered_tree" from="mode_normal_pick/plant_seed_selection/VBoxContainer" to="." method="_on_v_box_container_child_entered_tree"]
+[connection signal="input_event" from="Tools_UI/EvolutionPowerBank/Area2D" to="Tools_UI/EvolutionPowerBank" method="_on_area_2d_input_event"]
+[connection signal="input_event" from="Tools_UI/Shovel/clickable_area" to="Tools_UI/Shovel" method="_on_clickable_area_input_event"]
+[connection signal="pressed" from="seed_picker_boarder/LETS ROCK!" to="." method="_on_lets_rock_pressed"]

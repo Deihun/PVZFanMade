@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://pspn4765e0xo"]
+
+[ext_resource type="Script" uid="uid://404vqx7aylwl" path="res://Resource/Levels/Tutorial_Part/zombie_wave_management.gd" id="1_ao85m"]
+
+[node name="zombie_wave_management" type="HBoxContainer"]
+offset_left = -540.0
+offset_top = 1077.0
+offset_right = -290.0
+offset_bottom = 1877.0
+script = ExtResource("1_ao85m")
+
+[node name="start" type="Panel" parent="."]
+custom_minimum_size = Vector2(250, 1200)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="start"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 7.0
+offset_right = 197.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 51
+text = "START"

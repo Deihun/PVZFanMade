@@ -1,0 +1,457 @@
+[gd_scene load_steps=13 format=3 uid="uid://dsyw8ad0cd20q"]
+
+[ext_resource type="Script" uid="uid://57vao06yvp2u" path="res://Resource/Levels/Tutorial_Part/cherry_bomb_animation.gd" id="1_w62iq"]
+[ext_resource type="Texture2D" uid="uid://dkcurtxq4lo4m" path="res://unit/plant/CherryBomb/Body_Cherrybomb.png" id="2_a10ll"]
+[ext_resource type="Texture2D" uid="uid://danwhsa4stko3" path="res://unit/plant/CherryBomb/Branch_CherryBomb.png" id="3_ura0e"]
+[ext_resource type="Texture2D" uid="uid://bet55oviewdtn" path="res://unit/plant/CherryBomb/face4_CherryBomb.png" id="4_hi2lr"]
+[ext_resource type="Texture2D" uid="uid://384xrtbpgcuk" path="res://unit/plant/CherryBomb/spark.png" id="5_o0bgj"]
+[ext_resource type="Texture2D" uid="uid://baw617ujhibg6" path="res://unit/plant/CherryBomb/face1_CherryBomb.png" id="6_y2ljh"]
+[ext_resource type="Texture2D" uid="uid://ce4uxrda2kn5b" path="res://unit/plant/CherryBomb/face2_CherryBomb.png" id="7_a6kcc"]
+[ext_resource type="Texture2D" uid="uid://ten8wfilqwil" path="res://unit/plant/CherryBomb/face3_CherryBomb.png" id="8_7duwh"]
+
+[sub_resource type="Animation" id="Animation_st40g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("as_group:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("as_group:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("as_group/Face1CherryBomb:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_y2ljh")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("as_group/BodyCherrybomb:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("as_group/Face1CherryBomb:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("as_group/BranchCherryBomb:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("as_group/Spark:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("as_group/Spark2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("as_group/Spark:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-28.3458, -62.6122)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("as_group/Spark2:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-13.6136, -65.3745)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("as_group/Spark2:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.648, 0.604)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("as_group/Spark:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.648, 0.604)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("as_group/Spark2:self_modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("as_group/Spark:self_modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oo460"]
+resource_name = "explode"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("as_group/Face1CherryBomb:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.141866, 0.233333, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_y2ljh"), ExtResource("7_a6kcc"), ExtResource("8_7duwh"), ExtResource("4_hi2lr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("as_group:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0162798, 0.0372109, 0.0534906, 0.0697704, 0.0907015, 0.106981, 0.123261, 0.144192, 0.160472, 0.176752, 0.197683, 0.218614, 0.234894, 0.255825, 0.27443, 0.29071, 0.311641, 0.334898, 0.351178, 0.366667, 0.379086, 0.395366, 0.410855, 0.427925, 0.444205, 0.459694, 0.472113, 0.488393, 0.503882),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(-1.455, 0), Vector2(0.785, 0), Vector2(0, 0), Vector2(-1.455, 0), Vector2(0.785, 0), Vector2(0, 0), Vector2(-1.455, 0), Vector2(0.785, 0), Vector2(0, 0), Vector2(-1.455, 0), Vector2(0.785, 0), Vector2(0, 0), Vector2(-1.455, 0), Vector2(0.785, 0), Vector2(0, 0), Vector2(-1.455, 0), Vector2(0.785, 0), Vector2(0, 0), Vector2(-1.455, 0), Vector2(0.785, 0), Vector2(0, 0), Vector2(-1.455, 0), Vector2(0.785, 0), Vector2(0, 0), Vector2(-1.455, 0), Vector2(0.785, 0), Vector2(0, 0), Vector2(-1.455, 0), Vector2(0.785, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("as_group:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0666667, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("as_group/BodyCherrybomb:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.369783, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(100, 100, 100, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("as_group/Face1CherryBomb:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.369783, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(100, 100, 100, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("as_group/BranchCherryBomb:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.244776, 0.244776, 0.244776, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("as_group/Spark:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.272105),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("as_group/Spark2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.272105),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("as_group/Spark:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.272105, 0.369783),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-28.3458, -62.6122), Vector2(-28.3458, -62.6122), Vector2(-44.9156, -29.3326)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("as_group/Spark2:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.272105, 0.369783),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-13.6136, -65.3745), Vector2(-13.6136, -65.3745), Vector2(2.74997, -46.7489)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("as_group/Spark2:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.27443, 0.369783),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.648, 0.604), Vector2(0.648, 0.604), Vector2(0.368, 0.343)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("as_group/Spark:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.27443, 0.369783),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.648, 0.604), Vector2(0.648, 0.604), Vector2(0.368, 0.343)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("as_group/Spark2:self_modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.276756, 0.333333, 0.405425, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(12.707, 7.182, 4.42, 1), Color(1, 1, 1, 1), Color(12.707, 7.182, 4.42, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("as_group/Spark:self_modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.276756, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(12.707, 7.182, 4.42, 1), Color(1, 1, 1, 1), Color(12.707, 7.182, 4.42, 1)]
+}
+tracks/14/type = "method"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath(".")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_explode"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_k43nw"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("as_group:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.418622),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.035)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("as_group:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.418622),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1.97)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("as_group/Face1CherryBomb:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_y2ljh")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x0sdn"]
+_data = {
+&"RESET": SubResource("Animation_st40g"),
+&"explode": SubResource("Animation_oo460"),
+&"idle": SubResource("Animation_k43nw")
+}
+
+[node name="CherryBomb_animation" type="Node2D"]
+script = ExtResource("1_w62iq")
+
+[node name="as_group" type="Node2D" parent="."]
+z_index = 25
+
+[node name="BodyCherrybomb" type="Sprite2D" parent="as_group"]
+z_index = 25
+position = Vector2(-17, -23)
+texture = ExtResource("2_a10ll")
+
+[node name="BranchCherryBomb" type="Sprite2D" parent="as_group"]
+z_index = 25
+position = Vector2(-21, -23)
+texture = ExtResource("3_ura0e")
+
+[node name="Face1CherryBomb" type="Sprite2D" parent="as_group"]
+z_index = 25
+position = Vector2(-21, -23)
+texture = ExtResource("6_y2ljh")
+
+[node name="Spark" type="Sprite2D" parent="as_group"]
+visible = false
+z_index = 25
+position = Vector2(-28.3458, -62.6122)
+scale = Vector2(0.648, 0.604)
+texture = ExtResource("5_o0bgj")
+
+[node name="Spark2" type="Sprite2D" parent="as_group"]
+visible = false
+z_index = 25
+position = Vector2(-13.6136, -65.3745)
+rotation = -0.885249
+scale = Vector2(0.648, 0.604)
+texture = ExtResource("5_o0bgj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x0sdn")
+}
+autoplay = "idle"
+speed_scale = 0.7

@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://l0ap6weeoiby"]
+
+[ext_resource type="Script" uid="uid://mms5i2ts6tp2" path="res://unit/plant/peashooter/peashooter_script.gd" id="1_ltxxt"]
+[ext_resource type="PackedScene" uid="uid://diuw5jn1y4wfg" path="res://unit/plant/peashooter/peashooter_animationn.tscn" id="1_yhv4u"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="2_ikyf4"]
+[ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="2_jjlhh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbxml"]
+size = Vector2(99, 139)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhv4u"]
+size = Vector2(20, 44.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikyf4"]
+size = Vector2(1706, 44)
+
+[node name="PeashooterScript" type="CharacterBody2D"]
+position = Vector2(257, 410)
+collision_mask = 0
+platform_floor_layers = 4294967040
+script = ExtResource("1_ltxxt")
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("2_ikyf4")]
+description_Tier1A = "Increase damage by 2 and each shot has 20% to deals true damage: Ignoring Addon Shields and armor."
+description_Tier1B = "Increase attackspeed by 10%"
+description_Tier2A = "When evolve to this Tier: All adjacent plant except me boost its evolution by 30%"
+description_Tier2B = "Each attack gains 5% attackspeed max of 25% attackspeed. Not attacking for 3 seconds remove all the stacks."
+description_Tier3A = "Turn into repeater that shoots two pea instead of one. Every 30th attack is an empower attack of one big pea that deals 100 damage."
+description_Tier3B = "Turn into threepeater  that shoot peas at 3 lanes."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EvolutionSenderSupportBehavior"]
+position = Vector2(19.5, -19.5)
+shape = SubResource("RectangleShape2D_dbxml")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11.75)
+shape = SubResource("RectangleShape2D_yhv4u")
+
+[node name="Detection_Area" parent="." instance=ExtResource("2_jjlhh")]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area"]
+position = Vector2(843, -12)
+shape = SubResource("RectangleShape2D_ikyf4")
+disabled = true
+
+[node name="peashooter" parent="." instance=ExtResource("1_yhv4u")]
+position = Vector2(-23, -64)
+
+[node name="pea_spawn_location" type="Node2D" parent="."]
+position = Vector2(96, -8)
+
+[node name="attack_cooldown" type="Timer" parent="."]
+wait_time = 1.7
+one_shot = true
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

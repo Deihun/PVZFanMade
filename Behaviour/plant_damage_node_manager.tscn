@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cetkfp2k83ixw"]
+
+[ext_resource type="Script" uid="uid://cosw63pqlsca4" path="res://Behaviour/plant_damage_node_manager.gd" id="1_qd2ni"]
+
+[node name="PlantDamageNodeManager" type="Node2D"]
+script = ExtResource("1_qd2ni")

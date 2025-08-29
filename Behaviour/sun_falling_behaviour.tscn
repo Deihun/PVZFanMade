@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1bmnixb7oepy"]
+
+[ext_resource type="Script" uid="uid://r8c5dc0f1fye" path="res://Behaviour/sun_falling_behaviour.gd" id="1_li8ax"]
+
+[node name="sun_falling_behaviour" type="Node2D"]
+script = ExtResource("1_li8ax")

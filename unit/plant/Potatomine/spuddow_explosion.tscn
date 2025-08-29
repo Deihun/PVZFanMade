@@ -1,0 +1,277 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs4d84aequ3v2"]
+
+[ext_resource type="Script" uid="uid://c5krqe8hei5kp" path="res://unit/plant/Potatomine/spuddow_explosion.gd" id="1_puxkj"]
+[ext_resource type="Texture2D" uid="uid://d1yr1n3hm6ueo" path="res://unit/plant/Potatomine/spuddow.png" id="2_cl4cc"]
+[ext_resource type="Texture2D" uid="uid://b8bh0tkq2gqsp" path="res://unit/plant/Potatomine/spuddow_text.png" id="3_aume1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_reynv"]
+size = Vector2(201, 96.5)
+
+[sub_resource type="Animation" id="Animation_cl4cc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/SpuddowText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -185)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/SpuddowText:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.08159, 2.65517)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Spuddow:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Spuddow:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, -124)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_puxkj"]
+resource_name = "explosion"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/SpuddowText:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00264961, 0.0333333, 0.0440171, 0.0538242, 0.0599537, 0.0660832, 0.0734386, 0.0820198, 0.0927528, 0.123437, 0.13412, 0.143927, 0.150057, 0.156186, 0.163542, 0.172123, 0.183985, 0.214669, 0.225353, 0.23516, 0.241289, 0.247419, 0.254774, 0.263355, 0.286059, 0.316742, 0.327426, 0.337233, 0.343363, 0.349492, 0.356848, 0.365429),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 64), Vector2(4, 64), Vector2(4.08, 66.13), Vector2(1, 62), Vector2(3, 61), Vector2(3, 63), Vector2(5, 63), Vector2(5, 63), Vector2(3, 64), Vector2(4, 64), Vector2(4.08, 66.13), Vector2(1, 62), Vector2(3, 61), Vector2(3, 63), Vector2(5, 63), Vector2(5, 63), Vector2(3, 64), Vector2(4, 64), Vector2(4.08, 66.13), Vector2(1, 62), Vector2(3, 61), Vector2(3, 63), Vector2(5, 63), Vector2(5, 63), Vector2(3, 64), Vector2(4, 64), Vector2(4.08, 66.13), Vector2(1, 62), Vector2(3, 61), Vector2(3, 63), Vector2(5, 63), Vector2(5, 63)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.921701, 1.39767),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-7, -185), Vector2(-7, -185), Vector2(-7, -450)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.921701, 1.39767),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1.315)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/SpuddowText:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.938737, 1.33101),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Spuddow:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.93798, 1.33333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Spuddow:position")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.0111022, 0.0166533, 0.02498, 0.0319189, 0.03747, 0.0444089, 0.0555112, 0.0610623, 0.069389, 0.0763278, 0.081879, 0.0902056, 0.101308, 0.106859, 0.115186, 0.122125, 0.127676),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-6, -124), Vector2(-5, -124), Vector2(-7, -125), Vector2(-7, -122), Vector2(-4, -127), Vector2(-16, -127), Vector2(-6, -124), Vector2(-5, -124), Vector2(-7, -125), Vector2(-7, -122), Vector2(-4, -127), Vector2(-16, -127), Vector2(-6, -124), Vector2(-5, -124), Vector2(-7, -125), Vector2(-7, -122), Vector2(-4, -127), Vector2(-16, -127)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.298874),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aume1"]
+_data = {
+&"RESET": SubResource("Animation_cl4cc"),
+&"explosion": SubResource("Animation_puxkj")
+}
+
+[node name="SpuddowExplosion" type="Node2D"]
+z_index = 20
+y_sort_enabled = true
+script = ExtResource("1_puxkj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.5, -54.75)
+shape = SubResource("RectangleShape2D_reynv")
+debug_color = Color(0.584201, 0, 0.0612662, 0.42)
+
+[node name="Spuddow" type="Sprite2D" parent="."]
+z_index = 20
+position = Vector2(-6, -124)
+texture = ExtResource("2_cl4cc")
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 20
+position = Vector2(-7, -185)
+
+[node name="SpuddowText" type="Sprite2D" parent="Node2D"]
+z_index = 20
+position = Vector2(3, 64)
+scale = Vector2(1.08159, 2.65517)
+texture = ExtResource("3_aume1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_aume1")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

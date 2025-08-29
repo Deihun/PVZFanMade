@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsyhvelm6h5xf"]
+
+[ext_resource type="Script" uid="uid://b76yqykgtqebp" path="res://Behaviour/projectile_behaviour/design_drops.gd" id="1_eei6u"]
+
+[node name="DesignDrops" type="Node2D"]
+script = ExtResource("1_eei6u")
+gravity = 1000.0

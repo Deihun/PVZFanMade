@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbh38lp0g4kv8"]
+
+[ext_resource type="Script" uid="uid://c2rlnucvferve" path="res://Behaviour/evolution_sender_support_behavior.gd" id="1_c28qu"]
+[ext_resource type="PackedScene" uid="uid://c1qgfgabtjfj4" path="res://HUD/EvolutionUI/evolve_ready_animation.tscn" id="2_mwd5x"]
+
+[node name="EvolutionSenderSupportBehavior" type="Area2D"]
+script = ExtResource("1_c28qu")
+dev_mode_ignore_locked_restriction = true
+
+[node name="EvolveReadyAnimation" parent="." instance=ExtResource("2_mwd5x")]
+position = Vector2(-2, -26)
+scale = Vector2(0.38, 0.38)
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

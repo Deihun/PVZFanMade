@@ -1,0 +1,186 @@
+[gd_scene load_steps=15 format=3 uid="uid://b1gfd0gx8ncph"]
+
+[ext_resource type="Script" uid="uid://cnfo03lw6g2fe" path="res://HUD/EvolutionUI/evolution_power_bank_change_ui.gd" id="1_onlnw"]
+[ext_resource type="Texture2D" uid="uid://eun2pu48hg41" path="res://HUD/EvolutionUI/evolution_power_holder.png" id="2_jdeb6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ittal"]
+bg_color = Color(0.371121, 0.313697, 0.207264, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jdeb6"]
+bg_color = Color(0.530603, 1, 0.424657, 1)
+
+[sub_resource type="Animation" id="Animation_pgqj5"]
+resource_name = "idle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("power_zone:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.52, 2.98, 4.62, 6.27),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.18374, 0.712128, 0.684484, 1), Color(0.487349, 0.690214, 0.966651, 1), Color(1, 0.924258, 0.742915, 1), Color(0.895304, 0.448354, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y1jp5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("power_zone:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wh3k"]
+_data = {
+&"RESET": SubResource("Animation_y1jp5"),
+&"idle": SubResource("Animation_pgqj5")
+}
+
+[sub_resource type="Animation" id="Animation_382ji"]
+resource_name = "full"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(278, 72)]
+}
+
+[sub_resource type="Animation" id="Animation_wpsil"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(278, 72)]
+}
+
+[sub_resource type="Animation" id="Animation_860ee"]
+resource_name = "3_power"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(208, 72)]
+}
+
+[sub_resource type="Animation" id="Animation_gadnk"]
+resource_name = "2_power"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(137, 72)]
+}
+
+[sub_resource type="Animation" id="Animation_o8d85"]
+resource_name = "1_power"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(67, 72)]
+}
+
+[sub_resource type="Animation" id="Animation_vd63o"]
+resource_name = "empty"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 72)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nresq"]
+_data = {
+&"1_power": SubResource("Animation_o8d85"),
+&"2_power": SubResource("Animation_gadnk"),
+&"3_power": SubResource("Animation_860ee"),
+&"RESET": SubResource("Animation_wpsil"),
+&"empty": SubResource("Animation_vd63o"),
+&"full": SubResource("Animation_382ji")
+}
+
+[node name="EvolutionPowerBank_UI" type="Node2D"]
+z_index = 100
+script = ExtResource("1_onlnw")
+
+[node name="EvolutionPowerHolder" type="Sprite2D" parent="."]
+z_index = 100
+position = Vector2(165.5, 5.25012)
+scale = Vector2(0.745652, 0.786956)
+texture = ExtResource("2_jdeb6")
+
+[node name="behind" type="Panel" parent="EvolutionPowerHolder"]
+show_behind_parent = true
+offset_left = -68.0
+offset_top = -46.0
+offset_right = 203.0
+offset_bottom = 26.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ittal")
+
+[node name="power_zone" type="Panel" parent="EvolutionPowerHolder"]
+show_behind_parent = true
+offset_left = -68.0
+offset_top = -46.0
+offset_right = 210.0
+offset_bottom = 26.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jdeb6")
+
+[node name="power_zone_animation" type="AnimationPlayer" parent="EvolutionPowerHolder"]
+libraries = {
+&"": SubResource("AnimationLibrary_2wh3k")
+}
+autoplay = "idle"
+
+[node name="state_change" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nresq")
+}
+autoplay = "empty"

@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ws764pcbwav"]
+
+[ext_resource type="Script" uid="uid://cmgamjoi2o4eh" path="res://Behaviour/power_boost_drop.gd" id="1_vjgo3"]
+
+[sub_resource type="Animation" id="Animation_3j6h3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.296547, 0.924126, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vjgo3"]
+resource_name = "new_animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.36667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.807843, 0.898039, 0.0627451, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8kttx"]
+_data = {
+&"RESET": SubResource("Animation_3j6h3"),
+&"new_animation": SubResource("Animation_vjgo3")
+}
+
+[node name="PowerBoostDrop" type="Node2D"]
+modulate = Color(0.296547, 0.924126, 0, 1)
+script = ExtResource("1_vjgo3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8kttx")
+}
+autoplay = "new_animation"

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c08h7ccqr1nwq"]
+
+[ext_resource type="Script" uid="uid://bqc8bwluhlwgq" path="res://unit/Zombie/Coolz Zombie/coolz_hat.gd" id="1_g7740"]
+[ext_resource type="Texture2D" uid="uid://chitqa7t3rxl1" path="res://unit/Zombie/Coolz Zombie/Coolz_Zombie_Hat.png" id="2_br7un"]
+
+[node name="Coolz_Hat" type="Node2D"]
+script = ExtResource("1_g7740")
+
+[node name="CoolzZombieHat" type="Sprite2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(-4, -8)
+rotation = -0.15708
+texture = ExtResource("2_br7un")

@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://xeuq18wltltm"]
+
+[ext_resource type="Script" uid="uid://ca0cagla675w7" path="res://unit/plant/Sunflower/sunflower.gd" id="1_44l71"]
+[ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="2_d0rym"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="2_onrnj"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="2_r1mn5"]
+[ext_resource type="PackedScene" uid="uid://cq356nfdqih64" path="res://unit/plant/Sunflower/sunflower_animation.tscn" id="2_vorgh"]
+[ext_resource type="PackedScene" uid="uid://c6tpqsl5bopmw" path="res://unit/plant/Sunflower/sun_flower_shield.tscn" id="5_onrnj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1mn5"]
+size = Vector2(75, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vorgh"]
+size = Vector2(105, 121)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrnj"]
+size = Vector2(224, 223)
+
+[node name="Sunflower" type="CharacterBody2D"]
+collision_mask = 5
+script = ExtResource("1_44l71")
+
+[node name="PlantDamageNodeManager" parent="." instance=ExtResource("2_d0rym")]
+position = Vector2(-15, -115)
+damage = 0
+base_attack_cooldown = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, -50)
+shape = SubResource("RectangleShape2D_r1mn5")
+
+[node name="Sunflower Animation" parent="." instance=ExtResource("2_vorgh")]
+position = Vector2(-26, -42)
+
+[node name="shield_" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="suncooldown_produce" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="evolve_timer" type="Timer" parent="."]
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("2_onrnj")]
+position = Vector2(-14, -64)
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("2_r1mn5")]
+position = Vector2(-15, -115)
+plant_name = "SUN FLOWER"
+description_Tier1A = "Decrease its max health by 40 but improve sun production by decreasing it by 5s"
+description_Tier1B = "Increase the quality of base sun from 25 to 30"
+description_Tier2A = "Gain (3x3) Aura: When planting sun related plant, grant unique buff depending on its type"
+description_Tier2B = "Gain 100 shield when not receiving damage  for few seconds."
+description_Tier3A = "Turn into twin sunflower: Producing two sun instead of one"
+description_Tier3B = "If my sun expire, transform it into 'GoldenState' which triple its value but it last for random interval. Succesfully collectiing goldensun makes it harder to collect."
+_tier1_max_value = 250.0
+_tier2_max_value = 400.0
+_tier3_max_value = 450.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EvolutionSenderSupportBehavior"]
+position = Vector2(-2, 61)
+shape = SubResource("RectangleShape2D_vorgh")
+
+[node name="sun_Aura" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sun_Aura"]
+position = Vector2(-22, -55.5)
+shape = SubResource("RectangleShape2D_onrnj")
+disabled = true
+
+[node name="sun_flower_shield" parent="." instance=ExtResource("5_onrnj")]
+visible = false
+position = Vector2(-24, -55)
+scale = Vector2(1.40107, 1.42199)
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = -38.0
+offset_top = -74.0
+offset_right = 2.0
+offset_bottom = -34.0
+
+[connection signal="timeout" from="shield_" to="." method="_on_shield__timeout"]
+[connection signal="timeout" from="suncooldown_produce" to="." method="_on_suncooldown_produce_timeout"]
+[connection signal="timeout" from="evolve_timer" to="." method="_on_evolve_timer_timeout"]
+[connection signal="body_entered" from="sun_Aura" to="." method="_on_sun_aura_body_entered"]

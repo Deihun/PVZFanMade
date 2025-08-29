@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd441u6wnt61p"]
+
+[ext_resource type="Script" uid="uid://diomqpu23i3if" path="res://Resource/Levels/Tutorial_Part/rolling_wallnut.gd" id="1_8uyyv"]
+[ext_resource type="PackedScene" uid="uid://1586jc7ht8x0" path="res://unit/plant/Wallnut/Wallnut_animation.tscn" id="2_l4023"]
+[ext_resource type="AudioStream" uid="uid://boqrchgtegexe" path="res://unit/plant/Wallnut/metal pipe falling sound effect.mp3" id="3_l4023"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8uyyv"]
+radius = 3.0
+
+[node name="rolling_wallnut" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 258
+script = ExtResource("1_8uyyv")
+speed = 400.0
+
+[node name="Wallnut" parent="." instance=ExtResource("2_l4023")]
+
+[node name="trigger" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 258
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trigger"]
+position = Vector2(34, -30)
+shape = SubResource("CircleShape2D_8uyyv")
+debug_color = Color(0.845128, 0, 0.156261, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[node name="cooldown_hit" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="MetalPipeFallingSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_l4023")
+mix_target = 2
+
+[connection signal="area_entered" from="trigger" to="." method="_on_trigger_area_entered"]
+[connection signal="body_entered" from="trigger" to="." method="_on_trigger_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="cooldown_hit" to="." method="_on_cooldown_hit_timeout"]

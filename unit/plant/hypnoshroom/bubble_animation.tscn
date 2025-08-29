@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://csq2saiiwfuhe"]
+
+[ext_resource type="Texture2D" uid="uid://b4xeg88scx0bp" path="res://unit/plant/hypnoshroom/bubble_effects.png" id="1_garoc"]
+
+[sub_resource type="Animation" id="Animation_md6cy"]
+resource_name = "colorfulbubble"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleEffects:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.57, 1.08, 1.96, 2.57, 3.66, 4.41, 6.01, 6.93, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.96886, 0.626602, 0.675457, 1), Color(0.829845, 0.752131, 0.40933, 1), Color(0.277445, 0.894876, 0.67852, 1), Color(0.519011, 0.833577, 0.987624, 1), Color(0.768318, 0.500107, 0.411929, 1), Color(0.290756, 0.739923, 0, 1), Color(1, 0.609769, 0.11854, 1), Color(0.277445, 0.894876, 0.67852, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xto0k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleEffects:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cj1b8"]
+_data = {
+&"RESET": SubResource("Animation_xto0k"),
+&"colorfulbubble": SubResource("Animation_md6cy")
+}
+
+[node name="BubbleAnimation" type="Node2D"]
+
+[node name="BubbleEffects" type="Sprite2D" parent="."]
+texture = ExtResource("1_garoc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cj1b8")
+}
+autoplay = "colorfulbubble"

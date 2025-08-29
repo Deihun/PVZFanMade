@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm3fbr5jbnjmq"]
+
+[ext_resource type="Script" uid="uid://cw7dbn5i6etmc" path="res://unit/Zombie/basic_zombie.gd" id="1_vbvsr"]
+[ext_resource type="Texture2D" uid="uid://bl7o74r8i8dqe" path="res://unit/plant/peashooter/normal_peashooter_tail.png" id="1_wb2vg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcn4d"]
+size = Vector2(49, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbvsr"]
+size = Vector2(54, 76)
+
+[node name="BasicZombie" type="CharacterBody2D"]
+light_mask = 0
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_vbvsr")
+
+[node name="Hitpoint" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitpoint"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_gcn4d")
+
+[node name="NormalPeashooterTail" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("1_wb2vg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vbvsr")
+
+[connection signal="area_entered" from="Hitpoint" to="." method="_on_hitpoint_area_entered"]
+[connection signal="area_shape_entered" from="Hitpoint" to="." method="_on_hitpoint_area_shape_entered"]
+[connection signal="body_entered" from="Hitpoint" to="." method="_on_body_entered"]

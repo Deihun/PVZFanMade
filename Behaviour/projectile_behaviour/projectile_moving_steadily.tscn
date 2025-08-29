@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://g2ij0rijieoj"]
+
+[ext_resource type="Script" uid="uid://dp0hoqdx2ixqn" path="res://Behaviour/projectile_behaviour/projectile_moving_steadily.gd" id="1_15tmt"]
+
+[node name="ProjectileMovingSteadily" type="Node"]
+script = ExtResource("1_15tmt")

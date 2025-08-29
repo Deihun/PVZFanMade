@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://6jgrs4q1aq01"]
+
+[ext_resource type="Script" uid="uid://big2eulomdme6" path="res://HUD/borders/seed_packet.gd" id="1_jk3x6"]
+[ext_resource type="Texture2D" uid="uid://t0jw8nmdvhwu" path="res://HUD/borders/seed_packet.png" id="1_jknsb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk3x6"]
+bg_color = Color(0, 0, 0, 0.411765)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fds4k"]
+bg_color = Color(0, 0, 0, 0.498039)
+
+[node name="SeedPacket" type="Control"]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1720.0
+offset_bottom = -960.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jk3x6")
+
+[node name="SeedPacket" type="Sprite2D" parent="."]
+position = Vector2(100, 59)
+texture = ExtResource("1_jknsb")
+
+[node name="ContentFrame" type="Control" parent="."]
+clip_contents = true
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 193.0
+offset_bottom = 112.0
+
+[node name="Plant_Face" type="Sprite2D" parent="ContentFrame"]
+position = Vector2(59, 64)
+
+[node name="ProgressBar" type="ProgressBar" parent="ContentFrame"]
+visible = false
+layout_mode = 0
+offset_left = -5.0
+offset_top = 1.0
+offset_right = 191.0
+offset_bottom = 118.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jk3x6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fds4k")
+max_value = 10.0
+step = 0.0
+value = 3.305
+fill_mode = 3
+show_percentage = false
+
+[node name="cooldown" type="Timer" parent="."]
+
+[node name="SUNCOST" type="Label" parent="."]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 73.0
+offset_right = 199.0
+offset_bottom = 130.0
+theme_override_constants/line_spacing = 280
+theme_override_constants/shadow_offset_x = 20
+theme_override_constants/shadow_offset_y = 50
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 41
+text = "100"
+horizontal_alignment = 2
+
+[node name="VISUAL_AFFORD" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 199.0
+offset_bottom = 118.0
+
+[node name="click_button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 118.0
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="button_down" from="click_button" to="." method="_on_click_button_button_down"]

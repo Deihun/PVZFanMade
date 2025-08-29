@@ -1,0 +1,118 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1qgfgabtjfj4"]
+
+[ext_resource type="Texture2D" uid="uid://bovhmk4jh047f" path="res://HUD/EvolutionUI/1.png" id="1_n83ic"]
+[ext_resource type="Texture2D" uid="uid://pu8a2y8ftw1i" path="res://HUD/EvolutionUI/2.png" id="2_2glct"]
+
+[sub_resource type="Animation" id="Animation_dvt6j"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.605825, 1.03798, 1.73266),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-56, -143), Vector2(-47, 64), Vector2(-56, -143)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Control/2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.605825, 1.04202, 1.74478),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(54, 141), Vector2(44.0523, -63.7965), Vector2(54, 141)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.16667, 2.13333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, -49), Vector2(-2, 25)]
+}
+
+[sub_resource type="Animation" id="Animation_l4p8n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-56, -143)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Control/2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(54, 141)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1r6jm"]
+_data = {
+&"RESET": SubResource("Animation_l4p8n"),
+&"idle": SubResource("Animation_dvt6j")
+}
+
+[node name="EvolveReadyAnimation" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="1" type="Sprite2D" parent="Node2D"]
+position = Vector2(-2, 1)
+texture = ExtResource("1_n83ic")
+
+[node name="Control" type="Control" parent="Node2D"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -56.0
+offset_top = -143.0
+offset_right = 35.0
+offset_bottom = -77.0
+
+[node name="2" type="Sprite2D" parent="Node2D/Control"]
+self_modulate = Color(1, 1, 0.470588, 1)
+position = Vector2(54, 141)
+texture = ExtResource("2_2glct")
+
+[node name="AnimationTree" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1r6jm")
+}
+autoplay = "idle"

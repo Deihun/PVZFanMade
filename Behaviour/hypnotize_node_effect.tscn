@@ -1,0 +1,140 @@
+[gd_scene load_steps=7 format=3 uid="uid://oil3xve1uw4e"]
+
+[ext_resource type="Script" uid="uid://b7yp1u1b637gu" path="res://unit/Zombie/basic_zombie/hypnotize_effect.gd" id="1_i0gdt"]
+[ext_resource type="Texture2D" uid="uid://cnsyt83irg6uc" path="res://Behaviour/healing_1.png" id="2_1kona"]
+[ext_resource type="PackedScene" uid="uid://csq2saiiwfuhe" path="res://unit/plant/hypnoshroom/bubble_animation.tscn" id="3_lnw2r"]
+
+[sub_resource type="Animation" id="Animation_evfbf"]
+resource_name = "idle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleAnimation:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.75, 0.98, 5.38, 5.58, 6.13, 6.36),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleAnimation:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.37, 0.61, 0.85, 1.1, 5.38, 5.75, 5.99, 6.23, 6.48),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-15, 84), Vector2(19, 59), Vector2(-10, 18), Vector2(38, -17), Vector2(-17, -57), Vector2(-15, 84), Vector2(19, 59), Vector2(-10, 18), Vector2(38, -17), Vector2(-17, -57)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BubbleAnimation2:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.25, 1.42, 1.76, 2.02, 2.27, 3.98, 4.15, 4.49, 4.75, 5, 8.75667, 8.92667, 9.26667, 9.52667, 9.77667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(19, 21), Vector2(35, 10), Vector2(-6, -30), Vector2(32, -77), Vector2(7.62939e-06, -148), Vector2(19, 21), Vector2(35, 10), Vector2(-6, -30), Vector2(32, -77), Vector2(7.62939e-06, -148), Vector2(19, 21), Vector2(35, 10), Vector2(-6, -30), Vector2(32, -77), Vector2(7.62939e-06, -148)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BubbleAnimation2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.01, 1.25, 2.08, 2.36, 3.74, 3.98, 4.81, 5.09, 8.51667, 8.75667, 9.58667, 9.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5syg8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BubbleAnimation:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BubbleAnimation:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 90)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BubbleAnimation2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(19, 21)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BubbleAnimation2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t0cyn"]
+_data = {
+&"RESET": SubResource("Animation_5syg8"),
+&"idle": SubResource("Animation_evfbf")
+}
+
+[node name="Node" type="Node2D"]
+script = ExtResource("1_i0gdt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t0cyn")
+}
+autoplay = "idle"
+speed_scale = 0.5
+
+[node name="Healing1" type="Sprite2D" parent="."]
+self_modulate = Color(0.797177, 0.10858, 0.271841, 0.176471)
+position = Vector2(2, 29)
+scale = Vector2(1.05552, 0.9674)
+texture = ExtResource("2_1kona")
+
+[node name="BubbleAnimation" parent="." instance=ExtResource("3_lnw2r")]
+self_modulate = Color(1, 1, 1, 0.804471)
+position = Vector2(0, 90)
+scale = Vector2(0.468915, 0.483815)
+
+[node name="BubbleAnimation2" parent="." instance=ExtResource("3_lnw2r")]
+position = Vector2(19, 21)
+scale = Vector2(0.288075, 0.268181)

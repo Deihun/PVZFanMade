@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://8xdp6s64o5ju"]
+
+[ext_resource type="Script" uid="uid://bl6ikskyslyqm" path="res://Behaviour/projectile_behaviour/thrown_spawn_behavior.gd" id="1_pcqx6"]
+
+[node name="ThrownSpawnBehavior" type="Node"]
+script = ExtResource("1_pcqx6")
+initial_speed = 150.0
+max_distance = Vector2(200, 200)
+dead_zone_size = Vector2(100, 100)
+
+[node name="disappear" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="disappear" to="." method="_on_disappear_timeout"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwaq1pevoum7t"]
+
+[ext_resource type="Script" uid="uid://2t0kcbke38uc" path="res://HUD/mode_hud/_seed_packet_probability_initializer_.gd" id="1_dpwnl"]
+
+[node name="_seed_packet_probability_initializer_" type="Panel"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_dpwnl")
+numbers_of_limit = 6

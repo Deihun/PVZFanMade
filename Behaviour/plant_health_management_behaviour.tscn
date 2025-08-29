@@ -1,0 +1,172 @@
+[gd_scene load_steps=8 format=3 uid="uid://cf7ii0b4cvm6o"]
+
+[ext_resource type="Script" uid="uid://bv1lmaphfcumk" path="res://unit/plant/Sunflower/plant_health_management_behaviour.gd" id="1_6d27t"]
+[ext_resource type="Script" uid="uid://cqnsb87fe18m3" path="res://Behaviour/max_health_condition_handler.gd" id="2_kew06"]
+[ext_resource type="Texture2D" uid="uid://cnsyt83irg6uc" path="res://Behaviour/healing_1.png" id="2_m2r3w"]
+[ext_resource type="Texture2D" uid="uid://crpnotjd3dgyf" path="res://Behaviour/healing_2.png" id="3_kew06"]
+
+[sub_resource type="Animation" id="Animation_watog"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Healing1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Healing1:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Healing1/Healing2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14, 32)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Healing1/Healing3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -18)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Healing1/Healing4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24, 15)]
+}
+
+[sub_resource type="Animation" id="Animation_0672d"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Healing1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Healing1:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Healing1/Healing2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-14, 32), Vector2(-14, -19)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Healing1/Healing3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -18), Vector2(0, -52)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Healing1/Healing4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0666667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(24, 15), Vector2(25, -17)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cu1pm"]
+_data = {
+&"RESET": SubResource("Animation_watog"),
+&"start": SubResource("Animation_0672d")
+}
+
+[node name="plant_health_management_behaviour" type="Area2D"]
+script = ExtResource("1_6d27t")
+
+[node name="max_health_condition_handler" type="Node" parent="."]
+script = ExtResource("2_kew06")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cu1pm")
+}
+
+[node name="Healing1" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.415686)
+position = Vector2(-1, 0)
+texture = ExtResource("2_m2r3w")
+
+[node name="Healing2" type="Sprite2D" parent="Healing1"]
+position = Vector2(-14, 32)
+texture = ExtResource("3_kew06")
+
+[node name="Healing3" type="Sprite2D" parent="Healing1"]
+position = Vector2(0, -18)
+texture = ExtResource("3_kew06")
+
+[node name="Healing4" type="Sprite2D" parent="Healing1"]
+position = Vector2(24, 15)
+texture = ExtResource("3_kew06")
+
+[node name="when_damage" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="when_damage" to="." method="_on_when_damage_timeout"]

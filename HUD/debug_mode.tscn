@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj5p7r8n80cn"]
+
+[ext_resource type="Script" uid="uid://douwr1an6w28x" path="res://HUD/debug_mode.gd" id="1_ydtda"]
+
+[node name="DebugMode" type="Node2D"]
+script = ExtResource("1_ydtda")
+
+[node name="chatter_box" type="Panel" parent="."]
+z_index = 175
+offset_right = 1920.0
+offset_bottom = 870.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="chatter_box"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 31.0
+offset_right = 1876.0
+offset_bottom = 821.0
+
+[node name="holder_for_textbox" type="VBoxContainer" parent="chatter_box/ScrollContainer"]
+z_index = 175
+layout_mode = 2
+
+[node name="input_textEdit" type="TextEdit" parent="chatter_box"]
+z_index = 176
+layout_mode = 0
+offset_left = 41.0
+offset_top = 829.0
+offset_right = 1884.0
+offset_bottom = 864.0
+placeholder_text = "Enter Here"

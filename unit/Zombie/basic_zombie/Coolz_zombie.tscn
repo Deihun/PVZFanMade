@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://crmsu5wuroi4j"]
+
+[ext_resource type="Script" uid="uid://biamhuvv1sdpj" path="res://unit/Zombie/basic_zombie/basic_zombie.gd" id="1_asdkt"]
+[ext_resource type="PackedScene" uid="uid://b8lpneub1dg61" path="res://Behaviour/projectile_behaviour/zombie_hp_management.tscn" id="2_7lafa"]
+[ext_resource type="PackedScene" uid="uid://y5yyy3rt1el1" path="res://unit/Zombie/Basic_Zombie_Animation.tscn" id="3_dt5cm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5oqf"]
+size = Vector2(115, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8ghd"]
+size = Vector2(46, 138)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1b3j"]
+size = Vector2(71, 136)
+
+[node name="CoolzZombie" type="CharacterBody2D"]
+y_sort_enabled = true
+position = Vector2(219, 332)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_asdkt")
+zombie_type_mode = "Coolz Zombie"
+
+[node name="zombie_hp_management" parent="." node_paths=PackedStringArray("zombie_animation_node") instance=ExtResource("2_7lafa")]
+zombie_animation_node = NodePath("../BasicZombieAnimation")
+
+[node name="Bite_Detection" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bite_Detection"]
+position = Vector2(-21.5, -76)
+shape = SubResource("RectangleShape2D_r5oqf")
+debug_color = Color(0.504058, 0.0862229, 4.81308e-08, 0.42)
+
+[node name="BasicZombieAnimation" parent="." instance=ExtResource("3_dt5cm")]
+
+[node name="HitPoint" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitPoint"]
+visible = false
+position = Vector2(0, -77)
+shape = SubResource("RectangleShape2D_v8ghd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-12.5, -77)
+shape = SubResource("RectangleShape2D_j1b3j")
+
+[connection signal="body_entered" from="Bite_Detection" to="." method="_on_bite_detection_body_entered"]
+[connection signal="body_exited" from="Bite_Detection" to="." method="_on_bite_detection_body_exited"]
+[connection signal="area_shape_entered" from="HitPoint" to="." method="_on_area_2d_area_shape_entered"]

@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8jsaoed5yq02"]
+
+[ext_resource type="Script" uid="uid://b0o5rdt50pppj" path="res://unit/plant/Potatomine/potatomine_script.gd" id="1_jur8w"]
+[ext_resource type="PackedScene" uid="uid://cs1eh8rbbrj0r" path="res://unit/plant/Potatomine/potato_mine_animation.tscn" id="2_jphgr"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="3_tesfl"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="3_tkiar"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jphgr"]
+size = Vector2(85, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tesfl"]
+size = Vector2(279.5, 123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkiar"]
+size = Vector2(106, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww56q"]
+size = Vector2(21, 41)
+
+[node name="potatomine_script" type="CharacterBody2D"]
+script = ExtResource("1_jur8w")
+
+[node name="PotatoMine_animation" parent="." instance=ExtResource("2_jphgr")]
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("3_tesfl")]
+collision_mask = 2
+
+[node name="check_for_explosion" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="check_for_explosion"]
+position = Vector2(0.5, -33.5)
+shape = SubResource("RectangleShape2D_jphgr")
+disabled = true
+
+[node name="zombie_sensor_tier1b" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="zombie_sensor_tier1b"]
+position = Vector2(98.25, -63)
+shape = SubResource("RectangleShape2D_tesfl")
+disabled = true
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("3_tkiar")]
+position = Vector2(19, -48)
+plant_name = "POTATOMINE"
+description_Tier1A = "Unarmed itself. Increase damage by additional 500"
+description_Tier1B = "Unarmed: When there are zombie within 2 tiles, decrease my current arming time by 2s. (10s cooldown)
+"
+description_Tier2A = "Unarmed itself. When I explode, mark this tile, after 15s this tile explodes again"
+description_Tier2B = "Unarmed itself. During arming, Gain 500 shield. When being unarmed, remove any shield within me."
+description_Tier3A = "Unarmed itself. My explosion now goes forward two times"
+description_Tier3B = "Unarmed itself. Explosion now doesnt kill me  instead it reverts back to unarmed and each explosion increase my damage by additonal 100  but arming time is  now much slower."
+_tier1_max_value = 1.0
+_tier2_max_value = 1.0
+_tier3_max_value = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EvolutionSenderSupportBehavior"]
+position = Vector2(-27, -15)
+shape = SubResource("RectangleShape2D_tkiar")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-36, -21)
+shape = SubResource("RectangleShape2D_ww56q")
+
+[node name="arming_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="tier1b_cooldown_reduction" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="body_entered" from="check_for_explosion" to="." method="_on_check_for_explosion_body_entered"]
+[connection signal="body_entered" from="zombie_sensor_tier1b" to="." method="_on_zombie_sensor_tier_1b_body_entered"]
+[connection signal="timeout" from="arming_timer" to="." method="_on_arming_timer_timeout"]
+[connection signal="timeout" from="tier1b_cooldown_reduction" to="." method="_on_tier_1b_cooldown_reduction_timeout"]

@@ -1,0 +1,233 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgug0q8j3v0lr"]
+
+[ext_resource type="Script" uid="uid://cm6p1e3vay0mg" path="res://HUD/EvolutionUI/evolution_boarder.gd" id="1_276mw"]
+[ext_resource type="Texture2D" uid="uid://bhjq6m1ay6hyq" path="res://HUD/borders/border_2.png" id="2_4n5yd"]
+[ext_resource type="Texture2D" uid="uid://cgrugbk8e63sx" path="res://HUD/borders/Upgrade_boarder.png" id="3_dwccr"]
+[ext_resource type="Texture2D" uid="uid://tl727l5ulbr1" path="res://HUD/borders/description_Boarder.png" id="4_dwccr"]
+[ext_resource type="Texture2D" uid="uid://dfjg5pnu1dlj2" path="res://HUD/EvolutionUI/evolve_locked.png" id="4_jhv7r"]
+[ext_resource type="Texture2D" uid="uid://xitdtg0wttse" path="res://HUD/borders/evolution_ui_indicator.png" id="5_jhv7r"]
+
+[node name="EvolutionBoarder" type="Control"]
+custom_minimum_size = Vector2(300, 1525)
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -538.0
+offset_right = 300.0
+offset_bottom = 662.0
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_276mw")
+
+[node name="Boarder" type="NinePatchRect" parent="."]
+z_index = 100
+custom_minimum_size = Vector2(400, 900)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.48
+anchor_bottom = 1.48
+offset_left = 2.0
+offset_top = -2093.5
+offset_right = 402.0
+offset_bottom = -1193.5
+grow_vertical = 0
+texture = ExtResource("2_4n5yd")
+patch_margin_left = 50
+patch_margin_top = 50
+patch_margin_right = 50
+patch_margin_bottom = 50
+
+[node name="plant_name_label" type="Label" parent="Boarder"]
+z_index = 100
+layout_mode = 0
+offset_left = 5.0
+offset_top = 39.0
+offset_right = 385.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.966701, 0.859148, 0.730785, 1)
+theme_override_colors/font_shadow_color = Color(0.341907, 0.18096, 4.81308e-08, 1)
+theme_override_colors/font_outline_color = Color(0.341176, 0.180392, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 31
+text = "PLANT NAME SAMPLE"
+horizontal_alignment = 1
+justification_flags = 227
+
+[node name="Upgrade_1" type="Button" parent="Boarder"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 100
+custom_minimum_size = Vector2(340, 188.62)
+layout_mode = 0
+offset_left = 23.0
+offset_top = 464.0
+offset_right = 373.0
+offset_bottom = 647.0
+
+[node name="choice_1_boarder" type="NinePatchRect" parent="Boarder/Upgrade_1"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -11.0
+offset_right = 354.0
+offset_bottom = 189.0
+rotation = 0.0137081
+texture = ExtResource("3_dwccr")
+patch_margin_left = 50
+patch_margin_top = 50
+patch_margin_right = 50
+patch_margin_bottom = 50
+
+[node name="Label" type="Label" parent="Boarder/Upgrade_1"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 15.0
+offset_right = 329.0
+offset_bottom = 174.0
+theme_override_colors/font_color = Color(0.38388, 0.172599, 0.0493627, 1)
+text = "THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC. THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC. 
+THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC."
+autowrap_mode = 3
+
+[node name="Upgrade_2" type="Button" parent="Boarder"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 100
+custom_minimum_size = Vector2(340, 188.62)
+layout_mode = 0
+offset_left = 19.0
+offset_top = 661.9
+offset_right = 369.0
+offset_bottom = 850.52
+
+[node name="choice_2_boarder" type="NinePatchRect" parent="Boarder/Upgrade_2"]
+z_index = 100
+layout_mode = 0
+offset_left = -0.395542
+offset_top = -3.0
+offset_right = 361.604
+offset_bottom = 187.0
+rotation = 0.0137081
+texture = ExtResource("3_dwccr")
+patch_margin_left = 50
+patch_margin_top = 50
+patch_margin_right = 50
+patch_margin_bottom = 50
+
+[node name="Label" type="Label" parent="Boarder/Upgrade_2"]
+z_index = 100
+layout_mode = 0
+offset_left = 33.6045
+offset_top = 16.0
+offset_right = 341.604
+offset_bottom = 175.0
+theme_override_colors/font_color = Color(0.38388, 0.172599, 0.0493627, 1)
+text = "THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC. THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC. 
+THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC."
+autowrap_mode = 3
+
+[node name="EvolveLocked_1" type="Sprite2D" parent="Boarder"]
+visible = false
+z_index = 100
+position = Vector2(193, 548.9)
+texture = ExtResource("4_jhv7r")
+
+[node name="Label" type="Label" parent="Boarder/EvolveLocked_1"]
+z_index = 100
+offset_left = -109.0
+offset_top = 55.0
+offset_right = 147.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0.616745, 0.40864, 0.121752, 1)
+theme_override_colors/font_outline_color = Color(0.416079, 0.284092, 0.11544, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 26
+text = "EVOLUTION LOCK"
+
+[node name="EvolveLocked_2" type="Sprite2D" parent="Boarder"]
+visible = false
+z_index = 100
+position = Vector2(186, 754.9)
+texture = ExtResource("4_jhv7r")
+
+[node name="Label" type="Label" parent="Boarder/EvolveLocked_2"]
+z_index = 100
+offset_left = -104.0
+offset_top = 46.0
+offset_right = 152.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0.616745, 0.40864, 0.121752, 1)
+theme_override_colors/font_outline_color = Color(0.416079, 0.284092, 0.11544, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 26
+text = "EVOLUTION LOCK"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Boarder"]
+self_modulate = Color(1, 1, 1, 0.596078)
+z_index = 100
+layout_mode = 0
+offset_left = 28.0
+offset_top = 73.0
+offset_right = 364.0
+offset_bottom = 459.0
+texture = ExtResource("4_dwccr")
+patch_margin_left = 50
+patch_margin_top = 50
+patch_margin_right = 50
+patch_margin_bottom = 50
+
+[node name="evolution_progress" type="ProgressBar" parent="Boarder"]
+z_index = 100
+layout_mode = 0
+offset_left = 66.0
+offset_top = 272.0
+offset_right = 342.0
+offset_bottom = 294.0
+value = 50.0
+show_percentage = false
+
+[node name="upgrade_status" type="Label" parent="Boarder"]
+z_index = 100
+layout_mode = 0
+offset_left = 37.0
+offset_top = 259.9
+offset_right = 361.0
+offset_bottom = 303.9
+theme_override_colors/font_color = Color(1, 1, 0.94902, 1)
+theme_override_colors/font_outline_color = Color(0.379731, 0.347355, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 31
+text = "EVOLVE AVAILABLE"
+horizontal_alignment = 1
+justification_flags = 227
+
+[node name="EvolutionUiIndicator" type="Sprite2D" parent="Boarder"]
+z_index = 100
+position = Vector2(193, 175)
+scale = Vector2(1.7, 1.8)
+texture = ExtResource("5_jhv7r")
+
+[node name="tier1A_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+position = Vector2(-20.5882, 36.6667)
+scale = Vector2(0.55, 0.55)
+
+[node name="tier1B_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+position = Vector2(21.1765, 36.6667)
+scale = Vector2(0.55, 0.55)
+
+[node name="tier2A_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+position = Vector2(-20, 13.8889)
+scale = Vector2(0.55, 0.55)
+
+[node name="tier2B_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+position = Vector2(21.7647, 13.8889)
+scale = Vector2(0.55, 0.55)
+
+[node name="tier3A_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+position = Vector2(-18.8235, -8.88889)
+scale = Vector2(0.55, 0.55)
+
+[node name="tier3B_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+position = Vector2(22.9412, -8.33333)
+scale = Vector2(0.55, 0.55)
+
+[connection signal="button_up" from="Boarder/Upgrade_1" to="." method="_on_upgrade_1_button_up"]
+[connection signal="button_up" from="Boarder/Upgrade_2" to="." method="_on_upgrade_2_button_up"]

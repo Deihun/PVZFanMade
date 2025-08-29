@@ -1,0 +1,2428 @@
+[gd_scene load_steps=18 format=3 uid="uid://cq356nfdqih64"]
+
+[ext_resource type="Script" uid="uid://d2g76na3ubtks" path="res://unit/plant/Sunflower/sunflower_animation.gd" id="1_h88ud"]
+[ext_resource type="Texture2D" uid="uid://lt386bdsq5ak" path="res://unit/plant/peashooter/normal_peashooter_foot_back.png" id="2_a0lm1"]
+[ext_resource type="Texture2D" uid="uid://by1higrig4rn4" path="res://unit/plant/peashooter/normal_peashooter_foot_front.png" id="3_msq2q"]
+[ext_resource type="Texture2D" uid="uid://dmnru2pgu7jgd" path="res://unit/plant/Sunflower/sunflower_petal.png" id="4_u8jyy"]
+[ext_resource type="Texture2D" uid="uid://b5cjju2naq3sl" path="res://unit/plant/Sunflower/sunflower_face_unlit.png" id="5_1bkgi"]
+[ext_resource type="Texture2D" uid="uid://05dfotx2dotb" path="res://unit/plant/Sunflower/sunflower_face_lit.png" id="6_fx50f"]
+[ext_resource type="Texture2D" uid="uid://cu8pm672lr8n6" path="res://unit/plant/Sunflower/sunflower_eyes.png" id="7_x6w3c"]
+[ext_resource type="Texture2D" uid="uid://cn6ywnqjatsvg" path="res://unit/plant/Sunflower/sunflower_smile_1.png" id="8_d0pnh"]
+[ext_resource type="Texture2D" uid="uid://bjdql1fsk5vf7" path="res://unit/plant/Sunflower/sunflower_smile_2.png" id="9_cxr5h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bq5n"]
+bg_color = Color(0.262808, 0.331817, 0, 1)
+
+[sub_resource type="Animation" id="Animation_e84fo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sunflower_head/face:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sunflower_head/face:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sunflower_head/face:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sunflower_head/face:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sunflower_head:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-24, -3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sunflower_head:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sunflower_head:skew")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("bottom_stem:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, 13)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("bottom_stem:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.602522]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("bottom_stem:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("bottom_stem2:size")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 20)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("bottom_stem2:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, -4)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("bottom_stem2:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.347788]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Sunflower_head:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Sunflower_head/face/SunflowerFaceLit:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Sunflower_head/face/SunflowerFaceLit:self_modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Sunflower_head/SunflowerEyes:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15, -28)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Sunflower_head/SunflowerEyes:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Sunflower_head/SunflowerEyes:rotation")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Sunflower_head/SunflowerSmile1:texture")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_d0pnh")]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Sunflower_head/SunflowerSmile1:position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, -29)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("NormalPeashooterFootFront:scale")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("NormalPeashooterFootFront:position")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, 30)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("NormalPeashooterFootBack:scale")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.05, 1.05)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("bottom_stem:size")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 20)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Sunflower_head/petals:scale")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Sunflower_head/petals:position")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("NormalPeashooterFootBack:position")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 17)]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Sunflower_head/SunflowerSmile1:visible")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("NormalPeashooterFootBack:visible")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("bottom_stem2:visible")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("bottom_stem:visible")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("NormalPeashooterFootFront:visible")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Sunflower_head:visible")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Sunflower_head/petals:visible")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("Sunflower_head/face:visible")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/36/type = "value"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("Sunflower_head/face/SunflowerFaceUnlit:visible")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/37/type = "value"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("Sunflower_head/SunflowerEyes:visible")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/38/type = "value"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("TwinSunFlower/NormalPeashooterFootFront:rotation")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/39/type = "value"
+tracks/39/imported = false
+tracks/39/enabled = true
+tracks/39/path = NodePath("TwinSunFlower/NormalPeashooterFootFront:position")
+tracks/39/interp = 1
+tracks/39/loop_wrap = true
+tracks/39/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, 30)]
+}
+tracks/40/type = "value"
+tracks/40/imported = false
+tracks/40/enabled = true
+tracks/40/path = NodePath("TwinSunFlower/NormalPeashooterFootFront:scale")
+tracks/40/interp = 1
+tracks/40/loop_wrap = true
+tracks/40/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.085, 1.085)]
+}
+tracks/41/type = "value"
+tracks/41/imported = false
+tracks/41/enabled = true
+tracks/41/path = NodePath("TwinSunFlower/NormalPeashooterFootBack:position")
+tracks/41/interp = 1
+tracks/41/loop_wrap = true
+tracks/41/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 17)]
+}
+tracks/42/type = "value"
+tracks/42/imported = false
+tracks/42/enabled = true
+tracks/42/path = NodePath("TwinSunFlower/NormalPeashooterFootBack:scale")
+tracks/42/interp = 1
+tracks/42/loop_wrap = true
+tracks/42/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.05, 1.05)]
+}
+tracks/43/type = "value"
+tracks/43/imported = false
+tracks/43/enabled = true
+tracks/43/path = NodePath("TwinSunFlower/Sunflower_head3:scale")
+tracks/43/interp = 1
+tracks/43/loop_wrap = true
+tracks/43/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.580902, 0.625668)]
+}
+tracks/44/type = "value"
+tracks/44/imported = false
+tracks/44/enabled = true
+tracks/44/path = NodePath("TwinSunFlower/Sunflower_head3:rotation")
+tracks/44/interp = 1
+tracks/44/loop_wrap = true
+tracks/44/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/45/type = "value"
+tracks/45/imported = false
+tracks/45/enabled = true
+tracks/45/path = NodePath("TwinSunFlower/Sunflower_head3:position")
+tracks/45/interp = 1
+tracks/45/loop_wrap = true
+tracks/45/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-37, 2)]
+}
+tracks/46/type = "value"
+tracks/46/imported = false
+tracks/46/enabled = true
+tracks/46/path = NodePath("TwinSunFlower/Sunflower_head2:position")
+tracks/46/interp = 1
+tracks/46/loop_wrap = true
+tracks/46/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(59, -25)]
+}
+tracks/47/type = "value"
+tracks/47/imported = false
+tracks/47/enabled = true
+tracks/47/path = NodePath("TwinSunFlower/Sunflower_head2:scale")
+tracks/47/interp = 1
+tracks/47/loop_wrap = true
+tracks/47/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.580902, 0.625668)]
+}
+tracks/48/type = "value"
+tracks/48/imported = false
+tracks/48/enabled = true
+tracks/48/path = NodePath("TwinSunFlower/Sunflower_head2:rotation")
+tracks/48/interp = 1
+tracks/48/loop_wrap = true
+tracks/48/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/49/type = "value"
+tracks/49/imported = false
+tracks/49/enabled = true
+tracks/49/path = NodePath("TwinSunFlower/bottom_stem1:position")
+tracks/49/interp = 1
+tracks/49/loop_wrap = true
+tracks/49/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-26, -5)]
+}
+tracks/50/type = "value"
+tracks/50/imported = false
+tracks/50/enabled = true
+tracks/50/path = NodePath("TwinSunFlower/bottom_stem1:rotation")
+tracks/50/interp = 1
+tracks/50/loop_wrap = true
+tracks/50/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.993039]
+}
+tracks/51/type = "value"
+tracks/51/imported = false
+tracks/51/enabled = true
+tracks/51/path = NodePath("TwinSunFlower/bottom_stem1:size")
+tracks/51/interp = 1
+tracks/51/loop_wrap = true
+tracks/51/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 38)]
+}
+tracks/52/type = "value"
+tracks/52/imported = false
+tracks/52/enabled = true
+tracks/52/path = NodePath("TwinSunFlower/bottom_stem2:size")
+tracks/52/interp = 1
+tracks/52/loop_wrap = true
+tracks/52/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 73)]
+}
+tracks/53/type = "value"
+tracks/53/imported = false
+tracks/53/enabled = true
+tracks/53/path = NodePath("TwinSunFlower/bottom_stem2:position")
+tracks/53/interp = 1
+tracks/53/loop_wrap = true
+tracks/53/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(61, -33)]
+}
+tracks/54/type = "value"
+tracks/54/imported = false
+tracks/54/enabled = true
+tracks/54/path = NodePath("TwinSunFlower/bottom_stem2:rotation")
+tracks/54/interp = 1
+tracks/54/loop_wrap = true
+tracks/54/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.634916]
+}
+tracks/55/type = "value"
+tracks/55/imported = false
+tracks/55/enabled = true
+tracks/55/path = NodePath("TwinSunFlower:visible")
+tracks/55/interp = 1
+tracks/55/loop_wrap = true
+tracks/55/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/56/type = "value"
+tracks/56/imported = false
+tracks/56/enabled = true
+tracks/56/path = NodePath("TwinSunFlower/Sunflower_head2/face/SunflowerFaceLit:self_modulate")
+tracks/56/interp = 1
+tracks/56/loop_wrap = true
+tracks/56/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/57/type = "value"
+tracks/57/imported = false
+tracks/57/enabled = true
+tracks/57/path = NodePath("TwinSunFlower/Sunflower_head2/SunflowerSmile1:texture")
+tracks/57/interp = 1
+tracks/57/loop_wrap = true
+tracks/57/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_d0pnh")]
+}
+tracks/58/type = "value"
+tracks/58/imported = false
+tracks/58/enabled = true
+tracks/58/path = NodePath("TwinSunFlower/Sunflower_head3/face/SunflowerFaceLit:self_modulate")
+tracks/58/interp = 1
+tracks/58/loop_wrap = true
+tracks/58/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/59/type = "value"
+tracks/59/imported = false
+tracks/59/enabled = true
+tracks/59/path = NodePath("TwinSunFlower/Sunflower_head3/SunflowerSmile1:texture")
+tracks/59/interp = 1
+tracks/59/loop_wrap = true
+tracks/59/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_d0pnh")]
+}
+tracks/60/type = "value"
+tracks/60/imported = false
+tracks/60/enabled = true
+tracks/60/path = NodePath("Sunflower_head/face/SunflowerFaceUnlit:texture")
+tracks/60/interp = 1
+tracks/60/loop_wrap = true
+tracks/60/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_1bkgi")]
+}
+tracks/61/type = "value"
+tracks/61/imported = false
+tracks/61/enabled = true
+tracks/61/path = NodePath("Sunflower_head/face/SunflowerFaceLit:texture")
+tracks/61/interp = 1
+tracks/61/loop_wrap = true
+tracks/61/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_fx50f")]
+}
+
+[sub_resource type="Animation" id="Animation_k0d2m"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sunflower_head/face:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sunflower_head/face:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sunflower_head/face:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sunflower_head/face:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sunflower_head:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.23, 0.866667, 1.76667, 2.12, 3.06667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-24, -3), Vector2(-24, -3), Vector2(1, -22), Vector2(33, -2), Vector2(33, -2), Vector2(1, -22)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sunflower_head:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sunflower_head:skew")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("bottom_stem:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.94),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(11, 13), Vector2(28, 8)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("bottom_stem:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.94),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.602522, 0.558219]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("bottom_stem:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.25, 1.7, 2.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("bottom_stem2:size")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.94, 1.7, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 20), Vector2(3, 34), Vector2(3, 21), Vector2(3, 34)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("bottom_stem2:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.94, 1.7, 2.03, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, -4), Vector2(19, -23), Vector2(30, -9), Vector2(30, -9), Vector2(19, -23)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("bottom_stem2:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.94, 1.7, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.347788, 0.000464708, 0.207922, 0.000464708]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("NormalPeashooterFootFront:scale")
+tracks/13/interp = 2
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1.26667, 1.86, 2.42667, 3.12667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1.135, 1.135), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1.135, 1.135)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("NormalPeashooterFootFront:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 1.86),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(22, 30), Vector2(22, 30)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("NormalPeashooterFootBack:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0.28, 1.06667, 1.57, 2.35667, 3.01333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Sunflower_head/face/SunflowerFaceLit:self_modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("NormalPeashooterFootBack:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("bottom_stem2:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("bottom_stem:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("NormalPeashooterFootFront:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Sunflower_head:visible")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Sunflower_head/petals:visible")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Sunflower_head/face:visible")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Sunflower_head/face/SunflowerFaceUnlit:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Sunflower_head/face/SunflowerFaceLit:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Sunflower_head/SunflowerEyes:visible")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Sunflower_head/SunflowerSmile1:visible")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("TwinSunFlower:visible")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_h88ud"]
+resource_name = "spawn"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sunflower_head:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.16667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(19, 20), Vector2(3, 0), Vector2(-24, -3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sunflower_head:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.16667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sunflower_head:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.16667),
+"transitions": PackedFloat32Array(1.46409, 1, 1),
+"update": 0,
+"values": [Vector2(0.055, -0.005), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sunflower_head/petals:scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.533333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.985, 1.263), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sunflower_head/petals:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.19, 0.533333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(8.838, -7.8924), Vector2(1.75148, 8.11807), Vector2(-0.628946, 1.79265)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sunflower_head/SunflowerEyes:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.59, 0.81, 1.16),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(15.5037, -34.6674), Vector2(15.5037, -34.6674), Vector2(15, -28), Vector2(15, -28)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sunflower_head/SunflowerEyes:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.59, 0.81, 1.16),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1e-05), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sunflower_head/SunflowerSmile1:texture")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.866667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("9_cxr5h"), ExtResource("8_d0pnh")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("NormalPeashooterFootBack:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.22),
+"transitions": PackedFloat32Array(1, 0.732044),
+"update": 0,
+"values": [Vector2(16, 17), Vector2(16, 17)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("NormalPeashooterFootBack:scale")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.22),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("NormalPeashooterFootFront:position")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(15.785, 18.11), Vector2(22, 30)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("NormalPeashooterFootFront:scale")
+tracks/11/interp = 2
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.165, 0.165), Vector2(1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("bottom_stem:size")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.22, 0.49, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1.16), Vector2(4, 14), Vector2(3, 20), Vector2(3, 20)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("bottom_stem:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.22, 0.49, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(15, 16.565), Vector2(19, 10), Vector2(20, 8), Vector2(11, 13)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("bottom_stem:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.22, 0.49, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.025417, 0.025417, 0.025417, -0.289014]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("bottom_stem2:size")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0.07, 0.33, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(3, 23), Vector2(3, 20)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("bottom_stem2:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0.07, 0.33, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(16, 19), Vector2(18, -11), Vector2(5, -4)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("bottom_stem2:rotation")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0.07, 0.33, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0101149, -0.0791819, -0.347788]
+}
+
+[sub_resource type="Animation" id="Animation_anp0b"]
+resource_name = "sun_release"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sunflower_head:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36, 0.5, 0.6, 0.833333, 2.4, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1.41421, 1, 1),
+"update": 0,
+"values": [Vector2(-24, -3), Vector2(-17, 25), Vector2(8, 25), Vector2(11.415, 27.095), Vector2(4, -21), Vector2(4, -21), Vector2(-24, -3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sunflower_head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.36, 0.5, 0.833333, 2.4, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1.41421, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sunflower_head:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.6, 0.833333, 2.4, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1.41421, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.46, 1.365), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sunflower_head/face/SunflowerFaceLit:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.76),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sunflower_head/face/SunflowerFaceLit:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.11, 2.23333, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sunflower_head/SunflowerEyes:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.46667, 1.7, 2.16667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(15, -28), Vector2(15, -28), Vector2(16.7249, -34.6631), Vector2(16.7249, -34.6631), Vector2(15, -28)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sunflower_head/SunflowerEyes:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.46667, 1.7, 2.16667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1e-05), Vector2(1, 1e-05), Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sunflower_head/SunflowerEyes:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sunflower_head/SunflowerSmile1:texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.89, 2.22333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_d0pnh"), ExtResource("9_cxr5h"), ExtResource("8_d0pnh")]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sunflower_head/SunflowerSmile1:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.62, 0.866667, 2.2, 2.35333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(16, -29), Vector2(16, -29), Vector2(16.548, -24.1982), Vector2(17.0685, -27.0266), Vector2(16, -29)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("bottom_stem:size")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.69, 1.55, 2.35, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 20), Vector2(3, 20), Vector2(5, 60), Vector2(3, 20), Vector2(3, 20)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("bottom_stem:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.68, 1.55, 2.34, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(11, 13), Vector2(19, 13), Vector2(16, -27), Vector2(19, 13), Vector2(11, 13)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("bottom_stem:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.69, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.289014, -0.0350528, -0.289014]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("bottom_stem2:size")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.66, 0.88, 1.3, 1.59, 1.77, 2.16, 2.39, 2.81, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 20), Vector2(3, 20), Vector2(3, 34), Vector2(3, 46), Vector2(3, 49), Vector2(3, 46), Vector2(3, 34), Vector2(3, 38), Vector2(3, 25.6066), Vector2(3, 20)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("bottom_stem2:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.66, 0.88, 1.3, 1.59, 1.77, 2.16, 2.39, 2.81, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, -4), Vector2(19, -4), Vector2(16, -29), Vector2(16, -59), Vector2(18, -73), Vector2(16, -59), Vector2(16, -29), Vector2(15, -23), Vector2(7, -10), Vector2(5, -4)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("bottom_stem2:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.66, 0.88, 1.3, 1.59, 1.77, 2.16, 2.39, 2.81, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.347788, -0.0431553, -0.071796, -0.0481037, 0.0112892, -0.0481037, -0.071796, -0.0986552, -0.270189, -0.347788]
+}
+tracks/16/type = "method"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath(".")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(1.53333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_produce_sun_by_animation_trigger"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_a0lm1"]
+resource_name = "twin_sunflower_idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sunflower_head/SunflowerSmile1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NormalPeashooterFootBack:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bottom_stem2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bottom_stem:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("NormalPeashooterFootFront:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sunflower_head:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sunflower_head/petals:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sunflower_head/face:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sunflower_head/face/SunflowerFaceUnlit:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sunflower_head/face/SunflowerFaceLit:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sunflower_head/SunflowerEyes:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("TwinSunFlower/NormalPeashooterFootFront:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("TwinSunFlower/NormalPeashooterFootFront:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, 30)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("TwinSunFlower/NormalPeashooterFootFront:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.666667, 1.66667, 2.56667, 3.3, 4.42),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.085, 1.085), Vector2(1, 1), Vector2(1.085, 1.085), Vector2(1, 1), Vector2(1.085, 1.085)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("TwinSunFlower/NormalPeashooterFootBack:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 17)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("TwinSunFlower/NormalPeashooterFootBack:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.74, 1.79, 2.53, 3.42, 4.73333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.05, 1.05), Vector2(1.09, 1.09), Vector2(1.05, 1.05), Vector2(1.09, 1.09), Vector2(1.05, 1.05), Vector2(1.09, 1.09)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("TwinSunFlower/Sunflower_head3:scale")
+tracks/16/interp = 2
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 1.12, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.580902, 0.625668), Vector2(0.580902, 0.625668), Vector2(0.580902, 0.625668)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("TwinSunFlower/Sunflower_head3:rotation")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("TwinSunFlower/Sunflower_head3:position")
+tracks/18/interp = 2
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 0.23, 1.12, 2, 2.36667, 3.76667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-37, 2), Vector2(-37, 2), Vector2(-13, -19), Vector2(1, -1), Vector2(1, -1), Vector2(-13, -19)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("TwinSunFlower/Sunflower_head2:position")
+tracks/19/interp = 2
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0, 0.33, 1.16667, 1.86667, 2.43, 4.01),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(59, -25), Vector2(59, -25), Vector2(45, -59), Vector2(21, -38), Vector2(21, -38), Vector2(45, -59)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("TwinSunFlower/Sunflower_head2:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 2.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.580902, 0.625668), Vector2(0.580902, 0.625668)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("TwinSunFlower/Sunflower_head2:rotation")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0, 2.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("TwinSunFlower/bottom_stem1:position")
+tracks/22/interp = 2
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0, 0.34, 1.11, 2.01, 2.37, 3.78),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-26, -5), Vector2(-26, -5), Vector2(-1, -25), Vector2(11, -7), Vector2(11, -7), Vector2(-1, -25)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("TwinSunFlower/bottom_stem1:rotation")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0, 0.34, 1.11, 2, 2.36, 3.78),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.993039, -0.993039, -0.374509, -0.0982175, -0.0982175, -0.374509]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("TwinSunFlower/bottom_stem1:size")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0, 0.35, 1.13, 2.03, 2.37, 3.79),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6, 38), Vector2(6, 38), Vector2(6, 38), Vector2(5, 22), Vector2(5, 22), Vector2(6, 38)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("TwinSunFlower/bottom_stem2:size")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0, 0.34, 1.14, 2.03, 2.38, 3.73),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 73), Vector2(4, 73), Vector2(4, 95), Vector2(5, 72), Vector2(5, 72), Vector2(4, 95)]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("TwinSunFlower/bottom_stem2:position")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0, 0.34, 1.14, 2.03, 2.38, 3.73),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(61, -33), Vector2(61, -33), Vector2(55, -66), Vector2(26, -44), Vector2(26, -44), Vector2(55, -66)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("TwinSunFlower/bottom_stem2:rotation")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0, 0.34, 1.14, 2.03, 2.38, 3.73),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.634916, 0.634916, 0.365642, 0.0765153, 0.0765153, 0.365642]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("TwinSunFlower:visible")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_msq2q"]
+resource_name = "twin_sunflower_releasing_sun"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TwinSunFlower/Sunflower_head3:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333, 0.9, 1.4, 2.33333, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-37, 2), Vector2(-5, 12), Vector2(-5, 12), Vector2(1, -37), Vector2(1, -37), Vector2(-37, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TwinSunFlower/Sunflower_head3:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.833333, 0.966667, 1.26667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.580902, 0.625668), Vector2(0.580902, 0.625668), Vector2(0.581, 0.856), Vector2(0.580902, 0.625668)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TwinSunFlower/Sunflower_head2:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.65, 1.41, 2.32, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(59, -25), Vector2(31, -11), Vector2(38, -67), Vector2(38, -67), Vector2(59, -25)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TwinSunFlower/Sunflower_head2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.833333, 0.98, 1.23),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.580902, 0.625668), Vector2(0.580902, 0.625668), Vector2(0.581, 0.856), Vector2(0.580902, 0.625668)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TwinSunFlower/bottom_stem2:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.66, 1.7, 2.49, 2.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(61, -33), Vector2(37, -25), Vector2(46, -82), Vector2(52, -62), Vector2(61, -33)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TwinSunFlower/bottom_stem2:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.66, 1.7, 2.49, 2.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 73), Vector2(4, 54), Vector2(2, 109), Vector2(3, 93), Vector2(4, 73)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TwinSunFlower/bottom_stem2:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.66, 1.7, 2.49, 2.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.634916, 0.376073, 0.228165, 0.375058, 0.634916]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TwinSunFlower/bottom_stem1:size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.74, 2.53, 2.87),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6, 38), Vector2(7, 19), Vector2(2, 50), Vector2(5, 40), Vector2(6, 38)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TwinSunFlower/bottom_stem1:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.74, 2.53, 2.87),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-26, -5), Vector2(4, 0), Vector2(16, -55), Vector2(0.999998, -35), Vector2(-26, -5)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("TwinSunFlower/bottom_stem1:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.74, 2.53, 2.87),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.993039, -0.451443, -0.0351714, -0.288295, -0.993039]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("TwinSunFlower/Sunflower_head2/face/SunflowerFaceLit:self_modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.2, 1.56667, 1.83333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("TwinSunFlower/Sunflower_head2/SunflowerSmile1:texture")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.866667, 2.06),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_d0pnh"), ExtResource("9_cxr5h"), ExtResource("8_d0pnh")]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("TwinSunFlower/Sunflower_head3/face/SunflowerFaceLit:self_modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1.19, 1.61, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("TwinSunFlower/Sunflower_head3/SunflowerSmile1:texture")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.81, 2.16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_d0pnh"), ExtResource("9_cxr5h"), ExtResource("8_d0pnh")]
+}
+tracks/14/type = "method"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath(".")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(1.4, 1.49),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_produce_sun_by_animation_trigger"
+}, {
+"args": [],
+"method": &"_produce_sun_by_animation_trigger"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xldkq"]
+_data = {
+&"RESET": SubResource("Animation_e84fo"),
+&"idle": SubResource("Animation_k0d2m"),
+&"spawn": SubResource("Animation_h88ud"),
+&"sun_release": SubResource("Animation_anp0b"),
+&"twin_sunflower_idle": SubResource("Animation_a0lm1"),
+&"twin_sunflower_releasing_sun": SubResource("Animation_msq2q")
+}
+
+[node name="Sunflower Animation" type="Node2D"]
+script = ExtResource("1_h88ud")
+
+[node name="NormalPeashooterFootBack" type="Sprite2D" parent="."]
+position = Vector2(16, 17)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("2_a0lm1")
+
+[node name="bottom_stem2" type="Panel" parent="."]
+offset_left = 5.0
+offset_top = -4.0
+offset_right = 8.0
+offset_bottom = 16.0
+rotation = -0.347788
+theme_override_styles/panel = SubResource("StyleBoxFlat_1bq5n")
+
+[node name="bottom_stem" type="Panel" parent="."]
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 14.0
+offset_bottom = 33.0
+rotation = -0.602522
+theme_override_styles/panel = SubResource("StyleBoxFlat_1bq5n")
+
+[node name="NormalPeashooterFootFront" type="Sprite2D" parent="."]
+position = Vector2(22, 30)
+texture = ExtResource("3_msq2q")
+
+[node name="Sunflower_head" type="Node2D" parent="."]
+position = Vector2(-24, -3)
+metadata/_edit_group_ = true
+
+[node name="petals" type="Node2D" parent="Sunflower_head"]
+
+[node name="SunflowerPetal4" type="Sprite2D" parent="Sunflower_head/petals"]
+position = Vector2(26, -82)
+rotation = 3.08093
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal3" type="Sprite2D" parent="Sunflower_head/petals"]
+position = Vector2(4, -81)
+rotation = 3.09351
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal2" type="Sprite2D" parent="Sunflower_head/petals"]
+position = Vector2(-7, 20)
+rotation = 0.559169
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal" type="Sprite2D" parent="Sunflower_head/petals"]
+position = Vector2(30, 28)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal5" type="Sprite2D" parent="Sunflower_head/petals"]
+position = Vector2(56, -71)
+rotation = -2.78022
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal6" type="Sprite2D" parent="Sunflower_head/petals"]
+position = Vector2(80, -38)
+rotation = -2.06391
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal10" type="Sprite2D" parent="Sunflower_head/petals"]
+position = Vector2(-28, -63)
+rotation = 2.46447
+scale = Vector2(0.943142, 0.881714)
+skew = -0.00150394
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal8" type="Sprite2D" parent="Sunflower_head/petals"]
+position = Vector2(-44, -35)
+rotation = 1.90764
+scale = Vector2(1.00811, 0.950368)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal9" type="Sprite2D" parent="Sunflower_head/petals"]
+position = Vector2(-16, 19)
+rotation = 0.210487
+scale = Vector2(0.958919, 0.957317)
+skew = 0.0139332
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal7" type="Sprite2D" parent="Sunflower_head/petals"]
+position = Vector2(71, 9)
+rotation = -0.828792
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+
+[node name="face" type="Node2D" parent="Sunflower_head"]
+
+[node name="SunflowerFaceUnlit" type="Sprite2D" parent="Sunflower_head/face"]
+position = Vector2(16, -26)
+texture = ExtResource("5_1bkgi")
+
+[node name="SunflowerFaceLit" type="Sprite2D" parent="Sunflower_head/face"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(16, -26)
+texture = ExtResource("6_fx50f")
+
+[node name="SunflowerEyes" type="Sprite2D" parent="Sunflower_head"]
+position = Vector2(15, -28)
+texture = ExtResource("7_x6w3c")
+
+[node name="SunflowerSmile1" type="Sprite2D" parent="Sunflower_head"]
+position = Vector2(16, -29)
+texture = ExtResource("8_d0pnh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xldkq")
+}
+autoplay = "idle"
+
+[node name="TwinSunFlower" type="Node2D" parent="."]
+visible = false
+
+[node name="NormalPeashooterFootBack" type="Sprite2D" parent="TwinSunFlower"]
+position = Vector2(16, 17)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("2_a0lm1")
+
+[node name="bottom_stem2" type="Panel" parent="TwinSunFlower"]
+offset_left = 61.0
+offset_top = -33.0
+offset_right = 65.0
+offset_bottom = 40.0
+rotation = 0.634916
+theme_override_styles/panel = SubResource("StyleBoxFlat_1bq5n")
+
+[node name="bottom_stem1" type="Panel" parent="TwinSunFlower"]
+offset_left = -26.0
+offset_top = -5.0
+offset_right = -20.0
+offset_bottom = 33.0
+rotation = -0.993039
+scale = Vector2(1, 1.63165)
+theme_override_styles/panel = SubResource("StyleBoxFlat_1bq5n")
+
+[node name="NormalPeashooterFootFront" type="Sprite2D" parent="TwinSunFlower"]
+position = Vector2(22, 30)
+scale = Vector2(1.085, 1.085)
+texture = ExtResource("3_msq2q")
+
+[node name="Sunflower_head3" type="Node2D" parent="TwinSunFlower"]
+position = Vector2(-37, 2)
+scale = Vector2(0.580902, 0.625668)
+metadata/_edit_group_ = true
+
+[node name="petals" type="Node2D" parent="TwinSunFlower/Sunflower_head3"]
+
+[node name="SunflowerPetal4" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/petals"]
+position = Vector2(26, -82)
+rotation = 3.08093
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal3" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/petals"]
+position = Vector2(4, -81)
+rotation = 3.09351
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal2" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/petals"]
+position = Vector2(-7, 20)
+rotation = 0.559169
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/petals"]
+position = Vector2(30, 28)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal5" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/petals"]
+position = Vector2(56, -71)
+rotation = -2.78022
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal6" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/petals"]
+position = Vector2(80, -38)
+rotation = -2.06391
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal10" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/petals"]
+position = Vector2(-28, -63)
+rotation = 2.46447
+scale = Vector2(0.943142, 0.881714)
+skew = -0.00150394
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal8" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/petals"]
+position = Vector2(-44, -35)
+rotation = 1.90764
+scale = Vector2(1.00811, 0.950368)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal9" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/petals"]
+position = Vector2(-16, 19)
+rotation = 0.210487
+scale = Vector2(0.958919, 0.957317)
+skew = 0.0139332
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal7" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/petals"]
+position = Vector2(71, 9)
+rotation = -0.828792
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+
+[node name="face" type="Node2D" parent="TwinSunFlower/Sunflower_head3"]
+
+[node name="SunflowerFaceUnlit" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/face"]
+position = Vector2(16, -26)
+texture = ExtResource("5_1bkgi")
+
+[node name="SunflowerFaceLit" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3/face"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(16, -26)
+texture = ExtResource("6_fx50f")
+
+[node name="SunflowerEyes" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3"]
+position = Vector2(15, -28)
+texture = ExtResource("7_x6w3c")
+
+[node name="SunflowerSmile1" type="Sprite2D" parent="TwinSunFlower/Sunflower_head3"]
+position = Vector2(16, -29)
+texture = ExtResource("8_d0pnh")
+
+[node name="Sunflower_head2" type="Node2D" parent="TwinSunFlower"]
+position = Vector2(59, -25)
+scale = Vector2(0.580902, 0.625668)
+metadata/_edit_group_ = true
+
+[node name="petals" type="Node2D" parent="TwinSunFlower/Sunflower_head2"]
+
+[node name="SunflowerPetal4" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/petals"]
+position = Vector2(26, -82)
+rotation = 3.08093
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal3" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/petals"]
+position = Vector2(4, -81)
+rotation = 3.09351
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal2" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/petals"]
+position = Vector2(-7, 20)
+rotation = 0.559169
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/petals"]
+position = Vector2(30, 28)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal5" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/petals"]
+position = Vector2(56, -71)
+rotation = -2.78022
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal6" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/petals"]
+position = Vector2(80, -38)
+rotation = -2.06391
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal10" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/petals"]
+position = Vector2(-28, -63)
+rotation = 2.46447
+scale = Vector2(0.943142, 0.881714)
+skew = -0.00150394
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal8" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/petals"]
+position = Vector2(-44, -35)
+rotation = 1.90764
+scale = Vector2(1.00811, 0.950368)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal9" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/petals"]
+position = Vector2(-16, 19)
+rotation = 0.210487
+scale = Vector2(0.958919, 0.957317)
+skew = 0.0139332
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal7" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/petals"]
+position = Vector2(71, 9)
+rotation = -0.828792
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+
+[node name="face" type="Node2D" parent="TwinSunFlower/Sunflower_head2"]
+
+[node name="SunflowerFaceUnlit" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/face"]
+position = Vector2(16, -26)
+texture = ExtResource("5_1bkgi")
+
+[node name="SunflowerFaceLit" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2/face"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(16, -26)
+texture = ExtResource("6_fx50f")
+
+[node name="SunflowerEyes" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2"]
+position = Vector2(15, -28)
+texture = ExtResource("7_x6w3c")
+
+[node name="SunflowerSmile1" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2"]
+position = Vector2(16, -29)
+texture = ExtResource("8_d0pnh")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

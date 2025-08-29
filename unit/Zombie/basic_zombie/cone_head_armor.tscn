@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8n3pwl5bcrji"]
+
+[ext_resource type="Script" uid="uid://qnk108yo1jik" path="res://unit/Zombie/cone_head_armor.gd" id="1_n1tc7"]
+[ext_resource type="Texture2D" uid="uid://di2epntgu1aw5" path="res://unit/Zombie/basic_zombie/cone_head_armor_full.png" id="2_cvd1b"]
+
+[node name="ConeHead_Armor" type="Node2D"]
+script = ExtResource("1_n1tc7")
+
+[node name="imagge" type="Sprite2D" parent="."]
+position = Vector2(12, -31)
+texture = ExtResource("2_cvd1b")

@@ -1,0 +1,216 @@
+[gd_scene load_steps=3 format=3 uid="uid://rvbwdqhikigs"]
+
+[ext_resource type="Script" uid="uid://bxo8rlom88abp" path="res://Resource/Levels/Tutorial_Part/wave.gd" id="1_nwmhy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwwk8"]
+size = Vector2(248, 129)
+
+[node name="wave" type="Panel"]
+custom_minimum_size = Vector2(250, 1200)
+script = ExtResource("1_nwmhy")
+_delay_duration = 4.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 3.0
+offset_right = 151.0
+offset_bottom = 26.0
+text = "SPAWN"
+
+[node name="choice_1" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 44.0
+offset_right = 250.0
+offset_bottom = 175.0
+
+[node name="Label" type="Label" parent="choice_1"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 3.0
+offset_right = 151.0
+offset_bottom = 26.0
+text = "random
+"
+
+[node name="random_" type="Area2D" parent="choice_1"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choice_1/random_"]
+position = Vector2(125, 65.5)
+shape = SubResource("RectangleShape2D_hwwk8")
+
+[node name="choice_2" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 189.0
+offset_right = 250.0
+offset_bottom = 320.0
+
+[node name="Label" type="Label" parent="choice_2"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 3.0
+offset_right = 151.0
+offset_bottom = 26.0
+text = "lane_1
+"
+
+[node name="lane_1" type="Area2D" parent="choice_2"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choice_2/lane_1"]
+position = Vector2(125, 65.5)
+shape = SubResource("RectangleShape2D_hwwk8")
+
+[node name="choice_3" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 329.0
+offset_right = 251.0
+offset_bottom = 460.0
+
+[node name="Label" type="Label" parent="choice_3"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 3.0
+offset_right = 151.0
+offset_bottom = 26.0
+text = "lane_2
+"
+
+[node name="lane_2" type="Area2D" parent="choice_3"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choice_3/lane_2"]
+position = Vector2(125, 65.5)
+shape = SubResource("RectangleShape2D_hwwk8")
+
+[node name="choice_4" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 472.0
+offset_right = 250.0
+offset_bottom = 603.0
+
+[node name="Label" type="Label" parent="choice_4"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 3.0
+offset_right = 151.0
+offset_bottom = 26.0
+text = "lane_3
+"
+
+[node name="lane_3" type="Area2D" parent="choice_4"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choice_4/lane_3"]
+position = Vector2(125, 65.5)
+shape = SubResource("RectangleShape2D_hwwk8")
+
+[node name="choice_5" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 620.0
+offset_right = 250.0
+offset_bottom = 751.0
+
+[node name="Label" type="Label" parent="choice_5"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 3.0
+offset_right = 151.0
+offset_bottom = 26.0
+text = "lane_4"
+
+[node name="lane_4" type="Area2D" parent="choice_5"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choice_5/lane_4"]
+position = Vector2(125, 65.5)
+shape = SubResource("RectangleShape2D_hwwk8")
+
+[node name="choice_6" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 765.0
+offset_right = 250.0
+offset_bottom = 896.0
+
+[node name="Label" type="Label" parent="choice_6"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 3.0
+offset_right = 151.0
+offset_bottom = 26.0
+text = "lane_5
+"
+
+[node name="lane_5" type="Area2D" parent="choice_6"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choice_6/lane_5"]
+position = Vector2(125, 65.5)
+shape = SubResource("RectangleShape2D_hwwk8")
+
+[node name="choice_7" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 910.0
+offset_right = 251.0
+offset_bottom = 1041.0
+
+[node name="Label" type="Label" parent="choice_7"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 3.0
+offset_right = 151.0
+offset_bottom = 26.0
+text = "lane_6"
+
+[node name="lane_6" type="Area2D" parent="choice_7"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choice_7/lane_6"]
+position = Vector2(125, 65.5)
+shape = SubResource("RectangleShape2D_hwwk8")
+
+[node name="choice_8" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 1053.0
+offset_right = 249.0
+offset_bottom = 1184.0
+
+[node name="Label" type="Label" parent="choice_8"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 3.0
+offset_right = 151.0
+offset_bottom = 26.0
+text = "lane_7"
+
+[node name="lane_7" type="Area2D" parent="choice_8"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="choice_8/lane_7"]
+position = Vector2(125, 65.5)
+shape = SubResource("RectangleShape2D_hwwk8")
+
+[node name="spawn_next" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="choice_1/random_" to="." method="_on_random__body_entered"]
+[connection signal="body_entered" from="choice_2/lane_1" to="." method="_on_lane_1_body_entered"]
+[connection signal="body_entered" from="choice_3/lane_2" to="." method="_on_lane_2_body_entered"]
+[connection signal="body_entered" from="choice_4/lane_3" to="." method="_on_lane_3_body_entered"]
+[connection signal="body_entered" from="choice_5/lane_4" to="." method="_on_lane_4_body_entered"]
+[connection signal="body_entered" from="choice_6/lane_5" to="." method="_on_lane_5_body_entered"]
+[connection signal="body_entered" from="choice_7/lane_6" to="." method="_on_lane_6_body_entered"]
+[connection signal="body_entered" from="choice_8/lane_7" to="." method="_on_lane_7_body_entered"]
+[connection signal="timeout" from="spawn_next" to="." method="_on_spawn_next_timeout"]

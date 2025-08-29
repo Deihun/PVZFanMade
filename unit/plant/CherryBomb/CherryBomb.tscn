@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://crnr4m2b2ilqr"]
+
+[ext_resource type="Script" uid="uid://dedf8miyax4my" path="res://unit/plant/CherryBomb/cherry_bomb.gd" id="1_hbl6c"]
+[ext_resource type="PackedScene" uid="uid://dsyw8ad0cd20q" path="res://unit/plant/CherryBomb/cherry_bomb_animation.tscn" id="1_w7am6"]
+
+[node name="CherryBomb" type="CharacterBody2D"]
+script = ExtResource("1_hbl6c")
+
+[node name="CherryBomb_animation" parent="." instance=ExtResource("1_w7am6")]
+position = Vector2(14, -13)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cexbch8q0jqqt"]
+
+[ext_resource type="Script" uid="uid://dun8lyr5aw2k0" path="res://quick_data_management.gd" id="1_y12ra"]
+[ext_resource type="Script" uid="uid://cmwg1i4oco8jf" path="res://plant_informationn.gd" id="2_kpcgp"]
+[ext_resource type="Script" uid="uid://bm5j50e1y5wyy" path="res://save_manager.gd" id="3_a7xqh"]
+[ext_resource type="Script" uid="uid://pwis6o71s25q" path="res://unit/plant/CherryBomb/global_call_manager.gd" id="4_kpcgp"]
+
+[node name="QuickDataManagement" type="Node"]
+script = ExtResource("1_y12ra")
+
+[node name="plant_information" type="Node" parent="."]
+script = ExtResource("2_kpcgp")
+
+[node name="save_manager" type="Node" parent="."]
+script = ExtResource("3_a7xqh")
+
+[node name="global_call_manager" type="Node" parent="."]
+script = ExtResource("4_kpcgp")

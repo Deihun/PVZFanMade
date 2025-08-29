@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpnwr5oe20tfl"]
+
+[ext_resource type="PackedScene" uid="uid://1586jc7ht8x0" path="res://unit/plant/Wallnut/Wallnut_animation.tscn" id="1_r3nnr"]
+[ext_resource type="Script" uid="uid://c4i8sivw4b70j" path="res://unit/plant/Wallnut/wallnut_plant.gd" id="1_v4b73"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="2_hspts"]
+[ext_resource type="Texture2D" uid="uid://ccbg5x8x7jwu4" path="res://unit/plant/Wallnut/wallnut_empower_behind.png" id="2_n3peg"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="3_hc25i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3peg"]
+size = Vector2(2280.5, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hspts"]
+size = Vector2(80, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hc25i"]
+size = Vector2(80, 99)
+
+[node name="Wallnut" type="CharacterBody2D"]
+collision_mask = 5
+script = ExtResource("1_v4b73")
+
+[node name="WallnutEmpowerBehind" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-49, -19)
+scale = Vector2(0.808333, 0.614286)
+texture = ExtResource("2_n3peg")
+
+[node name="Wallnut" parent="." instance=ExtResource("1_r3nnr")]
+position = Vector2(-1.19209e-07, -0.999992)
+
+[node name="Tier_2BEmpower" type="Area2D" parent="."]
+position = Vector2(1, -52)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tier_2BEmpower"]
+visible = false
+position = Vector2(-1183.75, -1.5)
+shape = SubResource("RectangleShape2D_n3peg")
+disabled = true
+debug_color = Color(0.403922, 0.462745, 0.886275, 0.682353)
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("3_hc25i")]
+position = Vector2(1, -52)
+max_health = 800
+armor = 5
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("2_hspts")]
+position = Vector2(5, -82)
+description_Tier1A = "Gain additional 500 health"
+description_Tier1B = "gain additional 2 armor"
+description_Tier2A = "Heal itself back to full and become Tallnut, Gaining additional 300 HP"
+description_Tier2B = "All plants behind me grow its armor to 2. And I gain 1 armor for each plant i successfully increase its armor."
+description_Tier3A = "Increase my health by additional 10% more. When not being damage for 10s. Heal itself by 10% base missing health."
+description_Tier3B = "When not receiving any damage within 5s, gain 5% maxhealth as a shield."
+_tier1_max_value = 1.0
+_tier2_max_value = 1.0
+_tier3_max_value = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EvolutionSenderSupportBehavior"]
+visible = false
+position = Vector2(-7, 16)
+shape = SubResource("RectangleShape2D_hspts")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -53.5)
+shape = SubResource("RectangleShape2D_hc25i")
+
+[node name="starts_evolution_when_progress" type="Timer" parent="."]
+
+[node name="Shield_Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="heal_cooldown" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="healing_per_sec" type="Timer" parent="heal_cooldown"]
+autostart = true
+
+[connection signal="body_entered" from="Tier_2BEmpower" to="." method="_on_tier_2b_empower_body_entered"]
+[connection signal="timeout" from="starts_evolution_when_progress" to="." method="_on_starts_evolution_when_progress_timeout"]
+[connection signal="timeout" from="Shield_Timer" to="." method="_on_shield_timer_timeout"]
+[connection signal="timeout" from="heal_cooldown" to="." method="_on_heal_cooldown_timeout"]
+[connection signal="timeout" from="heal_cooldown/healing_per_sec" to="." method="_on_healing_per_sec_timeout"]

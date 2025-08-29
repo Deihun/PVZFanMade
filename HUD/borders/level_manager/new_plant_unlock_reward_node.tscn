@@ -1,0 +1,403 @@
+[gd_scene load_steps=11 format=3 uid="uid://y1wnytmunqr8"]
+
+[ext_resource type="Script" uid="uid://bkqp14kehu3k5" path="res://HUD/borders/level_manager/new_plant_unlock_reward_node.gd" id="1_s201k"]
+[ext_resource type="Texture2D" uid="uid://cgrugbk8e63sx" path="res://HUD/borders/Upgrade_boarder.png" id="2_p8cy6"]
+[ext_resource type="Texture2D" uid="uid://dt4368gtnurku" path="res://HUD/borders/level_manager/_white_shine_reward2.png" id="2_p5783"]
+[ext_resource type="Texture2D" uid="uid://dqbhk4sm5wyjq" path="res://HUD/borders/level_manager/_white_shine_reward1.png" id="3_p8cy6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k262q"]
+bg_color = Color(0.784831, 0.627631, 0.348761, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5783"]
+size = Vector2(417, 102)
+
+[sub_resource type="Animation" id="Animation_dij4a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/WhiteShineReward1:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/WhiteShineReward1:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.84, 1.73)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/shine_ray_1:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/shine_ray_1:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-5.84336]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D/shine_ray_1:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("next_day:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera2D:zoom")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Panel:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ygayl"]
+resource_name = "_zoom_and_transfer"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Panel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 3.99667, 4.96333, 5.49667, 6.46333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.631373, 0.611765, 0.415686, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/WhiteShineReward1:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.54, 5.26667, 6.42667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/WhiteShineReward1:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4.28, 5.43333),
+"transitions": PackedFloat32Array(3.73213, 1, 1),
+"update": 0,
+"values": [Vector2(1.84, 1.73), Vector2(61.095, 57.443), Vector2(300, 282.068)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/shine_ray_1:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.734215, 2.66547, 3.90345, 6.03278),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.635, 0.635), Vector2(2.115, 2.115), Vector2(7.765, 7.765), Vector2(12.685, 12.685)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/shine_ray_1:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 6.24483),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-5.84336, 5.23599]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D/shine_ray_1:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5.25445),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("next_day:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 4.83333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera2D:zoom")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Panel:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.32845),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x2phb"]
+_data = {
+&"RESET": SubResource("Animation_dij4a"),
+&"_zoom_and_transfer": SubResource("Animation_ygayl")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0y37n"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="NewPlantUnlockRewardNode" type="Area2D"]
+z_index = 150
+script = ExtResource("1_s201k")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+z_index = 145
+offset_left = -2410.0
+offset_top = -1644.0
+offset_right = 2108.0
+offset_bottom = 1245.0
+
+[node name="next_day" type="Panel" parent="."]
+visible = false
+z_index = 149
+offset_left = -2220.0
+offset_top = -1209.0
+offset_right = 2449.0
+offset_bottom = 1168.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_k262q")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="next_day"]
+z_index = 149
+layout_mode = 0
+offset_left = 1920.0
+offset_top = 1056.0
+offset_right = 2548.0
+offset_bottom = 1772.0
+texture = ExtResource("2_p8cy6")
+patch_margin_left = 50
+patch_margin_top = 50
+patch_margin_right = 50
+patch_margin_bottom = 50
+
+[node name="unlocked_plant_placement" type="Sprite2D" parent="next_day/NinePatchRect"]
+z_index = 155
+position = Vector2(299, 147)
+
+[node name="Label" type="Label" parent="next_day/NinePatchRect"]
+z_index = 149
+layout_mode = 0
+offset_left = 66.0
+offset_top = 240.0
+offset_right = 575.0
+offset_bottom = 472.0
+theme_override_colors/font_color = Color(0.422833, 0.324126, 0.102878, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 31
+text = "TESTING TESTING TESTING"
+autowrap_mode = 3
+
+[node name="Area2D" type="Area2D" parent="next_day/NinePatchRect/Label"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="next_day/NinePatchRect/Label/Area2D"]
+position = Vector2(244, 395)
+shape = SubResource("RectangleShape2D_p5783")
+
+[node name="Button" type="Button" parent="next_day/NinePatchRect/Label"]
+z_index = 150
+layout_mode = 0
+offset_left = 69.0
+offset_top = 360.0
+offset_right = 403.0
+offset_bottom = 439.0
+mouse_filter = 1
+theme_override_font_sizes/font_size = 36
+text = "OK, NEXT!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x2phb")
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 151
+
+[node name="Panel" type="Panel" parent="Node2D"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+z_index = 151
+offset_left = -2420.0
+offset_top = -1285.0
+offset_right = 2651.0
+offset_bottom = 1362.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0y37n")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="shine_ray_1" type="Node2D" parent="Node2D"]
+z_index = 151
+position = Vector2(2, 17)
+rotation = -5.84336
+scale = Vector2(1e-05, 1e-05)
+
+[node name="WhiteShineReward2" type="Sprite2D" parent="Node2D/shine_ray_1"]
+position = Vector2(8, -230)
+scale = Vector2(0.632, 1)
+texture = ExtResource("2_p5783")
+
+[node name="WhiteShineReward3" type="Sprite2D" parent="Node2D/shine_ray_1"]
+position = Vector2(153, -155)
+rotation = 0.805162
+scale = Vector2(0.632, 1)
+texture = ExtResource("2_p5783")
+
+[node name="WhiteShineReward4" type="Sprite2D" parent="Node2D/shine_ray_1"]
+position = Vector2(198, -62)
+rotation = 1.30637
+scale = Vector2(0.632, 1)
+texture = ExtResource("2_p5783")
+
+[node name="WhiteShineReward5" type="Sprite2D" parent="Node2D/shine_ray_1"]
+position = Vector2(-119, -182)
+rotation = -0.661929
+scale = Vector2(0.632, 1)
+texture = ExtResource("2_p5783")
+
+[node name="WhiteShineReward6" type="Sprite2D" parent="Node2D/shine_ray_1"]
+position = Vector2(177, 92)
+rotation = 2.06389
+scale = Vector2(0.632, 1)
+texture = ExtResource("2_p5783")
+
+[node name="WhiteShineReward7" type="Sprite2D" parent="Node2D/shine_ray_1"]
+position = Vector2(12, 185)
+rotation = 3.02271
+scale = Vector2(0.632, 1)
+texture = ExtResource("2_p5783")
+
+[node name="WhiteShineReward8" type="Sprite2D" parent="Node2D/shine_ray_1"]
+position = Vector2(-165, 107)
+rotation = 4.01924
+scale = Vector2(0.632, 1)
+texture = ExtResource("2_p5783")
+
+[node name="WhiteShineReward9" type="Sprite2D" parent="Node2D/shine_ray_1"]
+position = Vector2(-207, -2)
+rotation = 4.59287
+scale = Vector2(0.632, 1)
+texture = ExtResource("2_p5783")
+
+[node name="WhiteShineReward1" type="Sprite2D" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 151
+position = Vector2(-10, 12)
+scale = Vector2(1.84, 1.73)
+texture = ExtResource("3_p8cy6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-25, 163)
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="input_event" from="next_day/NinePatchRect/Label/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="pressed" from="next_day/NinePatchRect/Label/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,118 @@
+[gd_scene load_steps=14 format=3 uid="uid://l0ap6weeoiby"]
+
+[ext_resource type="Script" uid="uid://mms5i2ts6tp2" path="res://unit/plant/peashooter/peashooter_script.gd" id="1_gtqde"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="2_7a0e4"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="3_pl8vp"]
+[ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="4_qm7ql"]
+[ext_resource type="PackedScene" uid="uid://diuw5jn1y4wfg" path="res://unit/plant/peashooter/peashooter_animationn.tscn" id="5_3tpum"]
+[ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="6_ncb75"]
+[ext_resource type="PackedScene" uid="uid://dfs20jb32fvmc" path="res://unit/projectile.tscn" id="7_l2aks"]
+[ext_resource type="Texture2D" uid="uid://dpi4js5nyttjh" path="res://unit/plant/peashooter/pea_bullet.png" id="8_jx0r7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_adb3e"]
+size = Vector2(212, 293)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbxml"]
+size = Vector2(99, 139)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikyf4"]
+size = Vector2(2132, 91)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhv4u"]
+size = Vector2(20, 44.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3mxyb"]
+radius = 9.0
+
+[node name="PeashooterScript" type="CharacterBody2D" node_paths=PackedStringArray("pea_projectile")]
+position = Vector2(257, 410)
+platform_floor_layers = 4294967040
+script = ExtResource("1_gtqde")
+pea_projectile = NodePath("Projectile")
+
+[node name="PlantBoost" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlantBoost"]
+position = Vector2(1, -67.5)
+shape = SubResource("RectangleShape2D_adb3e")
+disabled = true
+
+[node name="Panel" type="Panel" parent="PlantBoost"]
+visible = false
+offset_left = -111.0
+offset_top = -220.0
+offset_right = 116.0
+offset_bottom = 88.0
+mouse_filter = 2
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("2_7a0e4")]
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("3_pl8vp")]
+position = Vector2(-5, -125)
+plant_name = "PEASHOOTER"
+description_Tier1A = "Increase damage by 2 and each shot has 20% to deals true damage: Ignoring Addon Shields and armor."
+description_Tier1B = "Increase attackspeed by 10%"
+description_Tier2A = "Gain an aura: All plants within the aura will gain 35% evolution boost upto 8 plants."
+description_Tier2B = "Each attack gains 5% attackspeed max of 25% attackspeed. Not attacking for 3 seconds remove all the stacks."
+description_Tier3A = "Turn into repeater that shoots two pea instead of one. Every 30th attack is an empower attack of one big pea that deals 100 damage."
+description_Tier3B = "Turn into threepeater that shoot peas at 3 lanes."
+_tier1_max_value = 2.0
+_tier2_max_value = 5.0
+_tier3_max_value = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EvolutionSenderSupportBehavior"]
+position = Vector2(3, 56)
+shape = SubResource("RectangleShape2D_dbxml")
+
+[node name="Detection_Area" parent="." instance=ExtResource("4_qm7ql")]
+position = Vector2(-24, -50)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area"]
+position = Vector2(1056, 3.5)
+shape = SubResource("RectangleShape2D_ikyf4")
+disabled = true
+metadata/_edit_lock_ = true
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-24, -61.75)
+shape = SubResource("RectangleShape2D_yhv4u")
+
+[node name="peashooter" parent="." instance=ExtResource("5_3tpum")]
+position = Vector2(-47, -114)
+
+[node name="pea_spawn_location" type="Node2D" parent="."]
+position = Vector2(72, -58)
+
+[node name="PlantDamageNodeManager" parent="." instance=ExtResource("6_ncb75")]
+damage = 10
+base_attack_cooldown = 1.7
+
+[node name="attack_cooldown" type="Timer" parent="."]
+wait_time = 1.7
+one_shot = true
+
+[node name="tier2B_stacks_expiration" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Projectile" parent="." instance=ExtResource("7_l2aks")]
+visible = false
+position = Vector2(95, -92)
+collision_layer = 5
+collision_mask = 2
+speed = 600.0
+
+[node name="PeaBullet" type="Sprite2D" parent="Projectile"]
+position = Vector2(-1, 0)
+scale = Vector2(0.6, 0.58)
+texture = ExtResource("8_jx0r7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
+shape = SubResource("CircleShape2D_3mxyb")
+disabled = true
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="body_entered" from="PlantBoost" to="." method="_on_plant_boost_body_entered"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="tier2B_stacks_expiration" to="." method="_on_tier_2b_stacks_expiration_timeout"]

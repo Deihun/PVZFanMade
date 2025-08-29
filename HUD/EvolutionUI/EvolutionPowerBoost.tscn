@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://lnmsgs6icjsi"]
+
+[ext_resource type="Script" uid="uid://dnb51mll53nho" path="res://HUD/EvolutionUI/evolution_power_boost.gd" id="1_n6qti"]
+[ext_resource type="Texture2D" uid="uid://dfdqgd474tyr2" path="res://HUD/EvolutionUI/evolve_power_boost.png" id="2_7b11x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ykp26"]
+radius = 45.0
+
+[node name="EvolutionPowerBoost" type="Node2D"]
+script = ExtResource("1_n6qti")
+
+[node name="EvolvePowerBoost" type="Sprite2D" parent="."]
+position = Vector2(1, 3)
+texture = ExtResource("2_7b11x")
+
+[node name="Collect" type="Area2D" parent="."]
+position = Vector2(1, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collect"]
+position = Vector2(-1, -3)
+shape = SubResource("CircleShape2D_ykp26")
+debug_color = Color(0.887513, 0.0801374, 0.772233, 0.42)
+
+[connection signal="input_event" from="Collect" to="." method="_on_collect_input_event"]

@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3mfdn3yeigf3"]
+
+[ext_resource type="Script" uid="uid://b6wytcyu2u6yr" path="res://Resource/Levels/Tutorial_Part/lane_.gd" id="1_q3gxs"]
+[ext_resource type="PackedScene" uid="uid://nqpa1jdoxd70" path="res://Behaviour/occupied_tile.tscn" id="2_7qxlj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3gxs"]
+size = Vector2(20, 168.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qxlj"]
+size = Vector2(170, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ua7g3"]
+size = Vector2(2695, 41)
+
+[node name="lane_" type="Node2D"]
+script = ExtResource("1_q3gxs")
+
+[node name="Occupied_Tile" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(57, -60)
+
+[node name="Occupied_Tile2" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(172, -60)
+
+[node name="Occupied_Tile3" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(287, -60)
+
+[node name="Occupied_Tile4" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(402, -60)
+
+[node name="Occupied_Tile5" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(517, -60)
+
+[node name="Occupied_Tile6" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(632, -60)
+
+[node name="Occupied_Tile7" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(747, -60)
+
+[node name="Occupied_Tile8" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(862, -60)
+
+[node name="Occupied_Tile9" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(977, -60)
+
+[node name="Occupied_Tile10" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(1092, -60)
+
+[node name="Occupied_Tile11" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(1207, -60)
+
+[node name="Occupied_Tile12" parent="." instance=ExtResource("2_7qxlj")]
+position = Vector2(1322, -60)
+
+[node name="Catch_projectiles" type="Area2D" parent="."]
+position = Vector2(1446, -97)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Catch_projectiles"]
+position = Vector2(-39, 12.25)
+shape = SubResource("RectangleShape2D_q3gxs")
+
+[node name="untargettable_area" type="Area2D" parent="."]
+position = Vector2(1501, -106)
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="untargettable_area"]
+position = Vector2(31, 29)
+shape = SubResource("RectangleShape2D_7qxlj")
+
+[node name="zombie_spawn_area" type="Node2D" parent="."]
+position = Vector2(1502, -2)
+
+[node name="physics_body_interaction" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="physics_body_interaction"]
+position = Vector2(276.5, 5.5)
+shape = SubResource("RectangleShape2D_ua7g3")
+
+[connection signal="area_entered" from="Catch_projectiles" to="." method="_on_catch_projectiles_area_entered"]
+[connection signal="body_entered" from="Catch_projectiles" to="." method="_on_catch_projectiles_body_entered"]
+[connection signal="body_exited" from="untargettable_area" to="." method="_on_untargettable_area_body_exited"]

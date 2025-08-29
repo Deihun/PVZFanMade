@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://j6g46jpbivhf"]
+
+[ext_resource type="Texture2D" uid="uid://l2240gijbc4b" path="res://HUD/borders/border.png" id="1_0bekt"]
+
+[node name="boarder_1" type="NinePatchRect"]
+offset_right = 256.0
+offset_bottom = 154.0
+texture = ExtResource("1_0bekt")
+patch_margin_left = 50
+patch_margin_top = 50
+patch_margin_right = 50
+patch_margin_bottom = 50

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://nqpa1jdoxd70"]
+
+[ext_resource type="Script" uid="uid://cekbjq14pnxox" path="res://HUD/borders/occupied_tile.gd" id="1_1kvgc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kvgc"]
+bg_color = Color(0.628047, 0.81858, 0.38374, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.360518, 0.476292, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40oju"]
+size = Vector2(114.875, 170.25)
+
+[node name="Occupied_Tile" type="Area2D"]
+script = ExtResource("1_1kvgc")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = -57.0
+offset_top = -110.0
+offset_right = 59.0
+offset_bottom = 61.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_1kvgc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -25)
+shape = SubResource("RectangleShape2D_40oju")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
