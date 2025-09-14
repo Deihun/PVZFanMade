@@ -1,7 +1,7 @@
 extends Node2D
 
 @export_category("Instantiation Connection")
-@export var NormalMode_HUD_instance: Control # Reference the actual HUD instance, not the PackedScene
+@export var NormalMode_HUD_instance: Control 
 @export var sun_location_where_it_land: CollisionShape2D
 
 @export_category("Sun Spawn Behaviour")
@@ -16,6 +16,7 @@ func _ready() -> void:
 	if auto_start : start()
 
 func start():
+	_spawn_sun()
 	var timer = Timer.new()
 	timer.wait_time = cooldown_time
 	timer.autostart = true
@@ -33,6 +34,7 @@ func _spawn_sun():
 
 	var sun = sun_scene.instantiate()
 	add_child(sun)
+	sun.sun_value = sun_quality
 	sun.global_position = spawn_position
 
 	var tween = create_tween()

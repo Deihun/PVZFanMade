@@ -38,6 +38,7 @@ custom_minimum_size = Vector2(280, 1000)
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 
 [node name="sun_" parent="mode_normal_pick" instance=ExtResource("5_2dpvk")]
 custom_minimum_size = Vector2(275, 0)
@@ -94,15 +95,17 @@ offset_right = 635.0
 offset_bottom = 711.0
 
 [node name="EvolutionPowerBank" type="Control" parent="Tools_UI"]
+visible = false
 custom_minimum_size = Vector2(335, 100)
 layout_mode = 2
+mouse_filter = 1
 script = ExtResource("6_68cfs")
 
 [node name="EvolutionPowerBank_UI" parent="Tools_UI/EvolutionPowerBank" instance=ExtResource("7_5r5te")]
 position = Vector2(5, 44)
 
 [node name="Area2D" type="Area2D" parent="Tools_UI/EvolutionPowerBank"]
-collision_layer = 0
+collision_layer = 2147483648
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tools_UI/EvolutionPowerBank/Area2D"]
@@ -207,9 +210,10 @@ seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_se
 [node name="cherrybomb" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
 layout_mode = 2
 mode = "only-for-plant-selection"
-plant_name = "cherrybomb"
+plant_name = "CherryBomb"
 cooldown = 80
 suncost = 150
+image_path = "uid://boo42rha4na5h"
 plant_tscn = "uid://crnr4m2b2ilqr"
 plant_animation_only_tscn = "uid://dsyw8ad0cd20q"
 seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")

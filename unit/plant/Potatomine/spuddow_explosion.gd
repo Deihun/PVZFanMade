@@ -16,4 +16,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_timer_timeout() -> void:
+	QuickDataManagement.sound_manager.play_explosion_sound_SFX(load("res://unit/plant/Potatomine/SFX potato mine.mp3"))
 	$AnimationPlayer.play("explosion")

@@ -1,7 +1,110 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1qgfgabtjfj4"]
+[gd_scene load_steps=11 format=3 uid="uid://c1qgfgabtjfj4"]
 
+[ext_resource type="Texture2D" uid="uid://dt4368gtnurku" path="res://HUD/borders/level_manager/_white_shine_reward2.png" id="1_2glct"]
 [ext_resource type="Texture2D" uid="uid://bovhmk4jh047f" path="res://HUD/EvolutionUI/1.png" id="1_n83ic"]
 [ext_resource type="Texture2D" uid="uid://pu8a2y8ftw1i" path="res://HUD/EvolutionUI/2.png" id="2_2glct"]
+[ext_resource type="Texture2D" uid="uid://dqbhk4sm5wyjq" path="res://HUD/borders/level_manager/_white_shine_reward1.png" id="4_dvt6j"]
+
+[sub_resource type="Animation" id="Animation_1r6jm"]
+resource_name = "new_animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.45561),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.911032, 1, 0.562116, 1), Color(0.812309, 0.929077, 6.39176e-05, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0ft4g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.911032, 1, 0.562116, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_akr5r"]
+_data = {
+&"RESET": SubResource("Animation_0ft4g"),
+&"new_animation": SubResource("Animation_1r6jm")
+}
+
+[sub_resource type="Animation" id="Animation_l4p8n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-56, -143)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Control/2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(54, 141)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_dvt6j"]
 resource_name = "idle"
@@ -44,45 +147,6 @@ tracks/2/keys = {
 "values": [Vector2(0, 0), Vector2(-2, -49), Vector2(-2, 25)]
 }
 
-[sub_resource type="Animation" id="Animation_l4p8n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D/Control:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-56, -143)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node2D/Control/2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(54, 141)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Node2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1r6jm"]
 _data = {
 &"RESET": SubResource("Animation_l4p8n"),
@@ -90,8 +154,95 @@ _data = {
 }
 
 [node name="EvolveReadyAnimation" type="Node2D"]
+position = Vector2(124, 87)
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="shine" type="Node2D" parent="Node2D"]
+modulate = Color(0.911032, 1, 0.562116, 1)
+position = Vector2(3, 14)
+scale = Vector2(0.556932, 0.607615)
+
+[node name="WhiteShineReward2" type="Sprite2D" parent="Node2D/shine"]
+position = Vector2(-5, -13)
+scale = Vector2(0.444, 0.514)
+texture = ExtResource("1_2glct")
+offset = Vector2(13.5134, -233.463)
+
+[node name="WhiteShineReward3" type="Sprite2D" parent="Node2D/shine"]
+position = Vector2(-5, -13)
+rotation = 1.16522
+scale = Vector2(0.444, 0.514)
+texture = ExtResource("1_2glct")
+offset = Vector2(13.5134, -233.463)
+
+[node name="WhiteShineReward4" type="Sprite2D" parent="Node2D/shine"]
+position = Vector2(-5, -13)
+rotation = 2.46903
+scale = Vector2(0.444, 0.514)
+texture = ExtResource("1_2glct")
+offset = Vector2(13.5134, -233.463)
+
+[node name="WhiteShineReward5" type="Sprite2D" parent="Node2D/shine"]
+position = Vector2(-5, -13)
+rotation = -2.26173
+scale = Vector2(0.444, 0.514)
+texture = ExtResource("1_2glct")
+offset = Vector2(13.5134, -233.463)
+
+[node name="WhiteShineReward6" type="Sprite2D" parent="Node2D/shine"]
+position = Vector2(-5, -13)
+rotation = -1.22508
+scale = Vector2(0.444, 0.514)
+texture = ExtResource("1_2glct")
+offset = Vector2(13.5134, -233.463)
+
+[node name="WhiteShineReward7" type="Sprite2D" parent="Node2D/shine"]
+position = Vector2(-5, -13)
+rotation = -0.589928
+scale = Vector2(0.444, 0.514)
+texture = ExtResource("1_2glct")
+offset = Vector2(13.5134, -233.463)
+
+[node name="WhiteShineReward8" type="Sprite2D" parent="Node2D/shine"]
+position = Vector2(-5, -13)
+rotation = 0.572455
+scale = Vector2(0.444, 0.514)
+texture = ExtResource("1_2glct")
+offset = Vector2(13.5134, -233.463)
+
+[node name="WhiteShineReward9" type="Sprite2D" parent="Node2D/shine"]
+position = Vector2(-5, -13)
+rotation = 1.77231
+scale = Vector2(0.444, 0.514)
+texture = ExtResource("1_2glct")
+offset = Vector2(13.5134, -233.463)
+
+[node name="WhiteShineReward10" type="Sprite2D" parent="Node2D/shine"]
+position = Vector2(-5, -13)
+rotation = -2.99345
+scale = Vector2(0.444, 0.514)
+texture = ExtResource("1_2glct")
+offset = Vector2(13.5134, -233.463)
+
+[node name="WhiteShineReward11" type="Sprite2D" parent="Node2D/shine"]
+position = Vector2(-5, -13)
+rotation = -1.73109
+scale = Vector2(0.444, 0.514)
+texture = ExtResource("1_2glct")
+offset = Vector2(13.5134, -233.463)
+
+[node name="WhiteShineReward1" type="Sprite2D" parent="Node2D/shine"]
+show_behind_parent = true
+position = Vector2(-23.3421, -18.1036)
+scale = Vector2(3.19608, 2.74845)
+texture = ExtResource("4_dvt6j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/shine"]
+libraries = {
+&"": SubResource("AnimationLibrary_akr5r")
+}
+autoplay = "new_animation"
 
 [node name="1" type="Sprite2D" parent="Node2D"]
 position = Vector2(-2, 1)

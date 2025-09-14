@@ -1,35 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkw3a6x2gx41d"]
+[gd_scene load_steps=10 format=3 uid="uid://dkw3a6x2gx41d"]
 
-[ext_resource type="PackedScene" uid="uid://c4plv33152tx3" path="res://HUD/mode_hud/mode_normal_selection.tscn" id="1_5vjve"]
 [ext_resource type="PackedScene" uid="uid://d1bmnixb7oepy" path="res://Behaviour/sun_falling_behaviour.tscn" id="2_mt53y"]
 [ext_resource type="PackedScene" uid="uid://nqpa1jdoxd70" path="res://Behaviour/occupied_tile.tscn" id="4_sg7fg"]
+[ext_resource type="Script" uid="uid://b7xtie63ke36r" path="res://HUD/EvolutionUI/evolution_power_bank_ui.gd" id="5_5vjve"]
 [ext_resource type="PackedScene" uid="uid://cm3fbr5jbnjmq" path="res://Behaviour/basic_zombie.tscn" id="5_ltlly"]
+[ext_resource type="PackedScene" uid="uid://b1gfd0gx8ncph" path="res://HUD/EvolutionUI/evolution_power_bank_ui.tscn" id="6_mt53y"]
+[ext_resource type="PackedScene" uid="uid://lnmsgs6icjsi" path="res://HUD/EvolutionUI/EvolutionPowerBoost.tscn" id="7_mt53y"]
+[ext_resource type="PackedScene" uid="uid://c4plv33152tx3" path="res://HUD/mode_hud/mode_normal_selection.tscn" id="9_sg7fg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvfqq"]
-size = Vector2(1537.5, 852)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mt53y"]
+size = Vector2(1243, 803)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70fp2"]
+size = Vector2(334, 84.5)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="HUD_normal_selection" parent="." instance=ExtResource("1_5vjve")]
-offset_left = 21.0
-offset_top = 5.0
-offset_right = 21.0
-offset_bottom = 5.0
+[node name="HUD_normal_selection" parent="." instance=ExtResource("9_sg7fg")]
+offset_left = 17.0
+offset_top = 18.0
+offset_right = 17.0
+offset_bottom = 18.0
 
-[node name="sun_falling_behaviour" parent="." node_paths=PackedStringArray("NormalMode_HUD_instance", "sun_location_where_it_land") instance=ExtResource("2_mt53y")]
+[node name="BasicZombie" parent="." instance=ExtResource("5_ltlly")]
+
+[node name="sun_falling_behaviour" parent="." instance=ExtResource("2_mt53y")]
 position = Vector2(0, -3)
-NormalMode_HUD_instance = NodePath("../HUD_normal_selection")
-sun_location_where_it_land = NodePath("CollisionShape2D")
 sun_quality = 100
-spawn_height = 0.0
 cooldown_time = 5.0
+auto_start = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sun_falling_behaviour"]
-position = Vector2(1151.75, 661)
-shape = SubResource("RectangleShape2D_qvfqq")
+position = Vector2(997, 552)
+shape = SubResource("RectangleShape2D_mt53y")
 
 [node name="Lane" type="Node2D" parent="."]
-position = Vector2(425, 195)
+position = Vector2(313, 275)
 
 [node name="Occupied_Tile9" parent="Lane" instance=ExtResource("4_sg7fg")]
 position = Vector2(331, 1)
@@ -68,7 +74,7 @@ position = Vector2(1252, 1)
 position = Vector2(1368, 1)
 
 [node name="Lane5" type="Node2D" parent="."]
-position = Vector2(433, 884)
+position = Vector2(321, 964)
 
 [node name="Occupied_Tile9" parent="Lane5" instance=ExtResource("4_sg7fg")]
 position = Vector2(331, 1)
@@ -107,7 +113,7 @@ position = Vector2(1252, 1)
 position = Vector2(1368, 1)
 
 [node name="Lane4" type="Node2D" parent="."]
-position = Vector2(433, 715)
+position = Vector2(321, 795)
 
 [node name="Occupied_Tile9" parent="Lane4" instance=ExtResource("4_sg7fg")]
 position = Vector2(331, 1)
@@ -146,7 +152,7 @@ position = Vector2(1252, 1)
 position = Vector2(1368, 1)
 
 [node name="Lane3" type="Node2D" parent="."]
-position = Vector2(428, 541)
+position = Vector2(316, 621)
 
 [node name="Occupied_Tile9" parent="Lane3" instance=ExtResource("4_sg7fg")]
 position = Vector2(331, 1)
@@ -185,7 +191,7 @@ position = Vector2(1252, 1)
 position = Vector2(1368, 1)
 
 [node name="Lane2" type="Node2D" parent="."]
-position = Vector2(426, 367)
+position = Vector2(314, 447)
 
 [node name="Occupied_Tile9" parent="Lane2" instance=ExtResource("4_sg7fg")]
 position = Vector2(331, 1)
@@ -223,4 +229,36 @@ position = Vector2(1252, 1)
 [node name="Occupied_Tile12" parent="Lane2" instance=ExtResource("4_sg7fg")]
 position = Vector2(1368, 1)
 
-[node name="BasicZombie" parent="." instance=ExtResource("5_ltlly")]
+[node name="EvolutionPowerBank" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(335, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 84.0
+offset_top = 46.0
+offset_right = 419.0
+offset_bottom = 146.0
+mouse_filter = 1
+script = ExtResource("5_5vjve")
+
+[node name="EvolutionPowerBank_UI" parent="EvolutionPowerBank" instance=ExtResource("6_mt53y")]
+position = Vector2(5, 44)
+
+[node name="Area2D" type="Area2D" parent="EvolutionPowerBank"]
+collision_layer = 2147483648
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EvolutionPowerBank/Area2D"]
+position = Vector2(171, 50.75)
+shape = SubResource("RectangleShape2D_70fp2")
+
+[node name="EvolutionPowerBoost" parent="." instance=ExtResource("7_mt53y")]
+position = Vector2(1035, 647)
+
+[node name="EvolutionPowerBoost2" parent="." instance=ExtResource("7_mt53y")]
+position = Vector2(1109, 530)
+
+[node name="EvolutionPowerBoost3" parent="." instance=ExtResource("7_mt53y")]
+position = Vector2(963, 524)
+
+[connection signal="input_event" from="EvolutionPowerBank/Area2D" to="EvolutionPowerBank" method="_on_area_2d_input_event"]

@@ -1,13 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://dols1i410thmc"]
+[gd_scene load_steps=10 format=3 uid="uid://dols1i410thmc"]
 
 [ext_resource type="Script" uid="uid://bsc3hltmr7y36" path="res://Resource/Levels/Tutorial_Part/main_camera.gd" id="1_ypnsv"]
 [ext_resource type="PackedScene" uid="uid://c4plv33152tx3" path="res://HUD/mode_hud/mode_normal_selection.tscn" id="2_hif5h"]
+[ext_resource type="AudioStream" uid="uid://cb6qt8yau8wyt" path="res://Resource/Levels/Tutorial_Part/Choose Your Seeds - Modern Day - Plants vs. Zombies 2.mp3" id="2_xd4na"]
 [ext_resource type="Texture2D" uid="uid://bxyhg64bt1mhh" path="res://HUD/mode_hud/ready.png" id="3_bcok0"]
+[ext_resource type="AudioStream" uid="uid://djquqaof7x7fe" path="res://Resource/Levels/Tutorial_Part/First Wave - Modern Day - Plants vs. Zombies 2.mp3" id="3_olgye"]
+[ext_resource type="AudioStream" uid="uid://lhlmh7xaqpfk" path="res://Resource/Levels/Tutorial_Part/Mid Wave A - Modern Day - Plants vs. Zombies 2.mp3" id="4_rlw4v"]
+[ext_resource type="AudioStream" uid="uid://c1x25xxb55sbl" path="res://Resource/Levels/Tutorial_Part/Final Wave - Modern Day - Plants vs. Zombies 2.mp3" id="5_b7vcw"]
+[ext_resource type="PackedScene" uid="uid://cvyocv78lu4yj" path="res://HUD/pause/pause_button/pause_button.tscn" id="6_27rbg"]
+[ext_resource type="AudioStream" uid="uid://csgh53p3hvjsl" path="res://HUD/borders/level_manager/ready_set_plant_sfx.mp3" id="8_6n1e1"]
 
 [node name="main_camera" type="Camera2D"]
 script = ExtResource("1_ypnsv")
 _mode = "check_zombie_but_no_picking"
 auto_start = false
+choose_our_seed_music = ExtResource("2_xd4na")
+music_at_start = ExtResource("3_olgye")
+music_mid_wave = ExtResource("4_rlw4v")
+music_last_wave = ExtResource("5_b7vcw")
+
+[node name="PauseButton" parent="." instance=ExtResource("6_27rbg")]
+position = Vector2(891, -473)
+scale = Vector2(1.25, 1.25)
 
 [node name="HUD_normal_selection" parent="." instance=ExtResource("2_hif5h")]
 offset_left = -939.0
@@ -19,3 +33,7 @@ offset_bottom = -524.0
 visible = false
 position = Vector2(-18, -4)
 texture = ExtResource("3_bcok0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_6n1e1")
+bus = &"SFX"

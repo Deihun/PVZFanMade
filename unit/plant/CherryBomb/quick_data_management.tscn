@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cexbch8q0jqqt"]
+[gd_scene load_steps=7 format=3 uid="uid://cexbch8q0jqqt"]
 
 [ext_resource type="Script" uid="uid://dun8lyr5aw2k0" path="res://quick_data_management.gd" id="1_y12ra"]
 [ext_resource type="Script" uid="uid://cmwg1i4oco8jf" path="res://plant_informationn.gd" id="2_kpcgp"]
 [ext_resource type="Script" uid="uid://bm5j50e1y5wyy" path="res://save_manager.gd" id="3_a7xqh"]
 [ext_resource type="Script" uid="uid://pwis6o71s25q" path="res://unit/plant/CherryBomb/global_call_manager.gd" id="4_kpcgp"]
+[ext_resource type="Script" uid="uid://q5qeryh3orcn" path="res://unit/plant/CherryBomb/common_called_methods.gd" id="5_a7xqh"]
+[ext_resource type="Script" uid="uid://j76tgv3d8v4k" path="res://SoundManager/sound_manager.gd" id="6_n0ahv"]
 
 [node name="QuickDataManagement" type="Node"]
 script = ExtResource("1_y12ra")
@@ -16,3 +18,30 @@ script = ExtResource("3_a7xqh")
 
 [node name="global_call_manager" type="Node" parent="."]
 script = ExtResource("4_kpcgp")
+
+[node name="common_called_methods" type="Node" parent="."]
+script = ExtResource("5_a7xqh")
+
+[node name="sound_manager" type="Node" parent="."]
+script = ExtResource("6_n0ahv")
+
+[node name="music_player_1" type="AudioStreamPlayer" parent="sound_manager"]
+bus = &"Music"
+
+[node name="music_player_2" type="AudioStreamPlayer" parent="sound_manager"]
+bus = &"Music"
+
+[node name="zombie_groan" type="AudioStreamPlayer" parent="sound_manager"]
+bus = &"SFX"
+
+[node name="zombie_groan_cooldown" type="Timer" parent="sound_manager/zombie_groan"]
+wait_time = 5.0
+one_shot = true
+
+[node name="highest_priority_sfx_1" type="Node" parent="sound_manager"]
+
+[node name="play_sound_sfx_1" type="Node" parent="sound_manager"]
+
+[node name="play_explosion_sfx_1" type="Node" parent="sound_manager"]
+
+[connection signal="timeout" from="sound_manager/zombie_groan/zombie_groan_cooldown" to="sound_manager" method="_on_zombie_groan_cooldown_timeout"]

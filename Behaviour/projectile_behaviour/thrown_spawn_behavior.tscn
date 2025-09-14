@@ -6,7 +6,6 @@
 script = ExtResource("1_pcqx6")
 initial_speed = 150.0
 max_distance = Vector2(200, 200)
-dead_zone_size = Vector2(100, 100)
 
 [node name="disappear" type="Timer" parent="."]
 wait_time = 3.0

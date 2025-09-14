@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://di8dtm8dsfxip"]
+
+[ext_resource type="Script" uid="uid://6bt10kolpahr" path="res://HUD/pause/pause_menu/pause_menu.gd" id="1_6wbys"]
+[ext_resource type="Texture2D" uid="uid://c0nr8me674n74" path="res://HUD/pause/pause_boarder.png" id="1_n0a0a"]
+[ext_resource type="Texture2D" uid="uid://bphdbrj16u2p" path="res://HUD/pause/pause_resume_button_hover.png" id="2_6wbys"]
+[ext_resource type="Texture2D" uid="uid://dge3krpg02cr" path="res://HUD/pause/pause_resume_button_unhover.png" id="3_0s7v1"]
+[ext_resource type="Texture2D" uid="uid://yf1pjfldowb8" path="res://HUD/pause/pause_mainmenu_button_hover.png" id="3_pglhb"]
+[ext_resource type="Texture2D" uid="uid://dlfi3s6ecl7tx" path="res://HUD/pause/pause_mainmenu_button_unhover.png" id="4_wtykx"]
+[ext_resource type="Texture2D" uid="uid://byk07cwunvgje" path="res://HUD/pause/pause_restart_button_hover.png" id="7_3ccsn"]
+[ext_resource type="Texture2D" uid="uid://58hq3rxf1wai" path="res://HUD/pause/pause_restart_button_unhover.png" id="8_78alw"]
+
+[node name="PauseMenu" type="Control"]
+z_index = 255
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6wbys")
+
+[node name="background" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.403922)
+layout_mode = 0
+offset_left = -28.0
+offset_top = -21.0
+offset_right = 1994.0
+offset_bottom = 1127.0
+
+[node name="PauseBoarder" type="Sprite2D" parent="."]
+position = Vector2(937, 474)
+texture = ExtResource("1_n0a0a")
+
+[node name="MAIN_MENU" type="Button" parent="PauseBoarder"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -227.0
+offset_top = 33.0
+offset_right = 241.0
+offset_bottom = 95.0
+
+[node name="PauseMainmenuButtonHover" type="Sprite2D" parent="PauseBoarder/MAIN_MENU"]
+visible = false
+position = Vector2(237, 73.5)
+texture = ExtResource("3_pglhb")
+
+[node name="PauseMainmenuButtonUnhover" type="Sprite2D" parent="PauseBoarder/MAIN_MENU"]
+position = Vector2(237, 73.5)
+texture = ExtResource("4_wtykx")
+
+[node name="Resume" type="Area2D" parent="PauseBoarder"]
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="PauseResumeButtonHover" type="Sprite2D" parent="PauseBoarder/Resume"]
+visible = false
+position = Vector2(2, 198)
+texture = ExtResource("2_6wbys")
+
+[node name="PauseResumeButtonUnhover" type="Sprite2D" parent="PauseBoarder/Resume"]
+position = Vector2(2, 198)
+texture = ExtResource("3_0s7v1")
+
+[node name="RESUME" type="Button" parent="PauseBoarder/Resume"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -283.5
+offset_top = 114.0
+offset_right = 276.5
+offset_bottom = 228.0
+
+[node name="RESTART" type="Button" parent="PauseBoarder"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -223.0
+offset_top = -46.0
+offset_right = 245.0
+offset_bottom = 16.0
+
+[node name="PauseMainmenuButtonHover" type="Sprite2D" parent="PauseBoarder/RESTART"]
+visible = false
+position = Vector2(237, 73.5)
+texture = ExtResource("7_3ccsn")
+
+[node name="PauseMainmenuButtonUnhover" type="Sprite2D" parent="PauseBoarder/RESTART"]
+position = Vector2(237, 73.5)
+texture = ExtResource("8_78alw")
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="mouse_entered" from="PauseBoarder/MAIN_MENU" to="." method="_on_main_menu_mouse_entered"]
+[connection signal="mouse_exited" from="PauseBoarder/MAIN_MENU" to="." method="_on_main_menu_mouse_exited"]
+[connection signal="pressed" from="PauseBoarder/MAIN_MENU" to="." method="_on_main_menu_pressed"]
+[connection signal="input_event" from="PauseBoarder/Resume" to="." method="_on_resume_input_event"]
+[connection signal="mouse_entered" from="PauseBoarder/Resume" to="." method="_on_resume_mouse_entered"]
+[connection signal="mouse_exited" from="PauseBoarder/Resume" to="." method="_on_resume_mouse_exited"]
+[connection signal="mouse_entered" from="PauseBoarder/Resume/RESUME" to="." method="_on_resume_mouse_entered"]
+[connection signal="mouse_exited" from="PauseBoarder/Resume/RESUME" to="." method="_on_resume_mouse_exited"]
+[connection signal="pressed" from="PauseBoarder/Resume/RESUME" to="." method="_on_resume_click"]
+[connection signal="mouse_entered" from="PauseBoarder/RESTART" to="." method="_on_restart_mouse_entered"]
+[connection signal="mouse_exited" from="PauseBoarder/RESTART" to="." method="_on_restart_mouse_exited"]
+[connection signal="pressed" from="PauseBoarder/RESTART" to="." method="_on_restart_pressed"]

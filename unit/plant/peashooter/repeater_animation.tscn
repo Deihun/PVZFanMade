@@ -1118,7 +1118,7 @@ texture = ExtResource("2_b84yy")
 offset_left = 31.0
 offset_top = 36.0
 offset_right = 33.0
-offset_bottom = 71.0
+offset_bottom = 66.0
 rotation = -0.665798
 theme_override_styles/panel = SubResource("StyleBoxFlat_137rq")
 

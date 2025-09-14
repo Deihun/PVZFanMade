@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlfnwlf3x2t7t"]
+
+[ext_resource type="Script" uid="uid://3ngxfhg8u0k2" path="res://Behaviour/zombie_movement_management.gd" id="1_3ly3x"]
+
+[node name="zombie_movement_management" type="Node"]
+script = ExtResource("1_3ly3x")

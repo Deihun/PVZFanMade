@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 func _ready() -> void:
+	QuickDataManagement.sound_manager.play_explosion_sound_SFX(load("res://unit/plant/CherryBomb/CherryBomb_DeployedSFX.mp3"))
 	$CherryBomb_animation.method_upon_explode=Callable(self,"explode")
 	$CherryBomb_animation.explode()
 

@@ -10,16 +10,14 @@ var enemy_group = "plant"
 
 @onready var collision_shape = $CollisionShape2D
 func _ready() -> void:
+	QuickDataManagement.sound_manager.play_zombie_groan(get_random_audio_stream_groan())
 	add_to_group("zombie")
-	
+	$zombie_hp_management._add_health_threshold_condition(func(): lose_its_arms(),50, 5, true)
 	$zombie_hp_management.head_attachment_for_holding_armor = $BasicZombieAnimation._armor
-	var damage_ : Callable = Callable(self,"_check_for_half_health") 
 	var play_death_callable : Callable = Callable(self,"death")
-	
-	$zombie_hp_management.take_damage_Callable.append(damage_)
 	$zombie_hp_management.zombie_death_callable.append(play_death_callable)
 	$zombie_hp_management.other_type_zombie_death_callable.append(Callable(self,"death_body_disappear"))
-	$BasicZombieAnimation.walk_callable = Callable(self,"_move_forward")
+	$BasicZombieAnimation.walk_callable = Callable($zombie_movement_management,"move")
 	$BasicZombieAnimation.eat_callable = Callable(self,"eat_plant")
 	$BasicZombieAnimation.disappear_callable = Callable(self,"disappear")
 	$BasicZombieAnimation.walk()
@@ -49,12 +47,13 @@ func _set_up_baseOn_type():
 				$zombie_hp_management._add_armor_custom(load("res://unit/Zombie/Coolz Zombie/coolz_hat.tscn").instantiate())
 
 
-func _move_forward():
-	for i in 20:
-		position.x -= speed
-		await get_tree().create_timer(0.05).timeout
+func _set_as_idle():
+	$CollisionShape2D.disabled =true
+	$BasicZombieAnimation.set_idle_animation()
+
 
 func eat_plant():
+	$zombie_movement_management.__im_eating = true
 	if !detected_plant:
 		detected_plant = null
 		$BasicZombieAnimation.walk()
@@ -63,18 +62,16 @@ func eat_plant():
 	if plant_health_management: plant_health_management.perform_damage(damage)
 	else: 
 		plant_health_management = detected_plant.get_node("zombie_hp_management")
-		if plant_health_management: plant_health_management.take_damage(damage)
-		else: 
-			print("UNABLE TO DETECT TARGET")
+		if plant_health_management: plant_health_management.take_damage(damage,self)
 
-func _check_for_half_health():
-	if $zombie_hp_management.HP <= 150:
-		$BasicZombieAnimation.base_zombie_is_half()
+
+func lose_its_arms():
+	$BasicZombieAnimation.base_zombie_is_half()
 
 
 func death():
-	if$CollisionShape2D :$CollisionShape2D.queue_free()
-	if$HitPoint : $HitPoint.queue_free()
+	if $CollisionShape2D :$CollisionShape2D.queue_free()
+	if $HitPoint : $HitPoint.queue_free()
 	if $Bite_Detection: $Bite_Detection.queue_free()
 	$BasicZombieAnimation.dead()
 	detected_plant = null
@@ -94,3 +91,21 @@ func _on_bite_detection_body_entered(body: Node2D) -> void:
 
 func _on_bite_detection_body_exited(body: Node2D) -> void:
 	if body == detected_plant and detected_plant: detected_plant =null
+
+func get_random_audio_stream_groan()-> AudioStream:
+	match randi_range(1,5):
+		1:
+			return load("res://unit/Zombie/basic_zombie/basic_zombie_groan_1.mp3")
+		2:
+			return load("res://unit/Zombie/basic_zombie/basic_zombie_groan_2.mp3")
+		3:
+			return load("res://unit/Zombie/basic_zombie/basic_zombie_groan_3.mp3")
+		4:
+			return load("res://unit/Zombie/basic_zombie/basic_zombie_groan_4.mp3")
+		5: return load("res://unit/Zombie/basic_zombie/basic_zombie_groan_5.mp3")
+	return load("res://unit/Zombie/basic_zombie/basic_zombie_groan_1.mp3")
+
+
+func _on_groan_value_timeout() -> void:
+	$groan_value.wait_time = randf_range(15.0,30.0)
+	QuickDataManagement.sound_manager.play_zombie_groan(get_random_audio_stream_groan())

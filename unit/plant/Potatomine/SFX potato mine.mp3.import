@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://basov4n0r7blr"
+path="res://.godot/imported/SFX potato mine.mp3-984d41f7a673bb915d42632914eb0c49.mp3str"
+
+[deps]
+
+source_file="res://unit/plant/Potatomine/SFX potato mine.mp3"
+dest_files=["res://.godot/imported/SFX potato mine.mp3-984d41f7a673bb915d42632914eb0c49.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

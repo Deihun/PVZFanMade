@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8lpneub1dg61"]
+[gd_scene load_steps=3 format=3 uid="uid://b8lpneub1dg61"]
 
 [ext_resource type="Script" uid="uid://daedqfn8vnn1l" path="res://Behaviour/projectile_behaviour/zombie_hp_management.gd" id="1_2dxoe"]
+[ext_resource type="Script" uid="uid://cqnsb87fe18m3" path="res://Behaviour/max_health_condition_handler.gd" id="2_uq3vb"]
 
 [node name="zombie_hp_management" type="Node2D"]
 script = ExtResource("1_2dxoe")
+
+[node name="max_health_condition_handler" type="Node" parent="."]
+script = ExtResource("2_uq3vb")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05

@@ -1348,26 +1348,26 @@ position = Vector2(29, 80)
 texture = ExtResource("1_kqqma")
 
 [node name="stem_1" type="Panel" parent="."]
-offset_left = 23.6792
-offset_top = 48.9811
-offset_right = 26.6792
-offset_bottom = 91.7358
+offset_left = -17.0
+offset_top = 44.0
+offset_right = -14.0
+offset_bottom = 110.0
 rotation = -0.826758
 theme_override_styles/panel = SubResource("StyleBoxFlat_h36nw")
 
 [node name="stem_2" type="Panel" parent="."]
-offset_left = 46.2973
-offset_top = 0.586706
-offset_right = 49.2973
-offset_bottom = 91.9182
+offset_left = 24.0
+offset_top = 7.0
+offset_right = 27.0
+offset_bottom = 90.0
 rotation = -0.0442951
 theme_override_styles/panel = SubResource("StyleBoxFlat_h36nw")
 
 [node name="stem_3" type="Panel" parent="."]
-offset_left = 62.3391
-offset_top = 22.6027
-offset_right = 65.3391
-offset_bottom = 94.382
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 51.0
+offset_bottom = 100.0
 rotation = 0.504987
 theme_override_styles/panel = SubResource("StyleBoxFlat_h36nw")
 

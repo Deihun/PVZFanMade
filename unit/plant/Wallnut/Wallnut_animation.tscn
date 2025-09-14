@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://1586jc7ht8x0"]
+[gd_scene load_steps=30 format=3 uid="uid://1586jc7ht8x0"]
 
 [ext_resource type="Script" uid="uid://d0ivy7ml8yfi6" path="res://unit/plant/Wallnut/wallnut.gd" id="1_blf84"]
 [ext_resource type="Texture2D" uid="uid://cpos4l8yroj5l" path="res://unit/plant/Wallnut/wallnut_body.png" id="2_3xwol"]
@@ -476,6 +476,46 @@ tracks/15/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_btnqr"]
+resource_name = "rolling_wallnut"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WallnutBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.69, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5.55556, -63.8889), Vector2(-5.556, -70.224), Vector2(-5.55556, -63.8889), Vector2(-5.556, -70.224), Vector2(-5.55556, -63.8889)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WallnutBody:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallnutBody:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.818199, 0.246994, 5.19812e-06, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_trjgn"]
 resource_name = "idle_full"
 length = 8.0
@@ -527,6 +567,46 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-2.5, -114.812)]
+}
+
+[sub_resource type="Animation" id="Animation_6625r"]
+resource_name = "rolling_wallnut"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WallnutBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.69, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5.55556, -63.8889), Vector2(-5.556, -70.224), Vector2(-5.55556, -63.8889), Vector2(-5.556, -70.224), Vector2(-5.55556, -63.8889)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WallnutBody:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallnutBody:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_blf84"]
@@ -1060,8 +1140,9 @@ tracks/10/keys = {
 "values": [ExtResource("11_ks668"), ExtResource("11_733g3"), ExtResource("11_ks668")]
 }
 
-[sub_resource type="Animation" id="Animation_6625r"]
-resource_name = "rolling_wallnut"
+[sub_resource type="Animation" id="Animation_58ll0"]
+resource_name = "idle_full"
+length = 8.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1070,80 +1151,65 @@ tracks/0/path = NodePath("WallnutBody:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.69, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.47, 2.01, 2.4, 3.76667, 4.27, 4.9, 6.67),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-5.55556, -63.8889), Vector2(-5.556, -70.224), Vector2(-5.55556, -63.8889), Vector2(-5.556, -70.224), Vector2(-5.55556, -63.8889)]
+"values": [Vector2(-5.55556, -63.8889), Vector2(-6.19888e-06, -66.6666), Vector2(-6.19888e-06, -66.6666), Vector2(-5.55556, -63.8889), Vector2(-5.55556, -63.8889), Vector2(-10.14, -63.889), Vector2(-10.14, -63.889), Vector2(-5.55556, -63.8889)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("WallnutBody:rotation")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.47, 2.01, 2.4, 3.8, 4.27, 4.9, 6.67),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 6.28319]
+"values": [0.0, 0.0872665, 0.0872665, 0.0, 0.0, -0.0872665, -0.0872665, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("WallnutBody:self_modulate")
-tracks/2/interp = 1
+tracks/2/path = NodePath("WallnutBody:scale")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_btnqr"]
-resource_name = "rolling_wallnut"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WallnutBody:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.69, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-5.55556, -63.8889), Vector2(-5.556, -70.224), Vector2(-5.55556, -63.8889), Vector2(-5.556, -70.224), Vector2(-5.55556, -63.8889)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WallnutBody:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WallnutBody:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shield:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0.818199, 0.246994, 5.19812e-06, 1)]
+"values": [Vector2(-2.5, -114.812)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WallnutBody:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.818199, 0.246994, 5.1856e-06, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nwdgr"]
 _data = {
 &"RESET": SubResource("Animation_dyksv"),
 &"exploding_rolling_wallnut ": SubResource("Animation_btnqr"),
+&"idle_explode_o_nut": SubResource("Animation_58ll0"),
 &"idle_full": SubResource("Animation_trjgn"),
 &"rolling_wallnut": SubResource("Animation_6625r"),
 &"spawn": SubResource("Animation_blf84"),

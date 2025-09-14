@@ -9,6 +9,21 @@ bg_color = Color(0.371121, 0.313697, 0.207264, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jdeb6"]
 bg_color = Color(0.530603, 1, 0.424657, 1)
 
+[sub_resource type="Animation" id="Animation_y1jp5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("power_zone:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_pgqj5"]
 resource_name = "idle"
 length = 10.0
@@ -26,85 +41,10 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0.18374, 0.712128, 0.684484, 1), Color(0.487349, 0.690214, 0.966651, 1), Color(1, 0.924258, 0.742915, 1), Color(0.895304, 0.448354, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_y1jp5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("power_zone:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2wh3k"]
 _data = {
 &"RESET": SubResource("Animation_y1jp5"),
 &"idle": SubResource("Animation_pgqj5")
-}
-
-[sub_resource type="Animation" id="Animation_382ji"]
-resource_name = "full"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(278, 72)]
-}
-
-[sub_resource type="Animation" id="Animation_wpsil"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(278, 72)]
-}
-
-[sub_resource type="Animation" id="Animation_860ee"]
-resource_name = "3_power"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(208, 72)]
-}
-
-[sub_resource type="Animation" id="Animation_gadnk"]
-resource_name = "2_power"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(137, 72)]
 }
 
 [sub_resource type="Animation" id="Animation_o8d85"]
@@ -122,6 +62,51 @@ tracks/0/keys = {
 "values": [Vector2(67, 72)]
 }
 
+[sub_resource type="Animation" id="Animation_gadnk"]
+resource_name = "2_power"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(137, 72)]
+}
+
+[sub_resource type="Animation" id="Animation_860ee"]
+resource_name = "3_power"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(208, 72)]
+}
+
+[sub_resource type="Animation" id="Animation_wpsil"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(278, 72)]
+}
+
 [sub_resource type="Animation" id="Animation_vd63o"]
 resource_name = "empty"
 tracks/0/type = "value"
@@ -135,6 +120,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(10, 72)]
+}
+
+[sub_resource type="Animation" id="Animation_382ji"]
+resource_name = "full"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EvolutionPowerHolder/power_zone:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(278, 72)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nresq"]
@@ -184,3 +184,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_nresq")
 }
 autoplay = "empty"
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+color = Color(0.890016, 0.944727, 0, 1)
+polygon = PackedVector2Array(-9, -25, -11, 41, -3, 57, 114, 57, 136, 39, 325, 38, 336, 32, 336, 32, 336, 23, 336, 23, 343, 11, 337, -5, 334, -12, 341, -22, 339, -32, 333, -44, 6, -45, -6, -38)

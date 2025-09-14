@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://fj20rxkan7ol"]
+
+[ext_resource type="Script" uid="uid://c8bxg0ck1kr71" path="res://HUD/EvolutionUI/control_evolution_details.gd" id="1_d2vwo"]
+[ext_resource type="Texture2D" uid="uid://dwhece1acol36" path="res://HUD/EvolutionUI/next_for_plant.png" id="2_cxwe1"]
+
+[node name="ControlEvolutionDetails" type="Control"]
+custom_minimum_size = Vector2(600, 1080)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 1080.0
+mouse_filter = 1
+script = ExtResource("1_d2vwo")
+
+[node name="NextForPlant" type="Sprite2D" parent="."]
+position = Vector2(562, 1039)
+scale = Vector2(1.36, 1.4)
+texture = ExtResource("2_cxwe1")

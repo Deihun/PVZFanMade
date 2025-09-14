@@ -37,6 +37,8 @@ one_shot = true
 stream = ExtResource("3_l4023")
 mix_target = 2
 
+[node name="Area2D" type="Area2D" parent="."]
+
 [connection signal="area_entered" from="trigger" to="." method="_on_trigger_area_entered"]
 [connection signal="body_entered" from="trigger" to="." method="_on_trigger_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

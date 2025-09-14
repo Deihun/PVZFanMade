@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvyocv78lu4yj"]
+
+[ext_resource type="Script" uid="uid://b2inrybepkvy4" path="res://HUD/pause/pause_button/pause_button.gd" id="1_qki1q"]
+[ext_resource type="Texture2D" uid="uid://du1jguoglwrn7" path="res://HUD/pause/pause_hover.png" id="1_tut52"]
+[ext_resource type="Texture2D" uid="uid://vei4f1sc3yhs" path="res://HUD/pause/pause_unhover.png" id="2_qki1q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qki1q"]
+size = Vector2(68, 64)
+
+[node name="PauseButton" type="Node2D"]
+script = ExtResource("1_qki1q")
+
+[node name="PauseHover" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 3)
+scale = Vector2(0.553571, 0.527273)
+texture = ExtResource("1_tut52")
+
+[node name="PauseUnhover" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(0.553571, 0.527273)
+texture = ExtResource("2_qki1q")
+
+[node name="interactable" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_qki1q")
+
+[connection signal="input_event" from="interactable" to="." method="_on_interactable_input_event"]
+[connection signal="mouse_entered" from="interactable" to="." method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="interactable" to="." method="_on_interactable_mouse_exited"]

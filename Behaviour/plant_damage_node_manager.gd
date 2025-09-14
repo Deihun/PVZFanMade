@@ -8,12 +8,14 @@ extends Node2D
 var bonus_attackspeed := 0
 var bonus_damage:=0
 
+var kill_count := 0
 var when_i_kill_callable : Array[Callable] = []
 
 func get_total_computed_bonus_speed(attack_speed_cap : float = 0.1) -> float: 
 	return base_attack_cooldown / (1.0+(bonus_attackspeed / 100.0))
 
 func i_successfully_kill_someone():
+	kill_count+=1
 	for method in when_i_kill_callable: 
 		if method.is_valid(): method.call() 
 		else: when_i_kill_callable.erase(method)

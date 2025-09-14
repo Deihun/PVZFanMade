@@ -10,11 +10,10 @@ var enemy_group = "plant"
 func _ready() -> void:
 	add_to_group("zombie")
 	$zombie_hp_management.head_attachment_for_holding_armor = $BasicZombieAnimation._armor
-	var damage_ : Callable = Callable(self,"_check_for_half_health") 
+	$zombie_hp_management._add_health_threshold_condition(func(): lose_its_arms(),50, 5, true)
 	var play_death_callable : Callable = Callable(self,"death")
-	$zombie_hp_management.take_damage_Callable.append(damage_)
 	$zombie_hp_management.zombie_death_callable.append(play_death_callable)
-	$BasicZombieAnimation.walk_callable = Callable(self,"_move_forward")
+	$BasicZombieAnimation.walk_callable = Callable($zombie_movement_management,"move")
 	$BasicZombieAnimation.eat_callable = Callable(self,"eat_plant")
 	$BasicZombieAnimation.disappear_callable = Callable(self,"disappear")
 	$BasicZombieAnimation.set_flag_zombie()
@@ -38,9 +37,8 @@ func eat_plant():
 		else: 
 			print("UNABLE TO DETECT TARGET")
 
-func _check_for_half_health():
-	if $zombie_hp_management.HP <= 150:
-		$BasicZombieAnimation.base_zombie_is_half()
+func lose_its_arms():
+	$BasicZombieAnimation.base_zombie_is_half()
 
 
 func death():

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cbt1b1l5fkbhv" path="res://Resource/Sun/sun_animation.tscn" id="2_cpnco"]
 
 [node name="Normal Sun" type="Node2D"]
+z_index = 50
 script = ExtResource("1_b4gpi")
 
 [node name="expiration" type="Timer" parent="."]

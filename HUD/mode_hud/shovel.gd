@@ -15,5 +15,8 @@ func _on_clickable_area_input_event(viewport: Node, event: InputEvent, shape_idx
 		shovel.name = "shovel_icon"
 		shovel.z_index = 200
 
-		QuickDataManagement._add_object_for_queue(shovel)
+		QuickDataManagement._add_object_for_queue(shovel,self)
 		shovel.name = "shovel_icon"
+
+func selected_as_object(is_it_selected := false):
+	$Shovel2.visible = !is_it_selected

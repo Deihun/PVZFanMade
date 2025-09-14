@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dff08knirkmnc"]
+
+[ext_resource type="Script" uid="uid://ffbhsfaecqgs" path="res://unit/plant/Wallnut/rolling_wallnut_placement.gd" id="1_dhws6"]
+[ext_resource type="PackedScene" uid="uid://1586jc7ht8x0" path="res://unit/plant/Wallnut/Wallnut_animation.tscn" id="2_aifqa"]
+
+[node name="RollingExplodingWallnutPlacement" type="Node2D"]
+script = ExtResource("1_dhws6")
+_selected_wallnut = "ExplodeONut"
+
+[node name="Wallnut" parent="." instance=ExtResource("2_aifqa")]

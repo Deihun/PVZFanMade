@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bxt4mna3pqsjr"
+path="res://.godot/imported/SFX dirt rise.mp3-bba6bb6a9856f1acf6b72896ed2dfc63.mp3str"
+
+[deps]
+
+source_file="res://unit/plant/Potatomine/SFX dirt rise.mp3"
+dest_files=["res://.godot/imported/SFX dirt rise.mp3-bba6bb6a9856f1acf6b72896ed2dfc63.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

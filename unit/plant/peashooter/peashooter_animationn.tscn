@@ -1133,6 +1133,7 @@ _data = {
 }
 
 [node name="peashooter" type="Node2D"]
+position = Vector2(363, 140)
 scale = Vector2(1.46, 1.46)
 script = ExtResource("1_kg7ul")
 

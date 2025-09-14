@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=3 uid="uid://odttunmk17i4"]
+
+[ext_resource type="Script" uid="uid://dt5n8mtnn4t2v" path="res://unit/plant/peashooter/peashooter_pea_effects/pea_splash.gd" id="1_06daf"]
+[ext_resource type="Texture2D" uid="uid://g5m4rvbbmub1" path="res://unit/plant/peashooter/peashooter_pea_effects/1.png" id="2_rga48"]
+[ext_resource type="Texture2D" uid="uid://cwfabuertf5dh" path="res://unit/plant/peashooter/peashooter_pea_effects/2.png" id="3_wn7mm"]
+[ext_resource type="Texture2D" uid="uid://cc6nirw3l4tuh" path="res://unit/plant/peashooter/peashooter_pea_effects/3.png" id="4_tx61r"]
+[ext_resource type="Texture2D" uid="uid://b56xccrjg8ujv" path="res://unit/plant/peashooter/peashooter_pea_effects/4.png" id="5_qfprc"]
+
+[sub_resource type="Animation" id="Animation_frbxy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0n65o"]
+resource_name = "play"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_psjme"]
+_data = {
+&"RESET": SubResource("Animation_frbxy"),
+&"play": SubResource("Animation_0n65o")
+}
+
+[node name="PeaSplash" type="Node2D"]
+z_index = 50
+script = ExtResource("1_06daf")
+
+[node name="1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-7, -11)
+texture = ExtResource("2_rga48")
+
+[node name="2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-7, -11)
+texture = ExtResource("3_wn7mm")
+
+[node name="3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-7, -11)
+texture = ExtResource("4_tx61r")
+
+[node name="4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-7, -11)
+texture = ExtResource("5_qfprc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_psjme")
+}
+autoplay = "play"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

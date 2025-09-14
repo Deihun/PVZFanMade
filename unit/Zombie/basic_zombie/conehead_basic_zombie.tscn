@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://yivwd3p0a1xq"]
+[gd_scene load_steps=8 format=3 uid="uid://yivwd3p0a1xq"]
 
 [ext_resource type="Script" uid="uid://biamhuvv1sdpj" path="res://unit/Zombie/basic_zombie/basic_zombie.gd" id="1_iqr6c"]
 [ext_resource type="PackedScene" uid="uid://b8lpneub1dg61" path="res://Behaviour/projectile_behaviour/zombie_hp_management.tscn" id="2_cxsyd"]
+[ext_resource type="PackedScene" uid="uid://dlfnwlf3x2t7t" path="res://Behaviour/zombie_movement_management.tscn" id="2_edvv0"]
 [ext_resource type="PackedScene" uid="uid://y5yyy3rt1el1" path="res://unit/Zombie/Basic_Zombie_Animation.tscn" id="3_edvv0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5oqf"]
@@ -20,6 +21,9 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_iqr6c")
 zombie_type_mode = "conehead"
+
+[node name="zombie_movement_management" parent="." node_paths=PackedStringArray("animation_node") instance=ExtResource("2_edvv0")]
+animation_node = NodePath("../BasicZombieAnimation")
 
 [node name="zombie_hp_management" parent="." node_paths=PackedStringArray("zombie_animation_node") instance=ExtResource("2_cxsyd")]
 zombie_animation_node = NodePath("../BasicZombieAnimation")

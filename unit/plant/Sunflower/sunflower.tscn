@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://xeuq18wltltm"]
+[gd_scene load_steps=15 format=3 uid="uid://xeuq18wltltm"]
 
 [ext_resource type="Script" uid="uid://ca0cagla675w7" path="res://unit/plant/Sunflower/sunflower.gd" id="1_44l71"]
 [ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="2_d0rym"]
@@ -10,15 +10,507 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1mn5"]
 size = Vector2(75, 100)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vorgh"]
-size = Vector2(105, 121)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0rym"]
+bg_color = Color(0.763788, 1, 0.679735, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrnj"]
-size = Vector2(224, 223)
+[sub_resource type="Animation" id="Animation_utgag"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.20944]
+}
+
+[sub_resource type="Animation" id="Animation_d0rym"]
+resource_name = "always"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i43ci"]
+_data = {
+&"RESET": SubResource("Animation_utgag"),
+&"always": SubResource("Animation_d0rym")
+}
+
+[sub_resource type="Animation" id="Animation_wsdq0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("energy:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, 11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("energy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(39, 28)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("energy:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("energy2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("energy3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("energy4:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("energy5:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("energy6:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("energy2:size")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, 13)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("energy2:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-20, 57)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("energy3:size")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 5)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("energy3:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-74, 13)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("energy4:size")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("energy4:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-68, -28)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("energy5:size")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 10)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("energy5:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-19, -76)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("energy6:size")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 10)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("energy6:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(79.3508, -46.5186)]
+}
+
+[sub_resource type="Animation" id="Animation_i43ci"]
+resource_name = "play"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("energy:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(7, 11), Vector2(2, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("energy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(39, 28), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("energy:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("energy2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("energy3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.653891),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("energy4:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("energy5:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("energy6:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("energy2:size")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.133333, 0.945087),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(11, 13), Vector2(3, 2)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("energy2:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.133333, 0.945087),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-20, 57), Vector2(-2, -1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("energy3:size")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 5), Vector2(2, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("energy3:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-74, 13), Vector2(0, -2)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("energy4:size")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.775456),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("energy4:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.775456),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-68, -28), Vector2(1, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("energy5:size")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.908737),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, 10), Vector2(3, 3)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("energy5:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.908737),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-19, -76), Vector2(1, 2)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("energy6:size")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, 10), Vector2(2, 2)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("energy6:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(79.3508, -46.5186), Vector2(2, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wsdq0"]
+_data = {
+&"RESET": SubResource("Animation_wsdq0"),
+&"play": SubResource("Animation_i43ci")
+}
 
 [node name="Sunflower" type="CharacterBody2D"]
 collision_mask = 5
 script = ExtResource("1_44l71")
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("2_r1mn5")]
+position = Vector2(-6, -18)
+plant_name = "SUNFLOWER"
+description_Tier1A = "I produce sun much faster in cost of my health."
+description_Tier1B = "Slightly increase my sun quality"
+description_Tier2A = "I generate powerboost when I've seen you collect many sun!"
+description_Tier2B = "I have an ability to shield myself."
+description_Tier3A = "Turn into twin sunflower: Producing two sun instead of one"
+description_Tier3B = "Become an EmpressSunflower where she will challenge you to collect her golden sun if her sun expire."
+_tier1_max_value = 250.0
+_tier2_max_value = 400.0
+_tier3_max_value = 450.0
 
 [node name="PlantDamageNodeManager" parent="." instance=ExtResource("2_d0rym")]
 position = Vector2(-15, -115)
@@ -46,30 +538,6 @@ autostart = true
 [node name="plant_health_management_behaviour" parent="." instance=ExtResource("2_onrnj")]
 position = Vector2(-14, -64)
 
-[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("2_r1mn5")]
-position = Vector2(-15, -115)
-plant_name = "SUN FLOWER"
-description_Tier1A = "Decrease its max health by 40 but improve sun production by decreasing it by 5s"
-description_Tier1B = "Increase the quality of base sun from 25 to 30"
-description_Tier2A = "Gain (3x3) Aura: When planting sun related plant, grant unique buff depending on its type"
-description_Tier2B = "Gain 100 shield when not receiving damage  for few seconds."
-description_Tier3A = "Turn into twin sunflower: Producing two sun instead of one"
-description_Tier3B = "If my sun expire, transform it into 'GoldenState' which triple its value but it last for random interval. Succesfully collectiing goldensun makes it harder to collect."
-_tier1_max_value = 250.0
-_tier2_max_value = 400.0
-_tier3_max_value = 450.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EvolutionSenderSupportBehavior"]
-position = Vector2(-2, 61)
-shape = SubResource("RectangleShape2D_vorgh")
-
-[node name="sun_Aura" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="sun_Aura"]
-position = Vector2(-22, -55.5)
-shape = SubResource("RectangleShape2D_onrnj")
-disabled = true
-
 [node name="sun_flower_shield" parent="." instance=ExtResource("5_onrnj")]
 visible = false
 position = Vector2(-24, -55)
@@ -82,7 +550,85 @@ offset_top = -74.0
 offset_right = 2.0
 offset_bottom = -34.0
 
+[node name="T2A_collecting_power_animation" type="Node2D" parent="."]
+position = Vector2(-4.945, -64)
+rotation = -0.20944
+
+[node name="energy" type="Panel" parent="T2A_collecting_power_animation"]
+visible = false
+offset_left = 39.0
+offset_top = 28.0
+offset_right = 46.0
+offset_bottom = 39.0
+rotation = -0.947803
+theme_override_styles/panel = SubResource("StyleBoxFlat_d0rym")
+
+[node name="energy2" type="Panel" parent="T2A_collecting_power_animation"]
+visible = false
+offset_left = -20.0
+offset_top = 57.0
+offset_right = -9.0
+offset_bottom = 70.0
+rotation = 0.211794
+theme_override_styles/panel = SubResource("StyleBoxFlat_d0rym")
+
+[node name="energy3" type="Panel" parent="T2A_collecting_power_animation"]
+visible = false
+offset_left = -74.0
+offset_top = 13.0
+offset_right = -70.0
+offset_bottom = 18.0
+rotation = 1.34735
+theme_override_styles/panel = SubResource("StyleBoxFlat_d0rym")
+
+[node name="energy4" type="Panel" parent="T2A_collecting_power_animation"]
+visible = false
+offset_left = -68.0
+offset_top = -28.0
+offset_right = -64.0
+offset_bottom = -24.0
+rotation = 1.83731
+theme_override_styles/panel = SubResource("StyleBoxFlat_d0rym")
+
+[node name="energy5" type="Panel" parent="T2A_collecting_power_animation"]
+visible = false
+offset_left = -19.0
+offset_top = -76.0
+offset_right = -11.0
+offset_bottom = -66.0
+rotation = 2.81661
+theme_override_styles/panel = SubResource("StyleBoxFlat_d0rym")
+
+[node name="energy6" type="Panel" parent="T2A_collecting_power_animation"]
+visible = false
+offset_left = 79.3508
+offset_top = -46.5186
+offset_right = 87.3508
+offset_bottom = -36.5186
+rotation = 2.81661
+theme_override_styles/panel = SubResource("StyleBoxFlat_d0rym")
+
+[node name="always_rotating" type="AnimationPlayer" parent="T2A_collecting_power_animation"]
+libraries = {
+&"": SubResource("AnimationLibrary_i43ci")
+}
+autoplay = "always"
+
+[node name="play_trigger" type="AnimationPlayer" parent="T2A_collecting_power_animation"]
+libraries = {
+&"": SubResource("AnimationLibrary_wsdq0")
+}
+autoplay = "RESET"
+
+[node name="T2A_visual_cd" type="Timer" parent="T2A_collecting_power_animation"]
+wait_time = 3.0
+one_shot = true
+
+[node name="T2A_visual_when_producing" type="Timer" parent="T2A_collecting_power_animation"]
+one_shot = true
+
 [connection signal="timeout" from="shield_" to="." method="_on_shield__timeout"]
 [connection signal="timeout" from="suncooldown_produce" to="." method="_on_suncooldown_produce_timeout"]
 [connection signal="timeout" from="evolve_timer" to="." method="_on_evolve_timer_timeout"]
-[connection signal="body_entered" from="sun_Aura" to="." method="_on_sun_aura_body_entered"]
+[connection signal="timeout" from="T2A_collecting_power_animation/T2A_visual_cd" to="." method="_on_t_2a_visual_cd_timeout"]
+[connection signal="timeout" from="T2A_collecting_power_animation/T2A_visual_when_producing" to="." method="_on_t_2a_visual_when_producing_timeout"]

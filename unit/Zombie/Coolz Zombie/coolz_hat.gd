@@ -22,16 +22,19 @@ func take_damage(value : int) -> int :
 func check_for_damage_number():
 	if hp <= 0 and !only_trigger_once:
 		only_trigger_once = true
+		
 		var _global_position := self.global_position  
 		var target := self.duplicate()
+		queue_free()
+		get_tree().current_scene.add_child(target)
 		self.position=Vector2(0,0)
 		var behavior = load("res://Behaviour/projectile_behaviour/thrown_spawn_behavior.tscn").instantiate()
 		self.top_level = false
 		self.visible = false
-		get_tree().current_scene.add_child(target)
+		
 		target.position = Vector2.ZERO
 		target.global_position = _global_position
 		behavior.disappear_after_3s =true
 		target.add_child(behavior)
 		await get_tree().create_timer(3).timeout
-		queue_free()
+		

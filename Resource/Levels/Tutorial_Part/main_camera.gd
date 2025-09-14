@@ -4,13 +4,28 @@ extends Camera2D
 @export var auto_start := true
 @export var delay_before_auto_start := 0.0
 @export var conveyor_belt : Node2D
+@export var sun_on_start := 50
+@export var level_name : String
 
+
+@export_category("MUSIC")
+@export var choose_our_seed_music : AudioStream 
+@export var music_at_start : AudioStream
+@export var music_mid_wave : AudioStream
+@export var music_last_wave : AudioStream
 
 var initial_position_:= Vector2(421.0,136.0)
 var last_position:= Vector2(1950.0,136.0)
 var when_starting_callable : Array[Callable] = []
 
 func _ready() -> void:
+	QuickDataManagement.sound_manager.start_up_wave = music_at_start
+	QuickDataManagement.sound_manager.mid_wave = music_mid_wave
+	QuickDataManagement.sound_manager.last_wave = music_last_wave
+	QuickDataManagement._reset_all_data()
+	QuickDataManagement.sound_manager.play_music(choose_our_seed_music)
+	QuickDataManagement.change_sun_value(sun_on_start)
+	$HUD_normal_selection.hide()
 	if auto_start: 
 		await get_tree().create_timer(delay_before_auto_start).timeout
 		play_camera()
@@ -33,7 +48,7 @@ func play_camera():
 				await start_call_all_methods()
 				$HUD_normal_selection.show()
 			else:
-				$HUD_normal_selection.show()
+				$HUD_normal_selection.pick_mode()
 		"check_zombie_with_picking":
 			pass
 		"dont_show_plant_pick":
@@ -56,12 +71,13 @@ func _done_after_picking():
 	start_call_all_methods()
 
 func ready_get_set_plant():
+	$AudioStreamPlayer.play()
 	$Ready.show()
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(0.4).timeout
 	$Ready.texture=load("res://HUD/mode_hud/get_set_text.png")
-	await get_tree().create_timer(0.7).timeout
+	await get_tree().create_timer(0.5).timeout
 	$Ready.texture=load("res://HUD/mode_hud/plant_text.png")
-	await get_tree().create_timer(0.7).timeout
+	await get_tree().create_timer(1.0).timeout
 	$Ready.hide()
 
 func _camera_navigating_to_zombie():

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dsmix3ly6iraf"
+path="res://.godot/imported/pvz sun collecting sound.mp3-bb1178d92d08b23317b157d8152264fb.mp3str"
+
+[deps]
+
+source_file="res://Resource/Sun/pvz sun collecting sound.mp3"
+dest_files=["res://.godot/imported/pvz sun collecting sound.mp3-bb1178d92d08b23317b157d8152264fb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

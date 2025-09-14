@@ -12,11 +12,11 @@ func take_damage(value : int) -> int :
 
 
 func check_for_damage_number():
-	if hp > 300 and hp < 500:
+	if hp > 480 and hp < 840:
 		$imagge.texture = load("res://unit/Zombie/basic_zombie/bucket_head_damage.png")
-	elif hp > 0 and hp < 300:
+	if hp > 0 and hp < 480:
 		$imagge.texture = load("res://unit/Zombie/basic_zombie/bucket_head_lethal.png")
-	elif hp <= 0 and !only_trigger_once:
+	if hp <= 0 and !only_trigger_once:
 		only_trigger_once = true
 		var _global_position := self.global_position  
 		var target := self.duplicate()

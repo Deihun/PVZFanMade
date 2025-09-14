@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cq356nfdqih64"]
+[gd_scene load_steps=19 format=3 uid="uid://cq356nfdqih64"]
 
 [ext_resource type="Script" uid="uid://d2g76na3ubtks" path="res://unit/plant/Sunflower/sunflower_animation.gd" id="1_h88ud"]
 [ext_resource type="Texture2D" uid="uid://lt386bdsq5ak" path="res://unit/plant/peashooter/normal_peashooter_foot_back.png" id="2_a0lm1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cu8pm672lr8n6" path="res://unit/plant/Sunflower/sunflower_eyes.png" id="7_x6w3c"]
 [ext_resource type="Texture2D" uid="uid://cn6ywnqjatsvg" path="res://unit/plant/Sunflower/sunflower_smile_1.png" id="8_d0pnh"]
 [ext_resource type="Texture2D" uid="uid://bjdql1fsk5vf7" path="res://unit/plant/Sunflower/sunflower_smile_2.png" id="9_cxr5h"]
+[ext_resource type="AudioStream" uid="uid://d0is3ioob1skp" path="res://unit/plant/Sunflower/sunflower_producing_sfx.mp3" id="10_a0lm1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bq5n"]
 bg_color = Color(0.262808, 0.331817, 0, 1)
@@ -758,6 +759,18 @@ tracks/61/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("6_fx50f")]
+}
+tracks/62/type = "value"
+tracks/62/imported = false
+tracks/62/enabled = true
+tracks/62/path = NodePath("release_sun:playing")
+tracks/62/interp = 1
+tracks/62/loop_wrap = true
+tracks/62/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_k0d2m"]
@@ -1541,6 +1554,18 @@ tracks/16/keys = {
 "args": [],
 "method": &"_produce_sun_by_animation_trigger"
 }]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("release_sun:playing")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(1.53333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_a0lm1"]
@@ -2424,5 +2449,9 @@ texture = ExtResource("7_x6w3c")
 [node name="SunflowerSmile1" type="Sprite2D" parent="TwinSunFlower/Sunflower_head2"]
 position = Vector2(16, -29)
 texture = ExtResource("8_d0pnh")
+
+[node name="release_sun" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_a0lm1")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

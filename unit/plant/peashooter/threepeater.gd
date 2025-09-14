@@ -10,7 +10,7 @@ func _trigger_attack() -> void:
 func start_attacking():
 	print("animation debug")
 	$AnimationPlayer.stop()
-	$AnimationPlayer.speed_scale =  1.0 + attack_animation_speed + randf_range(0.2,0)
+	$AnimationPlayer.speed_scale =  max(min(1.0+attack_animation_speed,4.0),1.0) + randf_range(0.2,0)
 	$AnimationPlayer.play("attack")
 
 

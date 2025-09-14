@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dsyw8ad0cd20q" path="res://unit/plant/CherryBomb/cherry_bomb_animation.tscn" id="1_w7am6"]
 
 [node name="CherryBomb" type="CharacterBody2D"]
+position = Vector2(0, 12)
 script = ExtResource("1_hbl6c")
 
 [node name="CherryBomb_animation" parent="." instance=ExtResource("1_w7am6")]

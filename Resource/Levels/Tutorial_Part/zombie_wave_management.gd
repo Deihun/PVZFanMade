@@ -30,7 +30,13 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
 	set_process(false)
-	#Engine.time_scale = 3.0
+	progress_bar_wave = load(progress_bar_wave_scene).instantiate()
+	for node in get_tree().current_scene.get_children():
+		if node is Camera2D:
+			progress_bar_wave.position = Vector2.ZERO
+			node.add_child(progress_bar_wave)
+			progress_bar_wave.global_position = Vector2.ZERO
+			break
 	for child in get_children():
 		if !child.has_method("start_this_wave"): continue
 		child.lane_1_node = lane_1
@@ -43,20 +49,16 @@ func _ready() -> void:
 	if final_as_reward: final_as_reward.visible = false
 	if on_start: _play()
 	if main_camera: main_camera.when_starting_callable.append(Callable(self,"_play"))
+	await get_tree().create_timer(0.5).timeout
+	place_all_zombie_as_preview()
 
 var play_once := false
 func _play():
 	if play_once: return
 	play_once = true
 	await get_tree().create_timer(delay_before_game_start).timeout
-	progress_bar_wave = load(progress_bar_wave_scene).instantiate()
-	for node in get_tree().current_scene.get_children():
-		if node is Camera2D:
-			progress_bar_wave.position = Vector2.ZERO
-			node.add_child(progress_bar_wave)
-			progress_bar_wave.global_position = Vector2.ZERO
-			#progress_bar_wave.position = Vector2.ZERO
-	add_child(progress_bar_wave)
+	QuickDataManagement.sound_manager.play_high_priority_audio(load("res://HUD/borders/level_manager/wave_sfx.mp3"))
+	progress_bar_wave.start_wave()
 	total_waves = max(1, get_child_count()-2)
 	var step_percent : float = 100.0 / total_waves
 	
@@ -73,7 +75,8 @@ func _play():
 func play_queue_next():
 	var wave = get_child(0)
 	wave.queue_free()
-	await get_tree().process_frame  
+	if !is_inside_tree(): return
+	await get_tree().process_frame  #this line causes an error if i interrupt the scene like either changing the scene or quiting the game
 	var next_wave = get_child(0)
 	if next_wave: 
 		if next_wave.has_method("start_this_wave"): next_wave.start_this_wave()
@@ -97,3 +100,55 @@ func _if_zombie_die(node: Node2D):
 func check_if_win():
 	if zombie_group.size()<=0 and get_child_count()<=0: 
 		if final_as_reward: final_as_reward.visible = true
+
+
+
+
+@export var collision_where_zombie_is_place_preview:CollisionShape2D
+var preview_zombies = []
+
+func add_this_zombie(instance_path : String):
+	preview_zombies.append(instance_path)
+
+func place_all_zombie_as_preview() -> void:
+	if !collision_where_zombie_is_place_preview:return
+	var zombie_count : Dictionary = {}
+	for path in preview_zombies:
+		var zombie_scene := load(path)
+		if zombie_scene == null:
+			continue
+		var zombie = zombie_scene.instantiate()
+
+		if not zombie_count.has(path):
+			get_tree().current_scene.add_child(zombie)
+			zombie_count[path] = 0
+		else:
+			get_tree().current_scene.add_child(zombie)
+			zombie_count[path] += 1
+			if  zombie_count[path] >= 7:
+				zombie_count[path] = 0
+			else:
+				zombie.queue_free()
+
+
+		var shape = collision_where_zombie_is_place_preview.shape
+		var pos := collision_where_zombie_is_place_preview.global_position
+		
+		if shape is RectangleShape2D:
+			var extents = shape.extents
+			var local_x = randf_range(-extents.x, extents.x)
+			var local_y = randf_range(-extents.y, extents.y)
+			zombie.global_position = pos + Vector2(local_x, local_y)
+		elif shape is CircleShape2D:
+			var r = shape.radius
+			var angle = randf() * TAU
+			var dist = randf() * r
+			var local_offset = Vector2(cos(angle), sin(angle)) * dist
+			zombie.global_position = pos + local_offset
+		else:
+			zombie.global_position = pos
+
+		if zombie.has_method("_set_as_idle"):
+			zombie._set_as_idle()
+		else:
+			zombie.queue_free()

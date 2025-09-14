@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cb6qt8yau8wyt"
+path="res://.godot/imported/Choose Your Seeds - Modern Day - Plants vs. Zombies 2.mp3-213c46a471b1811d0095a37bead2a221.mp3str"
+
+[deps]
+
+source_file="res://Resource/Levels/Tutorial_Part/Choose Your Seeds - Modern Day - Plants vs. Zombies 2.mp3"
+dest_files=["res://.godot/imported/Choose Your Seeds - Modern Day - Plants vs. Zombies 2.mp3-213c46a471b1811d0095a37bead2a221.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

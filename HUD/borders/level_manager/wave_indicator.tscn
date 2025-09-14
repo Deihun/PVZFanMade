@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dr682qf7yx8v2"]
+[gd_scene load_steps=12 format=3 uid="uid://dr682qf7yx8v2"]
 
 [ext_resource type="Script" uid="uid://cj8xumhxuvsuy" path="res://HUD/borders/level_manager/wave_indicator.gd" id="1_6b7xa"]
 [ext_resource type="Texture2D" uid="uid://c3e0toox5q6ht" path="res://HUD/borders/level_manager/level_wave_indicator.png" id="2_uas5a"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://3fbh2gsmbhvy" path="res://unit/Zombie/basic_zombie/basic_zombie_head_2.png" id="4_m0l13"]
 [ext_resource type="Texture2D" uid="uid://kvjln3u0ukk8" path="res://HUD/borders/level_manager/HUGE_WAVE.png" id="5_ndq28"]
 [ext_resource type="Texture2D" uid="uid://bkjbuvigw5lfn" path="res://HUD/borders/level_manager/final_wave.png" id="6_gxhsj"]
+[ext_resource type="AudioStream" uid="uid://bdp68c0d7epy5" path="res://HUD/borders/level_manager/zombies_are_coming_sfx.mp3" id="7_4oy6j"]
 
 [sub_resource type="Animation" id="Animation_ndq28"]
 length = 0.001
@@ -209,14 +210,30 @@ _data = {
 z_index = 100
 script = ExtResource("1_6b7xa")
 
+[node name="Label" type="Label" parent="."]
+offset_left = 1031.0
+offset_top = 1011.0
+offset_right = 1864.0
+offset_bottom = 1080.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "DAY 1-1"
+horizontal_alignment = 2
+
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
-offset_left = 1613.0
-offset_top = 1012.0
-offset_right = 1890.0
-offset_bottom = 1039.0
+custom_minimum_size = Vector2(277, 27)
+offset_left = 1598.0
+offset_top = 1011.0
+offset_right = 1875.0
+offset_bottom = 1038.0
 mouse_filter = 2
-value = 100.0
 show_percentage = false
 
 [node name="LevelWaveIndicator" type="Sprite2D" parent="ProgressBar"]
@@ -252,4 +269,9 @@ visible = false
 position = Vector2(917, 555)
 texture = ExtResource("6_gxhsj")
 
+[node name="bigwave_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4oy6j")
+bus = &"SFX"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="value_changed" from="ProgressBar" to="." method="_on_progress_bar_value_changed"]

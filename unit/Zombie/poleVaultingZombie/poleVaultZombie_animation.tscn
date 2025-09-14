@@ -1,6 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://bh1l4pfo77kye"]
+[gd_scene load_steps=25 format=3 uid="uid://bh1l4pfo77kye"]
 
+[ext_resource type="Material" uid="uid://6oip4scmqd8a" path="res://Behaviour/Debuff_Shader_Material_For_zombies.tres" id="1_3chwd"]
 [ext_resource type="Texture2D" uid="uid://e31bmvocsejj" path="res://unit/Zombie/poleVaultingZombie/poleVault_Zombie_oole.png" id="1_a6tk0"]
+[ext_resource type="Script" uid="uid://bwcbutq4uxebw" path="res://unit/Zombie/poleVaultingZombie/pole_vault_zombie_animation.gd" id="1_ihsx0"]
 [ext_resource type="Texture2D" uid="uid://dmhcqcrgt3exr" path="res://unit/Zombie/poleVaultingZombie/poleVault_Zombie_face_lower_layer.png" id="2_ihsx0"]
 [ext_resource type="Texture2D" uid="uid://d2ti4mdo6pa4h" path="res://unit/Zombie/poleVaultingZombie/poleVault_Zombie_face_upper_layer.png" id="3_ns6if"]
 [ext_resource type="Texture2D" uid="uid://cvkidra4g8ych" path="res://unit/Zombie/poleVaultingZombie/poleVault_Zombie_feet_left.png" id="4_3chwd"]
@@ -12,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bnaxm1mvx518l" path="res://unit/Zombie/poleVaultingZombie/poleVault_Zombie_main_body.png" id="10_tnnmo"]
 [ext_resource type="Texture2D" uid="uid://c3x76b0w3omwy" path="res://unit/Zombie/poleVaultingZombie/poleVault_Zombie_shoulder_left.png" id="11_fucut"]
 [ext_resource type="Texture2D" uid="uid://c0xb6npntkpd4" path="res://unit/Zombie/poleVaultingZombie/poleVault_Zombie_shoulder_right.png" id="12_7rdmj"]
+[ext_resource type="AudioStream" uid="uid://dqhc1rbjupej3" path="res://unit/Zombie/poleVaultingZombie/jump_boing_sfx.mp3" id="14_ns6if"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a6tk0"]
 radius = 20.025
@@ -341,6 +344,908 @@ tracks/26/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("main_control/PoleVaultZombiePole:light_mask")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceUpperLayer:position")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8.5, -40.5)]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceLowerLayer:position")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5.5, -5.5)]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight/PoleVaultZombieForearmRight:scale")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath(".:modulate")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("main_control/PoleVaultZombieMainBody/head/collision:position")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, -44)]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("main_control/PoleVaultZombieMainBody/head/collision:rotation")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceUpperLayer:rotation")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceLowerLayer:rotation")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/36/type = "value"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("JumpBoingSfx:playing")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/37/type = "value"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("main_control/PoleVaultZombiePole:modulate")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f1o5g"]
+resource_name = "death_while_running"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.09, 1.46667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft/PoleVaultZombieForearmLeft:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-60.659, 1.819), Vector2(-60.659, 1.819)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main_control:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, 11), Vector2(-3, -2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main_control/PoleVaultZombiePole:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-66, -178), Vector2(-21.756, -79.966)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("main_control/legs_group:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -122)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 34), Vector2(5, 34), Vector2(0.497492, 34.9442)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg/PoleVaultZombieFeetLeft:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17.5742, 22.0034)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.84),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(26, 20), Vector2(21.8006, 17.1909)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight/PoleVaultZombieFeetRight:position")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-45.7989, 19.6077), Vector2(-45.9847, 18.4876)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("main_control/PoleVaultZombieMainBody:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -122)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("main_control/PoleVaultZombieMainBody/head:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, -20)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("main_control/PoleVaultZombieMainBody/head/collision:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, -44)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceUpperLayer:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8.5, -40.5)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceLowerLayer:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5.5, -5.5)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10.3522, -22.7262)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight/PoleVaultZombieForearmRight:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(39.837, 2.513)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft:position")
+tracks/16/interp = 2
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 0.54),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-25, -16), Vector2(-18.2212, -16.1624)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft/PoleVaultZombieForearmLeft:rotation")
+tracks/17/interp = 2
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.16667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0628319, -0.0628319, -1.82387]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("main_control:rotation")
+tracks/18/interp = 2
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.32356]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("main_control/PoleVaultZombiePole:rotation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0, 0.46, 0.66, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.99062, 1.32121, 1.35263]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("main_control/legs_group:rotation")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg:rotation")
+tracks/21/interp = 2
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0872665, 0.0872665, 0.500933]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg/PoleVaultZombieFeetLeft:rotation")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight:rotation")
+tracks/23/interp = 2
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0, 0.44, 0.84),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.680678, -1.68075, -1.01404]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight/PoleVaultZombieFeetRight:rotation")
+tracks/24/interp = 2
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.82),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.657989, -0.106037, 0.323397]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("main_control/PoleVaultZombieMainBody:rotation")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("main_control/PoleVaultZombieMainBody/head:rotation")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0461234]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("main_control/PoleVaultZombieMainBody/head/collision:rotation")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceUpperLayer:rotation")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceLowerLayer:rotation")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight:rotation")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.670206]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight/PoleVaultZombieForearmRight:rotation")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.392699]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft:rotation")
+tracks/32/interp = 2
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(0, 0.54, 1.06667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.13439, 1.74533, 1.39277]
+}
+
+[sub_resource type="Animation" id="Animation_ph2lo"]
+resource_name = "eating_animation"
+length = 1.75
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_control/PoleVaultZombiePole:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(221, -19)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main_control/legs_group:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -122)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 34)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg/PoleVaultZombieFeetLeft:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17.5742, 22.0034)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(23, 27)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight/PoleVaultZombieFeetRight:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-45.7989, 19.6077)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("main_control/PoleVaultZombieMainBody:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.458011),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7, -122), Vector2(-7, -118.68)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("main_control/PoleVaultZombieMainBody/head:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, -20)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight:position")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.339607),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(10.3522, -22.7262), Vector2(10.3522, -22.7262)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight/PoleVaultZombieForearmRight:position")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.556886, 0.665509, 0.832175, 1.36551),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(35.7808, 5.29105), Vector2(40.182, 4.74153), Vector2(42.6583, 6.43705), Vector2(43.4402, 6.74588), Vector2(35.7808, 5.29105)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft:position")
+tracks/11/interp = 2
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.794498, 1.09884, 1.56551),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-25, -16), Vector2(-25, -16), Vector2(-16, -15), Vector2(-12, -18), Vector2(-25, -16)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft/PoleVaultZombieForearmLeft:position")
+tracks/12/interp = 2
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.445463, 0.702702, 0.941119, 1.23333, 1.43333, 1.66667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-44.0683, 0.647648), Vector2(-44.0683, 0.647648), Vector2(-59.2644, 1.75985), Vector2(-59.2644, 1.75985), Vector2(-59.2644, 1.75985), Vector2(-59.2644, 1.75985), Vector2(-58.2113, 1.75918), Vector2(-44.0683, 0.647648)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("main_control:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("main_control/PoleVaultZombiePole:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.00348536]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("main_control/legs_group:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.734888]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg/PoleVaultZombieFeetLeft:rotation")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight:rotation")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.2824]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight/PoleVaultZombieFeetRight:rotation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.657989]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("main_control/PoleVaultZombieMainBody:rotation")
+tracks/20/interp = 2
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 0.451737, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0523599, 0.0]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("main_control/PoleVaultZombieMainBody/head:rotation")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0461234]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight:rotation")
+tracks/22/interp = 2
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0, 0.339607, 0.583526, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.2672, 2.41006, 1.91475, 1.2672]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight/PoleVaultZombieForearmRight:rotation")
+tracks/23/interp = 2
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0, 0.556886, 0.665509, 0.832175, 1.36551),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.597196, 0.565341, 1.00743, 1.33157, -0.597196]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft:rotation")
+tracks/24/interp = 2
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.794498, 1.09884, 1.56551),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.49151, -1.49151, -0.398462, -0.30079, -1.49151]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft/PoleVaultZombieForearmLeft:rotation")
+tracks/25/interp = 2
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.445463, 0.702702, 0.941119, 1.23333, 1.66667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.67338, -1.67338, -0.790383, 0.169242, 0.715303, 0.715303, -1.67338]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceLowerLayer:position")
+tracks/26/interp = 2
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.545849, 0.612516, 0.645849, 0.679182, 0.712516, 0.745849, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1.01252, 1.07918, 1.11252, 1.14585, 1.17918, 1.21252, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5.5, -5.5), Vector2(-5.5, -5.5), Vector2(-5.5, -2.45), Vector2(-7.79768, -4.72884), Vector2(-7.63926, -8.01041), Vector2(-5.351, -7.90943), Vector2(-5.5, -5.5), Vector2(-5.5, -5.5), Vector2(-5.5, -2.45), Vector2(-7.79768, -4.72884), Vector2(-7.63926, -8.01041), Vector2(-5.351, -7.90943), Vector2(-5.5, -5.5), Vector2(-5.5, -2.45), Vector2(-7.79768, -4.72884), Vector2(-7.63926, -8.01041), Vector2(-5.351, -7.90943), Vector2(-5.5, -5.5), Vector2(-5.5, -5.5), Vector2(-5.5, -2.45), Vector2(-7.79768, -4.72884), Vector2(-7.63926, -8.01041), Vector2(-5.351, -7.90943), Vector2(-5.5, -5.5), Vector2(-5.5, -5.5)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceUpperLayer:position")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8.5, -40.5), Vector2(-8.5, -40.5)]
+}
+tracks/28/type = "method"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath(".")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0.366667, 0.746621),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_eat_trigger"
+}, {
+"args": [],
+"method": &"_eat_trigger"
+}]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("main_control/PoleVaultZombiePole:modulate")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_mcyc1"]
@@ -951,6 +1856,473 @@ tracks/22/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/23/type = "method"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath(".")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_run_trigger"
+}, {
+"args": [],
+"method": &"_run_trigger"
+}]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("main_control/PoleVaultZombieMainBody/head:position")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, -20)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("main_control/PoleVaultZombiePole:modulate")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3chwd"]
+resource_name = "vaulting"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main_control/legs_group:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -122)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.257239, 0.357625, 0.426641, 0.520752, 0.564671, 0.6, 0.627413, 0.68388, 0.833333, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 34), Vector2(5, 34), Vector2(3, 29), Vector2(-8, 30), Vector2(-16, 21), Vector2(-32, 5), Vector2(-33, -10), Vector2(-30, -11), Vector2(-30, -11), Vector2(-29.275, 5), Vector2(5, 29.51), Vector2(5, 34)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg/PoleVaultZombieFeetLeft:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.138031, 0.533301, 0.583494, 0.60859, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(17.5742, 22.0034), Vector2(17.5742, 22.0034), Vector2(17.5742, 22.0034), Vector2(17.5742, 22.0034), Vector2(18.2044, 21.3329), Vector2(17.5742, 22.0034)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.250965, 0.370173, 0.407818, 0.458011, 0.527027, 0.57722, 0.658783, 0.746621, 0.809362, 0.865829, 0.903474, 1.04778, 1.46667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(26, 20), Vector2(23, 27), Vector2(18, 27), Vector2(1, 27), Vector2(-10, 28), Vector2(-10, 28), Vector2(-12, 24), Vector2(-13, 16), Vector2(-21, 2), Vector2(-7, 13), Vector2(12, 18), Vector2(22, 17), Vector2(29, 17), Vector2(34, 16), Vector2(23, 27)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight/PoleVaultZombieFeetRight:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.250965, 0.388996, 0.464285, 0.50193, 0.570946, 0.627413, 0.658783, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-45.7989, 19.6077), Vector2(-45.7989, 19.6077), Vector2(-45.7989, 19.6077), Vector2(-43.7462, 15.3319), Vector2(-43.7462, 15.3319), Vector2(-48.2151, 17.8626), Vector2(-45.2617, 18.788), Vector2(-43.3677, 17.2408), Vector2(-45.7989, 19.6077)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("main_control/PoleVaultZombieMainBody:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.219594, 0.39527, 0.5, 0.602316, 0.833333, 0.966667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-7, -122), Vector2(-7, -122), Vector2(-7, -122), Vector2(-7, -122), Vector2(-7, -122), Vector2(-7, -122), Vector2(-7, -122), Vector2(-7, -122)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("main_control/PoleVaultZombieMainBody/head:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.552123, 0.60859, 0.68388, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-11, -20), Vector2(-11, -20), Vector2(-11, -20), Vector2(-11, -20), Vector2(-11, -20)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.476834, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(10.3522, -22.7262), Vector2(8.087, -22.006), Vector2(10.88, -21.4855), Vector2(10.3522, -22.7262)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight/PoleVaultZombieForearmRight:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.219594, 0.476834, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(39.837, 2.513), Vector2(39.3377, 5.03936), Vector2(38.6231, 5.08993), Vector2(35.7808, 5.29105)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.0941119, 0.21332, 0.382722, 0.50193, 0.621139, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-25, -16), Vector2(-25, -16), Vector2(-27, -16), Vector2(-15.7147, -17.5228), Vector2(-11.9187, -33.3158), Vector2(-13.4811, -31.2476), Vector2(-25, -16)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft/PoleVaultZombieForearmLeft:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.100386, 0.219594, 0.388996, 0.508204, 0.570946, 0.621139, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-60.659, 1.819), Vector2(-59.5487, 1.74061), Vector2(-62.4327, 1.67251), Vector2(-63.673, -3.293), Vector2(-59.688, 1.265), Vector2(-59.688, 1.265), Vector2(-59.308, 2.56493), Vector2(-44.0683, 0.647648)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("main_control/legs_group:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.257239, 0.357625, 0.426641, 0.520752, 0.564671, 0.6, 0.627413, 0.68388, 0.833333, 0.966667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0872665, 0.734888, 0.942074, 1.30544, 1.92992, 2.67447, 2.91959, 3.19723, 2.64068, 1.26187, 0.733038, 0.733038]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg/PoleVaultZombieFeetLeft:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.138031, 0.225869, 0.338803, 0.439189, 0.533301, 0.583494, 0.60859, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.705113, 0.0, 0.0, 0.0, 0.0, -0.526762, 0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.370173, 0.407818, 0.458011, 0.527027, 0.57722, 0.658783, 0.746621, 0.809362, 0.865829, 0.903474, 1.04778, 1.46667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.680678, -1.2824, -1.56301, -1.6882, -0.982234, 0.849923, 0.9422, -0.407006, -0.982629, -1.10542, -1.21594, -1.04424, -0.774926, -1.28282]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight/PoleVaultZombieFeetRight:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.250965, 0.388996, 0.464285, 0.50193, 0.570946, 0.627413, 0.658783, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.657989, 0.657989, 0.305433, -1.08036, -1.08036, 0.75027, 0.361858, 0.179274, 0.657989]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("main_control/PoleVaultZombieMainBody:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 0.219594, 0.39527, 0.5, 0.602316, 0.833333, 0.966667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.55676, 1.15017, 2.14501, 0.0, -0.368264, 0.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("main_control/PoleVaultZombieMainBody/head:rotation")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 0.552123, 0.60859, 0.68388, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.0461234, -0.0461234, 0.237368, -0.0461234, -0.0461234]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight:rotation")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 0.225869, 0.476834, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.670206, 2.72231, 1.99142, 1.2672]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight/PoleVaultZombieForearmRight:rotation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0, 0.219594, 0.476834, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.392699, -0.726907, -0.247914, -0.597196]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft:rotation")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 0.0941119, 0.21332, 0.382722, 0.50193, 0.621139, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.13439, 0.5348, 0.0573487, -0.414762, -1.23395, -0.428243, -1.49151]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft/PoleVaultZombieForearmLeft:rotation")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0, 0.100386, 0.219594, 0.388996, 0.508204, 0.570946, 0.621139, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.0628319, -0.640536, -1.61752, -1.23918, -0.532325, -0.532325, -1.22463, -1.67338]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("main_control/PoleVaultZombiePole:position")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0, 0.0941119, 0.219594, 0.407818, 0.514478, 0.539575, 0.627413, 0.727799, 0.828185, 0.953667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-66, -178), Vector2(-69, -206), Vector2(-122, -168), Vector2(-96, -167), Vector2(-36.7429, -167), Vector2(-36.7429, -167), Vector2(78.605, -167), Vector2(125, -148), Vector2(169, -102), Vector2(221, -19)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("main_control/PoleVaultZombiePole:rotation")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0, 0.0941119, 0.219594, 0.627413, 0.953667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0333343, -1.54898, -1.54898, 0.00348536]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("main_control/PoleVaultZombiePole:self_modulate")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("main_control/PoleVaultZombiePole:light_mask")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("main_control:position")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 11)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("main_control:rotation")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceUpperLayer:position")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8.5, -40.5), Vector2(-8.5, -40.5)]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceLowerLayer:position")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0, 0.21332, 0.527027, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5.5, -5.5), Vector2(-5.5, -11.51), Vector2(-5.5, -11.51), Vector2(-5.5, -5.5)]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight/PoleVaultZombieForearmRight:scale")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0, 0.219594, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.03072, 1.6729), Vector2(1, 1)]
+}
+tracks/31/type = "method"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath(".")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3, 0.433333, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_change_hitbox_trigger"
+}, {
+"args": [],
+"method": &"_can_be_stop_trigger"
+}, {
+"args": [],
+"method": &"_can_be_stop_trigger"
+}, {
+"args": [],
+"method": &"_vault_trigger"
+}, {
+"args": [],
+"method": &"_change_hitbox_trigger"
+}]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("JumpBoingSfx:playing")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("main_control/PoleVaultZombiePole:modulate")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(0, 1.16, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ns6if"]
 resource_name = "walking_animation"
@@ -1244,30 +2616,67 @@ tracks/23/keys = {
 "update": 0,
 "values": [0.0, -0.0523599, 0.0]
 }
+tracks/24/type = "method"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath(".")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_walk_trigger"
+}]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("main_control/PoleVaultZombiePole:modulate")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ahnap"]
 _data = {
 &"RESET": SubResource("Animation_a6tk0"),
+&"death_while_running": SubResource("Animation_f1o5g"),
+&"eating_animation": SubResource("Animation_ph2lo"),
 &"idle": SubResource("Animation_mcyc1"),
 &"running_with_pole": SubResource("Animation_ihsx0"),
+&"vaulting": SubResource("Animation_3chwd"),
 &"walking_animation": SubResource("Animation_ns6if")
 }
 
 [node name="PoleVaultZombieAnimation" type="Node2D"]
+z_index = 1
+material = ExtResource("1_3chwd")
+script = ExtResource("1_ihsx0")
 
 [node name="main_control" type="Node2D" parent="."]
+use_parent_material = true
 position = Vector2(-8, 11)
 
 [node name="PoleVaultZombiePole" type="Sprite2D" parent="main_control"]
+modulate = Color(1, 1, 1, 0)
+use_parent_material = true
 position = Vector2(-50, -102)
 texture = ExtResource("1_a6tk0")
 
 [node name="legs_group" type="Node2D" parent="main_control"]
+use_parent_material = true
 position = Vector2(-7, -122)
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="PoleVaultZombieLegLeg" type="Sprite2D" parent="main_control/legs_group"]
+use_parent_material = true
 position = Vector2(5, 34)
 rotation = 0.314059
 texture = ExtResource("8_apc0o")
@@ -1275,12 +2684,14 @@ offset = Vector2(-33, -33)
 metadata/_edit_group_ = true
 
 [node name="PoleVaultZombieFeetLeft" type="Sprite2D" parent="main_control/legs_group/PoleVaultZombieLegLeg"]
+use_parent_material = true
 position = Vector2(17.5742, 22.0034)
 rotation = -0.21809
 texture = ExtResource("4_3chwd")
 offset = Vector2(23, 20)
 
 [node name="PoleVaultZombieLegRight" type="Sprite2D" parent="main_control/legs_group"]
+use_parent_material = true
 position = Vector2(26, 20)
 rotation = -0.680292
 texture = ExtResource("9_u6ul7")
@@ -1289,21 +2700,23 @@ metadata/_edit_group_ = true
 
 [node name="PoleVaultZombieFeetRight" type="Sprite2D" parent="main_control/legs_group/PoleVaultZombieLegRight"]
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(-45.7989, 19.6077)
 rotation = 0.59771
 texture = ExtResource("5_ph2lo")
 offset = Vector2(-27, 18)
 
 [node name="PoleVaultZombieMainBody" type="Sprite2D" parent="main_control"]
+use_parent_material = true
 position = Vector2(-7, -122)
 texture = ExtResource("10_tnnmo")
 
 [node name="head" type="RigidBody2D" parent="main_control/PoleVaultZombieMainBody"]
+use_parent_material = true
 position = Vector2(-11, -20)
 rotation = -0.0461234
 scale = Vector2(0.873096, 0.913226)
 gravity_scale = 0.0
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="collision" type="CollisionShape2D" parent="main_control/PoleVaultZombieMainBody/head"]
@@ -1311,14 +2724,17 @@ position = Vector2(-9, -44)
 shape = SubResource("CircleShape2D_a6tk0")
 
 [node name="PoleVaultZombieFaceUpperLayer" type="Sprite2D" parent="main_control/PoleVaultZombieMainBody/head"]
+use_parent_material = true
 position = Vector2(-8.5, -40.5)
 texture = ExtResource("3_ns6if")
 
 [node name="PoleVaultZombieFaceLowerLayer" type="Sprite2D" parent="main_control/PoleVaultZombieMainBody/head"]
+use_parent_material = true
 position = Vector2(-5.5, -5.5)
 texture = ExtResource("2_ihsx0")
 
 [node name="PoleVaultZombieShoulderRight" type="Sprite2D" parent="main_control/PoleVaultZombieMainBody"]
+use_parent_material = true
 position = Vector2(10.3522, -22.7262)
 rotation = 1.2672
 texture = ExtResource("12_7rdmj")
@@ -1326,6 +2742,7 @@ offset = Vector2(21.7403, 3.56287)
 
 [node name="PoleVaultZombieForearmRight" type="Sprite2D" parent="main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight"]
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(35.7808, 5.29105)
 rotation = -0.597196
 texture = ExtResource("7_yita7")
@@ -1333,6 +2750,7 @@ offset = Vector2(11, 24)
 
 [node name="PoleVaultZombieShoulderLeft" type="Sprite2D" parent="main_control/PoleVaultZombieMainBody"]
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(-25, -16)
 rotation = -1.49151
 scale = Vector2(0.704839, 0.712615)
@@ -1342,6 +2760,7 @@ metadata/_edit_group_ = true
 
 [node name="PoleVaultZombieForearmLeft" type="Sprite2D" parent="main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderLeft"]
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(-60.6585, 1.8186)
 rotation = -0.0634837
 scale = Vector2(1.24549, 1.50768)
@@ -1353,3 +2772,9 @@ offset = Vector2(3.05275, -26.4017)
 libraries = {
 &"": SubResource("AnimationLibrary_ahnap")
 }
+
+[node name="JumpBoingSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_ns6if")
+bus = &"SFX"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

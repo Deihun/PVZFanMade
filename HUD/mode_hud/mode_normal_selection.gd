@@ -1,27 +1,35 @@
 extends Control
 @onready var _sun_when_claim_animation_position : Vector2 = $mode_normal_pick/sun_/SunPlacementSpecific_ForAnimation.global_position
 @onready var shovel:= $Tools_UI/Shovel
+@onready var powerbank:= $Tools_UI/EvolutionPowerBank
 @export var hide_shovel := false
 @export var hide_powerbank := false
 
 
-var plant_limit := 2  #Fix it later
+var plant_limit := 4  #Fix it later
 
 
 func get_sun_when_claim_animation_position() -> Vector2:
 	return $mode_normal_pick/sun_/SunPlacementSpecific_ForAnimation.global_position
 
+
+func pick_mode():
+	self.show()
+	$seed_picker_boarder.show()
+
+
 func _ready() -> void:
-	
 	QuickDataManagement._sun_bank_position = get_sun_when_claim_animation_position()
 	QuickDataManagement.mode_normal_selection = self
-	QuickDataManagement._sunchange_callable = Callable(self,"update_all_hud")
+	QuickDataManagement.global_calls_manager._when_sun_value_change.append(Callable(self,"update_all_hud"))
 	QuickDataManagement.location_where_evolutionUI_place = $location_where_evolution_tree_goes.global_position
-	if get_parent().conveyor_belt:
-		var conveyor = get_parent().conveyor_belt
-		$mode_normal_pick/sun_.hide()
-		$mode_normal_pick/plant_seed_selection.hide()
-		$mode_normal_pick.add_child(conveyor)
+	
+	if get_parent() and get_parent() is Camera2D: 
+		if get_parent().conveyor_belt:
+			var conveyor = get_parent().conveyor_belt
+			$mode_normal_pick/sun_.hide()
+			$mode_normal_pick/plant_seed_selection.hide()
+			$mode_normal_pick.add_child(conveyor)
 	
 	
 	
@@ -39,8 +47,9 @@ func remove_the_seed_selection():
 		child.mode=""
 
 func start():
+	QuickDataManagement.sound_manager.play_music()
 	if shovel:if !hide_shovel:shovel.show()
-	
+	if powerbank:if !hide_powerbank: powerbank.show()
 	if get_parent().conveyor_belt:
 		get_parent().conveyor_belt.start()
 	for child in $mode_normal_pick/plant_seed_selection/VBoxContainer.get_children():

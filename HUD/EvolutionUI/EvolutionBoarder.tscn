@@ -1,21 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgug0q8j3v0lr"]
+[gd_scene load_steps=8 format=3 uid="uid://bgug0q8j3v0lr"]
 
 [ext_resource type="Script" uid="uid://cm6p1e3vay0mg" path="res://HUD/EvolutionUI/evolution_boarder.gd" id="1_276mw"]
 [ext_resource type="Texture2D" uid="uid://bhjq6m1ay6hyq" path="res://HUD/borders/border_2.png" id="2_4n5yd"]
 [ext_resource type="Texture2D" uid="uid://cgrugbk8e63sx" path="res://HUD/borders/Upgrade_boarder.png" id="3_dwccr"]
 [ext_resource type="Texture2D" uid="uid://tl727l5ulbr1" path="res://HUD/borders/description_Boarder.png" id="4_dwccr"]
 [ext_resource type="Texture2D" uid="uid://dfjg5pnu1dlj2" path="res://HUD/EvolutionUI/evolve_locked.png" id="4_jhv7r"]
+[ext_resource type="Texture2D" uid="uid://o4qjyitr6tc2" path="res://HUD/EvolutionUI/reserve_UI.png" id="4_jjm27"]
 [ext_resource type="Texture2D" uid="uid://xitdtg0wttse" path="res://HUD/borders/evolution_ui_indicator.png" id="5_jhv7r"]
 
 [node name="EvolutionBoarder" type="Control"]
-custom_minimum_size = Vector2(300, 1525)
+z_index = 100
+custom_minimum_size = Vector2(400, 1000)
 layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -538.0
+offset_top = -540.0
 offset_right = 300.0
-offset_bottom = 662.0
+offset_bottom = 460.0
 grow_vertical = 2
 size_flags_horizontal = 0
 script = ExtResource("1_276mw")
@@ -27,10 +29,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.48
 anchor_bottom = 1.48
-offset_left = 2.0
-offset_top = -2093.5
-offset_right = 402.0
-offset_bottom = -1193.5
+offset_left = -2.0
+offset_top = -1480.0
+offset_right = 398.0
+offset_bottom = -580.0
 grow_vertical = 0
 texture = ExtResource("2_4n5yd")
 patch_margin_left = 50
@@ -39,18 +41,16 @@ patch_margin_right = 50
 patch_margin_bottom = 50
 
 [node name="plant_name_label" type="Label" parent="Boarder"]
-z_index = 100
 layout_mode = 0
-offset_left = 5.0
-offset_top = 39.0
-offset_right = 385.0
-offset_bottom = 83.0
+offset_left = 10.0
+offset_top = 38.0
+offset_right = 390.0
+offset_bottom = 82.0
 theme_override_colors/font_color = Color(0.966701, 0.859148, 0.730785, 1)
 theme_override_colors/font_shadow_color = Color(0.341907, 0.18096, 4.81308e-08, 1)
 theme_override_colors/font_outline_color = Color(0.341176, 0.180392, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 31
-text = "PLANT NAME SAMPLE"
 horizontal_alignment = 1
 justification_flags = 227
 
@@ -82,11 +82,15 @@ layout_mode = 0
 offset_left = 21.0
 offset_top = 15.0
 offset_right = 329.0
-offset_bottom = 174.0
+offset_bottom = 110.0
 theme_override_colors/font_color = Color(0.38388, 0.172599, 0.0493627, 1)
-text = "THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC. THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC. 
-THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC."
 autowrap_mode = 3
+
+[node name="ReserveUi" type="Sprite2D" parent="Boarder/Upgrade_1"]
+visible = false
+position = Vector2(184, 93)
+scale = Vector2(1.4125, 1.4025)
+texture = ExtResource("4_jjm27")
 
 [node name="Upgrade_2" type="Button" parent="Boarder"]
 self_modulate = Color(1, 1, 1, 0)
@@ -99,7 +103,6 @@ offset_right = 369.0
 offset_bottom = 850.52
 
 [node name="choice_2_boarder" type="NinePatchRect" parent="Boarder/Upgrade_2"]
-z_index = 100
 layout_mode = 0
 offset_left = -0.395542
 offset_top = -3.0
@@ -113,20 +116,23 @@ patch_margin_right = 50
 patch_margin_bottom = 50
 
 [node name="Label" type="Label" parent="Boarder/Upgrade_2"]
-z_index = 100
 layout_mode = 0
-offset_left = 33.6045
+offset_left = 34.0
 offset_top = 16.0
-offset_right = 341.604
-offset_bottom = 175.0
+offset_right = 342.0
+offset_bottom = 111.0
 theme_override_colors/font_color = Color(0.38388, 0.172599, 0.0493627, 1)
-text = "THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC. THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC. 
-THIS IS FOR LABEL DESCRIPTION TESTING SPACING ETC."
 autowrap_mode = 3
+
+[node name="ReserveUi" type="Sprite2D" parent="Boarder/Upgrade_2"]
+visible = false
+position = Vector2(189, 98.825)
+scale = Vector2(1.42, 1.4855)
+texture = ExtResource("4_jjm27")
 
 [node name="EvolveLocked_1" type="Sprite2D" parent="Boarder"]
 visible = false
-z_index = 100
+z_index = 200
 position = Vector2(193, 548.9)
 texture = ExtResource("4_jhv7r")
 
@@ -141,10 +147,11 @@ theme_override_colors/font_outline_color = Color(0.416079, 0.284092, 0.11544, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 26
 text = "EVOLUTION LOCK"
+metadata/_edit_use_anchors_ = true
 
 [node name="EvolveLocked_2" type="Sprite2D" parent="Boarder"]
 visible = false
-z_index = 100
+z_index = 200
 position = Vector2(186, 754.9)
 texture = ExtResource("4_jhv7r")
 
@@ -159,10 +166,10 @@ theme_override_colors/font_outline_color = Color(0.416079, 0.284092, 0.11544, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 26
 text = "EVOLUTION LOCK"
+metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Boarder"]
-self_modulate = Color(1, 1, 1, 0.596078)
-z_index = 100
+z_index = 1
 layout_mode = 0
 offset_left = 28.0
 offset_top = 73.0
@@ -174,60 +181,85 @@ patch_margin_top = 50
 patch_margin_right = 50
 patch_margin_bottom = 50
 
-[node name="evolution_progress" type="ProgressBar" parent="Boarder"]
-z_index = 100
+[node name="ScrollContainer" type="ScrollContainer" parent="Boarder"]
+z_index = 1
+offset_left = 45.0
+offset_top = 89.0
+offset_right = 353.0
+offset_bottom = 444.0
+
+[node name="data_stored" type="VBoxContainer" parent="Boarder/ScrollContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Evolution_Icon" type="Control" parent="Boarder/ScrollContainer/data_stored"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="evolution_progress" type="ProgressBar" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon"]
 layout_mode = 0
-offset_left = 66.0
-offset_top = 272.0
-offset_right = 342.0
-offset_bottom = 294.0
+offset_left = 15.0
+offset_top = 166.0
+offset_right = 291.0
+offset_bottom = 188.0
 value = 50.0
 show_percentage = false
 
-[node name="upgrade_status" type="Label" parent="Boarder"]
-z_index = 100
+[node name="upgrade_status" type="Label" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon"]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 259.9
-offset_right = 361.0
-offset_bottom = 303.9
+offset_left = -14.0
+offset_top = 154.0
+offset_right = 310.0
+offset_bottom = 198.0
 theme_override_colors/font_color = Color(1, 1, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.379731, 0.347355, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 31
 text = "EVOLVE AVAILABLE"
 horizontal_alignment = 1
+autowrap_mode = 3
 justification_flags = 227
 
-[node name="EvolutionUiIndicator" type="Sprite2D" parent="Boarder"]
-z_index = 100
-position = Vector2(193, 175)
+[node name="EvolutionUiIndicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon"]
+position = Vector2(140, 79)
 scale = Vector2(1.7, 1.8)
 texture = ExtResource("5_jhv7r")
 
-[node name="tier1A_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+[node name="tier1A_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
 position = Vector2(-20.5882, 36.6667)
 scale = Vector2(0.55, 0.55)
 
-[node name="tier1B_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+[node name="tier1B_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
 position = Vector2(21.1765, 36.6667)
 scale = Vector2(0.55, 0.55)
 
-[node name="tier2A_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+[node name="tier2A_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
 position = Vector2(-20, 13.8889)
 scale = Vector2(0.55, 0.55)
 
-[node name="tier2B_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+[node name="tier2B_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
 position = Vector2(21.7647, 13.8889)
 scale = Vector2(0.55, 0.55)
 
-[node name="tier3A_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+[node name="tier3A_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
 position = Vector2(-18.8235, -8.88889)
 scale = Vector2(0.55, 0.55)
 
-[node name="tier3B_indicator" type="Sprite2D" parent="Boarder/EvolutionUiIndicator"]
+[node name="tier3B_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
 position = Vector2(22.9412, -8.33333)
 scale = Vector2(0.55, 0.55)
 
+[node name="evolve_requirement_description" type="Label" parent="Boarder/ScrollContainer/data_stored"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "Evolve: "
+autowrap_mode = 3
+
 [connection signal="button_up" from="Boarder/Upgrade_1" to="." method="_on_upgrade_1_button_up"]
+[connection signal="mouse_entered" from="Boarder/Upgrade_1" to="." method="_on_upgrade_1_mouse_entered"]
+[connection signal="mouse_exited" from="Boarder/Upgrade_1" to="." method="_on_upgrade_1_mouse_exited"]
 [connection signal="button_up" from="Boarder/Upgrade_2" to="." method="_on_upgrade_2_button_up"]
+[connection signal="mouse_entered" from="Boarder/Upgrade_2" to="." method="_on_upgrade_2_mouse_entered"]
+[connection signal="mouse_exited" from="Boarder/Upgrade_2" to="." method="_on_upgrade_2_mouse_exited"]

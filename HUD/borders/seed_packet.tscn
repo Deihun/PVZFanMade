@@ -1,7 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://6jgrs4q1aq01"]
+[gd_scene load_steps=12 format=3 uid="uid://6jgrs4q1aq01"]
 
 [ext_resource type="Script" uid="uid://big2eulomdme6" path="res://HUD/borders/seed_packet.gd" id="1_jk3x6"]
 [ext_resource type="Texture2D" uid="uid://t0jw8nmdvhwu" path="res://HUD/borders/seed_packet.png" id="1_jknsb"]
+[ext_resource type="AudioStream" uid="uid://bwji678b23lvy" path="res://HUD/borders/planting_seed_pick_sfx.mp3" id="3_fds4k"]
+[ext_resource type="AudioStream" uid="uid://cwhn0fff74onu" path="res://HUD/borders/decline_sfx.ogg" id="4_t63ia"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t63ia"]
+bg_color = Color(1, 0.799199, 0.357, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ba2lq"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_ba2lq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shine:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-105, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_t63ia"]
+resource_name = "idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shine:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667, 2.82, 3.26667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-105, -1), Vector2(210, -1), Vector2(210, -1), Vector2(-105, -1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jau7s"]
+_data = {
+&"RESET": SubResource("Animation_ba2lq"),
+&"idle": SubResource("Animation_t63ia")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk3x6"]
 bg_color = Color(0, 0, 0, 0.411765)
@@ -26,6 +72,68 @@ suncost = 50
 [node name="SeedPacket" type="Sprite2D" parent="."]
 position = Vector2(100, 59)
 texture = ExtResource("1_jknsb")
+
+[node name="selected_visuals" type="Node2D" parent="SeedPacket"]
+visible = false
+
+[node name="gold" type="Panel" parent="SeedPacket/selected_visuals"]
+offset_left = -100.0
+offset_top = -61.0
+offset_right = -94.0
+offset_bottom = 61.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t63ia")
+
+[node name="gold2" type="Panel" parent="SeedPacket/selected_visuals"]
+offset_left = 94.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = 62.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t63ia")
+
+[node name="gold3" type="Panel" parent="SeedPacket/selected_visuals"]
+offset_left = -95.0
+offset_top = 53.0
+offset_right = 100.0
+offset_bottom = 61.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t63ia")
+
+[node name="gold4" type="Panel" parent="SeedPacket/selected_visuals"]
+offset_left = -95.0
+offset_top = -61.0
+offset_right = 100.0
+offset_bottom = -53.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t63ia")
+
+[node name="limiter_shine" type="Control" parent="SeedPacket/selected_visuals"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = 60.0
+mouse_filter = 2
+
+[node name="shine" type="Panel" parent="SeedPacket/selected_visuals/limiter_shine"]
+self_modulate = Color(1, 1, 1, 0.542)
+layout_mode = 0
+offset_left = -105.0
+offset_top = -1.0
+offset_right = -65.0
+offset_bottom = 160.0
+rotation = -0.465651
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ba2lq")
+
+[node name="shine_idle" type="AnimationPlayer" parent="SeedPacket/selected_visuals/limiter_shine"]
+libraries = {
+&"": SubResource("AnimationLibrary_jau7s")
+}
+autoplay = "idle"
 
 [node name="ContentFrame" type="Control" parent="."]
 clip_contents = true
@@ -81,6 +189,13 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 118.0
+
+[node name="pick_" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fds4k")
+
+[node name="decline_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_t63ia")
+bus = &"SFX"
 
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="button_down" from="click_button" to="." method="_on_click_button_button_down"]

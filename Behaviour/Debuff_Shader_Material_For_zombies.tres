@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://6oip4scmqd8a"]
+
+[ext_resource type="Shader" uid="uid://rhraj25p2hga" path="res://Behaviour/Debuff_Shader_Material_For_zombies.gdshader" id="1_65kiq"]
+
+[resource]
+shader = ExtResource("1_65kiq")
+shader_parameter/chill_strength = 0.0
+shader_parameter/poison_strength = 0.0
+shader_parameter/burn_strength = 0.0

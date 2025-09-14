@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://pspn4765e0xo"]
+[gd_scene load_steps=3 format=3 uid="uid://pspn4765e0xo"]
 
 [ext_resource type="Script" uid="uid://404vqx7aylwl" path="res://Resource/Levels/Tutorial_Part/zombie_wave_management.gd" id="1_ao85m"]
+[ext_resource type="AudioStream" uid="uid://bll8gj65b7tca" path="res://HUD/borders/level_manager/wave_sfx.mp3" id="2_cbb7q"]
 
 [node name="zombie_wave_management" type="HBoxContainer"]
 offset_left = -540.0
@@ -21,3 +22,8 @@ offset_right = 197.0
 offset_bottom = 77.0
 theme_override_font_sizes/font_size = 51
 text = "START"
+
+[node name="zombies_are_coming" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cbb7q")
+volume_db = 7.429
+bus = &"SFX"

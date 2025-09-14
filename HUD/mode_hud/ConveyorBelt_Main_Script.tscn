@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcip1rf4rl18u"]
+[gd_scene load_steps=8 format=3 uid="uid://bcip1rf4rl18u"]
 
 [ext_resource type="PackedScene" uid="uid://dfk860162fo3k" path="res://HUD/mode_hud/ConveyorBelt_Animation.tscn" id="1_4lu1m"]
 [ext_resource type="Script" uid="uid://dpb8megchg1jr" path="res://HUD/mode_hud/conveyor_belt_main_script.gd" id="1_isch5"]
-[ext_resource type="PackedScene" uid="uid://dwaq1pevoum7t" path="res://HUD/mode_hud/_seed_packet_probability_initializer_.tscn" id="3_isch5"]
-[ext_resource type="PackedScene" uid="uid://6jgrs4q1aq01" path="res://HUD/borders/seed_packet.tscn" id="4_g1iis"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lu1m"]
 bg_color = Color(0.522232, 0.325943, 0.239713, 1)
@@ -16,45 +14,6 @@ border_blend = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lu1m"]
 size = Vector2(271.712, 20.3001)
-
-[sub_resource type="Animation" id="Animation_g1iis"]
-resource_name = "start"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("overall:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("overall:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("overall:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-100, 0), Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_12fyf"]
 length = 0.001
@@ -95,6 +54,45 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_g1iis"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("overall:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("overall:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("overall:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-100, 0), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_12fyf"]
 _data = {
 &"RESET": SubResource("Animation_12fyf"),
@@ -104,17 +102,6 @@ _data = {
 [node name="ConveyorBeltMainScript" type="Node2D"]
 position = Vector2(0, 2)
 script = ExtResource("1_isch5")
-
-[node name="_seed_packet_probability_initializer_2" parent="." instance=ExtResource("3_isch5")]
-
-[node name="SeedPacket" parent="_seed_packet_probability_initializer_2" instance=ExtResource("4_g1iis")]
-layout_mode = 1
-mode = "one-time-used"
-plant_name = "wallnut"
-image_path = "uid://p7axs27j7smr"
-plant_tscn = "uid://bd441u6wnt61p"
-plant_animation_only_tscn = "uid://1586jc7ht8x0"
-delete_if_not_existing_in_progress = false
 
 [node name="overall" type="Node2D" parent="."]
 

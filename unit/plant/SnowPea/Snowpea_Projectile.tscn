@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2xey7no876wp"]
+
+[ext_resource type="PackedScene" uid="uid://g2ij0rijieoj" path="res://Behaviour/projectile_behaviour/projectile_moving_steadily.tscn" id="1_7ikvf"]
+[ext_resource type="Script" uid="uid://cm04sec3yfp1p" path="res://unit/plant/SnowPea/snowpea_projectile.gd" id="1_8d2hk"]
+[ext_resource type="Texture2D" uid="uid://do4xvjf7k7tsp" path="res://unit/plant/SnowPea/snowpea_effect.png" id="1_jpu2w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ikvf"]
+radius = 4.12311
+
+[node name="SnowpeaProjectile" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8d2hk")
+
+[node name="ProjectileMovingSteadily" parent="." instance=ExtResource("1_7ikvf")]
+auto_start = true
+
+[node name="SnowpeaEffect" type="Sprite2D" parent="."]
+position = Vector2(0, -2.38419e-07)
+scale = Vector2(0.2425, 0.25)
+texture = ExtResource("1_jpu2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7ikvf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

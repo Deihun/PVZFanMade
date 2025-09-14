@@ -1,0 +1,166 @@
+[gd_scene load_steps=16 format=3 uid="uid://c83n7po5as7gv"]
+
+[ext_resource type="Script" uid="uid://waimpkh87bbo" path="res://HUD/main_menu/main_menu.gd" id="1_m78mv"]
+[ext_resource type="Texture2D" uid="uid://balh6rhwl44em" path="res://HUD/main_menu/play_button_hover.png" id="1_o7lmo"]
+[ext_resource type="Texture2D" uid="uid://cb4cfl8jeyjwr" path="res://HUD/main_menu/play_button_unhover.png" id="2_m78mv"]
+[ext_resource type="Texture2D" uid="uid://dcw71rp7l2nyj" path="res://HUD/main_menu/logo.png" id="2_qrxmq"]
+[ext_resource type="Texture2D" uid="uid://bhryrnyb053wt" path="res://HUD/main_menu/gradient_black.png" id="5_fcdgt"]
+[ext_resource type="Texture2D" uid="uid://32qyvbeppmy" path="res://HUD/main_menu/QUIT_button_hover.png" id="6_csj2l"]
+[ext_resource type="Texture2D" uid="uid://tt7wvwpk6w5r" path="res://HUD/main_menu/SETTINGS_button_hover.png" id="6_p77yh"]
+[ext_resource type="Texture2D" uid="uid://diq8dtk8lc421" path="res://HUD/main_menu/SETTINGS_button_unhover.png" id="7_0tk40"]
+[ext_resource type="Texture2D" uid="uid://dtqigirsb1x5e" path="res://HUD/main_menu/QUIT_button_unhover.png" id="7_pu1x7"]
+[ext_resource type="Texture2D" uid="uid://d33q2fg46t3e0" path="res://HUD/main_menu/ALMANAC_button_hover.png" id="8_8d0i0"]
+[ext_resource type="Texture2D" uid="uid://c73uye6grrh2o" path="res://HUD/main_menu/ALMANAC_button_unhover.png" id="9_ujv8u"]
+[ext_resource type="Texture2D" uid="uid://crrohgsa1vlwe" path="res://HUD/main_menu/ABOUT_button_hover.png" id="10_qmx7k"]
+[ext_resource type="Texture2D" uid="uid://be7op33u1bjmi" path="res://HUD/main_menu/ABOUT_button_unhover.png" id="11_nxl4w"]
+[ext_resource type="AudioStream" uid="uid://ci32sjbgicdis" path="res://HUD/main_menu/start_click_music.mp3" id="14_nxl4w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrxmq"]
+size = Vector2(398, 99)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_m78mv")
+
+[node name="GradientBlack" type="Sprite2D" parent="."]
+position = Vector2(412, 540)
+texture = ExtResource("5_fcdgt")
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(270, 124)
+texture = ExtResource("2_qrxmq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 186.0
+offset_top = 283.0
+offset_right = 586.0
+offset_bottom = 819.0
+
+[node name="play" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PlayButtonHover" type="Sprite2D" parent="VBoxContainer/play"]
+visible = false
+position = Vector2(92.5, 47)
+texture = ExtResource("1_o7lmo")
+
+[node name="PlayButtonUnhover" type="Sprite2D" parent="VBoxContainer/play"]
+position = Vector2(92.5, 47)
+texture = ExtResource("2_m78mv")
+
+[node name="play" type="Area2D" parent="VBoxContainer/play"]
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/play/play"]
+position = Vector2(200, 49.5)
+shape = SubResource("RectangleShape2D_qrxmq")
+
+[node name="SETTINGS" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PlayButtonHover" type="Sprite2D" parent="VBoxContainer/SETTINGS"]
+visible = false
+position = Vector2(122, 49)
+texture = ExtResource("6_p77yh")
+
+[node name="PlayButtonUnhover" type="Sprite2D" parent="VBoxContainer/SETTINGS"]
+position = Vector2(122, 49)
+texture = ExtResource("7_0tk40")
+
+[node name="settings" type="Area2D" parent="VBoxContainer/SETTINGS"]
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/SETTINGS/settings"]
+position = Vector2(200, 49.5)
+shape = SubResource("RectangleShape2D_qrxmq")
+
+[node name="ALMANAC" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PlayButtonHover" type="Sprite2D" parent="VBoxContainer/ALMANAC"]
+visible = false
+position = Vector2(122, 49)
+texture = ExtResource("8_8d0i0")
+
+[node name="PlayButtonUnhover" type="Sprite2D" parent="VBoxContainer/ALMANAC"]
+position = Vector2(122, 49)
+texture = ExtResource("9_ujv8u")
+
+[node name="almanac" type="Area2D" parent="VBoxContainer/ALMANAC"]
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/ALMANAC/almanac"]
+position = Vector2(200, 49.5)
+shape = SubResource("RectangleShape2D_qrxmq")
+
+[node name="ABOUT" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PlayButtonHover" type="Sprite2D" parent="VBoxContainer/ABOUT"]
+visible = false
+position = Vector2(98.5, 47.5)
+texture = ExtResource("10_qmx7k")
+
+[node name="PlayButtonUnhover" type="Sprite2D" parent="VBoxContainer/ABOUT"]
+position = Vector2(98.5, 47.5)
+texture = ExtResource("11_nxl4w")
+
+[node name="about" type="Area2D" parent="VBoxContainer/ABOUT"]
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/ABOUT/about"]
+position = Vector2(200, 49.5)
+shape = SubResource("RectangleShape2D_qrxmq")
+
+[node name="QUIT" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PlayButtonHover" type="Sprite2D" parent="VBoxContainer/QUIT"]
+visible = false
+position = Vector2(78.5, 48)
+texture = ExtResource("6_csj2l")
+
+[node name="PlayButtonUnhover" type="Sprite2D" parent="VBoxContainer/QUIT"]
+position = Vector2(78.5, 48)
+texture = ExtResource("7_pu1x7")
+
+[node name="quit" type="Area2D" parent="VBoxContainer/QUIT"]
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxContainer/QUIT/quit"]
+position = Vector2(200, 49.5)
+shape = SubResource("RectangleShape2D_qrxmq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_nxl4w")
+volume_db = 6.604
+
+[connection signal="input_event" from="VBoxContainer/play/play" to="." method="_on_play_input_event"]
+[connection signal="mouse_entered" from="VBoxContainer/play/play" to="." method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/play/play" to="." method="_on_play_mouse_exited"]
+[connection signal="input_event" from="VBoxContainer/SETTINGS/settings" to="." method="_on_settings_input_event"]
+[connection signal="mouse_entered" from="VBoxContainer/SETTINGS/settings" to="." method="_on_settings_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/SETTINGS/settings" to="." method="_on_settings_mouse_exited"]
+[connection signal="input_event" from="VBoxContainer/ALMANAC/almanac" to="." method="_on_almanac_input_event"]
+[connection signal="mouse_entered" from="VBoxContainer/ALMANAC/almanac" to="." method="_on_almanac_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/ALMANAC/almanac" to="." method="_on_almanac_mouse_exited"]
+[connection signal="input_event" from="VBoxContainer/ABOUT/about" to="." method="_on_about_input_event"]
+[connection signal="mouse_entered" from="VBoxContainer/ABOUT/about" to="." method="_on_about_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/ABOUT/about" to="." method="_on_about_mouse_exited"]
+[connection signal="input_event" from="VBoxContainer/QUIT/quit" to="." method="_on_quit_input_event"]
+[connection signal="mouse_entered" from="VBoxContainer/QUIT/quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/QUIT/quit" to="." method="_on_quit_mouse_exited"]

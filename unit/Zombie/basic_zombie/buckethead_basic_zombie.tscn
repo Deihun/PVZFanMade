@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbj6pyedst0gj"]
+[gd_scene load_steps=8 format=3 uid="uid://cbj6pyedst0gj"]
 
 [ext_resource type="Script" uid="uid://biamhuvv1sdpj" path="res://unit/Zombie/basic_zombie/basic_zombie.gd" id="1_8h568"]
 [ext_resource type="PackedScene" uid="uid://b8lpneub1dg61" path="res://Behaviour/projectile_behaviour/zombie_hp_management.tscn" id="2_4bf7j"]
+[ext_resource type="PackedScene" uid="uid://dlfnwlf3x2t7t" path="res://Behaviour/zombie_movement_management.tscn" id="2_ujrrm"]
 [ext_resource type="PackedScene" uid="uid://y5yyy3rt1el1" path="res://unit/Zombie/Basic_Zombie_Animation.tscn" id="3_ujrrm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5oqf"]
@@ -13,13 +14,16 @@ size = Vector2(46, 138)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1b3j"]
 size = Vector2(71, 136)
 
-[node name="BasicZombie" type="CharacterBody2D"]
+[node name="BucketHead" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(219, 332)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_8h568")
 zombie_type_mode = "buckethead"
+
+[node name="zombie_movement_management" parent="." node_paths=PackedStringArray("animation_node") instance=ExtResource("2_ujrrm")]
+animation_node = NodePath("../BasicZombieAnimation")
 
 [node name="zombie_hp_management" parent="." node_paths=PackedStringArray("zombie_animation_node") instance=ExtResource("2_4bf7j")]
 zombie_animation_node = NodePath("../BasicZombieAnimation")

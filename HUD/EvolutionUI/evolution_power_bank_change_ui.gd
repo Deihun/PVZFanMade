@@ -11,3 +11,6 @@ func update_my_ui():
 		3: $state_change.play("3_power")
 		4: $state_change.play("full")
 		_:pass
+
+func selected_as_object(_is_visible := false):
+	$Polygon2D.visible=_is_visible

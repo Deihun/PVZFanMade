@@ -8,6 +8,8 @@ extends Area2D
 @export_multiline var description_Tier2B : String
 @export_multiline var description_Tier3A : String
 @export_multiline var description_Tier3B : String
+@export_multiline var description_evolve_requirement : String
+@export_multiline var stats : Dictionary = {}
 
 @export_category("Functions When Upgrade")
 @export var tier1A_callable : Callable
@@ -43,17 +45,31 @@ var _tier2b_obtain :bool = false
 var _tier3a_obtain :bool = false
 var _tier3b_obtain :bool = false
 
+var __reserve_to_tierA := false
+var __reserve_to_tierB := false
+
+var _everytime_i_evolve_array_callable : Array[Callable] = []
+var _when_receiving_boost_array_callable : Array[Callable] = []
+
 func _ready() -> void:
+	$Panel.hide()
 	_TierA_Callable = Callable(self,"check_for_upgradeA")
 	_TierB_Callable = Callable(self,"check_for_upgradeB")
 	$EvolveReadyAnimation.hide()
 
 
+func receive_plant_power():
+	boost_plants_percentage(100.0)
+	$receiving_power.play()
+	for call in _when_receiving_boost_array_callable: 
+		if call.is_valid():call.call()
+		else: _when_receiving_boost_array_callable.erase(call)
+
+
 func boost_plants_percentage(value: float):
-	print("Boost Before: ", _percentage_value)
 	var percentage_val : float = _get_max_value_baseOnCurrentTier() * value
 	increase_progress_evolution(percentage_val)
-	print("Final: ", _percentage_value,"// Calculation = ",percentage_val ,"=",_get_max_value_baseOnCurrentTier(),"*",value)
+
 
 
 func boost_plants_current_percentage(value: float):
@@ -65,8 +81,15 @@ func increase_progress_evolution(value : float):
 	_percentage_value += value
 	if _percentage_value >= _get_max_value_baseOnCurrentTier() and _current_tier <= 2:
 		_can_evolve = true
-		if check_tier() or dev_mode_ignore_locked_restriction: $EvolveReadyAnimation.show()
+		if (check_tier() or dev_mode_ignore_locked_restriction) and QuickDataManagement.savemanager.tool_exist("powerbank"): $EvolveReadyAnimation.show()
+		trigger_upgrade()
 	update_current_evolution_ui()
+
+
+func trigger_upgrade():
+	if !_can_evolve: return
+	if __reserve_to_tierA: check_for_upgradeA()
+	elif __reserve_to_tierB: check_for_upgradeB()
 
 
 func _get_max_value_baseOnCurrentTier() ->float:
@@ -107,36 +130,35 @@ func check_for_upgradeB():
 		_after_upgrade()
 
 
+
 func _after_upgrade():
+	$evolving.play()
+	__reserve_to_tierA =false
+	__reserve_to_tierB = false
 	_current_tier+= 1
 	_percentage_value = 0
 	_can_evolve = false
 	$EvolveReadyAnimation.hide()
 	update_current_evolution_ui()
+	for call in _everytime_i_evolve_array_callable: 
+		if call.is_valid(): call.call() 
+		else: _everytime_i_evolve_array_callable.erase(call)
 
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	#print("debug //",QuickDataManagement._selected_plant_node_as_icon)
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and QuickDataManagement._selected_plant_node_as_icon:
-		if QuickDataManagement._selected_plant_node_as_icon.name.contains("evolve"):
-			self.boost_plants_percentage(100.0)
-			QuickDataManagement._remove_plant_as_idle_plant()
-		
-	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if Input.is_action_pressed("check_plant_in_details") and !current_evolution_ui:
-			_create_the_evolution_boarder()
-			update_current_evolution_ui()
-
-func _create_the_evolution_boarder():
+func _create_the_evolution_boarder()-> Control:
+	if current_evolution_ui: 
+		print("theres an existing current_UI")
+		current_evolution_ui.queue_free()
+	else: print("creating one")
 	var evolution_ui_ : Control = load("res://HUD/EvolutionUI/EvolutionBoarder.tscn").instantiate()
-	get_tree().current_scene.add_child(evolution_ui_)
 	current_evolution_ui = evolution_ui_
-	if QuickDataManagement.location_where_evolutionUI_place: 
-		print(QuickDataManagement.location_where_evolutionUI_place)
-		current_evolution_ui.position = QuickDataManagement.location_where_evolutionUI_place
-		current_evolution_ui.global_position = Vector2.ZERO
-	evolution_ui_.update_name(plant_name)
+	evolution_ui_.update_name(plant_name.capitalize())
 	evolution_ui_.connect("tree_exited", Callable(self, "_set_current_evolution_ui_toNull"))
+	evolution_ui_.connect("visibility_changed", Callable(self,"update_current_evolution_ui"))
+	evolution_ui_.master= self
+	$Panel.show()
+	return evolution_ui_
+
 
 func update_current_evolution_ui():
 	if !current_evolution_ui:
@@ -159,18 +181,28 @@ func update_current_evolution_ui():
 		2:
 			current_evolution_ui.set_upgrade_1(description_Tier3A)
 			current_evolution_ui._set_upgrade_2(description_Tier3B)
+	if get_parent().has_method("set_dictionary_stats"): get_parent().set_dictionary_stats()
+	current_evolution_ui.set_sub_info(stats)
+	if current_evolution_ui.reserveUI_Tiera:current_evolution_ui.reserveUI_Tiera.visible = __reserve_to_tierA
+	if current_evolution_ui.reserveUI_Tierb: current_evolution_ui.reserveUI_Tierb.visible = __reserve_to_tierB
+	current_evolution_ui.set_evolve_requirement_description(description_evolve_requirement)
+	
+	
+
+
 
 func _set_current_evolution_ui_toNull():
+	$Panel.hide()
 	current_evolution_ui = null
+
 
 func check_tier():
 	var is_it_unlock := true
 	match _current_tier:
 		0:
-			is_it_unlock = QuickDataManagement.savemanager.if_plant_of_tier_exist(plant_name,"tier1")
+			is_it_unlock = QuickDataManagement.savemanager.if_plant_of_tier_exist(plant_name.to_lower(),"tier1")
 		1:
-			is_it_unlock = QuickDataManagement.savemanager.if_plant_of_tier_exist(plant_name,"tier2")
+			is_it_unlock = QuickDataManagement.savemanager.if_plant_of_tier_exist(plant_name.to_lower(),"tier2")
 		2:
-			is_it_unlock = QuickDataManagement.savemanager.if_plant_of_tier_exist(plant_name,"tier3")
+			is_it_unlock = QuickDataManagement.savemanager.if_plant_of_tier_exist(plant_name.to_lower(),"tier3")
 	return is_it_unlock
-		#if !is_it_unlock: current_evolution_ui. _lock_current_tier()

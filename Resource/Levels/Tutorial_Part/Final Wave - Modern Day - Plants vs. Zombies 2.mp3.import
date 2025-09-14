@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c1x25xxb55sbl"
+path="res://.godot/imported/Final Wave - Modern Day - Plants vs. Zombies 2.mp3-c186962f1476e255597ea0a7e550dc7f.mp3str"
+
+[deps]
+
+source_file="res://Resource/Levels/Tutorial_Part/Final Wave - Modern Day - Plants vs. Zombies 2.mp3"
+dest_files=["res://.godot/imported/Final Wave - Modern Day - Plants vs. Zombies 2.mp3-c186962f1476e255597ea0a7e550dc7f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

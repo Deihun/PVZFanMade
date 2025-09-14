@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://y5yyy3rt1el1"]
+[gd_scene load_steps=25 format=3 uid="uid://y5yyy3rt1el1"]
 
+[ext_resource type="Material" uid="uid://6oip4scmqd8a" path="res://Behaviour/Debuff_Shader_Material_For_zombies.tres" id="1_bo8ur"]
 [ext_resource type="Script" uid="uid://bysphchhx8yod" path="res://unit/Zombie/basic_zombie_animation.gd" id="1_nl3vw"]
 [ext_resource type="Texture2D" uid="uid://cdikhowani8uw" path="res://unit/Zombie/basic_zombie/basic_zombie_foot_back.png" id="2_gd52x"]
 [ext_resource type="Texture2D" uid="uid://b0u7ptrrs7yyq" path="res://unit/Zombie/basic_zombie/basic_zombie_foot_front.png" id="3_tfvj5"]
@@ -11,6 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://c5sd5u0ukn5n7" path="res://unit/Zombie/basic_zombie/arm_front_2.png" id="8_jsojr"]
 [ext_resource type="Texture2D" uid="uid://bx2p3h172v7qs" path="res://unit/Zombie/basic_zombie/basic_zombie_head_1.png" id="9_i73gl"]
 [ext_resource type="Texture2D" uid="uid://3fbh2gsmbhvy" path="res://unit/Zombie/basic_zombie/basic_zombie_head_2.png" id="10_6nap0"]
+[ext_resource type="AudioStream" uid="uid://delc2e5tyxhqj" path="res://unit/Zombie/basic_zombie/drop_zombiedeath_sfx.mp3" id="12_tfvj5"]
+[ext_resource type="AudioStream" uid="uid://c0fuhu88gggss" path="res://unit/Zombie/basic_zombie/zombie_head_popping_out.mp3" id="13_m21d6"]
+[ext_resource type="AudioStream" uid="uid://bidmw30wtlaqj" path="res://unit/Zombie/basic_zombie/bite_1.mp3" id="14_g8et6"]
+[ext_resource type="AudioStream" uid="uid://bpocjpise8evb" path="res://unit/Zombie/basic_zombie/bite_2.mp3" id="15_bo8ur"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gd52x"]
 radius = 29.1548
@@ -1609,6 +1614,18 @@ tracks/33/keys = {
 "method": &"_death"
 }]
 }
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("death:playing")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_nl3vw"]
 resource_name = "eating_animation"
@@ -1993,9 +2010,12 @@ tracks/31/path = NodePath(".")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/keys = {
-"times": PackedFloat32Array(0.2, 0.353831),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.0666667, 0.2, 0.353831),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [],
+"method": &"play_bite_sound_effect"
+}, {
 "args": [],
 "method": &"_trigger_eat"
 }, {
@@ -2393,33 +2413,40 @@ _data = {
 
 [node name="BasicZombieAnimation" type="Node2D"]
 y_sort_enabled = true
+material = ExtResource("1_bo8ur")
 position = Vector2(4, -33)
 script = ExtResource("1_nl3vw")
 
 [node name="BasicZombieFootBack" type="Sprite2D" parent="."]
 y_sort_enabled = true
+use_parent_material = true
 position = Vector2(-14, -52)
 texture = ExtResource("2_gd52x")
 
 [node name="BasicZombieFootFront" type="Sprite2D" parent="."]
 y_sort_enabled = true
+use_parent_material = true
 position = Vector2(6, -53)
 texture = ExtResource("3_tfvj5")
 
 [node name="ArmBack2" type="Sprite2D" parent="."]
 y_sort_enabled = true
+use_parent_material = true
 position = Vector2(-39, -98)
 texture = ExtResource("4_m21d6")
 
 [node name="ArmBack1" type="Sprite2D" parent="ArmBack2"]
 y_sort_enabled = true
+use_parent_material = true
 position = Vector2(11, -49)
 texture = ExtResource("5_1arx6")
 
 [node name="stored_hold_item" type="Node2D" parent="ArmBack2"]
+use_parent_material = true
 
 [node name="Flag" type="Sprite2D" parent="ArmBack2/stored_hold_item"]
 visible = false
+use_parent_material = true
 position = Vector2(-64.4913, 8.1162)
 rotation = -1.83199
 scale = Vector2(1.26817, 1.38753)
@@ -2428,23 +2455,27 @@ texture = ExtResource("6_gd52x")
 [node name="BasicZombieBody" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
+use_parent_material = true
 position = Vector2(3, -134)
 texture = ExtResource("6_g8et6")
 
 [node name="ArmFront1" type="Sprite2D" parent="BasicZombieBody"]
 y_sort_enabled = true
+use_parent_material = true
 position = Vector2(-2, 0)
 texture = ExtResource("7_bo8ur")
 
 [node name="ArmFront2" type="Sprite2D" parent="BasicZombieBody"]
 z_index = 1
 y_sort_enabled = true
+use_parent_material = true
 position = Vector2(-4, 36)
 texture = ExtResource("8_jsojr")
 
 [node name="node_head" type="RigidBody2D" parent="BasicZombieBody"]
 z_index = 2
 y_sort_enabled = true
+use_parent_material = true
 position = Vector2(-24, -67)
 collision_layer = 0
 collision_mask = 0
@@ -2453,15 +2484,18 @@ lock_rotation = true
 
 [node name="BasicZombieHead1" type="Sprite2D" parent="BasicZombieBody/node_head"]
 y_sort_enabled = true
+use_parent_material = true
 position = Vector2(-4, 8)
 texture = ExtResource("9_i73gl")
 
 [node name="armor" type="Node2D" parent="BasicZombieBody/node_head/BasicZombieHead1"]
 y_sort_enabled = true
+use_parent_material = true
 position = Vector2(-1, -16)
 
 [node name="BasicZombieHead2" type="Sprite2D" parent="BasicZombieBody/node_head"]
 y_sort_enabled = true
+use_parent_material = true
 position = Vector2(-4, 40)
 texture = ExtResource("10_6nap0")
 
@@ -2474,3 +2508,19 @@ libraries = {
 &"": SubResource("AnimationLibrary_74e7q")
 }
 autoplay = "Walking_Animation"
+
+[node name="death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_tfvj5")
+bus = &"SFX"
+
+[node name="head_popout_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_m21d6")
+bus = &"SFX"
+
+[node name="bite_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_g8et6")
+bus = &"SFX"
+
+[node name="bite_2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_bo8ur")
+bus = &"SFX"

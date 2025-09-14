@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cs1eh8rbbrj0r"]
+[gd_scene load_steps=18 format=3 uid="uid://cs1eh8rbbrj0r"]
 
 [ext_resource type="Script" uid="uid://brlmxjr7ooew5" path="res://potato_mine_animation.gd" id="1_i56mm"]
 [ext_resource type="Texture2D" uid="uid://bukcfrb56hulm" path="res://unit/plant/Potatomine/potatomine_body.png" id="2_lsi6x"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://besrnqq3b0t0" path="res://unit/plant/Potatomine/potatomine_pebble_1.png" id="8_hof34"]
 [ext_resource type="Texture2D" uid="uid://24aaih17lgop" path="res://unit/plant/Potatomine/potatomine_pebble_2.png" id="9_nnufn"]
 [ext_resource type="Texture2D" uid="uid://d1gct7aaln52m" path="res://unit/plant/Potatomine/potatomine_pebble_3.png" id="10_oqiqv"]
+[ext_resource type="AudioStream" uid="uid://bxt4mna3pqsjr" path="res://unit/plant/Potatomine/SFX dirt rise.mp3" id="11_nnufn"]
 
 [sub_resource type="Animation" id="Animation_c77y0"]
 length = 0.001
@@ -240,6 +241,30 @@ tracks/18/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("5_nnufn")]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("rising_potato:playing")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Control/PotatomineBody/PotatomineNonAlarm:rotation")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_hof34"]
@@ -646,6 +671,18 @@ tracks/15/keys = {
 "update": 1,
 "values": [ExtResource("5_nnufn")]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("rising_potato:playing")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0.00971445),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_i56mm"]
 resource_name = "idle"
@@ -978,6 +1015,54 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(-6.0803, 4.97247)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Control/PotatomineBody/PotatomineNonAlarm:texture")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_nnufn")]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Control/PotatomineBody/PotatomineNonAlarm:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -15.953)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Control/PotatomineBody/PotatomineNonAlarm:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Control/PotatomineBody/PotatomineNonAlarm:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hm80h"]
 _data = {
@@ -992,6 +1077,7 @@ _data = {
 script = ExtResource("1_i56mm")
 
 [node name="Control" type="Control" parent="."]
+use_parent_material = true
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -999,26 +1085,32 @@ offset_left = -47.0
 offset_top = -73.0
 offset_right = 49.0
 offset_bottom = 2.0
+mouse_filter = 2
 
 [node name="PotatomineBody" type="Sprite2D" parent="Control"]
+use_parent_material = true
 position = Vector2(45, 36)
 texture = ExtResource("2_lsi6x")
 
 [node name="PotatomineEye1" type="Sprite2D" parent="Control/PotatomineBody"]
+use_parent_material = true
 position = Vector2(6.5, 16)
 texture = ExtResource("3_fkktp")
 
 [node name="PotatomineMouth" type="Sprite2D" parent="Control/PotatomineBody"]
+use_parent_material = true
 position = Vector2(5.5, 23)
 texture = ExtResource("4_hof34")
 
 [node name="PotatomineNonAlarm" type="Sprite2D" parent="Control/PotatomineBody"]
+use_parent_material = true
 position = Vector2(-1.5, -14)
 texture = ExtResource("5_nnufn")
 
 [node name="PotatomineNonAlarm" type="Sprite2D" parent="Control/PotatomineBody/PotatomineNonAlarm"]
 visible = false
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(-15, 8.748)
 rotation = -0.274972
 scale = Vector2(0.6156, 0.592415)
@@ -1027,6 +1119,7 @@ texture = ExtResource("5_nnufn")
 [node name="PotatomineNonAlarm2" type="Sprite2D" parent="Control/PotatomineBody/PotatomineNonAlarm"]
 visible = false
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(-10, 5.748)
 rotation = -0.33172
 scale = Vector2(0.780691, 0.743048)
@@ -1039,57 +1132,72 @@ libraries = {
 autoplay = "unarmed"
 
 [node name="PotatominePebble1" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-15, 0)
 rotation = -0.561996
 scale = Vector2(0.28, 0.28)
 texture = ExtResource("8_hof34")
 
 [node name="PotatominePebble2" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-6.75, -1)
 rotation = 0.162316
 scale = Vector2(0.27, 0.32)
 texture = ExtResource("9_nnufn")
 
 [node name="PotatominePebble3" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(1, -2)
 scale = Vector2(0.3, 0.24)
 texture = ExtResource("10_oqiqv")
 
 [node name="PotatominePebble4" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-24, -2)
 scale = Vector2(0.24, 0.24)
 texture = ExtResource("9_nnufn")
 
 [node name="PotatominePebble5" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(10, -1)
 scale = Vector2(0.22, 0.3)
 texture = ExtResource("8_hof34")
 
 [node name="PotatominePebble6" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(16, -2)
 scale = Vector2(0.18, 0.24)
 texture = ExtResource("9_nnufn")
 
 [node name="PotatominePebble7" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(23, -4)
 scale = Vector2(0.32, 0.32)
 texture = ExtResource("10_oqiqv")
 
 [node name="PotatominePebble8" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(33.0156, -4.76926)
 rotation = 2.91913
 scale = Vector2(0.360545, 0.288511)
 texture = ExtResource("9_nnufn")
 
 [node name="PotatominePebble9" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-32, -6)
 scale = Vector2(0.32, 0.26)
 texture = ExtResource("10_oqiqv")
 
 [node name="PotatominePebble10" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(-41, -7)
 rotation = -1.2794
 scale = Vector2(0.247318, 0.460296)
 texture = ExtResource("9_nnufn")
+
+[node name="rising_potato" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_nnufn")
+volume_db = 3.0
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

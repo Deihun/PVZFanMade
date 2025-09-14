@@ -66,15 +66,22 @@ func start_this_wave():
 	while _lane_overall.size() > 0:
 		
 		var lane_info = _lane_overall.pick_random()
-		var picked_lane = lane_info.lane
-		print(_lane_overall.size()," ", self.name, "   ", lane_info)
-		if picked_lane.size() == 0:
+		var lane_array : Array = lane_info["lane"]
+		
+
+		if lane_array.is_empty():
 			_lane_overall.erase(lane_info)
 			continue
-		var char_enemy : CharacterBody2D= picked_lane.pick_random()
-		picked_lane.erase(char_enemy)
-		#char_enemy.position = Vector2.ZERO
+		
+		var idx := randi_range(0,lane_array.size()-1)
+		var entry = lane_array[idx]
+		var char_enemy: CharacterBody2D = entry[0]
+		var carry_power_boost: bool = (entry[1] == 1)
+
+		lane_array.remove_at(idx)
+
 		get_tree().current_scene.add_child(char_enemy)
+		if carry_power_boost: char_enemy.add_child(load("res://Behaviour/power_boost_drop.tscn").instantiate())
 		char_enemy.global_position = lane_info.pos.spawn_position.global_position
 		
 		char_enemy.get_node("zombie_hp_management").lane_rigidbody_collision = lane_info.pos.physic_body_interaction
@@ -87,9 +94,6 @@ func start_this_wave():
 		if _zombie_spawn_with_delay_in_between: await get_tree().create_timer(_delay_interval_between_spawn).timeout
 		if _trigger_next_wave_if_this_is_clear:     
 			if char_enemy: 
-				#var hp_manager = char_enemy.get_node("zombie_hp_management")
-				#if !hp_manager:return
-				#hp_manager.zombie_death_callable.append(_on_enemy_removed.bind(char_enemy))
 				char_enemy.tree_exited.connect(
 				Callable(self, "_on_enemy_removed").bind(char_enemy))
 	$spawn_next.start()
@@ -102,22 +106,22 @@ func _on_enemy_removed(char_enemy : CharacterBody2D):
 
 func _add_this_char_on_reserve_array(body : Node2D, lane_number := 0):
 	var _body = load(body.scene_file_path).instantiate()
-	#var _body = body.duplicate()
-	#print(body.scene_file_path)
+	var _has_boost : int = 1 if (body.has_node("PowerBoostDrop")) else 0
+	get_parent().add_this_zombie(body.scene_file_path)
 	if body.is_inside_tree(): body.get_parent().remove_child(body)
 	body.queue_free()
 	if lane_number == 0: lane_number = randi_range(1,5)#STILL STATIC 1-5, add later a random lane managementnumbers
 	match lane_number:
 		1:
-			lane1_array.append(_body)
+			lane1_array.append([_body,_has_boost])
 		2:
-			lane2_array.append(_body)
+			lane2_array.append([_body,_has_boost])
 		3:
-			lane3_array.append(_body)
+			lane3_array.append([_body,_has_boost])
 		4:
-			lane4_array.append(_body)
+			lane4_array.append([_body,_has_boost])
 		5:
-			lane5_array.append(_body)
+			lane5_array.append([_body,_has_boost])
 
 func _on_random__body_entered(body: Node2D) -> void:
 	_add_this_char_on_reserve_array(body)

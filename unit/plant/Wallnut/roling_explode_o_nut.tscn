@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bw383oloxiiet"]
+
+[ext_resource type="Script" uid="uid://bkwx3t0k34hh6" path="res://unit/plant/Wallnut/roling_explode_o_nut.gd" id="1_qfuw3"]
+[ext_resource type="PackedScene" uid="uid://1586jc7ht8x0" path="res://unit/plant/Wallnut/Wallnut_animation.tscn" id="2_6c5x7"]
+[ext_resource type="AudioStream" uid="uid://boqrchgtegexe" path="res://unit/plant/Wallnut/metal pipe falling sound effect.mp3" id="3_bnyjp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8uyyv"]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfuw3"]
+size = Vector2(54.5, 30.0625)
+
+[node name="rolling_explode_o_nut" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 258
+script = ExtResource("1_qfuw3")
+
+[node name="Wallnut" parent="." instance=ExtResource("2_6c5x7")]
+position = Vector2(-1, -3)
+
+[node name="trigger" type="Area2D" parent="."]
+position = Vector2(1, -11)
+collision_layer = 0
+collision_mask = 258
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trigger"]
+position = Vector2(32, -17)
+shape = SubResource("CircleShape2D_8uyyv")
+debug_color = Color(0.845128, 0, 0.156261, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+autostart = true
+
+[node name="cooldown_hit" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="MetalPipeFallingSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bnyjp")
+mix_target = 2
+
+[node name="warning_zone" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="warning_zone"]
+position = Vector2(40, -20)
+shape = SubResource("RectangleShape2D_qfuw3")
+
+[connection signal="body_entered" from="trigger" to="." method="_on_trigger_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="cooldown_hit" to="." method="_on_cooldown_hit_timeout"]

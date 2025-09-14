@@ -5,6 +5,7 @@ var can_hit_again := true
 var direction_value := 0
 
 func _ready() -> void:
+	QuickDataManagement.sound_manager.play_sound_SFX(load("res://unit/plant/Wallnut/wallnut_rolling_bowling.mp3"))
 	$Wallnut.set_normal_rolling_wallnut()
 	velocity = Vector2.RIGHT * speed
 
@@ -41,6 +42,7 @@ func _on_trigger_body_entered(body: Node2D) -> void:
 		can_hit_again =false
 		if !get_hp_node:return
 		get_hp_node.take_damage(450,self)
+		QuickDataManagement.sound_manager.play_sound_SFX(load("res://unit/plant/Wallnut/normal_wallnut_hit.mp3"))
 	
 
 func _bounce_when_hit():
@@ -54,6 +56,7 @@ func _bounce_when_hit():
 			velocity = Vector2(speed, -speed)
 		2: 
 			velocity = Vector2(speed, speed)
+	
 
 
 func _on_timer_timeout() -> void:

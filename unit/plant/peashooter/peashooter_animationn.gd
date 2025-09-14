@@ -17,14 +17,14 @@ func _tier1B():
 func _trigger_attack() -> void:
 	if trigger_attack_method.is_valid(): 
 		trigger_attack_method.call()
-	$attack_speed_effect/attackspeed_effect.speed_scale = 1.0+attack_animation_speed
+	$attack_speed_effect/attackspeed_effect.speed_scale = max(min(1.0+attack_animation_speed,4.0),0.1)
 	$attack_speed_effect/attackspeed_effect.stop()
 	$attack_speed_effect/attackspeed_effect.play("trigger")
 
 
 func start_attacking():
 	$AnimationPlayer.stop()
-	$AnimationPlayer.speed_scale =  1.0 + attack_animation_speed + randf_range(0.2,0)
+	$AnimationPlayer.speed_scale =  1.0 + max(min(1.0+attack_animation_speed,4.0),0.1) + randf_range(0.2,0)
 	$AnimationPlayer.play("shooting_animation")
 
 

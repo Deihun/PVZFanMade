@@ -32,3 +32,5 @@ func _on_sun_on_click_input_event(viewport: Node, event: InputEvent, shape_idx: 
 		for callback in click_callbacks:
 			if callback.is_valid():
 				callback.call()
+		$AudioStreamPlayer.pitch_scale += randf_range(-0.2,0.2)
+		$AudioStreamPlayer.play()

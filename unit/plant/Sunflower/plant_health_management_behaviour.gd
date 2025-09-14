@@ -3,15 +3,15 @@ var _on_death_announce : Array[Callable] = []
 var _taking_damage : Array[Callable] = []
 var _when_shield_broken : Array[Callable] = []
 var _when_i_receive_heal_call_other_methods : Array[Callable] = []
-
+var _when_you_plant_on_me : Array[Callable] = []
+var _my_seed_packet : Control
 
 @export var max_health : int = 80
-@export var armor : int = 0
+@export var armor : float = 0
 @export var shield : int = 0
 @export var damage_reduction_ratio : float = 0.0
 
 @export var indicate_when_damage : bool = true
-
 var current_health : int = 80
 
 
@@ -26,6 +26,7 @@ func heal(value : int) -> void:
 	for method in _when_i_receive_heal_call_other_methods:
 		if method.is_valid(): method.call()
 	current_health = current_health+value if (current_health + value) < max_health else max_health
+	$max_health_condition_handler._check_health_conditions()
 
 func heal_maxhealth_percentage(max_health_percentage : float):
 	heal((0.01 * max_health_percentage) * max_health)
@@ -95,3 +96,10 @@ func _add_health_threshold_condition(method : Callable, maxhealth_threshold_perc
 
 func _on_when_damage_timeout() -> void:
 	get_parent().modulate.a = 1.0
+
+
+func plant_on_me() ->bool:
+	for call in _when_you_plant_on_me:
+		if call.is_valid():call.call()
+		else:_when_you_plant_on_me.erase(call)
+	return _when_you_plant_on_me.size() > 0

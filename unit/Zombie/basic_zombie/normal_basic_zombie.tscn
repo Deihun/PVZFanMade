@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bogab6oeo22f2"]
+[gd_scene load_steps=8 format=3 uid="uid://bogab6oeo22f2"]
 
 [ext_resource type="PackedScene" uid="uid://y5yyy3rt1el1" path="res://unit/Zombie/Basic_Zombie_Animation.tscn" id="1_n7f0a"]
 [ext_resource type="Script" uid="uid://biamhuvv1sdpj" path="res://unit/Zombie/basic_zombie/basic_zombie.gd" id="1_v8ghd"]
 [ext_resource type="PackedScene" uid="uid://b8lpneub1dg61" path="res://Behaviour/projectile_behaviour/zombie_hp_management.tscn" id="2_j1b3j"]
+[ext_resource type="PackedScene" uid="uid://dlfnwlf3x2t7t" path="res://Behaviour/zombie_movement_management.tscn" id="2_kudsx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5oqf"]
 size = Vector2(115, 142)
@@ -15,10 +16,13 @@ size = Vector2(71, 136)
 
 [node name="BasicZombie" type="CharacterBody2D"]
 y_sort_enabled = true
-position = Vector2(219, 332)
+position = Vector2(983, 315)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_v8ghd")
+
+[node name="zombie_movement_management" parent="." node_paths=PackedStringArray("animation_node") instance=ExtResource("2_kudsx")]
+animation_node = NodePath("../BasicZombieAnimation")
 
 [node name="zombie_hp_management" parent="." node_paths=PackedStringArray("zombie_animation_node") instance=ExtResource("2_j1b3j")]
 zombie_animation_node = NodePath("../BasicZombieAnimation")
@@ -45,6 +49,11 @@ visible = false
 position = Vector2(-12.5, -77)
 shape = SubResource("RectangleShape2D_j1b3j")
 
+[node name="groan_value" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
 [connection signal="body_entered" from="Bite_Detection" to="." method="_on_bite_detection_body_entered"]
 [connection signal="body_exited" from="Bite_Detection" to="." method="_on_bite_detection_body_exited"]
 [connection signal="area_shape_entered" from="HitPoint" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="timeout" from="groan_value" to="." method="_on_groan_value_timeout"]

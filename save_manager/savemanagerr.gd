@@ -17,6 +17,7 @@ func _ready() -> void:
 		load_game()
 	else:
 		save_game() 
+		
 
 func save_game() -> void:
 	var json_str := JSON.stringify(save_data, "\t") # formatted for readability before encryption
@@ -40,6 +41,7 @@ func load_game() -> void:
 		else:
 			push_error("Save file corrupted. Resetting to default.")
 			save_game()
+		print(content)
 	else:
 		push_error("Failed to open save file for reading: " + save_path)
 

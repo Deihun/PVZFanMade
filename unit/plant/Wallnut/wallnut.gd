@@ -8,8 +8,10 @@ func set_normal_rolling_wallnut():
 	$AnimationPlayer.play("rolling_wallnut")
 
 func set_explode_rolling_wallnut():
-	$AnimationPlayer.play("rolling_wallnut")
-	
+	$AnimationPlayer.play("exploding_rolling_wallnut ")
+
+func _idle_explodenut():
+	$AnimationPlayer.play("idle_explode_o_nut")
 
 func set_to_tallnutt():
 	_is_tall_nut_set = true

@@ -10,6 +10,7 @@ extends Control
 @export var land_type :=  true
 @export var water_type :=  false
 @export var can_be_planted_under :=  false
+@export var take_tiles_space := true
 @export_category("function properties")
 @export var seed_selection_VBoxContainer : Node
 @export var delete_if_not_existing_in_progress := true
@@ -73,6 +74,7 @@ func _refund_cooldown_current_percentage_value(value : float = 0.1):
 
 
 func _on_click_button_button_down() -> void:
+	
 	match mode:
 		"ingame-seed-pick":
 			if QuickDataManagement._selected_data_in_seed_packet == self:
@@ -81,7 +83,8 @@ func _on_click_button_button_down() -> void:
 			if current_timer > 0:return
 			if QuickDataManagement.sun >= suncost:
 				QuickDataManagement._add_plant_for_queue_plant(self,load(plant_animation_only_tscn).instantiate())
-				#NEED FUNCTION FOR CANCEL SELECTION UI TO OTHER SEEDPACKET YET, Also SECURE THE SEEDPACKET LATER TOO!
+				$pick_.play()
+			else: $decline_audio.play()
 			if !call_plant_method: return
 			call_plant_method.call()
 		"one-time-used":#still in progress for night plants
@@ -90,6 +93,7 @@ func _on_click_button_button_down() -> void:
 				return
 			if current_timer > 0:return
 			QuickDataManagement._add_plant_for_queue_plant(self,load(plant_animation_only_tscn).instantiate())
+			$pick_.play()
 			if !call_plant_method: return
 			call_plant_method.call()
 		"only-for-plant-selection":
@@ -101,6 +105,11 @@ func _on_click_button_button_down() -> void:
 				seed_selection_VBoxContainer.add_child(pickable_version_of_myself)
 		"click-to-delete-only":
 			self.queue_free()
+
+
+func selected_as_object(is_it_selected := false):
+	$SeedPacket/selected_visuals.visible = is_it_selected
+
 
 
 func successfully_planted() -> void:

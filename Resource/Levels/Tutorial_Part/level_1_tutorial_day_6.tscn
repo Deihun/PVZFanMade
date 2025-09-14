@@ -1,0 +1,413 @@
+[gd_scene load_steps=23 format=3 uid="uid://cdxrmthlmkvf7"]
+
+[ext_resource type="Script" uid="uid://cm3vrw4xwppt" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_6.gd" id="1_hhxee"]
+[ext_resource type="Texture2D" uid="uid://b8i58el7y56a0" path="res://Resource/Levels/background_assets/day.png" id="2_yeu7h"]
+[ext_resource type="Texture2D" uid="uid://d17d4ngwqf0r" path="res://Resource/Levels/background_assets/grass_layer.png" id="3_3j4yw"]
+[ext_resource type="PackedScene" uid="uid://dols1i410thmc" path="res://HUD/borders/level_manager/main_camera.tscn" id="4_df2lm"]
+[ext_resource type="PackedScene" uid="uid://bogab6oeo22f2" path="res://unit/Zombie/basic_zombie/normal_basic_zombie.tscn" id="4_uq3cj"]
+[ext_resource type="PackedScene" uid="uid://2ws764pcbwav" path="res://Behaviour/power_boost_drop.tscn" id="5_hhxee"]
+[ext_resource type="PackedScene" uid="uid://c3mfdn3yeigf3" path="res://Behaviour/lane_.tscn" id="5_l0qdf"]
+[ext_resource type="PackedScene" uid="uid://d1bmnixb7oepy" path="res://Behaviour/sun_falling_behaviour.tscn" id="6_bat4m"]
+[ext_resource type="Texture2D" uid="uid://d240urulx0vvw" path="res://Resource/Levels/Tutorial_Part/dialogue_bubble_.png" id="7_df2lm"]
+[ext_resource type="PackedScene" uid="uid://pspn4765e0xo" path="res://HUD/borders/level_manager/zombie_wave_management.tscn" id="7_y8bh3"]
+[ext_resource type="PackedScene" uid="uid://rvbwdqhikigs" path="res://HUD/borders/level_manager/wave.tscn" id="8_080mo"]
+[ext_resource type="FontFile" uid="uid://bssrwcl60ngnh" path="res://ComicSansMS3.ttf" id="8_l0qdf"]
+[ext_resource type="PackedScene" uid="uid://y1wnytmunqr8" path="res://HUD/borders/level_manager/new_plant_unlock_reward_node.tscn" id="9_cq13b"]
+[ext_resource type="Texture2D" uid="uid://cr2fjf7qmen82" path="res://unit/plant/peashooter/peashooter_seedpacket.png" id="14_l0qdf"]
+[ext_resource type="PackedScene" uid="uid://bj5p7r8n80cn" path="res://HUD/debug_mode.tscn" id="14_w4chh"]
+[ext_resource type="PackedScene" uid="uid://7mggfdcubyvf" path="res://HUD/EvolutionUI/evolution_power_bank.tscn" id="15_yeu7h"]
+[ext_resource type="PackedScene" uid="uid://crmsu5wuroi4j" path="res://unit/Zombie/basic_zombie/Coolz_zombie.tscn" id="17_df2lm"]
+[ext_resource type="PackedScene" uid="uid://yivwd3p0a1xq" path="res://unit/Zombie/basic_zombie/conehead_basic_zombie.tscn" id="18_l0qdf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewpwe"]
+size = Vector2(1295, 699)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bat4m"]
+bg_color = Color(0.981506, 0.928068, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbpro"]
+size = Vector2(284, 148)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4qp0"]
+size = Vector2(798, 579.25)
+
+[node name="level_1_tutorial_day6" type="Node2D"]
+position = Vector2(539, 404)
+script = ExtResource("1_hhxee")
+
+[node name="Day" type="Sprite2D" parent="."]
+position = Vector2(1198, 136)
+texture = ExtResource("2_yeu7h")
+
+[node name="GrassLayer" type="Sprite2D" parent="Day"]
+position = Vector2(-494, 117)
+texture = ExtResource("3_3j4yw")
+
+[node name="BasicZombie2" parent="." instance=ExtResource("4_uq3cj")]
+position = Vector2(1290, 321)
+
+[node name="PowerBoostDrop" parent="BasicZombie2" instance=ExtResource("5_hhxee")]
+
+[node name="main_camera" parent="." instance=ExtResource("4_df2lm")]
+position = Vector2(421, 136)
+_mode = "normal_mode_with_pick"
+level_name = "DAY 1-6"
+
+[node name="Bubble" type="NinePatchRect" parent="main_camera"]
+offset_left = -330.0
+offset_top = 173.0
+offset_right = 802.0
+offset_bottom = 519.0
+texture = ExtResource("7_df2lm")
+patch_margin_left = 100
+patch_margin_top = 100
+patch_margin_right = 100
+patch_margin_bottom = 100
+
+[node name="text" type="Label" parent="main_camera/Bubble"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 87.0
+offset_right = 1100.0
+offset_bottom = 269.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_l0qdf")
+theme_override_font_sizes/font_size = 50
+text = "Some zombies carries special power
+ boost"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="lane_1" parent="." instance=ExtResource("5_l0qdf")]
+position = Vector2(0, -13)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="lane_2" parent="." instance=ExtResource("5_l0qdf")]
+position = Vector2(0, 160)
+lane_collision_layer = "lane2"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="lane_3" parent="." instance=ExtResource("5_l0qdf")]
+position = Vector2(0, 332)
+lane_collision_layer = "lane3"
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="lane_4" parent="." instance=ExtResource("5_l0qdf")]
+position = Vector2(0, 505)
+lane_collision_layer = "lane4"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="lane_5" parent="." instance=ExtResource("5_l0qdf")]
+position = Vector2(0, 677)
+lane_collision_layer = "lane5"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="sun_falling_behaviour" parent="." node_paths=PackedStringArray("sun_location_where_it_land") instance=ExtResource("6_bat4m")]
+position = Vector2(0, -3)
+sun_location_where_it_land = NodePath("CollisionShape2D")
+cooldown_time = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sun_falling_behaviour"]
+position = Vector2(654.5, 219.5)
+shape = SubResource("RectangleShape2D_ewpwe")
+
+[node name="zombie_wave_management" parent="." node_paths=PackedStringArray("main_camera", "final_as_reward", "lane_1", "lane_2", "lane_3", "lane_4", "lane_5", "lane_6", "lane_7", "collision_where_zombie_is_place_preview") instance=ExtResource("7_y8bh3")]
+offset_left = -576.0
+offset_top = 804.0
+offset_right = 944.0
+offset_bottom = 2004.0
+mouse_filter = 2
+progress_bar_wave_scene = "uid://dr682qf7yx8v2"
+main_camera = NodePath("../main_camera")
+delay_before_game_start = 25.0
+final_as_reward = NodePath("../NewPlantUnlockRewardNode")
+lane_1 = NodePath("../lane_1")
+lane_2 = NodePath("../lane_2")
+lane_3 = NodePath("../lane_3")
+lane_4 = NodePath("../lane_4")
+lane_5 = NodePath("../lane_5")
+lane_6 = NodePath("../lane_3")
+lane_7 = NodePath("../lane_3")
+collision_where_zombie_is_place_preview = NodePath("../preview_zombie")
+
+[node name="wave1" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 12.0
+_trigger_next_wave_if_this_is_clear = true
+_delay_interval_between_spawn = 1.5
+
+[node name="wave2" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 40.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 10.0
+
+[node name="wave3" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 120.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 0.7
+
+[node name="wave4" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 120.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 0.7
+
+[node name="wave5" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 40.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 1.0
+
+[node name="wave6" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 40.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 1.0
+
+[node name="wave7" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 15.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 1.0
+
+[node name="wave8" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 120.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_mark_as_big_wave = true
+_automatically_spawn_basic_zombies = true
+_number_of_zombies_in_big_wave = 7
+
+[node name="wave9" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 5.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 0.2
+_number_of_zombies_in_big_wave = 7
+
+[node name="wave10" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 5.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 0.2
+_number_of_zombies_in_big_wave = 7
+
+[node name="wave11" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 5.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 3.0
+_number_of_zombies_in_big_wave = 7
+
+[node name="wave12" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 20.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 0.3
+_number_of_zombies_in_big_wave = 7
+
+[node name="wave13" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 100.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 0.2
+_number_of_zombies_in_big_wave = 7
+
+[node name="wave14" parent="zombie_wave_management" instance=ExtResource("8_080mo")]
+layout_mode = 2
+_delay_duration = 80.0
+_trigger_next_wave_if_this_is_clear = true
+_zombie_spawn_with_delay_in_between = true
+_delay_interval_between_spawn = 0.75
+_mark_as_big_wave = true
+_automatically_spawn_basic_zombies = true
+
+[node name="NewPlantUnlockRewardNode" parent="." instance=ExtResource("9_cq13b")]
+position = Vector2(523, -52)
+_reward_description = "Now you can evolve peashooter upto TIER3!"
+_next_scene_to_play = "uid://d0fjcu3vyoepo"
+level_data_name = "day1-6"
+_plant_name = "peashooter"
+_unlock_plant_tier_2 = true
+_unlock_plant_tier_3 = true
+
+[node name="SeedPacket" type="Sprite2D" parent="NewPlantUnlockRewardNode"]
+z_index = 155
+position = Vector2(11.5, 16.5)
+scale = Vector2(1.27, 1.33)
+texture = ExtResource("14_l0qdf")
+
+[node name="Panel" type="Panel" parent="NewPlantUnlockRewardNode/SeedPacket"]
+offset_left = 54.7244
+offset_top = 8.64662
+offset_right = 66.7244
+offset_bottom = 36.6466
+rotation = 0.751579
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bat4m")
+
+[node name="Panel2" type="Panel" parent="NewPlantUnlockRewardNode/SeedPacket"]
+offset_left = 51.0
+offset_top = 12.0
+offset_right = 63.0
+offset_bottom = 47.0
+rotation = -0.820532
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bat4m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NewPlantUnlockRewardNode"]
+position = Vector2(14, 12)
+shape = SubResource("RectangleShape2D_mbpro")
+
+[node name="for_storing_groups_of_zombies" type="Node2D" parent="."]
+position = Vector2(-327, -441)
+
+[node name="BasicZombie11" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(2409, 1639)
+
+[node name="CoolzZombie" parent="for_storing_groups_of_zombies" instance=ExtResource("17_df2lm")]
+position = Vector2(928, 1828)
+
+[node name="PowerBoostDrop" parent="for_storing_groups_of_zombies/CoolzZombie" instance=ExtResource("5_hhxee")]
+
+[node name="ConeHead3" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(1920, 2095)
+
+[node name="BasicZombie" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(164, 1971)
+
+[node name="BasicZombie2" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(413, 1393)
+
+[node name="BasicZombie3" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(327, 1390)
+
+[node name="BasicZombie4" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(659, 1530)
+
+[node name="BasicZombie5" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(662, 1947)
+
+[node name="BasicZombie6" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(1155, 1975)
+
+[node name="BasicZombie7" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(1136, 1363)
+
+[node name="BasicZombie8" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(1218, 1366)
+
+[node name="ConeHead5" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(1400, 1670)
+
+[node name="BasicZombie9" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(1152, 2097)
+
+[node name="BasicZombie10" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(1442, 1398)
+
+[node name="ConeHead" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(1670, 1529)
+
+[node name="ConeHead2" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(1632, 2122)
+
+[node name="ConeHead4" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(1925, 1683)
+
+[node name="CoolzZombie2" parent="for_storing_groups_of_zombies" instance=ExtResource("17_df2lm")]
+position = Vector2(2181, 2098)
+
+[node name="ConeHead6" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(2192, 1530)
+
+[node name="ConeHead7" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(2176, 1796)
+
+[node name="ConeHead8" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(1925, 1683)
+
+[node name="PowerBoostDrop" parent="for_storing_groups_of_zombies/ConeHead8" instance=ExtResource("5_hhxee")]
+
+[node name="BasicZombie12" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(2427, 1945)
+
+[node name="ConeHead9" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(2713, 1526)
+
+[node name="CoolzZombie3" parent="for_storing_groups_of_zombies" instance=ExtResource("17_df2lm")]
+position = Vector2(2668, 1414)
+
+[node name="PowerBoostDrop" parent="for_storing_groups_of_zombies/CoolzZombie3" instance=ExtResource("5_hhxee")]
+
+[node name="BasicZombie13" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(2955, 1685)
+
+[node name="BasicZombie14" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(2946, 1831)
+
+[node name="ConeHead10" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(2689, 1963)
+
+[node name="BasicZombie15" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(3218, 1539)
+
+[node name="BasicZombie16" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(3209, 1685)
+
+[node name="BasicZombie17" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(3189, 1965)
+
+[node name="BasicZombie18" parent="for_storing_groups_of_zombies" instance=ExtResource("4_uq3cj")]
+position = Vector2(3180, 2111)
+
+[node name="CoolzZombie4" parent="for_storing_groups_of_zombies" instance=ExtResource("17_df2lm")]
+position = Vector2(3202, 1825)
+
+[node name="PowerBoostDrop" parent="for_storing_groups_of_zombies/CoolzZombie4" instance=ExtResource("5_hhxee")]
+
+[node name="CoolzZombie5" parent="for_storing_groups_of_zombies" instance=ExtResource("17_df2lm")]
+position = Vector2(3437, 1358)
+
+[node name="ConeHead11" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(3462, 1663)
+
+[node name="ConeHead12" parent="for_storing_groups_of_zombies" instance=ExtResource("18_l0qdf")]
+position = Vector2(3447, 1981)
+
+[node name="CoolzZombie6" parent="for_storing_groups_of_zombies" instance=ExtResource("17_df2lm")]
+position = Vector2(3517, 1369)
+
+[node name="DebugMode" parent="." instance=ExtResource("14_w4chh")]
+visible = false
+position = Vector2(-540, -404)
+
+[node name="preview_zombie" type="CollisionShape2D" parent="."]
+position = Vector2(2154, 189.625)
+shape = SubResource("RectangleShape2D_r4qp0")
+
+[node name="EvolutionPowerBank" parent="." instance=ExtResource("15_yeu7h")]
+offset_left = -221.0
+offset_top = -367.0
+offset_right = 114.0
+offset_bottom = -267.0

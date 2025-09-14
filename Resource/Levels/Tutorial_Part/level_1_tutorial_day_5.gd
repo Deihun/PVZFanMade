@@ -10,16 +10,19 @@ func _ready() -> void:
 	await get_tree().create_timer(1.0).timeout
 	$main_camera/Bubble.show()
 	await get_tree().create_timer(4.0).timeout
-	$main_camera/Bubble/text.text = "But things is about to\n get CRAZYYYY!!!"
+	$main_camera/Bubble/text.text = "But things are about to\n get CRAZYYYY!!!"
 	await get_tree().create_timer(4.0).timeout
 	$main_camera/Shovel.show()
 	$main_camera/Bubble/text.text = "Use the shovel to clear the lawn"
 	set_process(true)
+	$NewPlantUnlockRewardNode._call_this_when_collecting_reward_ArrayCallable.append(Callable(self,"unlock_all_tier"))
 
-	
-	
-	
 
+func unlock_all_tier():
+	QuickDataManagement.savemanager.unlock_tier("peashooter","tier1")
+	QuickDataManagement.savemanager.unlock_tier("sunflower","tier1")
+	QuickDataManagement.savemanager.unlock_tier("wallnut","tier1")
+	QuickDataManagement.savemanager.unlock_tier("potatomine","tier1")
 
 func _process(delta: float) -> void:
 	if QuickDataManagement.global_calls_manager._plant_exist_in_game.size() == 0: when_the_lawn_is_cleared()
@@ -30,7 +33,7 @@ func when_the_lawn_is_cleared():
 	await get_tree().create_timer(3.0).timeout
 	$main_camera/Bubble/text.text = "And add it with a twist?"
 	await get_tree().create_timer(3.0).timeout
-	$main_camera/Bubble/text.text = "Cause were about to set \nnew record with these zombies!"
+	$main_camera/Bubble/text.text = "Cause you're about to roll with the\nzombies"
 	await get_tree().create_timer(3.0).timeout
 	$main_camera/Bubble.hide()
 	$main_camera/Shovel.hide()

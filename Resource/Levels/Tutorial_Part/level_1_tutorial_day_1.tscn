@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cyn7r4y248k68"]
+[gd_scene load_steps=23 format=3 uid="uid://cyn7r4y248k68"]
 
 [ext_resource type="Texture2D" uid="uid://b8i58el7y56a0" path="res://Resource/Levels/background_assets/day.png" id="1_6ptqh"]
 [ext_resource type="Script" uid="uid://dwrqqa36ydbf5" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_1.gd" id="1_g82a1"]
@@ -61,6 +61,9 @@ size = Vector2(1295, 699)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mbpro"]
 size = Vector2(195, 111)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmubk"]
+size = Vector2(798, 720.5)
+
 [node name="level_1_tutorial_day1" type="Node2D"]
 position = Vector2(539, 404)
 script = ExtResource("1_g82a1")
@@ -101,6 +104,8 @@ texture = ExtResource("7_cmubk")
 [node name="main_camera" parent="." instance=ExtResource("4_mbpro")]
 position = Vector2(421, 136)
 _mode = "normal_mode_with_pick"
+sun_on_start = 150
+level_name = "DAY 1-1"
 
 [node name="lane_3" parent="." instance=ExtResource("1_ua7g3")]
 position = Vector2(0, 332)
@@ -111,15 +116,13 @@ metadata/_edit_group_ = true
 [node name="sun_falling_behaviour" parent="." node_paths=PackedStringArray("sun_location_where_it_land") instance=ExtResource("5_2uc7d")]
 position = Vector2(0, -3)
 sun_location_where_it_land = NodePath("CollisionShape2D")
-sun_quality = 100
-spawn_height = 0.0
-cooldown_time = 5.0
+cooldown_time = 7.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sun_falling_behaviour"]
 position = Vector2(654.5, 219.5)
 shape = SubResource("RectangleShape2D_ewpwe")
 
-[node name="zombie_wave_management" parent="." node_paths=PackedStringArray("final_as_reward", "lane_1", "lane_2", "lane_3", "lane_4", "lane_5", "lane_6", "lane_7") instance=ExtResource("6_hwwk8")]
+[node name="zombie_wave_management" parent="." node_paths=PackedStringArray("final_as_reward", "lane_1", "lane_2", "lane_3", "lane_4", "lane_5", "lane_6", "lane_7", "collision_where_zombie_is_place_preview") instance=ExtResource("6_hwwk8")]
 offset_left = -576.0
 offset_top = 804.0
 offset_right = 944.0
@@ -135,6 +138,7 @@ lane_4 = NodePath("../lane_3")
 lane_5 = NodePath("../lane_3")
 lane_6 = NodePath("../lane_3")
 lane_7 = NodePath("../lane_3")
+collision_where_zombie_is_place_preview = NodePath("../preview_zombie")
 
 [node name="wave2" parent="zombie_wave_management" instance=ExtResource("7_ewpwe")]
 layout_mode = 2
@@ -162,22 +166,13 @@ _delay_duration = 30.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 
-[node name="wave5" parent="zombie_wave_management" instance=ExtResource("7_ewpwe")]
-layout_mode = 2
-_delay_duration = 30.0
-_zombie_spawn_with_delay_in_between = true
-_delay_interval_between_spawn = 2.5
-_mark_as_big_wave = true
-_automatically_spawn_basic_zombies = true
-_number_of_zombies_in_big_wave = 5
-
 [node name="NewPlantUnlockRewardNode" parent="." instance=ExtResource("11_ugfa7")]
-visible = false
 position = Vector2(523, -52)
-mode_of_choices = "Unlock-Plant"
-reward_description = "Sunflower produce sun overtime"
-plant_name = "sunflower"
-next_scene_to_play = "uid://2rxynntrbfee"
+_reward_description = "Produce sun continuesly"
+_next_scene_to_play = "uid://2rxynntrbfee"
+level_data_name = "day1-1"
+_plant_name = "Sunflower"
+_unlock_plant_tier_1 = true
 
 [node name="SeedPacket" type="Sprite2D" parent="NewPlantUnlockRewardNode"]
 z_index = 155
@@ -214,3 +209,7 @@ position = Vector2(533, 929)
 [node name="DebugMode" parent="." instance=ExtResource("12_07860")]
 visible = false
 position = Vector2(-540, -404)
+
+[node name="preview_zombie" type="CollisionShape2D" parent="."]
+position = Vector2(2154, 119)
+shape = SubResource("RectangleShape2D_cmubk")

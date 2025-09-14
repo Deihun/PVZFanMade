@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbt1b1l5fkbhv"]
+[gd_scene load_steps=10 format=3 uid="uid://cbt1b1l5fkbhv"]
 
 [ext_resource type="Texture2D" uid="uid://b3chs1pphumlp" path="res://Resource/Sun/sun_edge.png" id="1_4cvdt"]
 [ext_resource type="Script" uid="uid://dr8xob08odnxj" path="res://Resource/Sun/sun_animation.gd" id="1_8nkxo"]
 [ext_resource type="Texture2D" uid="uid://d0gog6x531hhu" path="res://Resource/Sun/sun_core.png" id="2_8nkxo"]
+[ext_resource type="AudioStream" uid="uid://dsmix3ly6iraf" path="res://Resource/Sun/pvz sun collecting sound.mp3" id="4_ao1d2"]
 
 [sub_resource type="Animation" id="Animation_8nkxo"]
 length = 0.001
@@ -185,5 +186,8 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SunOnClick"]
 shape = SubResource("CircleShape2D_sp8pv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ao1d2")
 
 [connection signal="input_event" from="SunOnClick" to="." method="_on_sun_on_click_input_event"]

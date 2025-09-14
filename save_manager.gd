@@ -9,7 +9,9 @@ const DEFAULT_SAVE_DATA := {
 	"plant_unlock": [ { "peashooter": [] } ],
 	"shop_upgrade": [ {} ],
 	"level_complete": [ {} ],
-	"plant_limit_cap": 4
+	"plant_limit_cap": 5,
+	"music": 100.0,
+	"sfx" : 100.
 }
 
 func _ready() -> void:
@@ -31,6 +33,17 @@ func save_game() -> void:
 		enc.close()
 	else:
 		push_error("Failed to open save file for writing: " + save_path)
+
+
+func _test_get_jsonfile_content():
+	var file := FileAccess.open_encrypted_with_pass(save_path, FileAccess.READ, ENCRYPTION_KEY)
+	if file:
+		var content: String = file.get_as_text()
+		file.close()
+		var parsed: Variant = JSON.parse_string(content)
+		if typeof(parsed) == TYPE_DICTIONARY:
+			save_data = parsed as Dictionary
+		return content
 
 
 func load_game() -> void:
@@ -69,6 +82,12 @@ func tool_exist(tool_name: String) -> bool:
 			return true
 	return false
 
+func level_exist(level_name : String) -> bool:
+	for level_selection in save_data.get("level_complete", []):
+		if level_name in level_selection:
+			return true
+	return false
+
 func if_plant_of_tier_exist(plant_name: String, tier_name: String) -> bool:
 	for plant_entry in save_data.get("plant_unlock", []):
 		if plant_name in plant_entry:
@@ -89,7 +108,6 @@ func unlock_new_tools(tool_name: String)->void:
 		save_data["shop_upgrade"].append({tool_name: []})
 		save_game() 
 
-
 func unlock_tier(plant_name: String, tier_name: String) -> void:
 	for plant_entry in save_data.get("plant_unlock", []):
 		if plant_name in plant_entry:
@@ -98,6 +116,20 @@ func unlock_tier(plant_name: String, tier_name: String) -> void:
 				tiers.append(tier_name)
 				save_game()
 			return  
+
+func unlock_upgrade_on_tools(tool_name: String, upgrade_name: String) -> void:
+	for tool_upgrade in save_data.get("shop_upgrade", []):
+		if tool_name in tool_upgrade:
+			var upgrade: Array = tool_upgrade[tool_name]
+			if upgrade_name not in upgrade:
+				upgrade.append(upgrade_name)
+				save_game()
+			return  
+
+func complete_level(level_name : String) -> void:
+	if not level_exist(level_name):
+		save_data["level_complete"].append({level_name: []})
+		save_game() 
 
 
 func _reset_save() -> void:

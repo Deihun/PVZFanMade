@@ -1,0 +1,123 @@
+[gd_scene load_steps=15 format=3 uid="uid://th7jb6irnykc"]
+
+[ext_resource type="Script" uid="uid://cyqxg3e8vus4f" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_10.gd" id="1_kc6v0"]
+[ext_resource type="Texture2D" uid="uid://b8i58el7y56a0" path="res://Resource/Levels/background_assets/day.png" id="2_8a661"]
+[ext_resource type="PackedScene" uid="uid://cm3fbr5jbnjmq" path="res://Behaviour/basic_zombie.tscn" id="2_i7jk0"]
+[ext_resource type="Texture2D" uid="uid://d17d4ngwqf0r" path="res://Resource/Levels/background_assets/grass_layer.png" id="3_1r4oe"]
+[ext_resource type="PackedScene" uid="uid://dols1i410thmc" path="res://HUD/borders/level_manager/main_camera.tscn" id="4_dxe8f"]
+[ext_resource type="PackedScene" uid="uid://c3mfdn3yeigf3" path="res://Behaviour/lane_.tscn" id="5_ksiob"]
+[ext_resource type="PackedScene" uid="uid://d1bmnixb7oepy" path="res://Behaviour/sun_falling_behaviour.tscn" id="6_nbprh"]
+[ext_resource type="PackedScene" uid="uid://pspn4765e0xo" path="res://HUD/borders/level_manager/zombie_wave_management.tscn" id="7_fem1s"]
+[ext_resource type="PackedScene" uid="uid://y1wnytmunqr8" path="res://HUD/borders/level_manager/new_plant_unlock_reward_node.tscn" id="11_hw8vu"]
+[ext_resource type="Texture2D" uid="uid://cicfplhte2rh4" path="res://Resource/Levels/Tutorial_Part/award_for_demo.png" id="12_7brbp"]
+[ext_resource type="PackedScene" uid="uid://bj5p7r8n80cn" path="res://HUD/debug_mode.tscn" id="16_x16su"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewpwe"]
+size = Vector2(1295, 699)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbpro"]
+size = Vector2(138, 184)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4qp0"]
+size = Vector2(798, 579.25)
+
+[node name="level_1_tutorial_day9" type="Node2D"]
+position = Vector2(539, 404)
+script = ExtResource("1_kc6v0")
+
+[node name="BasicZombie" parent="." instance=ExtResource("2_i7jk0")]
+position = Vector2(-1014, 113)
+
+[node name="Day" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1198, 136)
+texture = ExtResource("2_8a661")
+
+[node name="GrassLayer" type="Sprite2D" parent="Day"]
+position = Vector2(-494, 117)
+texture = ExtResource("3_1r4oe")
+
+[node name="main_camera" parent="." instance=ExtResource("4_dxe8f")]
+position = Vector2(421, 136)
+_mode = "normal_mode_with_pick"
+sun_on_start = 500
+
+[node name="lane_1" parent="." instance=ExtResource("5_ksiob")]
+position = Vector2(0, -13)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="lane_2" parent="." instance=ExtResource("5_ksiob")]
+position = Vector2(0, 160)
+lane_collision_layer = "lane2"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="lane_3" parent="." instance=ExtResource("5_ksiob")]
+position = Vector2(0, 332)
+lane_collision_layer = "lane3"
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="lane_4" parent="." instance=ExtResource("5_ksiob")]
+position = Vector2(0, 505)
+lane_collision_layer = "lane4"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="lane_5" parent="." instance=ExtResource("5_ksiob")]
+position = Vector2(0, 677)
+lane_collision_layer = "lane5"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="sun_falling_behaviour" parent="." node_paths=PackedStringArray("sun_location_where_it_land") instance=ExtResource("6_nbprh")]
+position = Vector2(0, -3)
+sun_location_where_it_land = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sun_falling_behaviour"]
+position = Vector2(654.5, 219.5)
+shape = SubResource("RectangleShape2D_ewpwe")
+
+[node name="zombie_wave_management" parent="." node_paths=PackedStringArray("main_camera", "final_as_reward", "lane_1", "lane_2", "lane_3", "lane_4", "lane_5", "lane_6", "lane_7", "collision_where_zombie_is_place_preview") instance=ExtResource("7_fem1s")]
+offset_left = -576.0
+offset_top = 804.0
+offset_right = 944.0
+offset_bottom = 2004.0
+mouse_filter = 2
+progress_bar_wave_scene = "uid://dr682qf7yx8v2"
+main_camera = NodePath("../main_camera")
+delay_before_game_start = 25.0
+final_as_reward = NodePath("../NewPlantUnlockRewardNode")
+lane_1 = NodePath("../lane_1")
+lane_2 = NodePath("../lane_2")
+lane_3 = NodePath("../lane_3")
+lane_4 = NodePath("../lane_4")
+lane_5 = NodePath("../lane_5")
+lane_6 = NodePath("../lane_3")
+lane_7 = NodePath("../lane_3")
+collision_where_zombie_is_place_preview = NodePath("../preview_zombie")
+
+[node name="NewPlantUnlockRewardNode" parent="." instance=ExtResource("11_hw8vu")]
+position = Vector2(562, -1)
+
+[node name="SeedPacket" type="Sprite2D" parent="NewPlantUnlockRewardNode"]
+z_index = 155
+position = Vector2(11.5, 16.5)
+scale = Vector2(1.27, 1.33)
+texture = ExtResource("12_7brbp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NewPlantUnlockRewardNode"]
+position = Vector2(6, 21)
+shape = SubResource("RectangleShape2D_mbpro")
+
+[node name="for_storing_groups_of_zombies" type="Node2D" parent="."]
+position = Vector2(-327, -441)
+
+[node name="DebugMode" parent="." instance=ExtResource("16_x16su")]
+visible = false
+position = Vector2(-540, -404)
+
+[node name="preview_zombie" type="CollisionShape2D" parent="."]
+position = Vector2(2154, 189.625)
+shape = SubResource("RectangleShape2D_r4qp0")

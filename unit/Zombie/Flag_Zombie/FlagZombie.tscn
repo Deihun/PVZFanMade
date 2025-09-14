@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnbo5cmpcbs5n"]
+[gd_scene load_steps=8 format=3 uid="uid://dnbo5cmpcbs5n"]
 
 [ext_resource type="Script" uid="uid://dj5ksad7da23i" path="res://unit/Zombie/Flag_Zombie/flag_zombie.gd" id="1_6f40v"]
+[ext_resource type="PackedScene" uid="uid://dlfnwlf3x2t7t" path="res://Behaviour/zombie_movement_management.tscn" id="2_7y5u2"]
 [ext_resource type="PackedScene" uid="uid://b8lpneub1dg61" path="res://Behaviour/projectile_behaviour/zombie_hp_management.tscn" id="2_slo2u"]
 [ext_resource type="PackedScene" uid="uid://y5yyy3rt1el1" path="res://unit/Zombie/Basic_Zombie_Animation.tscn" id="3_p2fm4"]
 
@@ -19,6 +20,8 @@ position = Vector2(219, 332)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_6f40v")
+
+[node name="zombie_movement_management" parent="." instance=ExtResource("2_7y5u2")]
 
 [node name="zombie_hp_management" parent="." instance=ExtResource("2_slo2u")]
 

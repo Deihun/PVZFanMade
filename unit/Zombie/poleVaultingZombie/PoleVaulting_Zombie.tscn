@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://c2eos12l6ww5h"]
+
+[ext_resource type="Script" uid="uid://by8awbkd4jvex" path="res://unit/Zombie/poleVaultingZombie/pole_vaulting_zombie.gd" id="1_3eykk"]
+[ext_resource type="PackedScene" uid="uid://bh1l4pfo77kye" path="res://unit/Zombie/poleVaultingZombie/poleVaultZombie_animation.tscn" id="1_h3jle"]
+[ext_resource type="PackedScene" uid="uid://b8lpneub1dg61" path="res://Behaviour/projectile_behaviour/zombie_hp_management.tscn" id="2_hpxlv"]
+[ext_resource type="PackedScene" uid="uid://dlfnwlf3x2t7t" path="res://Behaviour/zombie_movement_management.tscn" id="2_na2up"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpxlv"]
+size = Vector2(84, 102.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eykk"]
+size = Vector2(90, 102.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_na2up"]
+size = Vector2(76, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_binft"]
+size = Vector2(80, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uh786"]
+size = Vector2(78, 91)
+
+[node name="PoleVaultingZombie" type="CharacterBody2D"]
+position = Vector2(1805, 267)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_3eykk")
+
+[node name="zombie_movement_management" parent="." node_paths=PackedStringArray("animation_node") instance=ExtResource("2_na2up")]
+_amount_of_movement = 4.0
+_movement_repeatition = 30
+animation_node = NodePath("../PoleVaultZombieAnimation")
+
+[node name="zombie_hp_management" parent="." node_paths=PackedStringArray("zombie_animation_node") instance=ExtResource("2_hpxlv")]
+position = Vector2(-17, -106)
+zombie_animation_node = NodePath("../PoleVaultZombieAnimation")
+
+[node name="PoleVaultZombieAnimation" parent="." instance=ExtResource("1_h3jle")]
+y_sort_enabled = true
+position = Vector2(0, -17)
+
+[node name="BiteRange" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BiteRange"]
+position = Vector2(-22, -59.75)
+shape = SubResource("RectangleShape2D_hpxlv")
+disabled = true
+debug_color = Color(0.579206, 0, 0.00687004, 0.42)
+
+[node name="plant_for_vaulting_detection" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="collision" type="CollisionShape2D" parent="plant_for_vaulting_detection"]
+position = Vector2(-102, -59.75)
+shape = SubResource("RectangleShape2D_3eykk")
+
+[node name="check_if_tallnut" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="check_if_tallnut"]
+position = Vector2(-146, -59.5)
+shape = SubResource("RectangleShape2D_na2up")
+
+[node name="character_collision_detect" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -107.5)
+shape = SubResource("RectangleShape2D_binft")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="character_collision_detect2" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -53.5)
+shape = SubResource("RectangleShape2D_uh786")
+debug_color = Color(0, 0, 0, 0.42)
+
+[connection signal="body_entered" from="BiteRange" to="." method="_on_bite_range_body_entered"]
+[connection signal="area_entered" from="plant_for_vaulting_detection" to="." method="_on_plant_for_vaulting_detection_area_entered"]
+[connection signal="body_entered" from="plant_for_vaulting_detection" to="." method="_on_plant_for_vaulting_detection_body_entered"]
+[connection signal="body_entered" from="check_if_tallnut" to="." method="_on_check_if_tallnut_body_entered"]

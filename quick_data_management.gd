@@ -3,8 +3,10 @@ extends Node # Autoload
 @onready var plant_information := $plant_information
 @onready var savemanager := $save_manager
 @onready var global_calls_manager := $global_call_manager
+@onready var common_called_method := $common_called_methods
+@onready var sound_manager := $sound_manager
 
-var sun : int = 50
+var sun : int = 300
 var zombie_killed : int = 0
 var plant_killed : int = 0
 var plant_deployed : int = 0
@@ -16,7 +18,7 @@ var mode_normal_selection
 
 var _selected_data_in_seed_packet : Control 
 var _selected_plant_node_as_icon : Node2D
-var _sunchange_callable : Callable
+
 
 
 
@@ -27,11 +29,13 @@ func _input(event: InputEvent) -> void:
 
 		if tile:
 			if _selected_plant_node_as_icon:
-				print(_selected_plant_node_as_icon.name)
 				if _selected_plant_node_as_icon.name.begins_with("shovel"):
 					if tile.has_method("remove_top_plant"):
 						tile.remove_top_plant()
-						print("successfully remove")
+					_remove_plant_for_queue_plant()
+				elif _selected_plant_node_as_icon.name.begins_with("power"):
+					if tile.has_method("power_occupied_tile"):
+						tile.power_occupied_tile()
 					_remove_plant_for_queue_plant()
 				elif _selected_data_in_seed_packet:
 					if tile.has_method("plant_on_this_tile"):
@@ -106,29 +110,35 @@ func _add_plant_for_queue_plant(seed_packet : Control, animation_node:Node2D):
 	get_tree().current_scene.add_child(selected_plant)
 	_selected_plant_node_as_icon = selected_plant
 	_selected_data_in_seed_packet = seed_packet
+	if seed_packet.has_method("selected_as_object"): seed_packet.selected_as_object(true)
 
-func _add_object_for_queue(cursor_attachment:Node2D):
+func _add_object_for_queue(cursor_attachment:Node2D, master:Control= null):
 	var selected_object = cursor_attachment
 	get_tree().current_scene.add_child(selected_object)
+	if master: 
+		_selected_data_in_seed_packet= master
+		if _selected_data_in_seed_packet.has_method("selected_as_object"): _selected_data_in_seed_packet.selected_as_object(true)
 	_selected_plant_node_as_icon = selected_object
 
 
 
 func _remove_plant_for_queue_plant(value : bool = false):
+	if _selected_data_in_seed_packet: if _selected_data_in_seed_packet.has_method("selected_as_object"): _selected_data_in_seed_packet.selected_as_object()
 	if _selected_plant_node_as_icon:
 		_selected_plant_node_as_icon.queue_free()
 		_selected_plant_node_as_icon = null
 	if not value:
 		_selected_data_in_seed_packet = null
 
-
+var _value_of_last_collected_sun = 0
 func change_sun_value(_sun : int) -> void:
 	sun = _sun
-	_sunchange_callable.call()
+	global_calls_manager.when_sun_value_change_trigger()
 
 func add_sun(value : int = 25):
-	sun += value
-	_sunchange_callable.call()
+	change_sun_value(sun + value)
+	_value_of_last_collected_sun = value
+	global_calls_manager.when_sun_collected_trigger()
 
 func _reset_all_data()->void:
 	sun = 50
@@ -142,13 +152,14 @@ var evolution_power_point := 0
 func gain_evolution_power_point() -> bool:
 	if evolution_power_point >= 4:
 		return false
-	global_calls_manager.plant_boost_value_change_trigger()
 	evolution_power_point += 1
+	global_calls_manager.plant_boost_value_change_trigger()
 	return true
 
 func get_evolution_power() -> bool:
 	if evolution_power_point > 0:
 		evolution_power_point -= 1
+		global_calls_manager.plant_boost_value_change_trigger()
 		return true
 	global_calls_manager.plant_boost_value_change_trigger()
 	return false

@@ -1,0 +1,148 @@
+[gd_scene load_steps=6 format=3 uid="uid://xpjbgxf1n8rp"]
+
+[ext_resource type="Texture2D" uid="uid://dqbhk4sm5wyjq" path="res://HUD/borders/level_manager/_white_shine_reward1.png" id="1_fs7f6"]
+
+[sub_resource type="Animation" id="Animation_b4gpi"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.613902, 1.54687, 2.71813),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(7, 8), Vector2(4.96, 4.335), Vector2(10.295, 12.515), Vector2(2.495, 4.16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.315029, 0.642174, 1.14299, 1.55091, 2.1325),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 15), Vector2(56, 25), Vector2(83, 76), Vector2(25, 69), Vector2(27, -12), Vector2(72, 98)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel2:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.65833, 1.34089, 2.01942, 2.4233, 2.74641),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(90, 81), Vector2(5, 99), Vector2(2, 24), Vector2(91, 7), Vector2(43, 106), Vector2(-5, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel2:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.23992),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(11, 12), Vector2(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_cpnco"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 15)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(90, 81)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel2:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, 12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_supmf"]
+_data = {
+&"RESET": SubResource("Animation_cpnco"),
+&"idle": SubResource("Animation_b4gpi")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4gpi"]
+bg_color = Color(1, 0.952878, 0.845754, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="_empress_sun_effect" type="Node2D"]
+
+[node name="WhiteShineReward1" type="Sprite2D" parent="."]
+self_modulate = Color(0.992157, 0.831373, 0, 0.486275)
+position = Vector2(50, 58)
+scale = Vector2(2.07, 1.915)
+texture = ExtResource("1_fs7f6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_supmf")
+}
+autoplay = "idle"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 2.0
+offset_top = 15.0
+offset_right = 9.0
+offset_bottom = 23.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b4gpi")
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 90.0
+offset_top = 81.0
+offset_right = 101.0
+offset_bottom = 93.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b4gpi")
