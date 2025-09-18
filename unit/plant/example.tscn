@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkw3a6x2gx41d"]
+[gd_scene load_steps=15 format=3 uid="uid://dkw3a6x2gx41d"]
 
 [ext_resource type="PackedScene" uid="uid://d1bmnixb7oepy" path="res://Behaviour/sun_falling_behaviour.tscn" id="2_mt53y"]
 [ext_resource type="PackedScene" uid="uid://nqpa1jdoxd70" path="res://Behaviour/occupied_tile.tscn" id="4_sg7fg"]
@@ -6,13 +6,29 @@
 [ext_resource type="PackedScene" uid="uid://cm3fbr5jbnjmq" path="res://Behaviour/basic_zombie.tscn" id="5_ltlly"]
 [ext_resource type="PackedScene" uid="uid://b1gfd0gx8ncph" path="res://HUD/EvolutionUI/evolution_power_bank_ui.tscn" id="6_mt53y"]
 [ext_resource type="PackedScene" uid="uid://lnmsgs6icjsi" path="res://HUD/EvolutionUI/EvolutionPowerBoost.tscn" id="7_mt53y"]
+[ext_resource type="Script" uid="uid://n3ml3j34e5s0" path="res://unit/plant/testing.gd" id="8_70fp2"]
+[ext_resource type="Shader" uid="uid://cjkbfojy8py64" path="res://unit/Zombie/waterline_shader.gdshader" id="8_ltlly"]
+[ext_resource type="Texture2D" uid="uid://boo42rha4na5h" path="res://unit/plant/CherryBomb/cherrybomb_seedpacket.png" id="9_hxykm"]
 [ext_resource type="PackedScene" uid="uid://c4plv33152tx3" path="res://HUD/mode_hud/mode_normal_selection.tscn" id="9_sg7fg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mt53y"]
-size = Vector2(1243, 803)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70fp2"]
 size = Vector2(334, 84.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vlgqw"]
+shader = ExtResource("8_ltlly")
+shader_parameter/affected_float = 1.10000002384186
+shader_parameter/fade_height = 40.0
+shader_parameter/line_thickness = 0.009
+shader_parameter/time = 2.505
+shader_parameter/white_override = false
+shader_parameter/darkblue_override = false
+shader_parameter/purple_override = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg7fg"]
+size = Vector2(438, 243)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sg7fg"]
+bg_color = Color(0.47742182, 0.8634419, 0.94357467, 1)
 
 [node name="Node2D" type="Node2D"]
 
@@ -29,10 +45,6 @@ position = Vector2(0, -3)
 sun_quality = 100
 cooldown_time = 5.0
 auto_start = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="sun_falling_behaviour"]
-position = Vector2(997, 552)
-shape = SubResource("RectangleShape2D_mt53y")
 
 [node name="Lane" type="Node2D" parent="."]
 position = Vector2(313, 275)
@@ -261,4 +273,29 @@ position = Vector2(1109, 530)
 [node name="EvolutionPowerBoost3" parent="." instance=ExtResource("7_mt53y")]
 position = Vector2(963, 524)
 
+[node name="CherrybombSeedpacket" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vlgqw")
+position = Vector2(1490, 443)
+texture = ExtResource("9_hxykm")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(825, 593)
+collision_layer = 2147483648
+collision_mask = 2
+script = ExtResource("8_70fp2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(216, -65.5)
+shape = SubResource("RectangleShape2D_sg7fg")
+one_way_collision = true
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 802.0
+offset_top = 345.0
+offset_right = 1344.0
+offset_bottom = 715.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sg7fg")
+
 [connection signal="input_event" from="EvolutionPowerBank/Area2D" to="EvolutionPowerBank" method="_on_area_2d_input_event"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

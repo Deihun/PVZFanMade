@@ -23,8 +23,9 @@ func _trigger_attack() -> void:
 
 
 func start_attacking():
+	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation == "shooting_animation": return
 	$AnimationPlayer.stop()
-	$AnimationPlayer.speed_scale =  1.0 + max(min(1.0+attack_animation_speed,4.0),0.1) + randf_range(0.2,0)
+	$AnimationPlayer.speed_scale =  0.001 + max(min(1.0+attack_animation_speed,4.0),0.001) + randf_range(0.1,0.0)
 	$AnimationPlayer.play("shooting_animation")
 
 

@@ -22,5 +22,5 @@ func reduce_pierce(value:int, target_enemy : CharacterBody2D) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("zombie"):
+	if body.is_in_group("zombie") and !body.is_in_group("ignore"):
 		reduce_pierce(1, body)

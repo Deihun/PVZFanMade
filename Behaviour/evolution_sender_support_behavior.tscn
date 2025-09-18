@@ -1,10 +1,427 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbh38lp0g4kv8"]
+[gd_scene load_steps=24 format=3 uid="uid://cbh38lp0g4kv8"]
 
 [ext_resource type="Script" uid="uid://c2rlnucvferve" path="res://Behaviour/evolution_sender_support_behavior.gd" id="1_c28qu"]
 [ext_resource type="PackedScene" uid="uid://c1qgfgabtjfj4" path="res://HUD/EvolutionUI/evolve_ready_animation.tscn" id="2_mwd5x"]
 [ext_resource type="Texture2D" uid="uid://dt4368gtnurku" path="res://HUD/borders/level_manager/_white_shine_reward2.png" id="3_81gb2"]
+[ext_resource type="Script" uid="uid://bajo0i7me547l" path="res://Behaviour/evolving_effects.gd" id="3_qr6o6"]
+[ext_resource type="Texture2D" uid="uid://bohvtthmqx5o6" path="res://HUD/EvolutionUI/evolving_effects/impact_effect_1/2.png" id="4_4suvd"]
 [ext_resource type="AudioStream" uid="uid://bf1gw4iam7ul7" path="res://HUD/EvolutionUI/receive_power.ogg" id="4_scq1t"]
+[ext_resource type="Texture2D" uid="uid://c3l0dcnu1wrve" path="res://HUD/EvolutionUI/evolving_effects/shiny_effects/1.png" id="5_8b2ko"]
+[ext_resource type="Texture2D" uid="uid://32p2jh357v37" path="res://HUD/EvolutionUI/evolving_effects/impact_effect_1/1.png" id="5_kebl3"]
 [ext_resource type="AudioStream" uid="uid://bmuddw0ux50ud" path="res://Behaviour/power_evolving_sfx.mp3" id="5_pme5a"]
+[ext_resource type="Texture2D" uid="uid://q3gfah710ald" path="res://HUD/EvolutionUI/evolving_effects/impact_effect_1/3.png" id="6_8b2ko"]
+[ext_resource type="Texture2D" uid="uid://obu6i870gv2w" path="res://HUD/EvolutionUI/evolving_effects/evolve_clutter effects/variety_3/1.png" id="6_l201a"]
+[ext_resource type="Texture2D" uid="uid://cwqnvmhr0h8e6" path="res://HUD/EvolutionUI/evolving_effects/evolve_clutter effects/variety_3/2.png" id="7_hte2m"]
+[ext_resource type="Texture2D" uid="uid://dypaj6b8ecwuj" path="res://HUD/EvolutionUI/evolving_effects/evolve_clutter effects/variety_3/3.png" id="8_ikqpx"]
+
+[sub_resource type="Animation" id="Animation_pmh8t"]
+resource_name = "play"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.19, 0.36),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.37, 0.54),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_t8vth"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uf3rc"]
+_data = {
+&"RESET": SubResource("Animation_t8vth"),
+&"play": SubResource("Animation_pmh8t")
+}
+
+[sub_resource type="Animation" id="Animation_qae50"]
+resource_name = "trigger"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Evolving_Effects/impact:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.35, 0.53, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_4suvd"), ExtResource("5_kebl3"), ExtResource("4_4suvd"), ExtResource("5_kebl3"), ExtResource("6_8b2ko")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Evolving_Effects/impact:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Evolving_Effects/impact:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Evolving_Effects/impact:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.67801046)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Evolving_Effects/impact:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.19999999, 1.1666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Evolving_Effects/shiny_1:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-23, -33), Vector2(-23, -81)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Evolving_Effects/shiny_1:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Evolving_Effects/shiny_2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Evolving_Effects/shiny_2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4, 1), Vector2(-2, -68)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Evolving_Effects/shiny_3:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Evolving_Effects/shiny_3:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(33, -41), Vector2(44, -93)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Evolving_Effects/shiny_4:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2, -72), Vector2(-16, -138)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Evolving_Effects/shiny_4:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k7hkt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Evolving_Effects/impact:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_4suvd")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Evolving_Effects/impact:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Evolving_Effects/impact:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Evolving_Effects/impact:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Evolving_Effects/impact:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Evolving_Effects/shiny_1:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-23, -33)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Evolving_Effects/shiny_1:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Evolving_Effects/shiny_2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Evolving_Effects/shiny_2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Evolving_Effects/shiny_3:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Evolving_Effects/shiny_3:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(33, -41)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Evolving_Effects/shiny_4:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -72)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Evolving_Effects/shiny_4:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l201a"]
+_data = {
+&"RESET": SubResource("Animation_k7hkt"),
+&"trigger": SubResource("Animation_qae50")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwd5x"]
 bg_color = Color(0.987, 0.987, 0.987, 1)
@@ -57,11 +474,69 @@ _data = {
 script = ExtResource("1_c28qu")
 
 [node name="EvolveReadyAnimation" parent="." instance=ExtResource("2_mwd5x")]
+visible = false
 z_index = 100
 position = Vector2(-2, -84)
 scale = Vector2(0.38, 0.38)
 
+[node name="Evolving_Effects" type="Node2D" parent="."]
+visible = false
+z_index = 100
+position = Vector2(0, 20)
+script = ExtResource("3_qr6o6")
+
+[node name="impact" type="Sprite2D" parent="Evolving_Effects"]
+position = Vector2(2, -12)
+texture = ExtResource("4_4suvd")
+offset = Vector2(1, -82)
+
+[node name="shiny_1" type="Sprite2D" parent="Evolving_Effects"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-23, -33)
+texture = ExtResource("5_8b2ko")
+
+[node name="shiny_2" type="Sprite2D" parent="Evolving_Effects"]
+position = Vector2(-4, 1)
+texture = ExtResource("5_8b2ko")
+
+[node name="shiny_3" type="Sprite2D" parent="Evolving_Effects"]
+position = Vector2(33, -41)
+texture = ExtResource("5_8b2ko")
+
+[node name="shiny_4" type="Sprite2D" parent="Evolving_Effects"]
+position = Vector2(-2, -72)
+texture = ExtResource("5_8b2ko")
+
+[node name="Node2D" type="Node2D" parent="Evolving_Effects"]
+position = Vector2(-1, -50)
+
+[node name="1" type="Sprite2D" parent="Evolving_Effects/Node2D"]
+visible = false
+texture = ExtResource("6_l201a")
+
+[node name="2" type="Sprite2D" parent="Evolving_Effects/Node2D"]
+visible = false
+position = Vector2(-10, -2)
+texture = ExtResource("7_hte2m")
+
+[node name="3" type="Sprite2D" parent="Evolving_Effects/Node2D"]
+visible = false
+position = Vector2(-6, 10)
+texture = ExtResource("8_ikqpx")
+
+[node name="clutter_effect" type="AnimationPlayer" parent="Evolving_Effects/Node2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_uf3rc")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Evolving_Effects"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_l201a")
+}
+
 [node name="Panel" type="Panel" parent="."]
+visible = false
 offset_left = -41.0
 offset_top = -23.0
 offset_right = 37.0
@@ -94,3 +569,4 @@ stream = ExtResource("5_pme5a")
 bus = &"SFX"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="animation_finished" from="Evolving_Effects/AnimationPlayer" to="Evolving_Effects" method="_on_animation_player_animation_finished"]

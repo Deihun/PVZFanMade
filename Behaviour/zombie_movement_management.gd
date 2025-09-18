@@ -2,6 +2,7 @@ extends Node
 @export var _amount_of_movement : float = 2.55
 @export var _movement_repeatition : int = 20
 @export var animation_node : Node2D
+@export var final_render : Node2D
 @export_enum("LEFT","RIGHT") var zombie_direction := "LEFT"
 var __im_eating := false
 
@@ -25,8 +26,6 @@ func _ready() -> void:
 			shader_mat = animation_node.material.duplicate()
 			animation_node.material = shader_mat
 
-			# Just set directly
-			shader_mat.set("shader_parameter/chill_strength", 0.0)
 
 
 
@@ -133,7 +132,7 @@ func _get_chill_multiplier() -> float:
 	return active_cc["chill"][0]["multiplier"]
 
 func _set_chill_strength(value: float) -> void:
-	shader_mat.set("shader_parameter/chill_strength", value)
+	final_render.material.set("shader_parameter/darkblue_override", (value != 0.0))
 
 
 

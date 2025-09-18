@@ -19,7 +19,6 @@ func reduce_pierce(value : int = 1):
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("detecting")
 	return
 	if body.get_groups().has("zombie"):
 		await get_tree().create_timer(0.01)

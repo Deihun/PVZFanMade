@@ -18,6 +18,10 @@ var initial_position_:= Vector2(421.0,136.0)
 var last_position:= Vector2(1950.0,136.0)
 var when_starting_callable : Array[Callable] = []
 
+var game_over_trigger :=false
+
+
+
 func _ready() -> void:
 	QuickDataManagement.sound_manager.start_up_wave = music_at_start
 	QuickDataManagement.sound_manager.mid_wave = music_mid_wave
@@ -97,3 +101,19 @@ func start_call_all_methods():
 	for method  in when_starting_callable:
 		if method.is_valid():method.call()
 		else: when_starting_callable.erase(method)
+
+
+func game_over(enemy_who_enter : Node2D):
+	if game_over_trigger: return
+	enemy_who_enter.add_to_group("ignore")
+	game_over_trigger = true
+	var enemy_global_position = enemy_who_enter.global_position
+	var game_over_scene := preload("res://Resource/game_over/game_over_scene.tscn").instantiate()
+	add_child(game_over_scene)
+	game_over_scene.position += Vector2(-960,-540)
+	get_tree().current_scene.remove_child(enemy_who_enter)
+	game_over_scene.add_child(enemy_who_enter)
+	enemy_who_enter.global_position = enemy_global_position
+	enemy_who_enter.z_index = 205
+	await get_tree().create_timer(3.0).timeout
+	print(game_over_scene.get_children())

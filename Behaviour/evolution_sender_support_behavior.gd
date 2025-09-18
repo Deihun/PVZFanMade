@@ -140,6 +140,11 @@ func _after_upgrade():
 	_can_evolve = false
 	$EvolveReadyAnimation.hide()
 	update_current_evolution_ui()
+	match _current_tier:
+		1: $Evolving_Effects.play_for_tier1_Effect()
+		2: $Evolving_Effects.play_for_tier2_Effect()
+		
+	
 	for call in _everytime_i_evolve_array_callable: 
 		if call.is_valid(): call.call() 
 		else: _everytime_i_evolve_array_callable.erase(call)

@@ -22,6 +22,7 @@ size = Vector2(138, 184)
 size = Vector2(798, 579.25)
 
 [node name="level_1_tutorial_day9" type="Node2D"]
+y_sort_enabled = true
 position = Vector2(539, 404)
 script = ExtResource("1_kc6v0")
 

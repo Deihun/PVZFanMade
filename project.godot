@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Plant vs. Zombie: Fanmade WorldTrip"
 run/main_scene="uid://c83n7po5as7gv"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [autoload]
 
@@ -24,7 +24,6 @@ Savemanagerr="*res://save_manager/savemanagerr.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [input]
 
@@ -41,6 +40,8 @@ check_plant_in_details={
 2d_physics/layer_3="ally_projectile"
 2d_physics/layer_4="enemy_projectile"
 2d_physics/layer_5="enemy_obstacles"
+2d_physics/layer_6="dimmed_zombie"
+2d_physics/layer_7="lawn_mower"
 2d_physics/layer_9="background_miscellaneous"
 2d_physics/layer_10="props_"
 2d_physics/layer_11="lane_1"
@@ -56,4 +57,5 @@ check_plant_in_details={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.619758, 0.702695, 0.345436, 1)

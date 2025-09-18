@@ -20,6 +20,7 @@ extends Node2D
 	#if body.is_in_group("spawn_protection"):body.remove_from_group("spawn_protection")
 
 func _ready() -> void:
+	$plant_decoy.add_to_group("plant")
 	match lane_collision_layer:
 		"lane1":
 			physic_body_interaction.collision_layer = 1 << 10
@@ -42,3 +43,16 @@ func _on_catch_projectiles_area_entered(area: Area2D) -> void:
 
 func _on_catch_projectiles_body_entered(body: Node2D) -> void:
 	body.queue_free()
+
+
+func _on_trigger_game_over_body_entered(body: Node2D) -> void:
+	if body.is_in_group("zombie"):
+		print("detecting")
+		var scene := get_tree().current_scene
+		if scene:
+			# Look for the first Camera2D in the current scene
+			var camera := scene.get_node_or_null("main_camera")
+			if camera == null:
+				camera = scene.find_child("main_camera", true, false)
+			if camera and camera is Camera2D:
+				if camera.has_method("game_over"): camera.game_over(body)

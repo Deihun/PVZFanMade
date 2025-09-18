@@ -78,7 +78,7 @@ func _ready() -> void:
 func _attack_mode():
 	var attac_speed : float = 1.0 + ($PlantDamageNodeManager.bonus_attackspeed * 100.0)
 	on_attack_mode = true
-	if has_node("peashooter"): $peashooter.attack_animation_speed = 0.01 * $PlantDamageNodeManager.bonus_attackspeed
+	if has_node("peashooter"): $peashooter.attack_animation_speed = 0.009 * $PlantDamageNodeManager.bonus_attackspeed
 	elif repeater: repeater.attack_animation_speed = 0.3 * $PlantDamageNodeManager.bonus_attackspeed
 	elif _threepeater: _threepeater.attack_animation_speed = 0.4 * $PlantDamageNodeManager.bonus_attackspeed
 

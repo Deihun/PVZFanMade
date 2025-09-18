@@ -1,4 +1,7 @@
 extends Node2D
+@export var arm_position : Node2D
+@export var head_position : Node2D
+
 var played_death : bool =false
 var mark_as_flag_zombie := false
 var hand_still_attach : bool = true
@@ -7,26 +10,27 @@ var eat_callable : Callable
 var disappear_callable : Callable
 
 
-@onready var _head_1_sprite:= $BasicZombieBody/node_head/BasicZombieHead1
-@onready var _head_2_sprite:= $BasicZombieBody/node_head/BasicZombieHead2
-@onready var _arm_front_1_sprite := $BasicZombieBody/ArmFront1
-@onready var _arm_front_2_sprite := $BasicZombieBody/ArmFront2
-@onready var _body_sprite := $BasicZombieBody
-@onready var _arm_back_1_sprite := $ArmBack2/ArmBack1
-@onready var _arm_back_2_sprite := $ArmBack2
-@onready var _arm_foot_back_sprite := $BasicZombieFootBack
-@onready var _arm_foot_front_sprite := $BasicZombieFootFront
+@onready var _head_1_sprite:= $Basic_Zombie/BasicZombieBody/node_head/BasicZombieHead1
+@onready var _head_2_sprite:= $Basic_Zombie/BasicZombieBody/node_head/BasicZombieHead2
+@onready var _arm_front_1_sprite := $Basic_Zombie/BasicZombieBody/ArmFront1
+@onready var _arm_front_2_sprite := $Basic_Zombie/BasicZombieBody/ArmFront2
+@onready var _body_sprite := $Basic_Zombie/BasicZombieBody
+@onready var _arm_back_1_sprite := $Basic_Zombie/ArmBack2/ArmBack1
+@onready var _arm_back_2_sprite := $Basic_Zombie/ArmBack2
+@onready var _arm_foot_back_sprite := $Basic_Zombie/BasicZombieFootBack
+@onready var _arm_foot_front_sprite := $Basic_Zombie/BasicZombieFootFront
 
 
 
-@onready var _armor:= $BasicZombieBody/node_head/BasicZombieHead1/armor
+@onready var _armor:= $Basic_Zombie/BasicZombieBody/node_head/BasicZombieHead1/armor
+
 
 func get_animation_player()->AnimationPlayer:
 	return $AnimationPlayer
 
 func set_flag_zombie():
 	mark_as_flag_zombie = true
-	$ArmBack2/stored_hold_item/Flag.show()
+	$ArmBack1/ArmBack2/stored_hold_item/Flag.show()
 	$AnimationPlayer.speed_scale = 1.45
 
 func play_bite_sound_effect():
@@ -58,9 +62,9 @@ func dead():
 	played_death=true
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("death_animation")
-	var head_node := $BasicZombieBody/node_head
+	var head_node := $BasicZombieBody/RigidBody2D
 	$head_popout_sfx.play()
-	QuickDataManagement.common_called_method.popup_zombie_head_animation(self,head_node)
+	QuickDataManagement.common_called_method.popup_zombie_head_animation(self,head_node,head_position)
 
 func set_idle_animation():
 	$AnimationPlayer.stop()
@@ -70,6 +74,6 @@ func base_zombie_is_half():
 	if !hand_still_attach:
 		return
 	hand_still_attach = false
-	var arm := $BasicZombieBody/ArmFront2
+	var arm := $BasicZombieBody/ArmFront1/ArmFront2
 	QuickDataManagement.common_called_method.pop_arm_if_half(arm)
 	hand_still_attach = false

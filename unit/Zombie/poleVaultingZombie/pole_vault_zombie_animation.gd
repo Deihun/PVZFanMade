@@ -1,4 +1,6 @@
 extends Node2D
+@export var head_position : Node2D
+
 var _already_trigger_death:=false
 var _already_half := false
 var _run_callable : Callable
@@ -65,7 +67,7 @@ func _death_animation():
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("death_while_running")
 	var head_node =$main_control/PoleVaultZombieMainBody/head
-	QuickDataManagement.common_called_method.popup_zombie_head_animation(self,head_node)
+	QuickDataManagement.common_called_method.popup_zombie_head_animation(self,head_node,head_position)
 
 
 func _remove_arm():

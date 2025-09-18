@@ -1,4 +1,6 @@
 extends Area2D
+@onready var hold_progress: TextureProgressBar = $Node2D/progress
+
 @export_category("Tile Settings")
 @export var can_land_be_planted := true
 @export var can_water_be_planted := false
@@ -8,6 +10,11 @@ var obstacles
 var tile_ground_occupy
 var tile_under_occupy
 var tile_above_occupy
+
+var press_time: float = 0.0
+var is_holding: bool = false
+const HOLD_THRESHOLD := 1.0
+var hold_elapsed: float = 0.0
 
 
 func plant_on_this_tile(seed_packet:Control):
@@ -62,18 +69,46 @@ func remove_top_plant():
 
 func _ready() -> void:
 	add_to_group("plant_tile")
+	hold_progress.visible = false
+	hold_progress.min_value = 0.0
+	hold_progress.max_value = 100.0
+	hold_progress.value = 0.0
+
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if !QuickDataManagement.savemanager.tool_exist("powerbank"): return
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if Input.is_action_pressed("check_plant_in_details"):
-			if !tile_ground_occupy: return
-			var evolution_of_plant = tile_ground_occupy.get_node("EvolutionSenderSupportBehavior")
-			if !evolution_of_plant: return
-			var UI_placement_evolutionBoarder = _get_the_UI_placement_evolutionboarder()
-			var array_list : Array[Control] = [evolution_of_plant._create_the_evolution_boarder()]
-			UI_placement_evolutionBoarder.set_current_evolution_details(array_list)
+	if !QuickDataManagement.savemanager.tool_exist("powerbank"):
+		return
+	if !tile_ground_occupy: return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			is_holding = true
+			hold_elapsed = 0.0
+		else:
+			if is_holding:
+				if hold_elapsed >= HOLD_THRESHOLD:
+					_run_evolution_boarder()
+					hold_progress.value = 0.0
+				else:
+					_on_short_click()
+					hold_progress.value = 0.0
+				is_holding = false
+				hold_progress.visible = false
+				
+
+
+func _run_evolution_boarder() -> void:
+	if !tile_ground_occupy: return
+	var evolution_of_plant = tile_ground_occupy.get_node("EvolutionSenderSupportBehavior")
+	if !evolution_of_plant: return
+	var UI_placement_evolutionBoarder = _get_the_UI_placement_evolutionboarder()
+	var array_list : Array[Control] = [evolution_of_plant._create_the_evolution_boarder()]
+	UI_placement_evolutionBoarder.set_current_evolution_details(array_list)
+
+
+func _on_short_click() -> void:
+	pass
+
 
 
 func _get_the_UI_placement_evolutionboarder()-> Control:
@@ -88,4 +123,14 @@ func _get_the_UI_placement_evolutionboarder()-> Control:
 func _get_node_prioritizing_camera()-> Node:
 	var main_camera = get_tree().current_scene.get_node("main_camera")
 	if main_camera: return main_camera
-	return get_tree().current_scene
+	return get_tree().current_scene 
+
+
+func _process(delta: float) -> void:
+	if is_holding:
+		hold_elapsed += delta
+		var percent = clamp(hold_elapsed / HOLD_THRESHOLD, 0.0, 1.0)
+		if percent >= 0.25 and !hold_progress.visible:
+			hold_progress.visible = true
+		if hold_progress.visible:
+			hold_progress.value = percent * 100.0

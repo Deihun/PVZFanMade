@@ -1,6 +1,7 @@
 extends Node2D
 @export var head_attachment_for_holding_armor : Node2D
-@export var zombie_animation_node : Node2D
+@export var zombie_animation_node : Node
+@export var final_render : Sprite2D
 
 var take_damage_Callable : Array[Callable] = []
 var zombie_death_callable : Array[Callable] = []
@@ -23,9 +24,8 @@ func take_damage(value:int, last_plant_to_perform_damage ,truedamage:bool = fals
 	if value > 0: for method in take_damage_Callable: if method.is_valid():method.call()
 	current_health -= value 
 	if last_plant_to_perform_damage: last_to_perform_damage = last_plant_to_perform_damage
-	if zombie_animation_node:
-		zombie_animation_node.modulate.a = 0.5
-		$Timer.start()
+	final_render.material.set("shader_parameter/white_override",true)
+	$Timer.start()
 	$max_health_condition_handler._check_health_conditions()
 	return _check_if_zombie_died()
 
@@ -60,7 +60,9 @@ func _perform_damage_on_armor_first(value: int) -> int:
 	return current_damage_calculation
 
 func _add_cone_head_armor():
-	if !head_attachment_for_holding_armor: return
+	if !head_attachment_for_holding_armor: 
+		print("cant detect armor")
+		return
 	var cone_head = load("res://unit/Zombie/basic_zombie/cone_head_armor.tscn").instantiate()
 	head_attachment_for_holding_armor.add_child(cone_head)
 	head_attachment_for_holding_armor.z_index=5
@@ -98,4 +100,4 @@ func _add_health_threshold_condition(method : Callable, maxhealth_threshold_perc
 
 
 func _on_timer_timeout() -> void:
-	if zombie_animation_node:zombie_animation_node.modulate.a=1.0
+	final_render.material.set("shader_parameter/white_override",false)

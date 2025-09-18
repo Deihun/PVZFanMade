@@ -21,7 +21,7 @@ size = Vector2(1295, 699)
 size = Vector2(195, 111)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_le7bo"]
-size = Vector2(798, 720.5)
+size = Vector2(798, 414.25)
 
 [node name="level_1_tutorial_day2" type="Node2D"]
 position = Vector2(539, 404)
@@ -276,5 +276,5 @@ visible = false
 position = Vector2(-540, -404)
 
 [node name="preview_zombie" type="CollisionShape2D" parent="."]
-position = Vector2(2154, 119)
+position = Vector2(2154, 272.125)
 shape = SubResource("RectangleShape2D_le7bo")

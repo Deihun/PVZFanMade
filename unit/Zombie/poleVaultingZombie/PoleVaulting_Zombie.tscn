@@ -1,9 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2eos12l6ww5h"]
+[gd_scene load_steps=13 format=3 uid="uid://c2eos12l6ww5h"]
 
 [ext_resource type="Script" uid="uid://by8awbkd4jvex" path="res://unit/Zombie/poleVaultingZombie/pole_vaulting_zombie.gd" id="1_3eykk"]
 [ext_resource type="PackedScene" uid="uid://bh1l4pfo77kye" path="res://unit/Zombie/poleVaultingZombie/poleVaultZombie_animation.tscn" id="1_h3jle"]
 [ext_resource type="PackedScene" uid="uid://b8lpneub1dg61" path="res://Behaviour/projectile_behaviour/zombie_hp_management.tscn" id="2_hpxlv"]
 [ext_resource type="PackedScene" uid="uid://dlfnwlf3x2t7t" path="res://Behaviour/zombie_movement_management.tscn" id="2_na2up"]
+[ext_resource type="Script" uid="uid://i3l7jsl25r0u" path="res://unit/Zombie/basic_zombie/sub_viewport.gd" id="3_uh786"]
+[ext_resource type="Shader" uid="uid://cjkbfojy8py64" path="res://unit/Zombie/waterline_shader.gdshader" id="4_6blfm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhf8p"]
+shader = ExtResource("4_6blfm")
+shader_parameter/affected_float = 1.10000002384186
+shader_parameter/fade_height = 40.035
+shader_parameter/line_thickness = 0.009
+shader_parameter/time = 0.0
+shader_parameter/white_override = false
+shader_parameter/darkblue_override = false
+shader_parameter/purple_override = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hpxlv"]
 size = Vector2(84, 102.5)
@@ -21,23 +33,45 @@ size = Vector2(80, 17)
 size = Vector2(78, 91)
 
 [node name="PoleVaultingZombie" type="CharacterBody2D"]
-position = Vector2(1805, 267)
+position = Vector2(1809, 267)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_3eykk")
 
-[node name="zombie_movement_management" parent="." node_paths=PackedStringArray("animation_node") instance=ExtResource("2_na2up")]
+[node name="head_position" type="Node2D" parent="."]
+position = Vector2(-9, -162)
+
+[node name="arm_position" type="Node2D" parent="."]
+
+[node name="zombie_movement_management" parent="." node_paths=PackedStringArray("animation_node", "final_render") instance=ExtResource("2_na2up")]
 _amount_of_movement = 4.0
 _movement_repeatition = 30
-animation_node = NodePath("../PoleVaultZombieAnimation")
+animation_node = NodePath("../SubViewport/PoleVaultZombieAnimation")
+final_render = NodePath("../final_render")
 
-[node name="zombie_hp_management" parent="." node_paths=PackedStringArray("zombie_animation_node") instance=ExtResource("2_hpxlv")]
-position = Vector2(-17, -106)
-zombie_animation_node = NodePath("../PoleVaultZombieAnimation")
+[node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("_animation_node", "_sprite_rendering")]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(350, 300)
+size_2d_override = Vector2i(815, 0)
+render_target_update_mode = 4
+script = ExtResource("3_uh786")
+_animation_node = NodePath("PoleVaultZombieAnimation")
+_sprite_rendering = NodePath("../final_render")
 
-[node name="PoleVaultZombieAnimation" parent="." instance=ExtResource("1_h3jle")]
+[node name="PoleVaultZombieAnimation" parent="SubViewport" node_paths=PackedStringArray("head_position") instance=ExtResource("1_h3jle")]
 y_sort_enabled = true
-position = Vector2(0, -17)
+position = Vector2(300, 300)
+head_position = NodePath("../../head_position")
+
+[node name="final_render" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lhf8p")
+position = Vector2(-38, -160)
+
+[node name="zombie_hp_management" parent="." node_paths=PackedStringArray("zombie_animation_node", "final_render") instance=ExtResource("2_hpxlv")]
+position = Vector2(-17, -106)
+zombie_animation_node = NodePath("../SubViewport/PoleVaultZombieAnimation")
+final_render = NodePath("../final_render")
 
 [node name="BiteRange" type="Area2D" parent="."]
 collision_layer = 0

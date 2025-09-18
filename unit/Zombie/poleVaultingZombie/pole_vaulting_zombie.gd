@@ -7,31 +7,32 @@ var target_plant
 func _process(delta: float) -> void:
 	if $BiteRange/CollisionShape2D.disabled: return
 	if target_plant: 
-		$PoleVaultZombieAnimation._eating_animation()
+		$SubViewport/PoleVaultZombieAnimation._eating_animation()
 		$zombie_movement_management.__im_eating = true
-	else: $PoleVaultZombieAnimation.walk_animation()
+	else: $SubViewport/PoleVaultZombieAnimation.walk_animation()
 
 
 func _ready() -> void:
+	var animation_node = $SubViewport/PoleVaultZombieAnimation
 	add_to_group("zombie")
 	$zombie_hp_management._add_health_threshold_condition(func(): trigger_half(),50, 5, true)
 	$zombie_hp_management.zombie_death_callable.append(Callable(self,"death"))
-	$PoleVaultZombieAnimation._run_callable = Callable($zombie_movement_management,"move")
-	$PoleVaultZombieAnimation._vaulting_callable = Callable(self,"vaulting")
-	$PoleVaultZombieAnimation._walk_callable = Callable($zombie_movement_management,"move")
-	$PoleVaultZombieAnimation._change_hitbox_callable= Callable(self,"change_secondary_hitbox")
-	$PoleVaultZombieAnimation._eat_callable = Callable(self,"eating_script")
-	$PoleVaultZombieAnimation.run_animation()
+	animation_node._run_callable = Callable($zombie_movement_management,"move")
+	animation_node._vaulting_callable = Callable(self,"vaulting")
+	animation_node._walk_callable = Callable($zombie_movement_management,"move")
+	animation_node._change_hitbox_callable= Callable(self,"change_secondary_hitbox")
+	animation_node._eat_callable = Callable(self,"eating_script")
+	animation_node.run_animation()
 
 func change_secondary_hitbox():
 	$character_collision_detect2.disabled = !$character_collision_detect2.disabled
 
 func trigger_half():
-	$PoleVaultZombieAnimation._remove_arm()
+	$SubViewport/PoleVaultZombieAnimation._remove_arm()
 
 func death() -> void:
 	$character_collision_detect.disabled=true
-	$PoleVaultZombieAnimation._death_animation()
+	$SubViewport/PoleVaultZombieAnimation._death_animation()
 	await get_tree().create_timer(1.75).timeout
 	queue_free()
 
@@ -50,11 +51,11 @@ func vaulting():
 func _set_as_idle():
 	$character_collision_detect.disabled =true
 	$character_collision_detect2.disabled =true
-	$PoleVaultZombieAnimation.set_idle_animation()
+	$SubViewport/PoleVaultZombieAnimation.set_idle_animation()
 
 func _on_plant_for_vaulting_detection_body_entered(body: Node2D) -> void:
 	if body.is_in_group("plant"):
-		$PoleVaultZombieAnimation.vault_animation()
+		$SubViewport/PoleVaultZombieAnimation.vault_animation()
 		$zombie_movement_management._amount_of_movement = 2.55
 		$zombie_movement_management._movement_repeatition = 20
 		await get_tree().create_timer(1.0).timeout
@@ -62,7 +63,7 @@ func _on_plant_for_vaulting_detection_body_entered(body: Node2D) -> void:
 
 func _on_plant_for_vaulting_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("plant"):
-		$PoleVaultZombieAnimation.vault_animation()
+		$SubViewport/PoleVaultZombieAnimation.vault_animation()
 		$zombie_movement_management._amount_of_movement = 2.55
 		$zombie_movement_management._movement_repeatition = 20
 		await get_tree().create_timer(1.0).timeout
