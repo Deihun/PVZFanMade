@@ -4,6 +4,7 @@ const ENCRYPTION_KEY := "my_super_secret_key_32bytes!"
 var save_path: String
 var save_data: Dictionary = {}
 
+
 # Default data for reset/new save
 const DEFAULT_SAVE_DATA := {
 	"plant_unlock": [ { "peashooter": [] } ],
@@ -11,7 +12,8 @@ const DEFAULT_SAVE_DATA := {
 	"level_complete": [ {} ],
 	"plant_limit_cap": 5,
 	"music": 100.0,
-	"sfx" : 100.
+	"sfx" : 100.0,
+	"fps" : 0.0
 }
 
 func _ready() -> void:

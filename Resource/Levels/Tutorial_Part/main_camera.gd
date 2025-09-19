@@ -116,4 +116,5 @@ func game_over(enemy_who_enter : Node2D):
 	enemy_who_enter.global_position = enemy_global_position
 	enemy_who_enter.z_index = 205
 	await get_tree().create_timer(3.0).timeout
-	print(game_over_scene.get_children())
+	var zombie_wave_management = get_tree().current_scene.find_child("zombie_wave_management")
+	zombie_wave_management.queue_free()

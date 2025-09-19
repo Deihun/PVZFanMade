@@ -14,10 +14,10 @@ size = Vector2(170, 180)
 size = Vector2(2695, 41)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lqat"]
-size = Vector2(85, 89)
+size = Vector2(840, 89)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ux24r"]
-size = Vector2(85, 89)
+size = Vector2(886, 89)
 
 [node name="lane_" type="Node2D"]
 script = ExtResource("1_q3gxs")
@@ -114,7 +114,7 @@ position = Vector2(-47, 0)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plant_decoy"]
-position = Vector2(-225.5, -34.5)
+position = Vector2(-603, -34.5)
 shape = SubResource("RectangleShape2D_4lqat")
 debug_color = Color(0, 0, 0, 0.41960785)
 
@@ -123,8 +123,7 @@ collision_layer = 2147483648
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="trigger_game_over"]
-visible = false
-position = Vector2(-225.5, -34.5)
+position = Vector2(-626, -34.5)
 shape = SubResource("RectangleShape2D_ux24r")
 
 [connection signal="area_entered" from="Catch_projectiles" to="." method="_on_catch_projectiles_area_entered"]

@@ -3,7 +3,7 @@ extends Node2D
 @export var speed : float = 450.0
 @export var pierce : int = 1
 var master
-var damage : int
+var damage : int = 20
 var ignore_armor : bool = false
 
 func _ready():

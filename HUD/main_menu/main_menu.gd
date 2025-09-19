@@ -1,4 +1,6 @@
 extends Node2D
+func _ready() -> void:
+	QuickDataManagement.sound_manager.play_music(load("res://HUD/main_menu/Plants vs. Zombies (Main Theme).mp3"))
 
 func play_is_press():
 	$AudioStreamPlayer.play()
@@ -18,7 +20,8 @@ func play_is_press():
 	#QuickDataManagement.savemanager._reset_save()
 	get_tree().change_scene_to_file("res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_1.tscn")
 func settings_is_press():
-	pass
+	var settings_ui : Control = preload("res://HUD/main_menu/settings/settings_UI.tscn").instantiate()
+	get_tree().current_scene.add_child(settings_ui)
 func almanac_is_press():
 	pass
 func about_is_press():

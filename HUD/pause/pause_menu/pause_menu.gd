@@ -4,8 +4,12 @@ var time_scale_before : float
 func _ready() -> void:
 	time_scale_before = Engine.time_scale
 	Engine.time_scale = 0.0
+	$MusicLabel/music_slider.value = QuickDataManagement.savemanager.get_value("music")
+	$SfxLabel/sfx_slider.value = QuickDataManagement.savemanager.get_value("sfx")
 func _on_tree_exited() -> void:
 	Engine.time_scale = time_scale_before
+	QuickDataManagement.savemanager.set_value("music",$MusicLabel/music_slider.value)
+	QuickDataManagement.savemanager.set_value("sfx",$SfxLabel/sfx_slider.value)
 
 
 func _on_resume_mouse_entered() -> void:
@@ -36,3 +40,19 @@ func _on_restart_mouse_entered() -> void:
 func _on_restart_mouse_exited() -> void:
 	$PauseBoarder/RESTART/PauseMainmenuButtonHover.hide()
 	$PauseBoarder/RESTART/PauseMainmenuButtonUnhover.show()
+
+
+func _on_music_slider_value_changed(value: float) -> void:
+	var bus_index = AudioServer.get_bus_index("Music")
+	var linear = value / 100.0
+	var db = linear_to_db(linear)
+	AudioServer.set_bus_volume_db(bus_index, db)
+	
+func _on_sfx_slider_value_changed(value: float) -> void:
+	var bus_index = AudioServer.get_bus_index("SFX")
+	var linear = value / 100.0
+	var db = linear_to_db(linear)
+	AudioServer.set_bus_volume_db(bus_index, db)
+
+
+	

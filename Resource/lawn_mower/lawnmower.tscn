@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbnop5mmpshyp"]
+[gd_scene load_steps=15 format=3 uid="uid://bbnop5mmpshyp"]
 
 [ext_resource type="Script" uid="uid://dxrv64uck0wff" path="res://Resource/lawn_mower/lawnmower.gd" id="1_wr3gs"]
 [ext_resource type="Texture2D" uid="uid://d0iwfk6l0133c" path="res://Resource/lawn_mower/lawnmower_assets/lawnmower_handle.png" id="2_i3pfl"]
@@ -7,12 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://bo7ivogpk1no3" path="res://Resource/lawn_mower/lawnmower_assets/lawnmower_upperbase_body.png" id="5_bbq5y"]
 [ext_resource type="Texture2D" uid="uid://biohc8ryjy7v1" path="res://Resource/lawn_mower/lawnmower_assets/lawnnmower_wheel_left.png" id="6_sgrpi"]
 [ext_resource type="Texture2D" uid="uid://dxd7lh7gjuobi" path="res://Resource/lawn_mower/lawnmower_assets/lawnnmower_wheel_right.png" id="7_7sxdb"]
+[ext_resource type="AudioStream" uid="uid://de1y05twjg56g" path="res://Resource/lawn_mower/Lawnmower.ogg" id="8_h6jft"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fogbp"]
-size = Vector2(55, 108)
+size = Vector2(55, 87)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hwoo1"]
-size = Vector2(73, 106)
+size = Vector2(73, 85)
 
 [sub_resource type="Animation" id="Animation_yvpbc"]
 length = 0.001
@@ -539,6 +540,7 @@ _data = {
 }
 
 [node name="Lawnmower" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("1_wr3gs")
@@ -548,7 +550,7 @@ collision_layer = 64
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="trigger_area"]
-position = Vector2(23.5, -44)
+position = Vector2(23.5, -33.5)
 shape = SubResource("RectangleShape2D_fogbp")
 
 [node name="lawnmower_killer" type="Area2D" parent="."]
@@ -556,7 +558,7 @@ collision_layer = 64
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lawnmower_killer"]
-position = Vector2(-6.5, -45)
+position = Vector2(-6.5, -34.5)
 shape = SubResource("RectangleShape2D_hwoo1")
 debug_color = Color(0.84952956, 0.37430346, 7.70092e-07, 0.41960785)
 
@@ -593,6 +595,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_0wlr1")
 }
 autoplay = "idle"
+
+[node name="Lawnmower" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_h6jft")
+volume_db = 8.254
+bus = &"SFX"
 
 [connection signal="body_entered" from="trigger_area" to="." method="_on_trigger_area_body_entered"]
 [connection signal="body_entered" from="lawnmower_killer" to="." method="_on_lawnmower_killer_body_entered"]

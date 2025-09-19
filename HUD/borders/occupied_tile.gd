@@ -40,6 +40,7 @@ func plant_on_this_tile(seed_packet:Control):
 
 
 func place_plant_without_cost(node:Node2D, occupy_tile:= true):
+	node.z_index = 1
 	get_tree().current_scene.add_child(node) 
 	node.connect("tree_exited", _delete_data.bind(node)) 
 	QuickDataManagement.global_calls_manager._plant_exist_in_game.append(node)

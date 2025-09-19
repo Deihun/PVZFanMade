@@ -30,12 +30,13 @@ func _ready() -> void:
 		a+=1
 
 
-func play_music(music : AudioStream = start_up_wave) -> void:
+func play_music(music : AudioStream = start_up_wave, loop := true) -> void:
 	audio1.stop()
 	audio2.stop()
-	_set_loop(music, true)
+	_set_loop(music, loop)
 	audio1.stream = music
 	audio1.play()
+	audio1.volume_db = 0
 
 
 func play_mid_wave() -> void:

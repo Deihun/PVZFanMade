@@ -80,6 +80,7 @@ position = Vector2(200, 49.5)
 shape = SubResource("RectangleShape2D_qrxmq")
 
 [node name="ALMANAC" type="Control" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 mouse_filter = 2

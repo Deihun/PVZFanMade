@@ -2441,6 +2441,12 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_6f40v")
 
+[node name="head_location" type="Node2D" parent="."]
+position = Vector2(-15, -180)
+
+[node name="hand_location" type="Node2D" parent="."]
+position = Vector2(-10, -80)
+
 [node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("_animation_node", "_sprite_rendering")]
 transparent_bg = true
 handle_input_locally = false
@@ -2451,10 +2457,12 @@ script = ExtResource("2_urbv6")
 _animation_node = NodePath("animation_node")
 _sprite_rendering = NodePath("../final_render")
 
-[node name="animation_node" type="Node2D" parent="SubViewport"]
+[node name="animation_node" type="Node2D" parent="SubViewport" node_paths=PackedStringArray("arm_position", "head_position")]
 position = Vector2(300, 270)
 scale = Vector2(0.99999994, 0.99999994)
 script = ExtResource("3_o3f24")
+arm_position = NodePath("../../hand_location")
+head_position = NodePath("../../head_location")
 
 [node name="BasicZombieFootBack" type="Sprite2D" parent="SubViewport/animation_node"]
 y_sort_enabled = true

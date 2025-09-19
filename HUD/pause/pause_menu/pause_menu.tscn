@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://di8dtm8dsfxip"]
+[gd_scene load_steps=11 format=3 uid="uid://di8dtm8dsfxip"]
 
 [ext_resource type="Script" uid="uid://6bt10kolpahr" path="res://HUD/pause/pause_menu/pause_menu.gd" id="1_6wbys"]
 [ext_resource type="Texture2D" uid="uid://c0nr8me674n74" path="res://HUD/pause/pause_boarder.png" id="1_n0a0a"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dlfi3s6ecl7tx" path="res://HUD/pause/pause_mainmenu_button_unhover.png" id="4_wtykx"]
 [ext_resource type="Texture2D" uid="uid://byk07cwunvgje" path="res://HUD/pause/pause_restart_button_hover.png" id="7_3ccsn"]
 [ext_resource type="Texture2D" uid="uid://58hq3rxf1wai" path="res://HUD/pause/pause_restart_button_unhover.png" id="8_78alw"]
+[ext_resource type="Texture2D" uid="uid://bwl3knqrcrkxs" path="res://HUD/pause/music_label.png" id="9_2d2g4"]
+[ext_resource type="Texture2D" uid="uid://b0wvepowhpn40" path="res://HUD/pause/sfx_label.png" id="10_68tya"]
 
 [node name="PauseMenu" type="Control"]
 z_index = 255
@@ -30,21 +32,23 @@ texture = ExtResource("1_n0a0a")
 
 [node name="MAIN_MENU" type="Button" parent="PauseBoarder"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -227.0
-offset_top = 33.0
-offset_right = 241.0
-offset_bottom = 95.0
+offset_left = -233.0
+offset_top = 110.0
+offset_right = 235.0
+offset_bottom = 172.0
 
 [node name="PauseMainmenuButtonHover" type="Sprite2D" parent="PauseBoarder/MAIN_MENU"]
 visible = false
-position = Vector2(237, 73.5)
+position = Vector2(239, 26)
 texture = ExtResource("3_pglhb")
 
 [node name="PauseMainmenuButtonUnhover" type="Sprite2D" parent="PauseBoarder/MAIN_MENU"]
-position = Vector2(237, 73.5)
+position = Vector2(237, 23)
 texture = ExtResource("4_wtykx")
+metadata/_edit_lock_ = true
 
 [node name="Resume" type="Area2D" parent="PauseBoarder"]
+position = Vector2(8, 15)
 collision_layer = 2147483648
 collision_mask = 2147483648
 
@@ -52,33 +56,62 @@ collision_mask = 2147483648
 visible = false
 position = Vector2(2, 198)
 texture = ExtResource("2_6wbys")
+metadata/_edit_lock_ = true
 
 [node name="PauseResumeButtonUnhover" type="Sprite2D" parent="PauseBoarder/Resume"]
 position = Vector2(2, 198)
 texture = ExtResource("3_0s7v1")
+metadata/_edit_lock_ = true
 
 [node name="RESUME" type="Button" parent="PauseBoarder/Resume"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -283.5
-offset_top = 114.0
-offset_right = 276.5
-offset_bottom = 228.0
+offset_left = -282.0
+offset_top = 143.0
+offset_right = 278.0
+offset_bottom = 257.0
+metadata/_edit_lock_ = true
 
 [node name="RESTART" type="Button" parent="PauseBoarder"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -223.0
-offset_top = -46.0
-offset_right = 245.0
-offset_bottom = 16.0
+offset_left = -226.0
+offset_top = 31.0
+offset_right = 242.0
+offset_bottom = 93.0
 
 [node name="PauseMainmenuButtonHover" type="Sprite2D" parent="PauseBoarder/RESTART"]
 visible = false
-position = Vector2(237, 73.5)
+position = Vector2(237, 32)
 texture = ExtResource("7_3ccsn")
+metadata/_edit_lock_ = true
 
 [node name="PauseMainmenuButtonUnhover" type="Sprite2D" parent="PauseBoarder/RESTART"]
-position = Vector2(237, 73.5)
+position = Vector2(236, 32)
 texture = ExtResource("8_78alw")
+metadata/_edit_lock_ = true
+
+[node name="MusicLabel" type="Sprite2D" parent="."]
+position = Vector2(764.5, 324)
+texture = ExtResource("9_2d2g4")
+
+[node name="music_slider" type="HSlider" parent="MusicLabel"]
+offset_left = 69.0
+offset_top = -7.0
+offset_right = 358.0
+offset_bottom = 9.0
+value = 100.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SfxLabel" type="Sprite2D" parent="."]
+position = Vector2(736.5, 385)
+texture = ExtResource("10_68tya")
+
+[node name="sfx_slider" type="HSlider" parent="SfxLabel"]
+offset_left = 98.0
+offset_top = -7.0
+offset_right = 387.0
+offset_bottom = 9.0
+value = 100.0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="mouse_entered" from="PauseBoarder/MAIN_MENU" to="." method="_on_main_menu_mouse_entered"]
@@ -93,3 +126,5 @@ texture = ExtResource("8_78alw")
 [connection signal="mouse_entered" from="PauseBoarder/RESTART" to="." method="_on_restart_mouse_entered"]
 [connection signal="mouse_exited" from="PauseBoarder/RESTART" to="." method="_on_restart_mouse_exited"]
 [connection signal="pressed" from="PauseBoarder/RESTART" to="." method="_on_restart_pressed"]
+[connection signal="value_changed" from="MusicLabel/music_slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="SfxLabel/sfx_slider" to="." method="_on_sfx_slider_value_changed"]

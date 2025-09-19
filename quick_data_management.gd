@@ -110,6 +110,7 @@ func _add_plant_for_queue_plant(seed_packet : Control, animation_node:Node2D):
 	get_tree().current_scene.add_child(selected_plant)
 	_selected_plant_node_as_icon = selected_plant
 	_selected_data_in_seed_packet = seed_packet
+	_selected_plant_node_as_icon.z_index = 1
 	if seed_packet.has_method("selected_as_object"): seed_packet.selected_as_object(true)
 
 func _add_object_for_queue(cursor_attachment:Node2D, master:Control= null):

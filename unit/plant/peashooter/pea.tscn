@@ -1,25 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4laio827kvib"]
+[gd_scene load_steps=5 format=3 uid="uid://chvb7l3y7ymy6"]
 
+[ext_resource type="Script" uid="uid://bv6u3mux6ig5w" path="res://unit/projectile.gd" id="1_ndlic"]
 [ext_resource type="Texture2D" uid="uid://dpi4js5nyttjh" path="res://unit/plant/peashooter/pea_bullet.png" id="1_or484"]
-[ext_resource type="Script" uid="uid://dra7opuhnivfc" path="res://unit/plant/peashooter/pea.gd" id="1_vwegp"]
+[ext_resource type="PackedScene" uid="uid://g2ij0rijieoj" path="res://Behaviour/projectile_behaviour/projectile_moving_steadily.tscn" id="2_xandr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwegp"]
-radius = 5.09902
+radius = 1.41421
 
-[node name="Pea" type="Node2D"]
-scale = Vector2(1.25, 1.188)
-script = ExtResource("1_vwegp")
-speed = 550.0
+[node name="Projectile" type="Area2D"]
+collision_layer = 4
+collision_mask = 34
+script = ExtResource("1_ndlic")
+
+[node name="ProjectileMovingSteadily" parent="." instance=ExtResource("2_xandr")]
+auto_start = true
 
 [node name="PeaBullet" type="Sprite2D" parent="."]
-scale = Vector2(0.457785, 0.533278)
+position = Vector2(-1, 0)
+scale = Vector2(0.6, 0.58)
 texture = ExtResource("1_or484")
 
-[node name="Area2D" type="Area2D" parent="."]
-scale = Vector2(2.18478, 2.31231)
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vwegp")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

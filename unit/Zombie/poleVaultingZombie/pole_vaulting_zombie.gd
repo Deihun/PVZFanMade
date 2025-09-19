@@ -31,6 +31,7 @@ func trigger_half():
 	$SubViewport/PoleVaultZombieAnimation._remove_arm()
 
 func death() -> void:
+	add_to_group("ignore")
 	$character_collision_detect.disabled=true
 	$SubViewport/PoleVaultZombieAnimation._death_animation()
 	await get_tree().create_timer(1.75).timeout

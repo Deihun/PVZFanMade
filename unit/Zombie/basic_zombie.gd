@@ -1,14 +1,14 @@
 extends CharacterBody2D
 
 var hp: int = 10
-
+var selected_projectile := "res://unit/plant/peashooter/pea.tscn"
 
 func _ready() -> void:
 	add_to_group("zombie")
 	add_to_group("testing")
 
 func _process(delta: float) -> void:
-	position = get_global_mouse_position()
+	global_position = get_global_mouse_position() 
 	
 
 func _input(event):
@@ -49,10 +49,10 @@ func _input(event):
 			get_tree().current_scene.add_child(zombie)
 			zombie.global_position = get_global_mouse_position()
 			zombie.add_child(power)
-		elif Input.is_key_pressed(KEY_1):
-			var zombie = load("res://unit/plant/SnowPea/Snowpea_Projectile.tscn").instantiate()
-			get_tree().current_scene.add_child(zombie)
-			zombie.global_position = get_global_mouse_position()
+		elif Input.is_key_pressed(KEY_3):
+			var projectile = load(selected_projectile).instantiate()
+			get_tree().current_scene.add_child(projectile)
+			projectile.global_position = get_global_mouse_position() + Vector2(75,0)
 
 func take_damage(source : Node, value : int = 20,):
 	hp -= value
