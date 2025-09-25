@@ -10,10 +10,10 @@
 [ext_resource type="AudioStream" uid="uid://de1y05twjg56g" path="res://Resource/lawn_mower/Lawnmower.ogg" id="8_h6jft"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fogbp"]
-size = Vector2(55, 87)
+size = Vector2(53, 71)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hwoo1"]
-size = Vector2(73, 85)
+size = Vector2(102, 70)
 
 [sub_resource type="Animation" id="Animation_yvpbc"]
 length = 0.001
@@ -550,7 +550,7 @@ collision_layer = 64
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="trigger_area"]
-position = Vector2(23.5, -33.5)
+position = Vector2(24.5, -41.5)
 shape = SubResource("RectangleShape2D_fogbp")
 
 [node name="lawnmower_killer" type="Area2D" parent="."]
@@ -558,7 +558,7 @@ collision_layer = 64
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lawnmower_killer"]
-position = Vector2(-6.5, -34.5)
+position = Vector2(-53, -42)
 shape = SubResource("RectangleShape2D_hwoo1")
 debug_color = Color(0.84952956, 0.37430346, 7.70092e-07, 0.41960785)
 
@@ -574,6 +574,7 @@ texture = ExtResource("3_8jwpo")
 [node name="LawnmowerLowerbaseBody" type="Sprite2D" parent="."]
 position = Vector2(2.5, -28)
 texture = ExtResource("4_fddor")
+metadata/_edit_lock_ = true
 
 [node name="LawnmowerUpperbaseBody" type="Sprite2D" parent="."]
 position = Vector2(-7.5, -49)
@@ -584,11 +585,13 @@ metadata/_edit_lock_ = true
 position = Vector2(-28, -5)
 texture = ExtResource("6_sgrpi")
 offset = Vector2(0.5, -1)
+metadata/_edit_lock_ = true
 
 [node name="LawnnmowerWheelRight" type="Sprite2D" parent="."]
 position = Vector2(28, -3)
 texture = ExtResource("7_7sxdb")
 offset = Vector2(-2.5, -1)
+metadata/_edit_lock_ = true
 
 [node name="lawnmower_player" type="AnimationPlayer" parent="."]
 libraries = {

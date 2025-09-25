@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://th7jb6irnykc"]
+[gd_scene load_steps=19 format=3 uid="uid://th7jb6irnykc"]
 
 [ext_resource type="Script" uid="uid://cyqxg3e8vus4f" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_10.gd" id="1_ij5o2"]
 [ext_resource type="PackedScene" uid="uid://cm3fbr5jbnjmq" path="res://Behaviour/basic_zombie.tscn" id="2_rglp2"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://c3mfdn3yeigf3" path="res://Behaviour/lane_.tscn" id="6_4j2rf"]
 [ext_resource type="PackedScene" uid="uid://d1bmnixb7oepy" path="res://Behaviour/sun_falling_behaviour.tscn" id="7_wil0c"]
 [ext_resource type="PackedScene" uid="uid://pspn4765e0xo" path="res://HUD/borders/level_manager/zombie_wave_management.tscn" id="8_musfg"]
-[ext_resource type="PackedScene" uid="uid://rvbwdqhikigs" path="res://HUD/borders/level_manager/wave.tscn" id="9_4mbqr"]
 [ext_resource type="PackedScene" uid="uid://y1wnytmunqr8" path="res://HUD/borders/level_manager/new_plant_unlock_reward_node.tscn" id="9_wvy7l"]
 [ext_resource type="Texture2D" uid="uid://cicfplhte2rh4" path="res://Resource/Levels/Tutorial_Part/award_for_demo.png" id="10_pd1qh"]
 [ext_resource type="PackedScene" uid="uid://bj5p7r8n80cn" path="res://HUD/debug_mode.tscn" id="11_4hq3w"]
@@ -48,7 +47,7 @@ texture = ExtResource("4_1oo8d")
 
 [node name="main_camera" parent="." instance=ExtResource("5_xxrpo")]
 position = Vector2(421, 136)
-_mode = "dont_check_zombie"
+_mode = "normal_mode_with_pick"
 sun_on_start = 500
 
 [node name="test_tool" type="Panel" parent="main_camera"]
@@ -193,6 +192,15 @@ offset_bottom = 371.0
 theme_override_font_sizes/font_size = 21
 text = "UNLOCK TOOLS:"
 
+[node name="Label14" type="Label" parent="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 462.0
+offset_right = 349.0
+offset_bottom = 502.0
+theme_override_font_sizes/font_size = 21
+text = "ALLOW CAMERA MOVEMENT:"
+
 [node name="sunvalue_lineedit" type="LineEdit" parent="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls"]
 layout_mode = 0
 offset_left = 395.0
@@ -310,7 +318,6 @@ offset_right = 1372.0
 offset_bottom = 237.0
 placeholder_text = "plant name"
 alignment = 1
-max_length = 1
 context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_type = 2
@@ -333,7 +340,7 @@ offset_right = 1268.0
 offset_bottom = 295.0
 text = "TIER2 UPGRADE"
 
-[node name="TIER2 UPGRADE2" type="CheckButton" parent="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls"]
+[node name="TIER3 UPGRADE" type="CheckButton" parent="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls"]
 layout_mode = 0
 offset_left = 1098.0
 offset_top = 291.0
@@ -357,7 +364,6 @@ offset_right = 1367.0
 offset_bottom = 363.0
 placeholder_text = "tool name"
 alignment = 1
-max_length = 1
 context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_type = 2
@@ -372,7 +378,7 @@ offset_right = 1533.0
 offset_bottom = 364.0
 text = "UNLOCKED"
 
-[node name="plant_name_unlock3" type="LineEdit" parent="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls"]
+[node name="unlock_tool_upgrade" type="LineEdit" parent="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls"]
 layout_mode = 0
 offset_left = 1098.0
 offset_top = 371.0
@@ -380,7 +386,6 @@ offset_right = 1367.0
 offset_bottom = 402.0
 placeholder_text = "tool upgrade"
 alignment = 1
-max_length = 1
 context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_type = 2
@@ -395,7 +400,15 @@ offset_left = 404.0
 offset_top = 427.0
 offset_right = 448.0
 offset_bottom = 451.0
-button_pressed = true
+
+[node name="allow_camera_movement" type="CheckButton" parent="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls"]
+z_index = -10
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 404.0
+offset_top = 463.0
+offset_right = 448.0
+offset_bottom = 487.0
 
 [node name="lane_1" parent="." instance=ExtResource("6_4j2rf")]
 position = Vector2(0, -13)
@@ -436,7 +449,7 @@ position = Vector2(654.5, 219.5)
 shape = SubResource("RectangleShape2D_ewpwe")
 metadata/_edit_lock_ = true
 
-[node name="zombie_wave_management" parent="." node_paths=PackedStringArray("main_camera", "final_as_reward", "lane_1", "lane_2", "lane_3", "lane_4", "lane_5", "lane_6", "lane_7", "collision_where_zombie_is_place_preview") instance=ExtResource("8_musfg")]
+[node name="zombie_wave_management" parent="." node_paths=PackedStringArray("main_camera", "final_as_reward", "lane_1", "lane_2", "lane_3", "lane_4", "lane_5", "collision_where_zombie_is_place_preview") instance=ExtResource("8_musfg")]
 offset_left = -576.0
 offset_top = 804.0
 offset_right = 944.0
@@ -451,23 +464,8 @@ lane_2 = NodePath("../lane_2")
 lane_3 = NodePath("../lane_3")
 lane_4 = NodePath("../lane_4")
 lane_5 = NodePath("../lane_5")
-lane_6 = NodePath("../lane_3")
-lane_7 = NodePath("../lane_3")
 collision_where_zombie_is_place_preview = NodePath("../preview_zombie")
 metadata/_edit_lock_ = true
-
-[node name="wave" parent="zombie_wave_management" instance=ExtResource("9_4mbqr")]
-layout_mode = 2
-_delay_duration = 40.0
-_trigger_next_wave_if_this_is_clear = true
-_mark_as_big_wave = true
-_automatically_spawn_basic_zombies = true
-
-[node name="wave2" parent="zombie_wave_management" instance=ExtResource("9_4mbqr")]
-layout_mode = 2
-_delay_duration = 40.0
-_mark_as_big_wave = true
-_automatically_spawn_basic_zombies = true
 
 [node name="NewPlantUnlockRewardNode" parent="." instance=ExtResource("9_wvy7l")]
 visible = false
@@ -499,6 +497,7 @@ shape = SubResource("RectangleShape2D_r4qp0")
 metadata/_edit_lock_ = true
 
 [node name="BasicZombie" parent="." instance=ExtResource("2_rglp2")]
+visible = false
 z_index = 20
 position = Vector2(1, -2)
 
@@ -507,4 +506,6 @@ position = Vector2(1, -2)
 [connection signal="item_selected" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/PROJECTILE_SELECTION" to="main_camera/test_tool" method="_on_projectile_selection_item_selected"]
 [connection signal="value_changed" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/DEBUG_VISIBILITY" to="main_camera/test_tool" method="_on_debug_visibility_value_changed"]
 [connection signal="pressed" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/RESET_SAVE_DATA" to="main_camera/test_tool" method="_on_reset_save_data_pressed"]
+[connection signal="pressed" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/UNLOCKED_PLANT" to="main_camera/test_tool" method="_on_unlocked_plant_pressed"]
+[connection signal="pressed" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/UNLOCK_TOOL" to="main_camera/test_tool" method="_on_unlock_tool_pressed"]
 [connection signal="toggled" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/HUD_HIDE" to="main_camera/test_tool" method="_on_hud_hide_toggled"]

@@ -7,6 +7,7 @@
 radius = 45.0
 
 [node name="EvolutionPowerBoost" type="Node2D"]
+z_index = 5
 script = ExtResource("1_n6qti")
 
 [node name="EvolvePowerBoost" type="Sprite2D" parent="."]

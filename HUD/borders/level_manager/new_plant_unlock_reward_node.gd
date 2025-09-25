@@ -49,6 +49,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			$next_day/NinePatchRect/Label.text = _reward_description
 		
 		$AnimationPlayer.play("_zoom_and_transfer")
+		QuickDataManagement.sound_manager.play_music(load("res://Resource/Levels/music/Modern_Day_Reward.ogg"),false)
 		await get_tree().create_timer(5.25).timeout
 		$next_day/NinePatchRect/unlocked_plant_placement.texture =_child.texture
 		unlock_something()

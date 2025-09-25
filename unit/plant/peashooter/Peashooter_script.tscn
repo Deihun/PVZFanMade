@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://l0ap6weeoiby"]
+[gd_scene load_steps=18 format=3 uid="uid://l0ap6weeoiby"]
 
 [ext_resource type="Script" uid="uid://mms5i2ts6tp2" path="res://unit/plant/peashooter/peashooter_script.gd" id="1_gtqde"]
 [ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="2_7a0e4"]
 [ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="3_pl8vp"]
+[ext_resource type="Texture2D" uid="uid://c0p3aialfs44i" path="res://unit/plant/peashooter/peashooter_evolve_meter.png" id="4_ontxa"]
 [ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="4_qm7ql"]
 [ext_resource type="PackedScene" uid="uid://diuw5jn1y4wfg" path="res://unit/plant/peashooter/peashooter_animationn.tscn" id="5_3tpum"]
 [ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="6_ncb75"]
@@ -116,10 +117,19 @@ description_Tier2A = "Gain an aura: All plants within the aura will gain 35% evo
 description_Tier2B = "Each attack gains 5% attackspeed max of 25% attackspeed. Not attacking for 3 seconds remove all the stacks."
 description_Tier3A = "Turn into repeater that shoots two pea instead of one. Every 30th attack is an empower attack of one big pea that deals 100 damage."
 description_Tier3B = "Turn into threepeater that shoot peas at 3 lanes."
-description_evolve_requirement = "Evolve: When I kill zombies. I progress"
+description_evolve_requirement = "When I kill zombies. I progress"
+plant_evolve_meter_texture = ExtResource("4_ontxa")
+stats = null
+tier1A_callable = null
+tier1B_callable = null
+tier2A_callable = null
+tier2B_callable = null
+tier3A_callable = null
+tier3B_callable = null
 _tier1_max_value = 2.0
 _tier2_max_value = 5.0
 _tier3_max_value = 20.0
+dev_mode_ignore_locked_restriction = null
 
 [node name="Detection_Area" parent="." instance=ExtResource("4_qm7ql")]
 position = Vector2(-24, -50)

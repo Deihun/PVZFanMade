@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://xeuq18wltltm"]
+[gd_scene load_steps=16 format=3 uid="uid://xeuq18wltltm"]
 
 [ext_resource type="Script" uid="uid://ca0cagla675w7" path="res://unit/plant/Sunflower/sunflower.gd" id="1_44l71"]
 [ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="2_d0rym"]
 [ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="2_onrnj"]
 [ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="2_r1mn5"]
 [ext_resource type="PackedScene" uid="uid://cq356nfdqih64" path="res://unit/plant/Sunflower/sunflower_animation.tscn" id="2_vorgh"]
+[ext_resource type="Texture2D" uid="uid://js4w6ib6y6vd" path="res://unit/plant/Sunflower/sunflower_evolve_meter.png" id="3_utgag"]
 [ext_resource type="PackedScene" uid="uid://c6tpqsl5bopmw" path="res://unit/plant/Sunflower/sun_flower_shield.tscn" id="5_onrnj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1mn5"]
@@ -496,6 +497,8 @@ _data = {
 }
 
 [node name="Sunflower" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 collision_mask = 5
 script = ExtResource("1_44l71")
 
@@ -508,9 +511,10 @@ description_Tier2A = "I generate powerboost when I've seen you collect many sun!
 description_Tier2B = "I have an ability to shield myself."
 description_Tier3A = "Turn into twin sunflower: Producing two sun instead of one"
 description_Tier3B = "Become an EmpressSunflower where she will challenge you to collect her golden sun if her sun expire."
-_tier1_max_value = 250.0
-_tier2_max_value = 400.0
-_tier3_max_value = 450.0
+description_evolve_requirement = "I progress my evolution through time"
+plant_evolve_meter_texture = ExtResource("3_utgag")
+_tier2_max_value = 420.0
+_tier3_max_value = 500.0
 
 [node name="PlantDamageNodeManager" parent="." instance=ExtResource("2_d0rym")]
 position = Vector2(-15, -115)

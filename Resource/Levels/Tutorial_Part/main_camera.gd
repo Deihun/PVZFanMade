@@ -9,10 +9,16 @@ extends Camera2D
 
 
 @export_category("MUSIC")
+@export var intro_music : AudioStream
 @export var choose_our_seed_music : AudioStream 
 @export var music_at_start : AudioStream
-@export var music_mid_wave : AudioStream
+@export var music_mid_wave_intro_a  : AudioStream
+@export var music_mid_wave_a : AudioStream
+@export var music_mid_wave_intro_b  : AudioStream
+@export var music_mid_wave_b  : AudioStream
+@export var music_last_wave_intro : AudioStream
 @export var music_last_wave : AudioStream
+
 
 var initial_position_:= Vector2(421.0,136.0)
 var last_position:= Vector2(1950.0,136.0)
@@ -23,16 +29,28 @@ var game_over_trigger :=false
 
 
 func _ready() -> void:
+	get_tree().current_scene.y_sort_enabled = true
 	QuickDataManagement.sound_manager.start_up_wave = music_at_start
-	QuickDataManagement.sound_manager.mid_wave = music_mid_wave
+	QuickDataManagement.sound_manager.mid_wave_a = music_mid_wave_a
+	QuickDataManagement.sound_manager.mid_wave_b = music_mid_wave_b
+	QuickDataManagement.sound_manager.mid_wave_b_intro = music_mid_wave_intro_b
+	QuickDataManagement.sound_manager.mid_wave_a_intro = music_mid_wave_intro_a
+	QuickDataManagement.sound_manager.last_wave_intro = music_last_wave_intro
 	QuickDataManagement.sound_manager.last_wave = music_last_wave
+	
 	QuickDataManagement._reset_all_data()
-	QuickDataManagement.sound_manager.play_music(choose_our_seed_music)
+	trigger_music()
 	QuickDataManagement.change_sun_value(sun_on_start)
 	$HUD_normal_selection.hide()
 	if auto_start: 
 		await get_tree().create_timer(delay_before_auto_start).timeout
 		play_camera()
+
+
+func trigger_music():
+	QuickDataManagement.sound_manager.play_music(intro_music,false)
+	await get_tree().create_timer(intro_music.get_length()).timeout
+	QuickDataManagement.sound_manager.play_music(choose_our_seed_music)
 
 
 func play_camera():

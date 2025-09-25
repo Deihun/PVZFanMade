@@ -19,18 +19,20 @@ func _ready() -> void:
 
 func tier1a():
 	$plant_health_management_behaviour.gain_extra_max_health(500)
+	$Wallnut.t1a()
 func tier2a():
 	$Wallnut.set_to_tallnutt()
 	$Tallnut_blocking/CollisionShape2D.disabled = false
 	$plant_health_management_behaviour.heal_maxhealth_percentage(100)
 	if $EvolutionSenderSupportBehavior._tier1a_obtain: $plant_health_management_behaviour.gain_extra_max_health_baseOn_maxhealth(2)
 func tier3a():
-	$plant_health_management_behaviour.gain_extra_max_health_baseOn_maxhealth(10)
+	$plant_health_management_behaviour.gain_extra_max_health_baseOn_maxhealth(15)
 	$plant_health_management_behaviour._taking_damage.append(Callable(self,"_when_taking_damage_heal_start"))
 
 func tier1b():
 	$plant_health_management_behaviour.gain_armor(2)
 	$plant_health_management_behaviour._when_you_plant_on_me.append(Callable(self,"_heal_when_im_planted_on_my_tile"))
+	$Wallnut.t1b()
 func tier2b():
 	$WallnutEmpowerBehind.visible = true
 	$Tier_2BEmpower/CollisionShape2D.disabled = false
@@ -53,6 +55,7 @@ func _when_health_lethal():
 	$Wallnut._trigger_lethal_animation()
 
 func _start_evolution():
+	$EvolutionSenderSupportBehavior.update_current_evolution_ui()
 	if _receive_dammage_once: return
 	$starts_evolution_when_progress.start()
 	_receive_dammage_once = true
@@ -105,3 +108,12 @@ func _on_tallnut_blocking_body_entered(body: Node2D) -> void:
 		if !$EvolutionSenderSupportBehavior._tier1b_obtain:return
 		var hp = body.get_node("zombie_movement_management")
 		hp.apply_stun(3.0)
+
+func set_dictionary_stats():
+	var details = {
+		"Health": str($plant_health_management_behaviour.max_health,"/", $plant_health_management_behaviour.current_health),
+		"Armor": int($plant_health_management_behaviour.armor),
+		"Shield": $plant_health_management_behaviour.shield
+
+	}
+	$EvolutionSenderSupportBehavior.stats = details.duplicate()

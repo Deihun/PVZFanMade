@@ -45,9 +45,8 @@ func unlocked_already_upgrade():
 	$main_camera.play_camera()
 	$main_camera.when_starting_callable.append(Callable($sun_falling_behaviour,"start"))
 
-
 func when_i_got_boost():
-	$main_camera/Bubble/text.text = "Now this peashooter is boosted. LeftClick peashooter while pressing (CTRL) Key then select any upgrade you want for peashooter"
+	$main_camera/Bubble/text.text = "Now this peashooter is boosted. Press and hold that peashooter and select any upgrade you want for peashooter"
 
 func pick_up_power_unlocked():
 	if QuickDataManagement.evolution_power_point >= 1: 

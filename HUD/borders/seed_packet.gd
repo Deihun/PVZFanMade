@@ -74,7 +74,6 @@ func _refund_cooldown_current_percentage_value(value : float = 0.1):
 
 
 func _on_click_button_button_down() -> void:
-	
 	match mode:
 		"ingame-seed-pick":
 			if QuickDataManagement._selected_data_in_seed_packet == self:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://c83n7po5as7gv"]
+[gd_scene load_steps=17 format=3 uid="uid://c83n7po5as7gv"]
 
 [ext_resource type="Script" uid="uid://waimpkh87bbo" path="res://HUD/main_menu/main_menu.gd" id="1_m78mv"]
 [ext_resource type="Texture2D" uid="uid://balh6rhwl44em" path="res://HUD/main_menu/play_button_hover.png" id="1_o7lmo"]
+[ext_resource type="Texture2D" uid="uid://k8b22v2upmhx" path="res://HUD/main_menu/2b3d6e67-437c-4318-9aa2-5a57871c2e5a.jpg" id="2_1noea"]
 [ext_resource type="Texture2D" uid="uid://cb4cfl8jeyjwr" path="res://HUD/main_menu/play_button_unhover.png" id="2_m78mv"]
 [ext_resource type="Texture2D" uid="uid://dcw71rp7l2nyj" path="res://HUD/main_menu/logo.png" id="2_qrxmq"]
 [ext_resource type="Texture2D" uid="uid://bhryrnyb053wt" path="res://HUD/main_menu/gradient_black.png" id="5_fcdgt"]
@@ -21,6 +22,11 @@ size = Vector2(398, 99)
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_m78mv")
 
+[node name="2b3d6e67437c43189Aa25a57871c2e5a" type="Sprite2D" parent="."]
+position = Vector2(967, 543.5)
+scale = Vector2(1.4172767, 1.4205729)
+texture = ExtResource("2_1noea")
+
 [node name="GradientBlack" type="Sprite2D" parent="."]
 position = Vector2(412, 540)
 texture = ExtResource("5_fcdgt")
@@ -28,6 +34,13 @@ texture = ExtResource("5_fcdgt")
 [node name="Logo" type="Sprite2D" parent="."]
 position = Vector2(270, 124)
 texture = ExtResource("2_qrxmq")
+
+[node name="Label" type="Label" parent="Logo"]
+offset_left = 108.0
+offset_top = -11.0
+offset_right = 236.0
+offset_bottom = 12.0
+text = "FANMADE GAME"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 186.0
@@ -149,6 +162,20 @@ shape = SubResource("RectangleShape2D_qrxmq")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_nxl4w")
 volume_db = 6.604
+
+[node name="Label" type="Label" parent="."]
+offset_left = 46.0
+offset_top = 1041.0
+offset_right = 387.0
+offset_bottom = 1067.0
+text = "Currently in development. By john Andrei S. Gopole"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 1341.0
+offset_top = 1054.0
+offset_right = 1918.0
+offset_bottom = 1080.0
+text = "This image is for temporary use. Theres no asset for mainmenu screen yet."
 
 [connection signal="input_event" from="VBoxContainer/play/play" to="." method="_on_play_input_event"]
 [connection signal="mouse_entered" from="VBoxContainer/play/play" to="." method="_on_play_mouse_entered"]

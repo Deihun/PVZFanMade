@@ -1,10 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://cq356nfdqih64"]
+[gd_scene load_steps=22 format=3 uid="uid://cq356nfdqih64"]
 
 [ext_resource type="Script" uid="uid://d2g76na3ubtks" path="res://unit/plant/Sunflower/sunflower_animation.gd" id="1_h88ud"]
 [ext_resource type="Texture2D" uid="uid://lt386bdsq5ak" path="res://unit/plant/peashooter/normal_peashooter_foot_back.png" id="2_a0lm1"]
+[ext_resource type="Texture2D" uid="uid://dyg2w8mm6h0u6" path="res://unit/plant/Sunflower/sunflower_roots_t2a.png" id="2_u8jyy"]
 [ext_resource type="Texture2D" uid="uid://by1higrig4rn4" path="res://unit/plant/peashooter/normal_peashooter_foot_front.png" id="3_msq2q"]
+[ext_resource type="Texture2D" uid="uid://g0rwpqc6r0dg" path="res://unit/plant/Sunflower/side_leaves.png" id="3_u8jyy"]
 [ext_resource type="Texture2D" uid="uid://dmnru2pgu7jgd" path="res://unit/plant/Sunflower/sunflower_petal.png" id="4_u8jyy"]
 [ext_resource type="Texture2D" uid="uid://b5cjju2naq3sl" path="res://unit/plant/Sunflower/sunflower_face_unlit.png" id="5_1bkgi"]
+[ext_resource type="Texture2D" uid="uid://cmb37qprwluq7" path="res://unit/plant/Sunflower/sunflowere_t2b.png" id="5_fx50f"]
 [ext_resource type="Texture2D" uid="uid://05dfotx2dotb" path="res://unit/plant/Sunflower/sunflower_face_lit.png" id="6_fx50f"]
 [ext_resource type="Texture2D" uid="uid://cu8pm672lr8n6" path="res://unit/plant/Sunflower/sunflower_eyes.png" id="7_x6w3c"]
 [ext_resource type="Texture2D" uid="uid://cn6ywnqjatsvg" path="res://unit/plant/Sunflower/sunflower_smile_1.png" id="8_d0pnh"]
@@ -772,6 +775,42 @@ tracks/62/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/63/type = "value"
+tracks/63/imported = false
+tracks/63/enabled = true
+tracks/63/path = NodePath("SunflowerRootsT2a:scale")
+tracks/63/interp = 1
+tracks/63/loop_wrap = true
+tracks/63/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.24683547, 0.2519084)]
+}
+tracks/64/type = "value"
+tracks/64/imported = false
+tracks/64/enabled = true
+tracks/64/path = NodePath("bottom_stem/SunflowereT2b:scale")
+tracks/64/interp = 1
+tracks/64/loop_wrap = true
+tracks/64/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.24698798, 0.21740195)]
+}
+tracks/65/type = "value"
+tracks/65/imported = false
+tracks/65/enabled = true
+tracks/65/path = NodePath("bottom_stem2/SunflowereT2b:scale")
+tracks/65/interp = 1
+tracks/65/loop_wrap = true
+tracks/65/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.24698798, 0.33333337)]
+}
 
 [sub_resource type="Animation" id="Animation_k0d2m"]
 resource_name = "idle"
@@ -1124,6 +1163,42 @@ tracks/28/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("SunflowerRootsT2a:scale")
+tracks/29/interp = 2
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0, 1.7666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.24683547, 0.2519084), Vector2(0.247, 0.272)]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("bottom_stem/SunflowereT2b:scale")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.24698798, 0.21740195)]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("bottom_stem2/SunflowereT2b:scale")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.24698798, 0.33333337)]
 }
 
 [sub_resource type="Animation" id="Animation_h88ud"]
@@ -1512,7 +1587,7 @@ tracks/13/path = NodePath("bottom_stem2:size")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.66, 0.88, 1.3, 1.59, 1.77, 2.16, 2.39, 2.81, 3),
+"times": PackedFloat32Array(0, 0.66, 0.88, 1.3, 1.59, 2.0666666, 2.16, 2.39, 2.81, 3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(3, 20), Vector2(3, 20), Vector2(3, 34), Vector2(3, 46), Vector2(3, 49), Vector2(3, 46), Vector2(3, 34), Vector2(3, 38), Vector2(3, 25.6066), Vector2(3, 20)]
@@ -1566,6 +1641,30 @@ tracks/17/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("bottom_stem2/SunflowereT2b:scale")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 0.77, 1.6, 2.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.24698798, 0.33333337), Vector2(0.24698798, 0.33333337), Vector2(0.24698798, 0.45111), Vector2(0.24698798, 0.33333337)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("bottom_stem/SunflowereT2b:scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0, 0.78, 1.55, 2.42),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.24698798, 0.21740195), Vector2(0.24698798, 0.21740195), Vector2(0.24698798, 0.4504434), Vector2(0.24698798, 0.2093952)]
 }
 
 [sub_resource type="Animation" id="Animation_a0lm1"]
@@ -2123,6 +2222,12 @@ _data = {
 [node name="Sunflower Animation" type="Node2D"]
 script = ExtResource("1_h88ud")
 
+[node name="SunflowerRootsT2a" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(15, 34.000004)
+scale = Vector2(0.24683547, 0.2519084)
+texture = ExtResource("2_u8jyy")
+
 [node name="NormalPeashooterFootBack" type="Sprite2D" parent="."]
 position = Vector2(16, 17)
 scale = Vector2(1.05, 1.05)
@@ -2136,6 +2241,26 @@ offset_bottom = 16.0
 rotation = -0.347788
 theme_override_styles/panel = SubResource("StyleBoxFlat_1bq5n")
 
+[node name="SideLeaves_left" type="Sprite2D" parent="bottom_stem2"]
+position = Vector2(-11.871064, 11.114264)
+rotation = 0.34267563
+scale = Vector2(0.4423678, 0.35605016)
+texture = ExtResource("3_u8jyy")
+
+[node name="SideLeaves_left2" type="Sprite2D" parent="bottom_stem2"]
+position = Vector2(15.276471, 10.108654)
+rotation = -0.41862887
+scale = Vector2(0.4423678, 0.35605025)
+texture = ExtResource("3_u8jyy")
+flip_h = true
+
+[node name="SunflowereT2b" type="Sprite2D" parent="bottom_stem2"]
+visible = false
+position = Vector2(2.440744, 18.336151)
+rotation = -0.016842915
+scale = Vector2(0.24698798, 0.33333337)
+texture = ExtResource("5_fx50f")
+
 [node name="bottom_stem" type="Panel" parent="."]
 offset_left = 11.0
 offset_top = 13.0
@@ -2143,6 +2268,13 @@ offset_right = 14.0
 offset_bottom = 33.0
 rotation = -0.602522
 theme_override_styles/panel = SubResource("StyleBoxFlat_1bq5n")
+
+[node name="SunflowereT2b" type="Sprite2D" parent="bottom_stem"]
+visible = false
+position = Vector2(1.7868243, 11.838718)
+rotation = -0.016842915
+scale = Vector2(0.24698798, 0.21740195)
+texture = ExtResource("5_fx50f")
 
 [node name="NormalPeashooterFootFront" type="Sprite2D" parent="."]
 position = Vector2(22, 30)
@@ -2212,6 +2344,75 @@ texture = ExtResource("4_u8jyy")
 flip_h = true
 
 [node name="SunflowerPetal7" type="Sprite2D" parent="Sunflower_head/petals"]
+position = Vector2(71, 9)
+rotation = -0.828792
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+
+[node name="petals2" type="Node2D" parent="Sunflower_head"]
+visible = false
+position = Vector2(7.032715, -8.393484)
+rotation = -0.10867075
+scale = Vector2(0.8071751, 0.67036986)
+
+[node name="SunflowerPetal4" type="Sprite2D" parent="Sunflower_head/petals2"]
+position = Vector2(26, -82)
+rotation = 3.08093
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal3" type="Sprite2D" parent="Sunflower_head/petals2"]
+position = Vector2(4, -81)
+rotation = 3.09351
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal2" type="Sprite2D" parent="Sunflower_head/petals2"]
+position = Vector2(-7, 20)
+rotation = 0.559169
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal" type="Sprite2D" parent="Sunflower_head/petals2"]
+position = Vector2(30, 28)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal5" type="Sprite2D" parent="Sunflower_head/petals2"]
+position = Vector2(56, -71)
+rotation = -2.78022
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal6" type="Sprite2D" parent="Sunflower_head/petals2"]
+position = Vector2(80, -38)
+rotation = -2.06391
+scale = Vector2(0.935621, 0.927698)
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal10" type="Sprite2D" parent="Sunflower_head/petals2"]
+position = Vector2(-28, -63)
+rotation = 2.46447
+scale = Vector2(0.943142, 0.881714)
+skew = -0.00150394
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal8" type="Sprite2D" parent="Sunflower_head/petals2"]
+position = Vector2(-44, -35)
+rotation = 1.90764
+scale = Vector2(1.00811, 0.950368)
+texture = ExtResource("4_u8jyy")
+
+[node name="SunflowerPetal9" type="Sprite2D" parent="Sunflower_head/petals2"]
+position = Vector2(-16, 19)
+rotation = 0.210487
+scale = Vector2(0.958919, 0.957317)
+skew = 0.0139332
+texture = ExtResource("4_u8jyy")
+flip_h = true
+
+[node name="SunflowerPetal7" type="Sprite2D" parent="Sunflower_head/petals2"]
 position = Vector2(71, 9)
 rotation = -0.828792
 scale = Vector2(0.935621, 0.927698)

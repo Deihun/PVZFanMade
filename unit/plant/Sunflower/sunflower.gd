@@ -11,6 +11,8 @@ var max_exp_gold_sun := 1.2
 var _t2a_requirement_sun_for_powerboost := 1650
 var _t2a_current_seen_collected_sun := 0
 
+var _total_produce_sun_by_me := 0
+
 func _ready() -> void:
 	position =Vector2(0,0)
 	add_to_group("plant")
@@ -32,6 +34,7 @@ func _shield_broken():
 
 func get_normal_sun() -> Node2D:
 	var _sun_node = load("res://Resource/Sun/normal_sun.tscn").instantiate()
+	_sun_node._add_callable_on_sun(Callable(self,"_increase_my_total_produce_sun_value" ))
 	_sun_node.master=self
 	get_tree().current_scene.add_child(_sun_node)
 	_sun_node.global_position = $T2A_collecting_power_animation.global_position+Vector2(0,-75)
@@ -46,7 +49,8 @@ func get_normal_sun() -> Node2D:
 
 func produce_mega_sun():
 	var _sun_node = load("res://Resource/Sun/normal_sun.tscn").instantiate()
-	
+	_sun_node._add_callable_on_sun(Callable(self,"_increase_my_total_produce_sun_value" ))
+	_sun_node.master=self
 	_sun_node.sun_value = sun_quantity*3
 	_sun_node.sun_expiration_value = randf_range(0.8,max_exp_gold_sun)
 	_sun_node.modulate = Color.ORANGE
@@ -81,20 +85,23 @@ func tier1a():
 	$plant_health_management_behaviour.max_health = 40
 	$plant_health_management_behaviour.current_health = 40
 	_t2a_requirement_sun_for_powerboost = 1900
+	$"Sunflower Animation".tier1a()
 
 func tier1b():
 	sun_quantity += 5
 	_shield_value= 350
+	$"Sunflower Animation".tier1b()
 
 func tier2a():
 	QuickDataManagement.global_calls_manager._when_sun_collected.append(Callable(self,"_when_you_collect_current_sun"))
+	$"Sunflower Animation".tier2a()
 
 func tier2b():
 	$shield_.start()
 	$sun_flower_shield.visible=true
 	$plant_health_management_behaviour._taking_damage.append(Callable(self,"cancel_reset"))
 	$plant_health_management_behaviour.shield = _shield_value
-	
+	$"Sunflower Animation".tier2b()
 
 func tier3a():
 	$"Sunflower Animation"._play_twin_sunflower()
@@ -163,3 +170,15 @@ func _on_t_2a_visual_cd_timeout() -> void:
 
 func _on_t_2a_visual_when_producing_timeout() -> void:
 	$"Sunflower Animation".modulate = Color.WHITE
+
+func _increase_my_total_produce_sun_value(value : int)-> void:
+	_total_produce_sun_by_me += value
+
+func set_dictionary_stats():
+	var details = {
+		"Total-Sun-Produce": _total_produce_sun_by_me,
+		"Sun-Value": sun_quantity,
+		"Time-to-Produce": time_it_takes_to_produce_sun
+
+	}
+	$EvolutionSenderSupportBehavior.stats = details.duplicate()

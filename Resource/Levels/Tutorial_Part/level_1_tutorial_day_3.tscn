@@ -200,7 +200,8 @@ shape = SubResource("RectangleShape2D_mbpro")
 position = Vector2(-327, -441)
 
 [node name="BasicZombie" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
-position = Vector2(75, 1794)
+position = Vector2(83, 1858)
+zombie_type_mode = "basic"
 
 [node name="BasicZombie2" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
 position = Vector2(411, 1362)
@@ -209,22 +210,22 @@ position = Vector2(411, 1362)
 position = Vector2(692, 1381)
 
 [node name="BasicZombie4" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
-position = Vector2(658, 2106)
+position = Vector2(649, 2157)
 
 [node name="BasicZombie5" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
-position = Vector2(904, 1528)
+position = Vector2(902, 1582)
 
 [node name="BasicZombie8" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
-position = Vector2(1416, 1655)
+position = Vector2(1416, 1713)
 
 [node name="BasicZombie9" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
-position = Vector2(1433, 1529)
+position = Vector2(1422, 1587)
 
 [node name="BasicZombie10" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
-position = Vector2(1409, 1791)
+position = Vector2(1415, 1862)
 
 [node name="BasicZombie7" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
-position = Vector2(1919, 2128)
+position = Vector2(1906, 2104)
 
 [node name="BasicZombie11" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
 position = Vector2(1889, 1381)
@@ -239,7 +240,7 @@ position = Vector2(1919, 1386)
 position = Vector2(2172, 1812)
 
 [node name="BasicZombie15" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ygvty")]
-position = Vector2(2191, 1494)
+position = Vector2(2179, 1517)
 
 [node name="ConeHead" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ygvty")]
 position = Vector2(1192, 1418)
@@ -248,7 +249,8 @@ position = Vector2(1192, 1418)
 position = Vector2(2427, 1375)
 
 [node name="BasicZombie6" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
-position = Vector2(199, 1791)
+position = Vector2(195, 1868)
+zombie_type_mode = "basic"
 
 [node name="DebugMode" parent="." instance=ExtResource("13_8mhye")]
 visible = false

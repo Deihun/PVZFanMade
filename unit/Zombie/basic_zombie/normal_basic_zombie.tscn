@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bogab6oeo22f2"]
+[gd_scene load_steps=34 format=3 uid="uid://bogab6oeo22f2"]
 
 [ext_resource type="Script" uid="uid://biamhuvv1sdpj" path="res://unit/Zombie/basic_zombie/basic_zombie.gd" id="1_v8ghd"]
 [ext_resource type="PackedScene" uid="uid://b8lpneub1dg61" path="res://Behaviour/projectile_behaviour/zombie_hp_management.tscn" id="2_j1b3j"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://c0fuhu88gggss" path="res://unit/Zombie/basic_zombie/zombie_head_popping_out.mp3" id="13_dcty6"]
 [ext_resource type="AudioStream" uid="uid://bidmw30wtlaqj" path="res://unit/Zombie/basic_zombie/bite_1.mp3" id="14_ir7ec"]
 [ext_resource type="AudioStream" uid="uid://bpocjpise8evb" path="res://unit/Zombie/basic_zombie/bite_2.mp3" id="15_jg1fc"]
+[ext_resource type="PackedScene" uid="uid://b3a0hlbafc4gr" path="res://unit/Zombie/bite_detection.tscn" id="21_rdesx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_or287"]
 shader = ExtResource("4_n8l0s")
@@ -2428,16 +2429,17 @@ _data = {
 &"idle": SubResource("Animation_ra74k")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5oqf"]
-size = Vector2(115, 132)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xk55e"]
+size = Vector2(115, 104)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8ghd"]
-size = Vector2(46, 132)
+size = Vector2(46, 104)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1b3j"]
-size = Vector2(71, 132)
+size = Vector2(71, 104)
 
 [node name="BasicZombie" type="CharacterBody2D"]
+z_index = 2
 position = Vector2(1267, 639)
 collision_layer = 2
 collision_mask = 5
@@ -2469,11 +2471,12 @@ script = ExtResource("2_n8l0s")
 _animation_node = NodePath("animation_node")
 _sprite_rendering = NodePath("../final_render")
 
-[node name="animation_node" type="Node2D" parent="SubViewport" node_paths=PackedStringArray("head_position")]
+[node name="animation_node" type="Node2D" parent="SubViewport" node_paths=PackedStringArray("arm_position", "head_position")]
 y_sort_enabled = true
 position = Vector2(300, 270)
 scale = Vector2(0.99999994, 0.99999994)
 script = ExtResource("3_xhse3")
+arm_position = NodePath("../../arm_position")
 head_position = NodePath("../../head_position")
 
 [node name="BasicZombieFootBack" type="Sprite2D" parent="SubViewport/animation_node"]
@@ -2586,24 +2589,23 @@ head_attachment_for_holding_armor = NodePath("../SubViewport/animation_node/Basi
 zombie_animation_node = NodePath("../SubViewport/animation_node")
 final_render = NodePath("../final_render")
 
-[node name="Bite_Detection" type="Area2D" parent="."]
-collision_layer = 0
+[node name="Bite_Detection" parent="." instance=ExtResource("21_rdesx")]
+collision_layer = 2147483648
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bite_Detection"]
-position = Vector2(-17, -99)
-shape = SubResource("RectangleShape2D_r5oqf")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bite_Detection"]
+position = Vector2(-17, -85)
+shape = SubResource("RectangleShape2D_xk55e")
 debug_color = Color(0.504058, 0.0862229, 4.81308e-08, 0.42)
 
 [node name="HitPoint" type="Area2D" parent="."]
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitPoint"]
-position = Vector2(-2, -99)
+position = Vector2(-2, -85)
 shape = SubResource("RectangleShape2D_v8ghd")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-15, -99)
+position = Vector2(-15, -85)
 shape = SubResource("RectangleShape2D_j1b3j")
 disabled = true
 debug_color = Color(0.83800673, 0.0012146276, 0.92894316, 0.41960785)
@@ -2612,7 +2614,5 @@ debug_color = Color(0.83800673, 0.0012146276, 0.92894316, 0.41960785)
 wait_time = 20.0
 autostart = true
 
-[connection signal="body_entered" from="Bite_Detection" to="." method="_on_bite_detection_body_entered"]
-[connection signal="body_exited" from="Bite_Detection" to="." method="_on_bite_detection_body_exited"]
 [connection signal="area_shape_entered" from="HitPoint" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="timeout" from="groan_value" to="." method="_on_groan_value_timeout"]

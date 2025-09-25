@@ -13,6 +13,11 @@ func set_explode_rolling_wallnut():
 func _idle_explodenut():
 	$AnimationPlayer.play("idle_explode_o_nut")
 
+func t1a(): $GrassT1a.show()
+func t1b(): 
+	$WallnutBody/T1b.show()
+	$tall_nut/TallnutArmorVisual.show()
+
 func set_to_tallnutt():
 	_is_tall_nut_set = true
 	$animationn.stop()

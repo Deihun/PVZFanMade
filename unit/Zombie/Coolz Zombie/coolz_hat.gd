@@ -2,6 +2,7 @@ extends Node2D
 
 var hp := 100
 var only_trigger_once := false
+var start_position : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	$CoolzZombieHat.rotation+= randf_range(-0.1, 0.1)
@@ -33,7 +34,7 @@ func check_for_damage_number():
 		self.visible = false
 		
 		target.position = Vector2.ZERO
-		target.global_position = _global_position
+		target.global_position = start_position
 		behavior.disappear_after_3s =true
 		target.add_child(behavior)
 		await get_tree().create_timer(3).timeout

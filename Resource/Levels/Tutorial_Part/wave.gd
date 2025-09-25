@@ -28,13 +28,9 @@ var lane5_array := []
 var lane6_array := []
 var lane7_array := []
 
-#func _process(delta: float) -> void:
-	##if stored_enemy.size() > 0:
-		###await get_tree().create_timer(0.25).timeout
-		##var enemy = stored_enemy[0]
-		##print(enemy.global_position)
-	#print(stored_enemy)
+
 func _ready() -> void:
+	set_up_lane()
 	if _mark_as_big_wave:
 		var flag_zombie = load("res://unit/Zombie/Flag_Zombie/FlagZombie.tscn").instantiate()
 		flag_zombie.position =Vector2.ZERO
@@ -49,9 +45,20 @@ func _ready() -> void:
 				basic_zombie.global_position =Vector2.ZERO
 				_add_this_char_on_reserve_array(basic_zombie)
 
+func set_up_lane():
+	lane_1_node = get_parent().lane_1
+	lane_2_node = get_parent().lane_2
+	lane_3_node = get_parent().lane_3
+	lane_4_node = get_parent().lane_4
+	lane_5_node = get_parent().lane_5
+	lane_6_node = get_parent().lane_6
+	lane_7_node = get_parent().lane_7
+
+
 func start_this_wave():
 	if _mark_as_big_wave: await get_tree().create_timer(3.0).timeout
 	$spawn_next.wait_time = _delay_duration
+	get_parent().wave_progress()
 	var _lane_overall = [
 		{"lane": lane1_array, "pos": lane_1_node},
 		{"lane": lane2_array, "pos": lane_2_node},
@@ -85,10 +92,17 @@ func start_this_wave():
 		char_enemy.global_position = lane_info.pos.spawn_position.global_position
 		
 		char_enemy.get_node("zombie_hp_management").lane_rigidbody_collision = lane_info.pos.physic_body_interaction
-		char_enemy.z_index = 5
 		char_enemy.visible = true
 		get_parent().add_new_zombie_for_overall(char_enemy)
-		#stored_enemy.append(char_enemy)
+		char_enemy.y_sort_enabled = true
+		char_enemy.z_index = 1
+		QuickDataManagement._amount_of_current_zombie_in_board.append(char_enemy)
+		char_enemy.tree_exited.connect(
+			func():
+				if char_enemy in QuickDataManagement._amount_of_current_zombie_in_board:
+					QuickDataManagement._amount_of_current_zombie_in_board.erase(char_enemy)
+		)
+				#stored_enemy.append(char_enemy)
 
 
 		if _zombie_spawn_with_delay_in_between: await get_tree().create_timer(_delay_interval_between_spawn).timeout
@@ -101,61 +115,88 @@ func start_this_wave():
 func _on_enemy_removed(char_enemy : CharacterBody2D):
 	stored_enemy.erase(char_enemy)
 	if _trigger_next_wave_if_this_is_clear and stored_enemy.size() <= 0:
-		get_parent().wave_completed()
 		get_parent().play_queue_next()
 
 func _add_this_char_on_reserve_array(body : Node2D, lane_number := 0):
-	var _body = load(body.scene_file_path).instantiate()
-	var _has_boost : int = 1 if (body.has_node("PowerBoostDrop")) else 0
-	get_parent().add_this_zombie(body.scene_file_path)
-	if body.is_inside_tree(): body.get_parent().remove_child(body)
-	body.queue_free()
-	if lane_number == 0: lane_number = randi_range(1,5)#STILL STATIC 1-5, add later a random lane managementnumbers
-	match lane_number:
-		1:
-			lane1_array.append([_body,_has_boost])
-		2:
-			lane2_array.append([_body,_has_boost])
-		3:
-			lane3_array.append([_body,_has_boost])
-		4:
-			lane4_array.append([_body,_has_boost])
-		5:
-			lane5_array.append([_body,_has_boost])
+	if lane_number == 0:
+		var lane_array_groups : Array[Array]= []
+		var only_existing_lane : Dictionary= {
+			lane_1_node : lane1_array,
+			lane_2_node : lane2_array,
+			lane_3_node : lane3_array,
+			lane_4_node : lane4_array,
+			lane_5_node : lane5_array,
+			lane_6_node : lane6_array,
+			lane_7_node : lane7_array
+		}
+		for key in only_existing_lane.keys():
+			if key != null: lane_array_groups.append(only_existing_lane[key])
+
+		var _body = load(body.scene_file_path).instantiate()
+		var _has_boost : int = 1 if (body.has_node("PowerBoostDrop")) else 0
+		get_parent().add_this_zombie(body.scene_file_path)
+		if body.is_inside_tree(): body.get_parent().remove_child(body)
+		body.queue_free()
+		var selected_random_array : Array = lane_array_groups.pick_random()
+		selected_random_array.append([_body,_has_boost])  
+	else:
+		var _body = load(body.scene_file_path).instantiate()
+		var _has_boost : int = 1 if (body.has_node("PowerBoostDrop")) else 0
+		get_parent().add_this_zombie(body.scene_file_path)
+		if body.is_inside_tree(): body.get_parent().remove_child(body)
+		body.queue_free()
+		match lane_number:
+			1:
+				lane1_array.append([_body,_has_boost])
+			2:
+				lane2_array.append([_body,_has_boost])
+			3:
+				lane3_array.append([_body,_has_boost])
+			4:
+				lane4_array.append([_body,_has_boost])
+			5:
+				lane5_array.append([_body,_has_boost])
 
 func _on_random__body_entered(body: Node2D) -> void:
+	await get_tree().create_timer(0.01).timeout
 	_add_this_char_on_reserve_array(body)
 
 
 func _on_lane_1_body_entered(body: Node2D) -> void:
+	await get_tree().create_timer(0.01).timeout
 	_add_this_char_on_reserve_array(body,1)
 
 
 
 func _on_lane_2_body_entered(body: Node2D) -> void:
+	await get_tree().create_timer(0.01).timeout
 	_add_this_char_on_reserve_array(body,2)
 
 
 func _on_lane_3_body_entered(body: Node2D) -> void:
+	await get_tree().create_timer(0.01).timeout
 	_add_this_char_on_reserve_array(body,3)
 
 
 func _on_lane_4_body_entered(body: Node2D) -> void:
+	await get_tree().create_timer(0.01).timeout
 	_add_this_char_on_reserve_array(body,4)
 
 
 func _on_lane_5_body_entered(body: Node2D) -> void:
+	await get_tree().create_timer(0.01).timeout
 	_add_this_char_on_reserve_array(body,5)
 
 
 func _on_lane_6_body_entered(body: Node2D) -> void: 
+	await get_tree().create_timer(0.01).timeout
 	_add_this_char_on_reserve_array(body)
 
 
 func _on_lane_7_body_entered(body: Node2D) -> void:
+	await get_tree().create_timer(0.01).timeout
 	_add_this_char_on_reserve_array(body)
 
 
 func _on_spawn_next_timeout() -> void:
-	get_parent().wave_completed()
 	get_parent().play_queue_next()

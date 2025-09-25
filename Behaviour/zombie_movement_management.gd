@@ -47,7 +47,8 @@ func move() -> void:
 		var final_movement = movement * _get_slow_multiplier() * _get_chill_multiplier()
 		zombie.position.x += final_movement
 		_update_animation_state()
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(0.05).timeout  #why this state that tree is null when its not null
+		if !is_inside_tree(): return 
 
 
 # --------------------

@@ -9,6 +9,7 @@ extends Area2D
 @export_multiline var description_Tier3A : String
 @export_multiline var description_Tier3B : String
 @export_multiline var description_evolve_requirement : String
+@export var plant_evolve_meter_texture : Texture
 @export_multiline var stats : Dictionary = {}
 
 @export_category("Functions When Upgrade")
@@ -47,6 +48,8 @@ var _tier3b_obtain :bool = false
 
 var __reserve_to_tierA := false
 var __reserve_to_tierB := false
+
+var _collected_obtained_description : Array[String]=[]
 
 var _everytime_i_evolve_array_callable : Array[Callable] = []
 var _when_receiving_boost_array_callable : Array[Callable] = []
@@ -130,9 +133,9 @@ func check_for_upgradeB():
 		_after_upgrade()
 
 
-
-func _after_upgrade():
+func _after_upgrade() -> void:
 	$evolving.play()
+	_set_obtain_description()
 	__reserve_to_tierA =false
 	__reserve_to_tierB = false
 	_current_tier+= 1
@@ -143,18 +146,22 @@ func _after_upgrade():
 	match _current_tier:
 		1: $Evolving_Effects.play_for_tier1_Effect()
 		2: $Evolving_Effects.play_for_tier2_Effect()
-		
-	
 	for call in _everytime_i_evolve_array_callable: 
 		if call.is_valid(): call.call() 
 		else: _everytime_i_evolve_array_callable.erase(call)
 
+func _set_obtain_description()->void :
+	_collected_obtained_description.clear()
+	if _tier1a_obtain: _collected_obtained_description.append(description_Tier1A)
+	if _tier2a_obtain: _collected_obtained_description.append(description_Tier2A)
+	if _tier3a_obtain: _collected_obtained_description.append(description_Tier3A)
+	if _tier1b_obtain: _collected_obtained_description.append(description_Tier1B)
+	if _tier2b_obtain: _collected_obtained_description.append(description_Tier2B)
+	if _tier3b_obtain: _collected_obtained_description.append(description_Tier3B)
 
 func _create_the_evolution_boarder()-> Control:
 	if current_evolution_ui: 
-		print("theres an existing current_UI")
 		current_evolution_ui.queue_free()
-	else: print("creating one")
 	var evolution_ui_ : Control = load("res://HUD/EvolutionUI/EvolutionBoarder.tscn").instantiate()
 	current_evolution_ui = evolution_ui_
 	evolution_ui_.update_name(plant_name.capitalize())
@@ -188,12 +195,11 @@ func update_current_evolution_ui():
 			current_evolution_ui._set_upgrade_2(description_Tier3B)
 	if get_parent().has_method("set_dictionary_stats"): get_parent().set_dictionary_stats()
 	current_evolution_ui.set_sub_info(stats)
-	if current_evolution_ui.reserveUI_Tiera:current_evolution_ui.reserveUI_Tiera.visible = __reserve_to_tierA
-	if current_evolution_ui.reserveUI_Tierb: current_evolution_ui.reserveUI_Tierb.visible = __reserve_to_tierB
+	current_evolution_ui.set_description_base_on_given_array(_collected_obtained_description)
+	if current_evolution_ui.reserveUI_Tiera and _current_tier != 3:current_evolution_ui.reserveUI_Tiera.visible = __reserve_to_tierA
+	if current_evolution_ui.reserveUI_Tierb and _current_tier != 3: current_evolution_ui.reserveUI_Tierb.visible = __reserve_to_tierB
+	if plant_evolve_meter_texture: current_evolution_ui.change_texture(plant_evolve_meter_texture)
 	current_evolution_ui.set_evolve_requirement_description(description_evolve_requirement)
-	
-	
-
 
 
 func _set_current_evolution_ui_toNull():
@@ -210,4 +216,5 @@ func check_tier():
 			is_it_unlock = QuickDataManagement.savemanager.if_plant_of_tier_exist(plant_name.to_lower(),"tier2")
 		2:
 			is_it_unlock = QuickDataManagement.savemanager.if_plant_of_tier_exist(plant_name.to_lower(),"tier3")
+		3: is_it_unlock = false
 	return is_it_unlock

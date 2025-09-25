@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=3 uid="uid://y2er6cxw61oi"]
+
+[ext_resource type="Script" uid="uid://bh45h8gws7biq" path="res://HUD/main_menu/about.gd" id="1_h1545"]
+[ext_resource type="Texture2D" uid="uid://wbxalfduc38h" path="res://HUD/main_menu/settings/boarder.png" id="1_x7l7l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1545"]
+bg_color = Color(0.8247896, 0.74451256, 0.65165013, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.34924412, 0.25736555, 0.16186377, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="about" type="Control"]
+z_index = 100
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h1545")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -143.0
+offset_top = -174.0
+offset_right = 2041.0
+offset_bottom = 1169.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 97.0
+offset_right = 1493.0
+offset_bottom = 901.0
+texture = ExtResource("1_x7l7l")
+patch_margin_left = 100
+patch_margin_top = 100
+patch_margin_right = 100
+patch_margin_bottom = 100
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 95.0
+offset_right = 1115.0
+offset_bottom = 686.0
+
+[node name="description" type="Control" parent="NinePatchRect/ScrollContainer"]
+custom_minimum_size = Vector2(1000, 300)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/ScrollContainer/description"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 100.0
+offset_right = 1020.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5137255)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "THIS FANMADE GAME IS DEVELOPED BY CN_COOKIES AND ALL OF ASSETS (EXCEPT) AUDIO ARE CREATED FROM GROUND UP. THERE IS NO PATCHNOTE OR INDICATOR OF RELEASE FOR  THIS GAME YET."
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 707.0
+offset_top = 97.0
+offset_right = 1049.0
+offset_bottom = 234.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5137255)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 100
+text = "ABOUT"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 769.0
+offset_top = 818.0
+offset_right = 996.0
+offset_bottom = 870.0
+theme_override_colors/font_color = Color(0.28469437, 0.17356482, 0.044670455, 1)
+theme_override_colors/font_pressed_color = Color(0.1264193, 0.8445484, 7.70092e-07, 1)
+theme_override_colors/font_hover_color = Color(0.4433842, 0.6422906, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_h1545")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h1545")
+theme_override_styles/hover = SubResource("StyleBoxFlat_h1545")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_h1545")
+theme_override_styles/focus = SubResource("StyleBoxFlat_h1545")
+text = "BACK"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

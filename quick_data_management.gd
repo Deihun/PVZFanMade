@@ -19,6 +19,7 @@ var mode_normal_selection
 var _selected_data_in_seed_packet : Control 
 var _selected_plant_node_as_icon : Node2D
 
+var _amount_of_current_zombie_in_board : Array[Node2D]= []
 
 
 
@@ -145,7 +146,9 @@ func _reset_all_data()->void:
 	sun = 50
 	zombie_killed = 0
 	plant_killed = 0
+	_amount_of_current_zombie_in_board.clear()
 	plant_deployed = 0
+	evolution_power_point = 0
 
 
 

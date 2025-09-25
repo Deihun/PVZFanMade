@@ -31,6 +31,16 @@ func _on_sun_on_click_input_event(viewport: Node, event: InputEvent, shape_idx: 
 		canBecollected = false
 		for callback in click_callbacks:
 			if callback.is_valid():
-				callback.call()
-		$AudioStreamPlayer.pitch_scale += randf_range(-0.2,0.2)
-		$AudioStreamPlayer.play()
+				var args = callback.get_bound_arguments()
+				var arg_count = callback.get_argument_count()
+
+				print("ARGS:", args, " | Expected:", arg_count)
+
+				if args.is_empty() and arg_count == 0:
+					# Truly no parameters
+					callback.call()
+				else:
+					# Use bound args + append sun value
+					var new_args = args.duplicate()
+					new_args.append(get_parent().sun_value)
+					callback.callv(new_args)

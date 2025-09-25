@@ -5,6 +5,7 @@ extends HBoxContainer
 @export_range(1.0,60.0) var delay_before_game_start := 20.0
 @export var on_start := false
 @export var allow_to_trigger_immediately := false
+@export var game_reward_music : AudioStream
 @export var final_as_reward : Node
 @export_category("Vector position for ZombieSpawner")
 @export var lane_1 : Node2D
@@ -25,7 +26,6 @@ var progress_bar_wave
 var big_wave_percentages := []
 
 func _process(delta: float) -> void:
-	await get_tree().create_timer(0.3).timeout
 	check_if_win()
 
 func _ready() -> void:
@@ -56,13 +56,16 @@ var play_once := false
 func _play():
 	if play_once: return
 	play_once = true
+	for _zombie in preview_zombies_node: 
+		if _zombie: _zombie.queue_free()
+		else: preview_zombies.erase(_zombie)
 	await get_tree().create_timer(delay_before_game_start).timeout
 	QuickDataManagement.sound_manager.play_high_priority_audio(load("res://HUD/borders/level_manager/wave_sfx.mp3"))
 	progress_bar_wave.start_wave()
 	total_waves = max(1, get_child_count()-2)
 	var step_percent : float = 100.0 / total_waves
 	
-	var wave_index := -1
+	var wave_index := 0
 	for wave in get_children():
 		if !wave.has_method("start_this_wave"): continue
 		wave_index += 1
@@ -83,7 +86,7 @@ func play_queue_next():
 		else: play_queue_next()
 	
 
-func wave_completed():
+func wave_progress():
 	completed_waves += 1
 	var percent : float = (float(completed_waves) / float(total_waves)) * 100.0
 	progress_bar_wave.set_progress(percent)
@@ -98,14 +101,17 @@ func _if_zombie_die(node: Node2D):
 	set_process(true)
 
 func check_if_win():
-	if zombie_group.size()<=0 and get_child_count()<=0: 
-		if final_as_reward: final_as_reward.visible = true
+	if get_child_count() <= 0 and QuickDataManagement._amount_of_current_zombie_in_board.size() <= 0:
+		final_as_reward.show()
+		QuickDataManagement.sound_manager.play_music(game_reward_music,false)
+		set_process(false)
 
 
 
 
 @export var collision_where_zombie_is_place_preview:CollisionShape2D
 var preview_zombies = []
+var preview_zombies_node = []
 
 func add_this_zombie(instance_path : String):
 	preview_zombies.append(instance_path)
@@ -121,14 +127,21 @@ func place_all_zombie_as_preview() -> void:
 
 		if not zombie_count.has(path):
 			get_tree().current_scene.add_child(zombie)
+			preview_zombies_node.append(zombie)
+			zombie.z_index = 2
+			zombie.y_sort_enabled =true
 			zombie_count[path] = 0
 		else:
 			get_tree().current_scene.add_child(zombie)
+			preview_zombies_node.append(zombie)
+			zombie.z_index = 2
+			zombie.y_sort_enabled =true
 			zombie_count[path] += 1
-			if  zombie_count[path] >= 7:
+			if  zombie_count[path] >= 5:
 				zombie_count[path] = 0
 			else:
 				zombie.queue_free()
+				preview_zombies_node.erase(zombie)
 
 
 		var shape = collision_where_zombie_is_place_preview.shape

@@ -26,8 +26,7 @@ func _when_click_to_collect():
 
 
 func _ready() -> void:
-	var collect_sun_callable : Callable = Callable(self,"_when_click_to_collect")
-	$sun_animation.click_callbacks.append(collect_sun_callable)
+	$sun_animation.click_callbacks.append( Callable(self,"_when_click_to_collect"))
 	if does_sun_expire:
 		$expiration.wait_time = sun_expiration_value
 		$expiration.start()

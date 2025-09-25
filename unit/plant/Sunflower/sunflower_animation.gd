@@ -9,6 +9,16 @@ func spawn():
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("spawn")
 
+func tier1a():
+	$bottom_stem2/SideLeaves_left2.hide()
+func tier1b():
+	$Sunflower_head/petals2.show()
+func tier2a():
+	$SunflowerRootsT2a.show()
+func tier2b():
+	$bottom_stem2/SunflowereT2b.show()
+	$bottom_stem/SunflowereT2b.show()
+
 func golden_sunflower():
 	$Sunflower_head/face/SunflowerFaceUnlit.texture =load("res://unit/plant/Sunflower/golden_sunflower_face_unlit.png")
 	$Sunflower_head/face/SunflowerFaceLit.texture =load("res://unit/plant/Sunflower/golden_sunflower_face_lit.png")

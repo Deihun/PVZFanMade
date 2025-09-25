@@ -42,6 +42,7 @@ _data = {
 
 [node name="PowerBoostDrop" type="Node2D"]
 modulate = Color(0.296547, 0.924126, 0, 1)
+z_index = 5
 script = ExtResource("1_vjgo3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -60,17 +60,17 @@ func _perform_damage_on_armor_first(value: int) -> int:
 	return current_damage_calculation
 
 func _add_cone_head_armor():
-	if !head_attachment_for_holding_armor: 
-		print("cant detect armor")
-		return
+	if !head_attachment_for_holding_armor: return
 	var cone_head = load("res://unit/Zombie/basic_zombie/cone_head_armor.tscn").instantiate()
 	head_attachment_for_holding_armor.add_child(cone_head)
+	cone_head.start_position = zombie_animation_node.head_position.global_position 
 	head_attachment_for_holding_armor.z_index=5
 
 func _func_add_bucket_head():
 	if !head_attachment_for_holding_armor: return
 	var cone_head = load("res://unit/Zombie/basic_zombie/bucket_head.tscn").instantiate()
 	head_attachment_for_holding_armor.add_child(cone_head)
+	cone_head.start_position = zombie_animation_node.head_position.global_position 
 	head_attachment_for_holding_armor.z_index=5
 
 func _add_armor_custom(armor : Node2D):
@@ -80,6 +80,7 @@ func _add_armor_custom(armor : Node2D):
 		return
 	var children_count_of_current_armor : int = head_attachment_for_holding_armor.get_child_count()
 	head_attachment_for_holding_armor.add_child(armor)
+	armor.start_position = zombie_animation_node.head_position.global_position 
 	armor.z_index = 5
 	head_attachment_for_holding_armor.z_index=5
 	for hat in head_attachment_for_holding_armor.get_children():

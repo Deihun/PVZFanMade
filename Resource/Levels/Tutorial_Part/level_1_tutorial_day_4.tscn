@@ -244,13 +244,13 @@ position = Vector2(884, 2122)
 position = Vector2(904, 1528)
 
 [node name="BasicZombie8" parent="for_storing_groups_of_zombies" instance=ExtResource("11_k360w")]
-position = Vector2(1416, 1655)
+position = Vector2(1416, 1710)
 
 [node name="BasicZombie9" parent="for_storing_groups_of_zombies" instance=ExtResource("11_k360w")]
-position = Vector2(1433, 1529)
+position = Vector2(1427, 1577)
 
 [node name="BasicZombie10" parent="for_storing_groups_of_zombies" instance=ExtResource("11_k360w")]
-position = Vector2(1409, 1791)
+position = Vector2(1407, 1868)
 
 [node name="BasicZombie7" parent="for_storing_groups_of_zombies" instance=ExtResource("11_k360w")]
 position = Vector2(1664, 2140)
@@ -280,10 +280,10 @@ position = Vector2(2427, 1375)
 position = Vector2(586, 1393)
 
 [node name="BasicZombie17" parent="for_storing_groups_of_zombies" instance=ExtResource("11_k360w")]
-position = Vector2(1728, 1407)
+position = Vector2(1722, 1431)
 
 [node name="BasicZombie" parent="for_storing_groups_of_zombies" instance=ExtResource("14_r4qp0")]
-position = Vector2(1947, 1540)
+position = Vector2(1939, 1575)
 
 [node name="BasicZombie18" parent="for_storing_groups_of_zombies" instance=ExtResource("12_xboxf")]
 position = Vector2(2238, 1350)
@@ -338,7 +338,7 @@ visible = false
 position = Vector2(-540, -404)
 
 [node name="BasicZombie" parent="." instance=ExtResource("14_r4qp0")]
-position = Vector2(77, 1396)
+position = Vector2(69, 1418)
 
 [node name="preview_zombie" type="CollisionShape2D" parent="."]
 position = Vector2(2154, 119)

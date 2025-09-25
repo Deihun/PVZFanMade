@@ -8,11 +8,18 @@ var current_player: AudioStreamPlayer = null
 var next_player: AudioStreamPlayer = null
 
 var start_up_wave: AudioStream
-var mid_wave: AudioStream
+
+var mid_wave_a_intro: AudioStream
+var mid_wave_a: AudioStream
+var mid_wave_b_intro :AudioStream
+var mid_wave_b : AudioStream
+var last_wave_intro : AudioStream
 var last_wave: AudioStream
 
 
 func _ready() -> void:
+	$"../save_manager".get_value("sfx")
+	start_up_adjust_bus()
 	for a in 5:
 		var audio:= AudioStreamPlayer.new()
 		audio.bus = "SFX"
@@ -29,6 +36,13 @@ func _ready() -> void:
 		$play_explosion_sfx_1.add_child(audio)
 		a+=1
 
+func start_up_adjust_bus()-> void:
+	var value_sfx = $"../save_manager".get_value("sfx")
+	var value_music = $"../save_manager".get_value("music")
+	var bus_index_sfx = AudioServer.get_bus_index("SFX")
+	var bus_index_music = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(bus_index_sfx, linear_to_db(value_sfx / 100.0))
+	AudioServer.set_bus_volume_db(bus_index_music, linear_to_db(value_music / 100.0))
 
 func play_music(music : AudioStream = start_up_wave, loop := true) -> void:
 	audio1.stop()
@@ -38,24 +52,42 @@ func play_music(music : AudioStream = start_up_wave, loop := true) -> void:
 	audio1.play()
 	audio1.volume_db = 0
 
-
 func play_mid_wave() -> void:
-	if !mid_wave: return
-	_set_loop(mid_wave, false)
-	_switch_music(mid_wave, false, Callable(self, "_resume_startup_music"))
+	var array : Array[Callable] = []
+	if mid_wave_a: array.append(Callable(self,"_play_mid_wave_a"))
+	if mid_wave_b: array.append(Callable(self,"_play_mid_wave_b"))
+	if array.size() > 0: array.pick_random().call()
+
+func _play_mid_wave_a()->void:
+	if !mid_wave_a: return
+	if mid_wave_a_intro:
+		play_music(mid_wave_a_intro,false)
+		await get_tree().create_timer(mid_wave_a_intro.get_length()).timeout
+	_set_loop(mid_wave_a, false)
+	_switch_music(mid_wave_a, false, Callable(self, "_resume_startup_music"),false)
+
+func _play_mid_wave_b()-> void:
+	if !mid_wave_b: return
+	if mid_wave_b_intro:
+		play_music(mid_wave_b_intro,false)
+		await get_tree().create_timer(mid_wave_b_intro.get_length() -0.1 ).timeout
+	_set_loop(mid_wave_b, false)
+	_switch_music(mid_wave_b, false, Callable(self, "_resume_startup_music"),false)
 
 
 func play_last_wave() -> void:
+	if last_wave_intro:
+		play_music(last_wave_intro,false)
+		await get_tree().create_timer(last_wave_intro.get_length()).timeout
 	if !last_wave:return
-	_set_loop(last_wave, true)
-	_switch_music(last_wave, true)
+	play_music(last_wave)
 
 
 func _resume_startup_music() -> void:
 	play_music()
 
 
-func _switch_music(stream: AudioStream, loop: bool, after_finish: Callable = Callable()) -> void:
+func _switch_music(stream: AudioStream, loop: bool, after_finish: Callable = Callable(), fade_in := true) -> void:
 	if current_player == null or !current_player.playing:
 		current_player = audio1
 		next_player = audio2
@@ -64,7 +96,7 @@ func _switch_music(stream: AudioStream, loop: bool, after_finish: Callable = Cal
 
 	# Setup next player
 	next_player.stream = stream
-	next_player.volume_db = -80
+	if fade_in: next_player.volume_db = -80
 	next_player.play()
 
 	# Fade between players
@@ -85,7 +117,6 @@ func _fade_between(old_player: AudioStreamPlayer, new_player: AudioStreamPlayer)
 		var tween := create_tween()
 		tween.tween_property(new_player, "volume_db", 0, fade_time)
 		current_player = new_player
-	await get_tree().create_timer(0.3).timeout
 	new_player.stop()
 	new_player.play()
 

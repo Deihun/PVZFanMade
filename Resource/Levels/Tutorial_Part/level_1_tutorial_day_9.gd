@@ -1,6 +1,5 @@
 extends Node2D
 func _ready() -> void:
-	Engine.time_scale = 1.8
 	$main_camera.play_camera()
 	$main_camera.when_starting_callable.append(Callable($sun_falling_behaviour,"start"))
 	$NewPlantUnlockRewardNode._call_this_when_collecting_reward_ArrayCallable.append(Callable(self,"_unlock_sunflower"))

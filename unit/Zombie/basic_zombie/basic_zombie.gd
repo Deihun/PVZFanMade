@@ -14,6 +14,7 @@ func _ready() -> void:
 	add_to_group("zombie")
 	$zombie_hp_management._add_health_threshold_condition(func(): lose_its_arms(),50, 5, true)
 	var play_death_callable : Callable = Callable(self,"death")
+	$Bite_Detection.i_detect_plants = Callable(self,"start_eating")
 	$zombie_hp_management.zombie_death_callable.append(play_death_callable)
 	$zombie_hp_management.other_type_zombie_death_callable.append(Callable(self,"death_body_disappear"))
 	$zombie_hp_management.zombie_animation_node.walk_callable = Callable($zombie_movement_management,"move")
@@ -45,17 +46,20 @@ func _set_as_idle():
 	$CollisionShape2D.disabled =true
 	$SubViewport/animation_node.set_idle_animation()
 
+func start_eating():
+	$zombie_hp_management.zombie_animation_node.eat()
 
 func eat_plant():
+	var plant = $Bite_Detection.get_target_plant()
 	$zombie_movement_management.__im_eating = true
-	if !detected_plant:
-		detected_plant = null
+	if !plant:
 		$zombie_hp_management.zombie_animation_node.walk()
 		return
-	var plant_health_management = detected_plant.get_node("plant_health_management_behaviour")
+	
+	var plant_health_management = plant.get_node("plant_health_management_behaviour")
 	if plant_health_management: plant_health_management.perform_damage(damage)
 	else: 
-		plant_health_management = detected_plant.get_node("zombie_hp_management")
+		plant_health_management = plant.get_node("zombie_hp_management")
 		if plant_health_management: plant_health_management.take_damage(damage,self)
 
 
@@ -66,7 +70,7 @@ func lose_its_arms():
 func death():
 	add_to_group("ignore")
 	if $HitPoint : $HitPoint.queue_free()
-	if $Bite_Detection: $Bite_Detection.queue_free()
+	if $Bite_Detection/CollisionShape2D2: $Bite_Detection/CollisionShape2D2.disabled = true
 	$SubViewport/animation_node.dead()
 	detected_plant = null
 
@@ -77,13 +81,6 @@ func death_body_disappear():
 func disappear():
 	queue_free()
 
-func _on_bite_detection_body_entered(body: Node2D) -> void:
-	if body.is_in_group(enemy_group) and !body.is_in_group("untargettable") and !body.is_in_group("testing"):
-		detected_plant = body
-		$zombie_hp_management.zombie_animation_node.eat()
-
-func _on_bite_detection_body_exited(body: Node2D) -> void:
-	if body == detected_plant and detected_plant: detected_plant =null
 
 func get_random_audio_stream_groan()-> AudioStream:
 	match randi_range(1,5):

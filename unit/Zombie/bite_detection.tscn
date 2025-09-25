@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3a0hlbafc4gr"]
+
+[ext_resource type="Script" uid="uid://c7c2dlqg5qcg8" path="res://unit/Zombie/basic_zombie/bite_detection.gd" id="1_qe3fo"]
+
+[node name="Bite_Detection" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_qe3fo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

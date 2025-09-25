@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var amount_of_powerboost : int = 1
 var hp: int = 10
 var selected_projectile := "res://unit/plant/peashooter/pea.tscn"
 
@@ -17,10 +18,14 @@ func _input(event):
 		# Check if F1 is currently being held down
 		if Input.is_key_pressed(KEY_F1):
 			var zombie = load("res://unit/Zombie/basic_zombie/normal_basic_zombie.tscn").instantiate()
+			zombie.y_sort_enabled = true
+			zombie.z_index=2
 			get_tree().current_scene.add_child(zombie)
 			zombie.global_position = get_global_mouse_position()
 		elif Input.is_key_pressed(KEY_F2):
 			var zombie = load("res://unit/Zombie/basic_zombie/conehead_basic_zombie.tscn").instantiate()
+			zombie.y_sort_enabled = true
+			zombie.z_index=2
 			get_tree().current_scene.add_child(zombie)
 			zombie.global_position = get_global_mouse_position()
 		elif Input.is_key_pressed(KEY_F3):
@@ -29,26 +34,39 @@ func _input(event):
 			zombie.global_position = get_global_mouse_position()
 		elif Input.is_key_pressed(KEY_F4):
 			var zombie = load("res://unit/Zombie/basic_zombie/Coolz_zombie.tscn").instantiate()
+			zombie.y_sort_enabled = true
+			zombie.z_index=2
 			get_tree().current_scene.add_child(zombie)
 			zombie.global_position = get_global_mouse_position()
-		elif Input.is_key_pressed(KEY_F5):
-			var zombie = load("res://unit/Zombie/basic_zombie/normal_basic_zombie.tscn").instantiate()
-			var hipnotize_effect = load("res://Behaviour/hypnotize_node_effect.tscn").instantiate()
-			get_tree().current_scene.add_child(zombie)
-			zombie.global_position = get_global_mouse_position()
-			var zombie_hp_management = zombie.get_node("zombie_hp_management")
-			zombie_hp_management._func_add_bucket_head()
-			zombie.add_child(hipnotize_effect)
+		#elif Input.is_key_pressed(KEY_F5):
+			#var zombie = load("res://unit/Zombie/basic_zombie/normal_basic_zombie.tscn").instantiate()
+			#var hipnotize_effect = load("res://Behaviour/hypnotize_node_effect.tscn").instantiate()
+			#get_tree().current_scene.add_child(zombie)
+			#zombie.global_position = get_global_mouse_position()
+			#var zombie_hp_management = zombie.get_node("zombie_hp_management")
+			#zombie_hp_management._func_add_bucket_head()
+			#zombie.y_sort_enabled = true
+			#zombie.z_index=2
+			#zombie.add_child(hipnotize_effect)
 		elif Input.is_key_pressed(KEY_F6):
 			var zombie = load("res://unit/Zombie/poleVaultingZombie/PoleVaulting_Zombie.tscn").instantiate()
 			get_tree().current_scene.add_child(zombie)
+			zombie.y_sort_enabled = true
+			zombie.z_index=2
 			zombie.global_position = get_global_mouse_position()
 		elif Input.is_key_pressed(KEY_F7):
 			var zombie = load("res://unit/Zombie/basic_zombie/normal_basic_zombie.tscn").instantiate()
 			var power=load("res://Behaviour/power_boost_drop.tscn").instantiate()
 			get_tree().current_scene.add_child(zombie)
 			zombie.global_position = get_global_mouse_position()
+			zombie.y_sort_enabled = true
+			zombie.z_index=2
 			zombie.add_child(power)
+		elif Input.is_key_pressed(KEY_2):
+			for a in amount_of_powerboost:
+				var powerboost = preload("res://HUD/EvolutionUI/EvolutionPowerBoost.tscn").instantiate()
+				get_tree().current_scene.add_child(powerboost)
+				powerboost.global_position = get_global_mouse_position() + Vector2(75,0)
 		elif Input.is_key_pressed(KEY_3):
 			var projectile = load(selected_projectile).instantiate()
 			get_tree().current_scene.add_child(projectile)

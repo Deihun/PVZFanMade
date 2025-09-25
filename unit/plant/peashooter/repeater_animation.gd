@@ -19,14 +19,14 @@ func _trigger_bigshot() -> void:
 
 
 func _big_shot():
-	$AnimationPlayer.stop()
-	$AnimationPlayer.speed_scale =  max(min(1.0+attack_animation_speed,4.0),0.1)
+	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation == "big_shot": return
+	$AnimationPlayer.speed_scale =  max(min(1.0+attack_animation_speed,4.0),0.5)
 	$AnimationPlayer.play("big_shot")
 
 
 func start_attacking():
-	$AnimationPlayer.stop()
-	$AnimationPlayer.speed_scale =  max(min(1.0+attack_animation_speed,4.0),0.1)
+	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation == "shooting_animation": return
+	$AnimationPlayer.speed_scale =  max(min(1.0+attack_animation_speed,4.0),0.5)
 	$AnimationPlayer.play("shooting_animation")
 
 

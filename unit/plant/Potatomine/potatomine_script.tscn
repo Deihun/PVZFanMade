@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8jsaoed5yq02"]
+[gd_scene load_steps=11 format=3 uid="uid://c8jsaoed5yq02"]
 
 [ext_resource type="Script" uid="uid://b0o5rdt50pppj" path="res://unit/plant/Potatomine/potatomine_script.gd" id="1_jur8w"]
 [ext_resource type="Shader" uid="uid://py6lxba25pq3" path="res://unit/plant/Potatomine/spacelike.gdshader" id="1_ww56q"]
 [ext_resource type="PackedScene" uid="uid://cs1eh8rbbrj0r" path="res://unit/plant/Potatomine/potato_mine_animation.tscn" id="2_jphgr"]
 [ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="3_tesfl"]
 [ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="3_tkiar"]
+[ext_resource type="Texture2D" uid="uid://55opumwlu843" path="res://unit/plant/Potatomine/potatomine_power_meter.png" id="4_grgtt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_grgtt"]
 shader = ExtResource("1_ww56q")
@@ -20,6 +21,7 @@ size = Vector2(320.5, 80.5)
 size = Vector2(52, 41)
 
 [node name="potatomine_script" type="CharacterBody2D"]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_grgtt")
 position = Vector2(57, 102)
 script = ExtResource("1_jur8w")
@@ -34,6 +36,8 @@ description_Tier2A = "Unarmed itself. When I explode, mark this tile, after 15s 
 description_Tier2B = "Unarmed itself. On random intervals, I cannot be eaten"
 description_Tier3A = "Unarmed itself. My explosion now goes forward two times"
 description_Tier3B = "Unarmed itself. Explosion now doesnt kill me  instead it reverts back to unarmed and each explosion increase my damage by additonal 100  but arming time is  now much slower."
+description_evolve_requirement = "Im ready to evolve when ready to detonate and unarmed itself when evolving."
+plant_evolve_meter_texture = ExtResource("4_grgtt")
 _tier1_max_value = 1.0
 _tier2_max_value = 1.0
 _tier3_max_value = 1.0

@@ -1,5 +1,6 @@
 extends Node2D
 @export var head_position : Node2D
+@export var arm_position : Node2D
 
 var _already_trigger_death:=false
 var _already_half := false
@@ -74,7 +75,7 @@ func _remove_arm():
 	if _already_half: return
 	_already_half = true
 	var _target_arm := $main_control/PoleVaultZombieMainBody/PoleVaultZombieShoulderRight/PoleVaultZombieForearmRight
-	QuickDataManagement.common_called_method.pop_arm_if_half(_target_arm)
+	QuickDataManagement.common_called_method.pop_arm_if_half(_target_arm, arm_position)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name=="vaulting":$AnimationPlayer.play("walking_animation")

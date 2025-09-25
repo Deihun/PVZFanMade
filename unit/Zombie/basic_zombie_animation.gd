@@ -47,7 +47,7 @@ func _trigger_eat():
 	if eat_callable.is_valid(): eat_callable.call()
 
 func eat():
-	$AnimationPlayer.stop()
+	if $AnimationPlayer.current_animation == "death_animation": return
 	$AnimationPlayer.play("eating_animation")
 
 func walk():
@@ -75,5 +75,5 @@ func base_zombie_is_half():
 		return
 	hand_still_attach = false
 	var arm := $BasicZombieBody/ArmFront1/ArmFront2
-	QuickDataManagement.common_called_method.pop_arm_if_half(arm)
+	QuickDataManagement.common_called_method.pop_arm_if_half(arm, arm_position)
 	hand_still_attach = false

@@ -6,7 +6,7 @@ extends Control
 @export var hide_powerbank := false
 
 
-var plant_limit := 4  #Fix it later
+var plant_limit := 5  #Fix it later
 
 
 func get_sun_when_claim_animation_position() -> Vector2:

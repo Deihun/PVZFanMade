@@ -63,7 +63,10 @@ _mode = "dont_show_plant_pick"
 conveyor_belt = NodePath("ConveyorBeltMainScript")
 level_name = "DAY 1-5"
 music_at_start = ExtResource("5_eww10")
-music_mid_wave = null
+music_mid_wave_a = null
+music_mid_wave_intro_b = null
+music_mid_wave_b = null
+music_last_wave_intro = null
 music_last_wave = null
 
 [node name="Shovel" type="Control" parent="main_camera"]

@@ -79,26 +79,27 @@ func _attack_mode():
 	var attac_speed : float = 1.0 + ($PlantDamageNodeManager.bonus_attackspeed * 100.0)
 	on_attack_mode = true
 	if has_node("peashooter"): $peashooter.attack_animation_speed = 0.009 * $PlantDamageNodeManager.bonus_attackspeed
-	elif repeater: repeater.attack_animation_speed = 0.3 * $PlantDamageNodeManager.bonus_attackspeed
+	elif repeater: repeater.attack_animation_speed = 0.009 * $PlantDamageNodeManager.bonus_attackspeed
 	elif _threepeater: _threepeater.attack_animation_speed = 0.4 * $PlantDamageNodeManager.bonus_attackspeed
 
 
 func not_attack_mode():
 	on_attack_mode = false
 
+func tier2B_in_action():
+	if !$EvolutionSenderSupportBehavior._tier2b_obtain: return
+	if $PlantDamageNodeManager.get_current_damage_value_with_tracker("t2b") < 6 and $EvolutionSenderSupportBehavior._tier1a_obtain: $PlantDamageNodeManager.add_damage_with_tracker(1.0,"t2b")
+	if $PlantDamageNodeManager.get_current_attackspeed_value_with_tracker("t2b") < _tierb2_max_stacks_requirement: $PlantDamageNodeManager.add_attackspeed_with_tracker(5.0,"t2b")
+	$tier2B_stacks_expiration.stop() 
+	$tier2B_stacks_expiration.start()
 
 func spawn_pea():
-	var pea = get_pea()
+	var pea : Node2D= get_pea()
 	if randf_range(0.0,1.0) < _chance_to_deals_trueDamage and $EvolutionSenderSupportBehavior._tier1a_obtain: pea.true_damage = true
 	pea.damage = $PlantDamageNodeManager.get_computed_damage()
 	pea.master=self
-	if $EvolutionSenderSupportBehavior._tier2b_obtain:
-		$tier2B_stacks_expiration.stop()
-		$tier2B_stacks_expiration.start()
-		_tierb2_stacks_number = _tierb2_stacks_number+5 if _tierb2_stacks_number < _tierb2_max_stacks_requirement else _tierb2_stacks_number
-		$PlantDamageNodeManager.bonus_attackspeed += 5 if _tierb2_stacks_number < _tierb2_max_stacks_requirement else 0
-		$PlantDamageNodeManager.bonus_damage += _t1a_t2b_damage if _tierb2_stacks_number < _tierb2_max_stacks_requirement else 0
-		_t1a_t2b_damage_stacks = _t1a_t2b_damage if _tierb2_stacks_number < _tierb2_max_stacks_requirement else 0
+	tier2B_in_action()
+	$EvolutionSenderSupportBehavior.update_current_evolution_ui()
 
 func spawn_big_pea():
 	var pea = get_pea()
@@ -110,6 +111,7 @@ func spawn_big_pea():
 	get_parent().add_child(pea)
 	$attack_cooldown.stop()
 	$attack_cooldown.start()
+	$EvolutionSenderSupportBehavior.update_current_evolution_ui()
 
 func spawn_three_pea():
 	var damage = $PlantDamageNodeManager.get_computed_damage()
@@ -142,14 +144,8 @@ func spawn_three_pea():
 	pea.add_child(first_behaviour_up)
 	second_pea.add_child(second_behaviour_up)
 	third_pea.add_child(third_behaviour_up)
-	
-	if $EvolutionSenderSupportBehavior._tier1b_obtain:
-		$tier2B_stacks_expiration.stop()
-		$tier2B_stacks_expiration.start()
-		_tierb2_stacks_number+=5 if _tierb2_stacks_number <_tierb2_max_stacks_requirement else 0
-		$PlantDamageNodeManager.bonus_attackspeed += 5 if _tierb2_stacks_number < _tierb2_max_stacks_requirement else 0
-		$PlantDamageNodeManager.bonus_damage += _t1a_t2b_damage if _tierb2_stacks_number < _tierb2_max_stacks_requirement else 0
-		_t1a_t2b_damage_stacks = _t1a_t2b_damage if _tierb2_stacks_number < _tierb2_max_stacks_requirement else 0
+	tier2B_in_action()
+	$EvolutionSenderSupportBehavior.update_current_evolution_ui()
 
 func _continue_normal_attack():
 	ignore_attack_bigshot_aftermath = false
@@ -159,17 +155,17 @@ func _on_attack_cooldown_timeout() -> void:
 	attack_ready = true
 
 func _on_tier_2b_stacks_expiration_timeout() -> void:
-	$PlantDamageNodeManager.bonus_attackspeed -= _tierb2_stacks_number
-	_tierb2_stacks_number = 0
+	$PlantDamageNodeManager.remove_attackspeed_with_tracker("t2b")
+	$PlantDamageNodeManager.remove_damage_with_tracker("t2b")
 
 
 
 func _tier1A():
 	$peashooter._tier1A()
-	$PlantDamageNodeManager.damage += 2
+	$PlantDamageNodeManager.add_damage_with_tracker(2.0,"t1a")
 func _tier2A():
 	plant_to_be_boost = 8
-	_chance_to_deals_trueDamage = 0.5
+	_chance_to_deals_trueDamage = 0.35
 	if $EvolutionSenderSupportBehavior._tier1b_obtain: $plant_attackspeed/CollisionShape2D.disabled=false
 	$peashooter._tier2A()
 	$PlantBoost/CollisionShape2D.disabled = false
@@ -185,7 +181,7 @@ func _tier3A():
 
 
 func _tier1B():
-	$PlantDamageNodeManager.bonus_attackspeed += 5
+	$PlantDamageNodeManager.add_attackspeed_with_tracker(10.0,"t1b")
 	$peashooter._tier1B()
 func _tier2B():
 	$peashooter._tier2B()
@@ -233,7 +229,7 @@ func _on_plant_attackspeed_body_entered(body: Node2D) -> void:
 func set_dictionary_stats(): 
 	var stats_dictionary ={
 		"Kill": $PlantDamageNodeManager.kill_count,
-		"Damage": $PlantDamageNodeManager.damage,
+		"Damage": ($PlantDamageNodeManager.damage+$PlantDamageNodeManager.bonus_damage),
 		"BonusAttackSpeed": $PlantDamageNodeManager.bonus_attackspeed
 	}
 	$EvolutionSenderSupportBehavior.stats = stats_dictionary.duplicate()

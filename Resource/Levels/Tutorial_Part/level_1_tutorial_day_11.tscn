@@ -47,7 +47,10 @@ sun_on_start = 250
 level_name = "DAY 1-11"
 choose_our_seed_music = ExtResource("5_4fsti")
 music_at_start = ExtResource("5_4fsti")
-music_mid_wave = null
+music_mid_wave_a = null
+music_mid_wave_intro_b = null
+music_mid_wave_b = null
+music_last_wave_intro = null
 music_last_wave = null
 
 [node name="lane_1" parent="." instance=ExtResource("5_lrt47")]
@@ -164,7 +167,7 @@ _number_of_zombies_in_big_wave = 15
 
 [node name="wave9" parent="zombie_wave_management" instance=ExtResource("8_efl62")]
 layout_mode = 2
-_delay_duration = 12.0
+_delay_duration = 20.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 0.2
@@ -301,40 +304,6 @@ _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 0.75
 _number_of_zombies_in_big_wave = 25
 
-[node name="BucketHead" parent="zombie_wave_management" instance=ExtResource("16_ur0d0")]
-position = Vector2(6228, 259)
-
-[node name="PowerBoostDrop" parent="zombie_wave_management/BucketHead" instance=ExtResource("11_p8jl8")]
-
-[node name="BucketHead2" parent="zombie_wave_management" instance=ExtResource("16_ur0d0")]
-position = Vector2(6210, 443)
-
-[node name="BucketHead3" parent="zombie_wave_management" instance=ExtResource("16_ur0d0")]
-position = Vector2(6236, 578)
-
-[node name="PowerBoostDrop" parent="zombie_wave_management/BucketHead3" instance=ExtResource("11_p8jl8")]
-
-[node name="BucketHead4" parent="zombie_wave_management" instance=ExtResource("16_ur0d0")]
-position = Vector2(6231, 705)
-
-[node name="BucketHead5" parent="zombie_wave_management" instance=ExtResource("16_ur0d0")]
-position = Vector2(6249, 856)
-
-[node name="PoleVaultingZombie" parent="zombie_wave_management" instance=ExtResource("15_dyi83")]
-position = Vector2(6764, 277)
-
-[node name="PoleVaultingZombie2" parent="zombie_wave_management" instance=ExtResource("15_dyi83")]
-position = Vector2(6774, 407)
-
-[node name="PoleVaultingZombie3" parent="zombie_wave_management" instance=ExtResource("15_dyi83")]
-position = Vector2(6718, 562)
-
-[node name="PoleVaultingZombie4" parent="zombie_wave_management" instance=ExtResource("15_dyi83")]
-position = Vector2(6783, 697)
-
-[node name="PoleVaultingZombie5" parent="zombie_wave_management" instance=ExtResource("15_dyi83")]
-position = Vector2(6770, 861)
-
 [node name="NewPlantUnlockRewardNode" parent="." instance=ExtResource("9_4hyt2")]
 position = Vector2(562, -1)
 _reward_description = "Congratulations! You defeat the demo!"
@@ -414,19 +383,19 @@ position = Vector2(4453, 1950)
 position = Vector2(4463, 1680)
 
 [node name="PoleVaultingZombie2" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
-position = Vector2(2200, 1517)
+position = Vector2(2210, 1540)
 
 [node name="PoleVaultingZombie3" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
-position = Vector2(2175, 1787)
+position = Vector2(2179, 1843)
 
 [node name="PoleVaultingZombie4" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
-position = Vector2(2161, 2101)
+position = Vector2(2178, 2142)
 
 [node name="PoleVaultingZombie5" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
-position = Vector2(2201, 1944)
+position = Vector2(2190, 1995)
 
 [node name="PoleVaultingZombie6" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
-position = Vector2(2184, 1639)
+position = Vector2(2199, 1704)
 
 [node name="BasicZombie5" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
 position = Vector2(2454, 1386)
@@ -435,89 +404,89 @@ position = Vector2(2454, 1386)
 position = Vector2(2388, 1383)
 
 [node name="BasicZombie7" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(2454, 1529)
+position = Vector2(2426, 1583)
 
 [node name="BasicZombie8" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(2444, 1669)
+position = Vector2(2420, 1726)
 
 [node name="BasicZombie9" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(2419, 1791)
+position = Vector2(2419, 1861)
 
 [node name="BasicZombie10" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(2419, 1940)
+position = Vector2(2421, 2011)
 
 [node name="BasicZombie11" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(2437, 2091)
+position = Vector2(2431, 2162)
 
 [node name="BucketHead6" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
-position = Vector2(2457, 1377)
+position = Vector2(2464, 1399)
 
 [node name="PowerBoostDrop" parent="for_storing_groups_of_zombies/BucketHead6" instance=ExtResource("11_p8jl8")]
 
 [node name="BucketHead7" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
-position = Vector2(2674, 1661)
+position = Vector2(2672, 1573)
 
 [node name="BucketHead8" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
-position = Vector2(2702, 1944)
+position = Vector2(2675, 2007)
 
 [node name="BasicZombie12" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(2944, 1661)
+position = Vector2(2940, 1724)
 
 [node name="BasicZombie13" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(2930, 1958)
+position = Vector2(2929, 2021)
 
 [node name="BasicZombie14" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
 position = Vector2(2958, 1396)
 
 [node name="BasicZombie15" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(2953, 1815)
+position = Vector2(2933, 1866)
 
 [node name="BasicZombie16" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(2919, 2104)
+position = Vector2(2920, 2152)
 
 [node name="BasicZombie17" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(2947, 1541)
+position = Vector2(2935, 1585)
 
 [node name="BasicZombie18" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
 position = Vector2(2887, 1391)
 
 [node name="PoleVaultingZombie7" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
-position = Vector2(3704, 1801)
+position = Vector2(3703, 1845)
 
 [node name="PoleVaultingZombie" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
-position = Vector2(1451, 1369)
+position = Vector2(1480, 1400)
 
 [node name="BucketHead" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
-position = Vector2(1682, 1522)
+position = Vector2(1619, 1575)
 
 [node name="BucketHead2" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
-position = Vector2(1689, 1819)
+position = Vector2(1620, 1857)
 
 [node name="BucketHead3" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
-position = Vector2(1700, 1668)
+position = Vector2(1737, 1717)
 
 [node name="BucketHead4" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
-position = Vector2(1712, 1960)
+position = Vector2(1727, 2000)
 
 [node name="PowerBoostDrop" parent="for_storing_groups_of_zombies/BucketHead4" instance=ExtResource("11_p8jl8")]
 
 [node name="BucketHead5" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
-position = Vector2(1693, 2092)
+position = Vector2(1620, 2151)
 
 [node name="BasicZombie" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(136, 1358)
+position = Vector2(121, 1429)
 
 [node name="BasicZombie2" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
-position = Vector2(376, 1397)
+position = Vector2(379, 1436)
 
 [node name="ConeHead" parent="for_storing_groups_of_zombies" instance=ExtResource("13_mxsy3")]
-position = Vector2(915, 1959)
+position = Vector2(967, 2011)
 
 [node name="ConeHead2" parent="for_storing_groups_of_zombies" instance=ExtResource("13_mxsy3")]
-position = Vector2(874, 1984)
+position = Vector2(878, 2010)
 
 [node name="CoolzZombie" parent="for_storing_groups_of_zombies" instance=ExtResource("11_re0gv")]
-position = Vector2(648, 1965)
+position = Vector2(656, 2006)
 
 [node name="PowerBoostDrop" parent="for_storing_groups_of_zombies/CoolzZombie" instance=ExtResource("11_p8jl8")]
 
@@ -535,6 +504,97 @@ position = Vector2(1180, 1404)
 [node name="BasicZombie3" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
 position = Vector2(1123, 1375)
 
+[node name="BucketHead12" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
+position = Vector2(3192, 1572)
+
+[node name="BucketHead13" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
+position = Vector2(3197, 1858)
+
+[node name="BucketHead14" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
+position = Vector2(3197, 2152)
+
+[node name="BasicZombie25" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
+position = Vector2(3460, 1718)
+
+[node name="BasicZombie26" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
+position = Vector2(3458, 2015)
+
+[node name="CoolzZombie5" parent="for_storing_groups_of_zombies" instance=ExtResource("11_re0gv")]
+position = Vector2(3450, 1858)
+
+[node name="PoleVaultingZombie12" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
+position = Vector2(3962, 1841)
+
+[node name="BasicZombie27" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
+position = Vector2(3909, 1434)
+
+[node name="BasicZombie28" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
+position = Vector2(4017, 1407)
+
+[node name="PoleVaultingZombie13" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
+position = Vector2(4236, 1845)
+
+[node name="ConeHead8" parent="for_storing_groups_of_zombies" instance=ExtResource("13_mxsy3")]
+position = Vector2(4183, 1396)
+
+[node name="BucketHead15" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
+position = Vector2(5228, 2119)
+
+[node name="BucketHead16" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
+position = Vector2(5225, 1977)
+
+[node name="BasicZombie29" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
+position = Vector2(4967, 1394)
+
+[node name="BasicZombie30" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
+position = Vector2(5233, 1387)
+
+[node name="BasicZombie31" parent="for_storing_groups_of_zombies" instance=ExtResource("14_nq8xx")]
+position = Vector2(4954, 1373)
+
+[node name="PoleVaultingZombie14" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
+position = Vector2(5486, 1795)
+
+[node name="PoleVaultingZombie15" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
+position = Vector2(5465, 1653)
+
+[node name="PoleVaultingZombie16" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
+position = Vector2(5471, 1523)
+
+[node name="BucketHead17" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
+position = Vector2(5979, 1504)
+
+[node name="PowerBoostDrop" parent="for_storing_groups_of_zombies/BucketHead17" instance=ExtResource("11_p8jl8")]
+
+[node name="BucketHead18" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
+position = Vector2(5961, 1688)
+
+[node name="BucketHead19" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
+position = Vector2(5987, 1823)
+
+[node name="PowerBoostDrop" parent="for_storing_groups_of_zombies/BucketHead19" instance=ExtResource("11_p8jl8")]
+
+[node name="BucketHead20" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
+position = Vector2(5982, 1950)
+
+[node name="BucketHead21" parent="for_storing_groups_of_zombies" instance=ExtResource("16_ur0d0")]
+position = Vector2(6000, 2101)
+
+[node name="PoleVaultingZombie17" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
+position = Vector2(6515, 1522)
+
+[node name="PoleVaultingZombie18" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
+position = Vector2(6525, 1652)
+
+[node name="PoleVaultingZombie19" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
+position = Vector2(6469, 1807)
+
+[node name="PoleVaultingZombie20" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
+position = Vector2(6534, 1942)
+
+[node name="PoleVaultingZombie21" parent="for_storing_groups_of_zombies" instance=ExtResource("15_dyi83")]
+position = Vector2(6521, 2106)
+
 [node name="DebugMode" parent="." instance=ExtResource("17_wbahx")]
 visible = false
 position = Vector2(-540, -404)
@@ -542,60 +602,3 @@ position = Vector2(-540, -404)
 [node name="preview_zombie" type="CollisionShape2D" parent="."]
 position = Vector2(2154, 189.625)
 shape = SubResource("RectangleShape2D_r4qp0")
-
-[node name="BucketHead3" parent="." instance=ExtResource("16_ur0d0")]
-position = Vector2(2874, 1087)
-
-[node name="BucketHead" parent="." instance=ExtResource("16_ur0d0")]
-position = Vector2(2895, 1391)
-
-[node name="BucketHead2" parent="." instance=ExtResource("16_ur0d0")]
-position = Vector2(2869, 1680)
-
-[node name="BasicZombie" parent="." instance=ExtResource("14_nq8xx")]
-position = Vector2(3151, 1243)
-
-[node name="BasicZombie2" parent="." instance=ExtResource("14_nq8xx")]
-position = Vector2(3159, 1543)
-
-[node name="CoolzZombie" parent="." instance=ExtResource("11_re0gv")]
-position = Vector2(3129, 1377)
-
-[node name="PoleVaultingZombie6" parent="." instance=ExtResource("15_dyi83")]
-position = Vector2(3642, 1355)
-
-[node name="BasicZombie3" parent="." instance=ExtResource("14_nq8xx")]
-position = Vector2(3613, 946)
-
-[node name="BasicZombie4" parent="." instance=ExtResource("14_nq8xx")]
-position = Vector2(3690, 966)
-
-[node name="PoleVaultingZombie" parent="." instance=ExtResource("15_dyi83")]
-position = Vector2(3893, 1360)
-
-[node name="ConeHead" parent="." instance=ExtResource("13_mxsy3")]
-position = Vector2(3856, 955)
-
-[node name="BucketHead4" parent="." instance=ExtResource("16_ur0d0")]
-position = Vector2(4901, 1678)
-
-[node name="BucketHead5" parent="." instance=ExtResource("16_ur0d0")]
-position = Vector2(4898, 1536)
-
-[node name="BasicZombie5" parent="." instance=ExtResource("14_nq8xx")]
-position = Vector2(4640, 953)
-
-[node name="BasicZombie6" parent="." instance=ExtResource("14_nq8xx")]
-position = Vector2(4906, 946)
-
-[node name="BasicZombie7" parent="." instance=ExtResource("14_nq8xx")]
-position = Vector2(4627, 932)
-
-[node name="PoleVaultingZombie2" parent="." instance=ExtResource("15_dyi83")]
-position = Vector2(5159, 1354)
-
-[node name="PoleVaultingZombie3" parent="." instance=ExtResource("15_dyi83")]
-position = Vector2(5138, 1212)
-
-[node name="PoleVaultingZombie4" parent="." instance=ExtResource("15_dyi83")]
-position = Vector2(5144, 1082)

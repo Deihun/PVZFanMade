@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgug0q8j3v0lr"]
+[gd_scene load_steps=20 format=3 uid="uid://bgug0q8j3v0lr"]
 
 [ext_resource type="Script" uid="uid://cm6p1e3vay0mg" path="res://HUD/EvolutionUI/evolution_boarder.gd" id="1_276mw"]
 [ext_resource type="Texture2D" uid="uid://bhjq6m1ay6hyq" path="res://HUD/borders/border_2.png" id="2_4n5yd"]
@@ -7,6 +7,415 @@
 [ext_resource type="Texture2D" uid="uid://dfjg5pnu1dlj2" path="res://HUD/EvolutionUI/evolve_locked.png" id="4_jhv7r"]
 [ext_resource type="Texture2D" uid="uid://o4qjyitr6tc2" path="res://HUD/EvolutionUI/reserve_UI.png" id="4_jjm27"]
 [ext_resource type="Texture2D" uid="uid://xitdtg0wttse" path="res://HUD/borders/evolution_ui_indicator.png" id="5_jhv7r"]
+[ext_resource type="Texture2D" uid="uid://lwpprumwly4k" path="res://HUD/EvolutionUI/evolve_progressbar.png" id="7_qssqw"]
+[ext_resource type="Texture2D" uid="uid://dqbhk4sm5wyjq" path="res://HUD/borders/level_manager/_white_shine_reward1.png" id="8_hbnwt"]
+[ext_resource type="PackedScene" uid="uid://tij5i2txniu8" path="res://HUD/borders/indicator.tscn" id="10_sc1kd"]
+[ext_resource type="Script" uid="uid://dm7q8wu0wa8a7" path="res://HUD/EvolutionUI/build_description.gd" id="11_8o2xm"]
+
+[sub_resource type="Animation" id="Animation_hbnwt"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.33020636, 0.42273045, 0.19112584, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../upgrade_status/WhiteShineReward1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../upgrade_status/WhiteShineReward1:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.6039216)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_1:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14.285714, -1.092894)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14.285715, 0.36429596)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_3:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_3:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2.0408154, 20.400726)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_4:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_4:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24.781342, 18.579231)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_5:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_5:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5.247814, 3.6429844)]
+}
+
+[sub_resource type="Animation" id="Animation_8o2xm"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.90839195, 1, 0.6584227, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../upgrade_status/WhiteShineReward1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../upgrade_status/WhiteShineReward1:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.37, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.99999994, 0.9131465, 0.6523492, 0.6039216), Color(0.99999994, 0.9131465, 0.6523492, 0.6039216), Color(1, 0.9125, 0.65, 0.33333334), Color(0.99999994, 0.9131465, 0.6523492, 0.6039216)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.47),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_1:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-14.285714, -1.092894), Vector2(-1.1661806, -36.42987)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.51, 0.86),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_2:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.49, 0.69, 0.8666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(14.285715, 0.36429596), Vector2(10.2040825, -10.200366), Vector2(11.953353, -28.779594)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_3:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.63),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_3:position")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.13, 0.37, 0.6333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-2.0408154, 20.400726), Vector2(-9.329445, -10.564663), Vector2(-2.9154525, -44.80874)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_4:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.31, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_4:position")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.29, 0.45, 0.61, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(24.781342, 18.579231), Vector2(22.44898, 5.1001797), Vector2(28.279886, -6.921674), Vector2(24.489794, -12.386154)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_5:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.21, 0.6333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../../upgrade_status/WhiteShineReward1/shine_5:position")
+tracks/12/interp = 2
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6331579),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-10.495627, -22.222223), Vector2(-6.413994, -43.351547), Vector2(-5.247814, 3.6429844)]
+}
+
+[sub_resource type="Animation" id="Animation_sc1kd"]
+resource_name = "progress_idle_half"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.76, 1.41),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.55925375, 0.65126127, 0.2870541, 1), Color(0.5438499, 0.66343623, 7.70092e-07, 1), Color(0.61870676, 0.67327064, 0.35692638, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../upgrade_status/WhiteShineReward1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qssqw"]
+resource_name = "progress_idle_low"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.33020636, 0.42273045, 0.19112584, 1), Color(0.23724154, 0.44063714, 0.26423335, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../upgrade_status/WhiteShineReward1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8btjh"]
+_data = {
+&"RESET": SubResource("Animation_hbnwt"),
+&"progress_full": SubResource("Animation_8o2xm"),
+&"progress_idle_half": SubResource("Animation_sc1kd"),
+&"progress_idle_low": SubResource("Animation_qssqw")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sc1kd"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sc1kd"]
+size = Vector2(161.93353, 129.90938)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8o2xm"]
+bg_color = Color(0.70980394, 0.57254905, 0.40784314, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.30588236, 0.17254902, 0.14901961, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
 
 [node name="EvolutionBoarder" type="Control"]
 z_index = 100
@@ -77,12 +486,27 @@ patch_margin_top = 50
 patch_margin_right = 50
 patch_margin_bottom = 50
 
+[node name="tierA" type="Label" parent="Boarder/Upgrade_1"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 111.0
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(0.966701, 0.859148, 0.730785, 1)
+theme_override_colors/font_shadow_color = Color(0.341907, 0.18096, 4.81308e-08, 1)
+theme_override_colors/font_outline_color = Color(0.341176, 0.180392, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 31
+text = "TierA"
+horizontal_alignment = 1
+justification_flags = 227
+
 [node name="Label" type="Label" parent="Boarder/Upgrade_1"]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 15.0
-offset_right = 329.0
-offset_bottom = 110.0
+offset_left = 22.0
+offset_top = 42.0
+offset_right = 330.0
+offset_bottom = 165.0
 theme_override_colors/font_color = Color(0.38388, 0.172599, 0.0493627, 1)
 autowrap_mode = 3
 
@@ -118,9 +542,9 @@ patch_margin_bottom = 50
 [node name="Label" type="Label" parent="Boarder/Upgrade_2"]
 layout_mode = 0
 offset_left = 34.0
-offset_top = 16.0
+offset_top = 46.099976
 offset_right = 342.0
-offset_bottom = 111.0
+offset_bottom = 161.09998
 theme_override_colors/font_color = Color(0.38388, 0.172599, 0.0493627, 1)
 autowrap_mode = 3
 
@@ -129,6 +553,21 @@ visible = false
 position = Vector2(189, 98.825)
 scale = Vector2(1.42, 1.4855)
 texture = ExtResource("4_jjm27")
+
+[node name="tierA" type="Label" parent="Boarder/Upgrade_2"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = -1.0
+offset_right = 111.0
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(0.966701, 0.859148, 0.730785, 1)
+theme_override_colors/font_shadow_color = Color(0.341907, 0.18096, 4.81308e-08, 1)
+theme_override_colors/font_outline_color = Color(0.341176, 0.180392, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 31
+text = "TierB"
+horizontal_alignment = 1
+justification_flags = 227
 
 [node name="EvolveLocked_1" type="Sprite2D" parent="Boarder"]
 visible = false
@@ -183,6 +622,7 @@ patch_margin_bottom = 50
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Boarder"]
 z_index = 1
+layout_mode = 0
 offset_left = 45.0
 offset_top = 89.0
 offset_right = 353.0
@@ -193,69 +633,236 @@ layout_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Evolution_Icon" type="Control" parent="Boarder/ScrollContainer/data_stored"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
+mouse_filter = 1
 
-[node name="evolution_progress" type="ProgressBar" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 166.0
-offset_right = 291.0
-offset_bottom = 188.0
-value = 50.0
-show_percentage = false
+[node name="Node2D" type="Node2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon"]
+position = Vector2(158, 145)
+scale = Vector2(1.655, 1.655)
+
+[node name="evolution_progress" type="TextureProgressBar" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/Node2D"]
+offset_left = -100.302124
+offset_top = -90.03021
+offset_right = 105.697876
+offset_bottom = 109.96979
+value = 12.0
+rounded = true
+fill_mode = 3
+texture_under = ExtResource("7_qssqw")
+texture_progress = ExtResource("7_qssqw")
+tint_under = Color(0, 0, 0, 0.3019608)
+tint_over = Color(0.73, 0.73, 0.73, 0)
+tint_progress = Color(0.33020636, 0.42273045, 0.19112584, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/Node2D/evolution_progress"]
+libraries = {
+&"": SubResource("AnimationLibrary_8btjh")
+}
+autoplay = "progress_idle_low"
 
 [node name="upgrade_status" type="Label" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon"]
 layout_mode = 0
-offset_left = -14.0
-offset_top = 154.0
-offset_right = 310.0
-offset_bottom = 198.0
+offset_left = -9.0
+offset_top = 165.0
+offset_right = 315.0
+offset_bottom = 209.0
 theme_override_colors/font_color = Color(1, 1, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.379731, 0.347355, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 28
 text = "EVOLVE AVAILABLE"
 horizontal_alignment = 1
 autowrap_mode = 3
 justification_flags = 227
 
+[node name="WhiteShineReward1" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/upgrade_status"]
+self_modulate = Color(1, 1, 1, 0.6039216)
+show_behind_parent = true
+position = Vector2(163, 1.9999962)
+scale = Vector2(3.43, 2.7450001)
+texture = ExtResource("8_hbnwt")
+metadata/_edit_lock_ = true
+
+[node name="shine_1" type="Panel" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/upgrade_status/WhiteShineReward1"]
+offset_left = -14.285714
+offset_top = -1.092894
+offset_right = -12.536447
+offset_bottom = 1.8214966
+theme_override_styles/panel = SubResource("StyleBoxFlat_sc1kd")
+
+[node name="shine_2" type="Panel" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/upgrade_status/WhiteShineReward1"]
+visible = false
+offset_left = 14.285715
+offset_top = 0.36429596
+offset_right = 15.685849
+offset_bottom = 1.8643017
+theme_override_styles/panel = SubResource("StyleBoxFlat_sc1kd")
+
+[node name="shine_3" type="Panel" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/upgrade_status/WhiteShineReward1"]
+visible = false
+offset_left = -2.0408154
+offset_top = 20.400726
+offset_right = -0.64081764
+offset_bottom = 21.900738
+theme_override_styles/panel = SubResource("StyleBoxFlat_sc1kd")
+
+[node name="shine_4" type="Panel" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/upgrade_status/WhiteShineReward1"]
+visible = false
+offset_left = 24.781342
+offset_top = 18.579231
+offset_right = 26.18134
+offset_bottom = 20.079254
+theme_override_styles/panel = SubResource("StyleBoxFlat_sc1kd")
+
+[node name="shine_5" type="Panel" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/upgrade_status/WhiteShineReward1"]
+offset_left = -5.247814
+offset_top = 3.6429844
+offset_right = -3.8478165
+offset_bottom = 5.142975
+theme_override_styles/panel = SubResource("StyleBoxFlat_sc1kd")
+
 [node name="EvolutionUiIndicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon"]
+self_modulate = Color(1, 1, 1, 0)
 position = Vector2(140, 79)
 scale = Vector2(1.7, 1.8)
 texture = ExtResource("5_jhv7r")
 
 [node name="tier1A_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
-position = Vector2(-20.5882, 36.6667)
+position = Vector2(-52.35294, 38.333332)
 scale = Vector2(0.55, 0.55)
 
+[node name="tier1a_indi" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator" instance=ExtResource("10_sc1kd")]
+position = Vector2(-24.117643, 69.44445)
+
+[node name="tier1b_indi" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator" instance=ExtResource("10_sc1kd")]
+position = Vector2(51.764706, 70)
+
+[node name="tier2a_indi" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator" instance=ExtResource("10_sc1kd")]
+position = Vector2(-48.235294, 25.000004)
+
+[node name="tier2b_indi" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator" instance=ExtResource("10_sc1kd")]
+position = Vector2(78.82353, 25.000006)
+
+[node name="tier3a_indi" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator" instance=ExtResource("10_sc1kd")]
+position = Vector2(-27.058825, -20.000002)
+
+[node name="tier3b_indi" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator" instance=ExtResource("10_sc1kd")]
+position = Vector2(55.882355, -20.000004)
+
 [node name="tier1B_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
-position = Vector2(21.1765, 36.6667)
+position = Vector2(67.058815, 37.22222)
 scale = Vector2(0.55, 0.55)
 
 [node name="tier2A_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
-position = Vector2(-20, 13.8889)
+position = Vector2(-55.882355, 11.111113)
 scale = Vector2(0.55, 0.55)
 
 [node name="tier2B_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
-position = Vector2(21.7647, 13.8889)
+position = Vector2(70, 9.444447)
 scale = Vector2(0.55, 0.55)
 
 [node name="tier3A_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
-position = Vector2(-18.8235, -8.88889)
+position = Vector2(-27.64706, -30.000004)
 scale = Vector2(0.55, 0.55)
 
 [node name="tier3B_indicator" type="Sprite2D" parent="Boarder/ScrollContainer/data_stored/Evolution_Icon/EvolutionUiIndicator"]
-position = Vector2(22.9412, -8.33333)
+position = Vector2(47.05883, -27.222221)
 scale = Vector2(0.55, 0.55)
 
 [node name="evolve_requirement_description" type="Label" parent="Boarder/ScrollContainer/data_stored"]
-custom_minimum_size = Vector2(300, 150)
+custom_minimum_size = Vector2(300, 120)
 layout_mode = 2
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 20
 text = "Evolve: "
+horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="build_description" type="Area2D" parent="."]
+position = Vector2(34.999985, 85)
+scale = Vector2(1.655, 1.655)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="build_description"]
+visible = false
+position = Vector2(97.28099, 72.80967)
+shape = SubResource("RectangleShape2D_sc1kd")
+
+[node name="Build_description" type="Node2D" parent="."]
+visible = false
+position = Vector2(403.00003, 202)
+scale = Vector2(1.655, 1.655)
+script = ExtResource("11_8o2xm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Build_description"]
+offset_top = -65.86103
+offset_right = 188.5196
+offset_bottom = 86.40484
+
+[node name="upgrade_1" type="Panel" parent="Build_description/HBoxContainer"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8o2xm")
+
+[node name="Label" type="Label" parent="Build_description/HBoxContainer/upgrade_1"]
+layout_mode = 0
+offset_left = 10.876115
+offset_top = 12.688822
+offset_right = 161.93352
+offset_bottom = 141.99397
+theme_override_colors/font_color = Color(0.9647059, 0.85882354, 0.7294118, 1)
+theme_override_colors/font_outline_color = Color(0.46666667, 0.31764707, 0.14901961, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 12
+text = "Has no current upgrade yet...
+"
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="upgrade_2" type="Panel" parent="Build_description/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8o2xm")
+
+[node name="Label" type="Label" parent="Build_description/HBoxContainer/upgrade_2"]
+layout_mode = 0
+offset_left = 10.876115
+offset_top = 12.688822
+offset_right = 161.93352
+offset_bottom = 113.59517
+theme_override_colors/font_color = Color(0.9647059, 0.85882354, 0.7294118, 1)
+theme_override_colors/font_outline_color = Color(0.46666667, 0.31764707, 0.14901961, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 12
+text = "Sample_text_box
+"
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="upgrade_3" type="Panel" parent="Build_description/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8o2xm")
+
+[node name="Label" type="Label" parent="Build_description/HBoxContainer/upgrade_3"]
+layout_mode = 0
+offset_left = 10.876115
+offset_top = 12.688822
+offset_right = 161.93352
+offset_bottom = 113.59517
+theme_override_colors/font_color = Color(0.9647059, 0.85882354, 0.7294118, 1)
+theme_override_colors/font_outline_color = Color(0.46666667, 0.31764707, 0.14901961, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 12
+text = "Sample_text_box
+"
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
 
 [connection signal="button_up" from="Boarder/Upgrade_1" to="." method="_on_upgrade_1_button_up"]
 [connection signal="mouse_entered" from="Boarder/Upgrade_1" to="." method="_on_upgrade_1_mouse_entered"]
@@ -263,3 +870,6 @@ autowrap_mode = 3
 [connection signal="button_up" from="Boarder/Upgrade_2" to="." method="_on_upgrade_2_button_up"]
 [connection signal="mouse_entered" from="Boarder/Upgrade_2" to="." method="_on_upgrade_2_mouse_entered"]
 [connection signal="mouse_exited" from="Boarder/Upgrade_2" to="." method="_on_upgrade_2_mouse_exited"]
+[connection signal="gui_input" from="Boarder/ScrollContainer" to="." method="_on_scroll_container_gui_input"]
+[connection signal="mouse_entered" from="build_description" to="." method="_on_build_description_mouse_entered"]
+[connection signal="mouse_exited" from="build_description" to="." method="_on_build_description_mouse_exited"]

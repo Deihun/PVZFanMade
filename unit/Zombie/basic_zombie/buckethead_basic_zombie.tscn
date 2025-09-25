@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cbj6pyedst0gj"]
+[gd_scene load_steps=34 format=3 uid="uid://cbj6pyedst0gj"]
 
 [ext_resource type="Script" uid="uid://biamhuvv1sdpj" path="res://unit/Zombie/basic_zombie/basic_zombie.gd" id="1_8h568"]
 [ext_resource type="PackedScene" uid="uid://b8lpneub1dg61" path="res://Behaviour/projectile_behaviour/zombie_hp_management.tscn" id="2_4bf7j"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://bidmw30wtlaqj" path="res://unit/Zombie/basic_zombie/bite_1.mp3" id="17_1lk62"]
 [ext_resource type="AudioStream" uid="uid://bpocjpise8evb" path="res://unit/Zombie/basic_zombie/bite_2.mp3" id="18_ges4d"]
 [ext_resource type="Shader" uid="uid://cjkbfojy8py64" path="res://unit/Zombie/waterline_shader.gdshader" id="19_nen33"]
+[ext_resource type="PackedScene" uid="uid://b3a0hlbafc4gr" path="res://unit/Zombie/bite_detection.tscn" id="21_5gv0n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qu4dk"]
 radius = 29.1548
@@ -2428,16 +2429,17 @@ shader_parameter/white_override = false
 shader_parameter/darkblue_override = false
 shader_parameter/purple_override = false
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5oqf"]
-size = Vector2(115, 142)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8ghd"]
 size = Vector2(46, 138)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1b3j"]
 size = Vector2(71, 136)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5oqf"]
+size = Vector2(115, 142)
+
 [node name="BucketHead" type="CharacterBody2D"]
+z_index = 2
 y_sort_enabled = true
 position = Vector2(219, 332)
 collision_layer = 2
@@ -2596,14 +2598,6 @@ head_attachment_for_holding_armor = NodePath("../SubViewport/animation_node/Basi
 zombie_animation_node = NodePath("../SubViewport/animation_node")
 final_render = NodePath("../final_render")
 
-[node name="Bite_Detection" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bite_Detection"]
-position = Vector2(-21.5, -76)
-shape = SubResource("RectangleShape2D_r5oqf")
-debug_color = Color(0.504058, 0.0862229, 4.81308e-08, 0.42)
-
 [node name="HitPoint" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitPoint"]
@@ -2616,6 +2610,11 @@ visible = false
 position = Vector2(-12.5, -77)
 shape = SubResource("RectangleShape2D_j1b3j")
 
-[connection signal="body_entered" from="Bite_Detection" to="." method="_on_bite_detection_body_entered"]
-[connection signal="body_exited" from="Bite_Detection" to="." method="_on_bite_detection_body_exited"]
+[node name="Bite_Detection" parent="." instance=ExtResource("21_5gv0n")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bite_Detection"]
+position = Vector2(-21.5, -76)
+shape = SubResource("RectangleShape2D_r5oqf")
+debug_color = Color(0.504058, 0.0862229, 4.81308e-08, 0.42)
+
 [connection signal="area_shape_entered" from="HitPoint" to="." method="_on_area_2d_area_shape_entered"]

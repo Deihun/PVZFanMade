@@ -47,7 +47,6 @@ func _on_catch_projectiles_body_entered(body: Node2D) -> void:
 
 func _on_trigger_game_over_body_entered(body: Node2D) -> void:
 	if body.is_in_group("zombie") and not body.is_in_group("testing") and not body.is_in_group("ignore"):
-		print("detecting")
 		var scene := get_tree().current_scene
 		if scene:
 			# Look for the first Camera2D in the current scene

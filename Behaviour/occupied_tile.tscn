@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://nqpa1jdoxd70"]
 
 [ext_resource type="Script" uid="uid://cekbjq14pnxox" path="res://HUD/borders/occupied_tile.gd" id="1_1kvgc"]
-[ext_resource type="Texture2D" uid="uid://cfo825vpd8y5x" path="res://Behaviour/dropbox_hold-early_Behind.png" id="2_d1o4q"]
-[ext_resource type="Texture2D" uid="uid://xuy75h0y3ols" path="res://Behaviour/dropbox_hold-early_front.png" id="3_udxb4"]
+[ext_resource type="Texture2D" uid="uid://cdt57v8vx5aaj" path="res://HUD/option_wheel.png" id="2_d1o4q"]
+[ext_resource type="Texture2D" uid="uid://dqbhk4sm5wyjq" path="res://HUD/borders/level_manager/_white_shine_reward1.png" id="2_udxb4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kvgc"]
 bg_color = Color(0.628047, 0.81858, 0.38374, 1)
@@ -18,6 +18,124 @@ size = Vector2(114.875, 170.25)
 [node name="Occupied_Tile" type="Area2D"]
 script = ExtResource("1_1kvgc")
 
+[node name="OptionWheel" type="Sprite2D" parent="."]
+visible = false
+z_index = 199
+position = Vector2(10, -171)
+texture = ExtResource("2_d1o4q")
+
+[node name="tier_A_option" type="Area2D" parent="."]
+visible = false
+z_index = 200
+z_as_relative = false
+position = Vector2(-57, 9)
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tier_A_option"]
+polygon = PackedVector2Array(-145, 2, 2, 0, -1, -119, -158, -315, -248, -255, -300, -127, -312, 5)
+
+[node name="WhiteShineReward1" type="Sprite2D" parent="tier_A_option"]
+visible = false
+modulate = Color(1, 0.9529412, 0.63529414, 0.62352943)
+position = Vector2(-145, -90)
+scale = Vector2(3.355, 2.1499999)
+texture = ExtResource("2_udxb4")
+
+[node name="Label2" type="Label" parent="tier_A_option"]
+offset_left = -131.0
+offset_top = -186.0
+offset_right = -54.0
+offset_bottom = -28.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 121
+theme_override_font_sizes/font_size = 116
+text = "A"
+
+[node name="Label" type="Label" parent="tier_A_option"]
+offset_left = -227.0
+offset_top = -118.0
+offset_right = -133.0
+offset_bottom = -48.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 121
+theme_override_font_sizes/font_size = 51
+text = "Tier"
+
+[node name="tier_B_option" type="Area2D" parent="."]
+visible = false
+z_index = 200
+z_as_relative = false
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tier_B_option"]
+polygon = PackedVector2Array(59, -110, 217, -308, 289, -253, 361, -124, 367, -2, 59, -2)
+
+[node name="WhiteShineReward1" type="Sprite2D" parent="tier_B_option"]
+visible = false
+modulate = Color(1, 0.9529412, 0.63529414, 0.62352943)
+position = Vector2(154, -96.00001)
+scale = Vector2(3.355, 2.1499999)
+texture = ExtResource("2_udxb4")
+
+[node name="Label2" type="Label" parent="tier_B_option"]
+offset_left = 192.0
+offset_top = -188.0
+offset_right = 269.0
+offset_bottom = -30.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 121
+theme_override_font_sizes/font_size = 116
+text = "B"
+
+[node name="Label" type="Label" parent="tier_B_option"]
+offset_left = 106.0
+offset_top = -120.0
+offset_right = 200.0
+offset_bottom = -50.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 121
+theme_override_font_sizes/font_size = 51
+text = "Tier"
+
+[node name="more_option" type="Area2D" parent="."]
+visible = false
+z_index = 200
+z_as_relative = false
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="more_option"]
+polygon = PackedVector2Array(-59, -112, 59, -111, 215, -308, 121, -343, -127, -343, -214, -307)
+
+[node name="WhiteShineReward1" type="Sprite2D" parent="more_option"]
+visible = false
+modulate = Color(1, 0.9529412, 0.63529414, 0.62352943)
+position = Vector2(0, -232)
+scale = Vector2(3.355, 2.1499999)
+texture = ExtResource("2_udxb4")
+
+[node name="Label" type="Label" parent="more_option"]
+offset_left = -57.0
+offset_top = -274.0
+offset_right = 37.0
+offset_bottom = -204.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 121
+theme_override_font_sizes/font_size = 51
+text = "Info"
+
 [node name="Panel" type="Panel" parent="."]
 visible = false
 offset_left = -57.0
@@ -28,28 +146,15 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_1kvgc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(1, -25)
 shape = SubResource("RectangleShape2D_40oju")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[node name="Node2D" type="Node2D" parent="."]
-z_index = 120
-position = Vector2(-6, -69)
-scale = Vector2(0.30171493, 0.34247756)
-
-[node name="progress" type="TextureProgressBar" parent="Node2D"]
-visible = false
-offset_right = 200.0
-offset_bottom = 200.0
-max_value = 0.5
-fill_mode = 4
-texture_under = ExtResource("2_d1o4q")
-texture_over = ExtResource("3_udxb4")
-texture_progress = ExtResource("3_udxb4")
-tint_under = Color(0.36282963, 0.36282942, 0.36282945, 1)
-tint_over = Color(0.096, 0.36, 0, 0.18039216)
-tint_progress = Color(0.31486437, 0.6327888, 0, 1)
-
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="tier_A_option" to="." method="_on_tier_a_option_mouse_entered"]
+[connection signal="mouse_exited" from="tier_A_option" to="." method="_on_tier_a_option_mouse_exited"]
+[connection signal="mouse_entered" from="tier_B_option" to="." method="_on_tier_b_option_mouse_entered"]
+[connection signal="mouse_exited" from="tier_B_option" to="." method="_on_tier_b_option_mouse_exited"]
+[connection signal="mouse_entered" from="more_option" to="." method="_on_more_option_mouse_entered"]
+[connection signal="mouse_exited" from="more_option" to="." method="_on_more_option_mouse_exited"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://pspn4765e0xo"]
+[gd_scene load_steps=4 format=3 uid="uid://pspn4765e0xo"]
 
 [ext_resource type="Script" uid="uid://404vqx7aylwl" path="res://Resource/Levels/Tutorial_Part/zombie_wave_management.gd" id="1_ao85m"]
+[ext_resource type="AudioStream" uid="uid://bi5qe20jcauvj" path="res://Resource/Levels/music/Modern_Day_Victory.ogg" id="2_bapkk"]
 [ext_resource type="AudioStream" uid="uid://bll8gj65b7tca" path="res://HUD/borders/level_manager/wave_sfx.mp3" id="2_cbb7q"]
 
 [node name="zombie_wave_management" type="HBoxContainer"]
@@ -9,6 +10,7 @@ offset_top = 1077.0
 offset_right = -290.0
 offset_bottom = 1877.0
 script = ExtResource("1_ao85m")
+game_reward_music = ExtResource("2_bapkk")
 
 [node name="start" type="Panel" parent="."]
 custom_minimum_size = Vector2(250, 1200)

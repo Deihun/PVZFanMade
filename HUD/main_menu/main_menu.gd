@@ -3,29 +3,37 @@ func _ready() -> void:
 	QuickDataManagement.sound_manager.play_music(load("res://HUD/main_menu/Plants vs. Zombies (Main Theme).mp3"))
 
 func play_is_press():
-	$AudioStreamPlayer.play()
+	if QuickDataManagement.savemanager.save_data.has("level_complete"):
+		var level_complete = QuickDataManagement.savemanager.save_data["level_complete"]
+		var is_really_empty = level_complete.is_empty() or (level_complete.size() == 1 and level_complete[0].is_empty())
+
+		if is_really_empty:
+			print("No progress yet!")
+			QuickDataManagement.common_called_method.enter_new_scene("res://HUD/preview_when_no_progress.tscn")
+			return
 	var level := 1
 	for i in 11:
 		if QuickDataManagement.savemanager.level_exist(str("day1-",level)): 
 			level += 1
 			continue
 		else:
-			get_tree().change_scene_to_file(str("res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_",level,".tscn"))
-			return
+			QuickDataManagement.common_called_method.enter_new_scene(str("res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_",level,".tscn"))
+
 		#if QuickDataManagement.savemanager.level_exist(str("day1-",level)):
 			#get_tree().change_scene_to_file(str("res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_",level+1,".tscn"))
 			#return
 	
 	
 	#QuickDataManagement.savemanager._reset_save()
-	get_tree().change_scene_to_file("res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_1.tscn")
+	#get_tree().change_scene_to_file("res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_1.tscn")
 func settings_is_press():
 	var settings_ui : Control = preload("res://HUD/main_menu/settings/settings_UI.tscn").instantiate()
 	get_tree().current_scene.add_child(settings_ui)
 func almanac_is_press():
 	pass
 func about_is_press():
-	pass
+	var about := preload("res://HUD/main_menu/about.tscn").instantiate()
+	get_tree().current_scene.add_child(about)
 
 func _on_play_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed: play_is_press()

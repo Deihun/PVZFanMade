@@ -86,18 +86,6 @@ offset_bottom = 650.0
 localize_numeral_system = false
 theme_override_constants/separation = 5
 
-[node name="peashooter" parent="mode_normal_pick/plant_seed_selection/VBoxContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
-layout_mode = 2
-mode = "ingame-seed-pick"
-plant_name = "peashooter"
-cooldown = 5
-start_up_cooldown = 2
-suncost = 0
-image_path = "uid://cr2fjf7qmen82"
-plant_tscn = "uid://l0ap6weeoiby"
-plant_animation_only_tscn = "uid://diuw5jn1y4wfg"
-seed_selection_VBoxContainer = NodePath("..")
-
 [node name="Tools_UI" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(350, 700)
 layout_mode = 0
@@ -222,7 +210,7 @@ seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_se
 [node name="cherrybomb" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
 layout_mode = 2
 mode = "only-for-plant-selection"
-plant_name = "CherryBomb"
+plant_name = "cherrybomb"
 cooldown = 80
 suncost = 150
 image_path = "uid://boo42rha4na5h"

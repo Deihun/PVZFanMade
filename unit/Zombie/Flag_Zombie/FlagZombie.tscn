@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dnbo5cmpcbs5n"]
+[gd_scene load_steps=34 format=3 uid="uid://dnbo5cmpcbs5n"]
 
 [ext_resource type="Script" uid="uid://dj5ksad7da23i" path="res://unit/Zombie/Flag_Zombie/flag_zombie.gd" id="1_6f40v"]
 [ext_resource type="PackedScene" uid="uid://dlfnwlf3x2t7t" path="res://Behaviour/zombie_movement_management.tscn" id="2_7y5u2"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://bidmw30wtlaqj" path="res://unit/Zombie/basic_zombie/bite_1.mp3" id="16_oditb"]
 [ext_resource type="AudioStream" uid="uid://bpocjpise8evb" path="res://unit/Zombie/basic_zombie/bite_2.mp3" id="17_fysxd"]
 [ext_resource type="Shader" uid="uid://cjkbfojy8py64" path="res://unit/Zombie/waterline_shader.gdshader" id="20_ocpfm"]
+[ext_resource type="PackedScene" uid="uid://b3a0hlbafc4gr" path="res://unit/Zombie/bite_detection.tscn" id="21_o3f24"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vmxy6"]
 radius = 29.1548
@@ -2415,14 +2416,11 @@ _data = {
 &"idle": SubResource("Animation_ra74k")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5oqf"]
-size = Vector2(115, 142)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8ghd"]
-size = Vector2(46, 138)
+size = Vector2(46, 106)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1b3j"]
-size = Vector2(71, 136)
+size = Vector2(71, 106)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bk7l7"]
 shader = ExtResource("20_ocpfm")
@@ -2434,7 +2432,11 @@ shader_parameter/white_override = false
 shader_parameter/darkblue_override = false
 shader_parameter/purple_override = false
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5oqf"]
+size = Vector2(115, 105)
+
 [node name="FlagZombie" type="CharacterBody2D"]
+z_index = 2
 y_sort_enabled = true
 position = Vector2(1540, 313)
 collision_layer = 2
@@ -2579,35 +2581,34 @@ bus = &"SFX"
 stream = ExtResource("17_fysxd")
 bus = &"SFX"
 
-[node name="zombie_movement_management" parent="." instance=ExtResource("2_7y5u2")]
+[node name="zombie_movement_management" parent="." node_paths=PackedStringArray("animation_node", "final_render") instance=ExtResource("2_7y5u2")]
+animation_node = NodePath("../SubViewport/animation_node")
+final_render = NodePath("../final_render")
 
 [node name="zombie_hp_management" parent="." node_paths=PackedStringArray("head_attachment_for_holding_armor", "zombie_animation_node", "final_render") instance=ExtResource("2_slo2u")]
 head_attachment_for_holding_armor = NodePath("../SubViewport/animation_node/BasicZombieBody/RigidBody2D/BasicZombieHead1/armor")
 zombie_animation_node = NodePath("../SubViewport/animation_node")
 final_render = NodePath("../final_render")
 
-[node name="Bite_Detection" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bite_Detection"]
-position = Vector2(-21.5, -76)
-shape = SubResource("RectangleShape2D_r5oqf")
-debug_color = Color(0.504058, 0.0862229, 4.81308e-08, 0.42)
-
 [node name="HitPoint" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitPoint"]
-position = Vector2(0, -77)
+position = Vector2(0, -79)
 shape = SubResource("RectangleShape2D_v8ghd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-12.5, -77)
+position = Vector2(-12.5, -79)
 shape = SubResource("RectangleShape2D_j1b3j")
 
 [node name="final_render" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_bk7l7")
 position = Vector2(-74, -165)
 
-[connection signal="body_entered" from="Bite_Detection" to="." method="_on_bite_detection_body_entered"]
-[connection signal="body_exited" from="Bite_Detection" to="." method="_on_bite_detection_body_exited"]
+[node name="Bite_Detection" parent="." instance=ExtResource("21_o3f24")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bite_Detection"]
+position = Vector2(-21.5, -79.5)
+shape = SubResource("RectangleShape2D_r5oqf")
+debug_color = Color(0.504058, 0.0862229, 4.81308e-08, 0.42)
+
 [connection signal="area_shape_entered" from="HitPoint" to="." method="_on_area_2d_area_shape_entered"]
