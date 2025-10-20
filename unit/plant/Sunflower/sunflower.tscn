@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://xeuq18wltltm"]
+[gd_scene load_steps=19 format=3 uid="uid://xeuq18wltltm"]
 
 [ext_resource type="Script" uid="uid://ca0cagla675w7" path="res://unit/plant/Sunflower/sunflower.gd" id="1_44l71"]
 [ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="2_d0rym"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cq356nfdqih64" path="res://unit/plant/Sunflower/sunflower_animation.tscn" id="2_vorgh"]
 [ext_resource type="Texture2D" uid="uid://js4w6ib6y6vd" path="res://unit/plant/Sunflower/sunflower_evolve_meter.png" id="3_utgag"]
 [ext_resource type="PackedScene" uid="uid://c6tpqsl5bopmw" path="res://unit/plant/Sunflower/sun_flower_shield.tscn" id="5_onrnj"]
+[ext_resource type="Texture2D" uid="uid://gqvca3i123ss" path="res://unit/shadow_for_unit.png" id="6_i43ci"]
+[ext_resource type="PackedScene" uid="uid://cbwshmu16o47f" path="res://Behaviour/force_reaction_animation_detections.tscn" id="9_wsdq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1mn5"]
 size = Vector2(75, 100)
@@ -496,6 +498,9 @@ _data = {
 &"play": SubResource("Animation_i43ci")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsdq0"]
+size = Vector2(282, 107)
+
 [node name="Sunflower" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -524,9 +529,16 @@ base_attack_cooldown = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, -50)
 shape = SubResource("RectangleShape2D_r1mn5")
+disabled = true
 
 [node name="Sunflower Animation" parent="." instance=ExtResource("2_vorgh")]
 position = Vector2(-26, -42)
+
+[node name="ShadowForUnit" type="Sprite2D" parent="Sunflower Animation"]
+show_behind_parent = true
+position = Vector2(20, 34)
+scale = Vector2(2.16, 2.0217392)
+texture = ExtResource("6_i43ci")
 
 [node name="shield_" type="Timer" parent="."]
 wait_time = 3.0
@@ -631,8 +643,19 @@ one_shot = true
 [node name="T2A_visual_when_producing" type="Timer" parent="T2A_collecting_power_animation"]
 one_shot = true
 
+[node name="force_reaction_animation_detections" parent="." instance=ExtResource("9_wsdq0")]
+collision_layer = 2147483648
+collision_mask = 64
+group_filters = Array[String](["killer_lawnmower"])
+detect_area_2d = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="force_reaction_animation_detections"]
+position = Vector2(172, -43.5)
+shape = SubResource("RectangleShape2D_wsdq0")
+
 [connection signal="timeout" from="shield_" to="." method="_on_shield__timeout"]
 [connection signal="timeout" from="suncooldown_produce" to="." method="_on_suncooldown_produce_timeout"]
 [connection signal="timeout" from="evolve_timer" to="." method="_on_evolve_timer_timeout"]
 [connection signal="timeout" from="T2A_collecting_power_animation/T2A_visual_cd" to="." method="_on_t_2a_visual_cd_timeout"]
 [connection signal="timeout" from="T2A_collecting_power_animation/T2A_visual_when_producing" to="." method="_on_t_2a_visual_when_producing_timeout"]
+[connection signal="reaction_is_trigger" from="force_reaction_animation_detections" to="." method="_on_force_reaction_animation_detections_reaction_is_trigger"]

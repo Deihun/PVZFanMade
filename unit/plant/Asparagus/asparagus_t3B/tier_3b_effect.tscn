@@ -1,0 +1,420 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1n5scwxr5c87"]
+
+[ext_resource type="Script" uid="uid://c82p8l85uwfpw" path="res://unit/plant/Asparagus/tier_3b_effect.gd" id="1_ree1t"]
+[ext_resource type="PackedScene" uid="uid://dfs20jb32fvmc" path="res://unit/projectile.tscn" id="2_jskun"]
+[ext_resource type="Texture2D" uid="uid://c05myr553vra0" path="res://unit/plant/Asparagus/projectile_asparagus.png" id="3_d0qju"]
+[ext_resource type="Script" uid="uid://dy58ylk44q23d" path="res://unit/plant/Asparagus/t_2b.gd" id="4_vqkcn"]
+
+[sub_resource type="Animation" id="Animation_55414"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Projectile:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Projectile2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Projectile3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Projectile4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Projectile5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Projectile6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Projectile7:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Projectile8:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_wfpmk"]
+resource_name = "shoot_among_direction"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Projectile:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.24685532),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -1), Vector2(273.00003, -9.000001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Projectile2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -1), Vector2(-275, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Projectile3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -1), Vector2(-1, 275)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Projectile4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -1), Vector2(232, 264)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Projectile5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -1), Vector2(-236, 199)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Projectile6:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -1), Vector2(-4, -238)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Projectile7:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -1), Vector2(-177, -158)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Projectile8:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -1), Vector2(165, -200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ou6ya"]
+_data = {
+&"RESET": SubResource("Animation_55414"),
+&"shoot_among_direction": SubResource("Animation_wfpmk")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oo77s"]
+size = Vector2(43, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3mj2"]
+size = Vector2(48, 59)
+
+[node name="tier_3B_effect" type="Node2D"]
+z_index = 10
+script = ExtResource("1_ree1t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ou6ya")
+}
+autoplay = "shoot_among_direction"
+
+[node name="Projectile" parent="." instance=ExtResource("2_jskun")]
+position = Vector2(-1, -1)
+speed = 900.0
+after_splash_effect_scene = "uid://buuxvgs4tmgqb"
+
+[node name="ProjectileAsparagus" type="Sprite2D" parent="Projectile"]
+position = Vector2(8, 12)
+texture = ExtResource("3_d0qju")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
+position = Vector2(17.5, 19.5)
+shape = SubResource("RectangleShape2D_oo77s")
+
+[node name="t2B" type="Area2D" parent="Projectile"]
+collision_mask = 34
+script = ExtResource("4_vqkcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile/t2B"]
+position = Vector2(14, 19.5)
+shape = SubResource("RectangleShape2D_t3mj2")
+disabled = true
+
+[node name="Projectile2" parent="." instance=ExtResource("2_jskun")]
+position = Vector2(-1, -1)
+rotation = -3.1020844
+speed = 900.0
+after_splash_effect_scene = "uid://buuxvgs4tmgqb"
+
+[node name="ProjectileAsparagus" type="Sprite2D" parent="Projectile2"]
+position = Vector2(8, 12)
+texture = ExtResource("3_d0qju")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile2"]
+position = Vector2(17.5, 19.5)
+shape = SubResource("RectangleShape2D_oo77s")
+
+[node name="t2B" type="Area2D" parent="Projectile2"]
+collision_mask = 34
+script = ExtResource("4_vqkcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile2/t2B"]
+position = Vector2(14, 19.5)
+shape = SubResource("RectangleShape2D_t3mj2")
+disabled = true
+
+[node name="Projectile3" parent="." instance=ExtResource("2_jskun")]
+position = Vector2(-1, -1)
+rotation = -4.6774864
+speed = 900.0
+after_splash_effect_scene = "uid://buuxvgs4tmgqb"
+
+[node name="ProjectileAsparagus" type="Sprite2D" parent="Projectile3"]
+position = Vector2(8, 12)
+texture = ExtResource("3_d0qju")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile3"]
+position = Vector2(17.5, 19.5)
+shape = SubResource("RectangleShape2D_oo77s")
+
+[node name="t2B" type="Area2D" parent="Projectile3"]
+collision_mask = 34
+script = ExtResource("4_vqkcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile3/t2B"]
+position = Vector2(14, 19.5)
+shape = SubResource("RectangleShape2D_t3mj2")
+disabled = true
+
+[node name="Projectile4" parent="." instance=ExtResource("2_jskun")]
+position = Vector2(-1, -1)
+rotation = -5.433984
+speed = 900.0
+after_splash_effect_scene = "uid://buuxvgs4tmgqb"
+
+[node name="ProjectileAsparagus" type="Sprite2D" parent="Projectile4"]
+position = Vector2(8, 12)
+texture = ExtResource("3_d0qju")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile4"]
+position = Vector2(17.5, 19.5)
+shape = SubResource("RectangleShape2D_oo77s")
+
+[node name="t2B" type="Area2D" parent="Projectile4"]
+collision_mask = 34
+script = ExtResource("4_vqkcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile4/t2B"]
+position = Vector2(14, 19.5)
+shape = SubResource("RectangleShape2D_t3mj2")
+disabled = true
+
+[node name="Projectile5" parent="." instance=ExtResource("2_jskun")]
+position = Vector2(-1, -1)
+rotation = -3.847495
+speed = 900.0
+after_splash_effect_scene = "uid://buuxvgs4tmgqb"
+
+[node name="ProjectileAsparagus" type="Sprite2D" parent="Projectile5"]
+position = Vector2(8, 12)
+texture = ExtResource("3_d0qju")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile5"]
+position = Vector2(17.5, 19.5)
+shape = SubResource("RectangleShape2D_oo77s")
+
+[node name="t2B" type="Area2D" parent="Projectile5"]
+collision_mask = 34
+script = ExtResource("4_vqkcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile5/t2B"]
+position = Vector2(14, 19.5)
+shape = SubResource("RectangleShape2D_t3mj2")
+disabled = true
+
+[node name="Projectile6" parent="." instance=ExtResource("2_jskun")]
+position = Vector2(-1, -1)
+rotation = -1.5836593
+speed = 900.0
+after_splash_effect_scene = "uid://buuxvgs4tmgqb"
+
+[node name="ProjectileAsparagus" type="Sprite2D" parent="Projectile6"]
+position = Vector2(8, 12)
+texture = ExtResource("3_d0qju")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile6"]
+position = Vector2(17.5, 19.5)
+shape = SubResource("RectangleShape2D_oo77s")
+
+[node name="t2B" type="Area2D" parent="Projectile6"]
+collision_mask = 34
+script = ExtResource("4_vqkcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile6/t2B"]
+position = Vector2(14, 19.5)
+shape = SubResource("RectangleShape2D_t3mj2")
+disabled = true
+
+[node name="Projectile7" parent="." instance=ExtResource("2_jskun")]
+position = Vector2(-1, -1)
+rotation = -2.4140174
+speed = 900.0
+after_splash_effect_scene = "uid://buuxvgs4tmgqb"
+
+[node name="ProjectileAsparagus" type="Sprite2D" parent="Projectile7"]
+position = Vector2(8, 12)
+texture = ExtResource("3_d0qju")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile7"]
+position = Vector2(17.5, 19.5)
+shape = SubResource("RectangleShape2D_oo77s")
+
+[node name="t2B" type="Area2D" parent="Projectile7"]
+collision_mask = 34
+script = ExtResource("4_vqkcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile7/t2B"]
+position = Vector2(14, 19.5)
+shape = SubResource("RectangleShape2D_t3mj2")
+disabled = true
+
+[node name="Projectile8" parent="." instance=ExtResource("2_jskun")]
+position = Vector2(-1, -1)
+rotation = -0.87327504
+speed = 900.0
+after_splash_effect_scene = "uid://buuxvgs4tmgqb"
+
+[node name="ProjectileAsparagus" type="Sprite2D" parent="Projectile8"]
+position = Vector2(8, 12)
+texture = ExtResource("3_d0qju")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile8"]
+position = Vector2(17.5, 19.5)
+shape = SubResource("RectangleShape2D_oo77s")
+
+[node name="t2B" type="Area2D" parent="Projectile8"]
+collision_mask = 34
+script = ExtResource("4_vqkcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile8/t2B"]
+position = Vector2(14, 19.5)
+shape = SubResource("RectangleShape2D_t3mj2")
+disabled = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Projectile/t2B" to="Projectile/t2B" method="_on_body_entered"]
+[connection signal="body_entered" from="Projectile2/t2B" to="Projectile2/t2B" method="_on_body_entered"]
+[connection signal="body_entered" from="Projectile3/t2B" to="Projectile3/t2B" method="_on_body_entered"]
+[connection signal="body_entered" from="Projectile4/t2B" to="Projectile4/t2B" method="_on_body_entered"]
+[connection signal="body_entered" from="Projectile5/t2B" to="Projectile5/t2B" method="_on_body_entered"]
+[connection signal="body_entered" from="Projectile6/t2B" to="Projectile6/t2B" method="_on_body_entered"]
+[connection signal="body_entered" from="Projectile7/t2B" to="Projectile7/t2B" method="_on_body_entered"]
+[connection signal="body_entered" from="Projectile8/t2B" to="Projectile8/t2B" method="_on_body_entered"]

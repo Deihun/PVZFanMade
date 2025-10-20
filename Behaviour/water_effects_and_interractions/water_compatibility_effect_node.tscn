@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bij2oewthoccu"]
+
+[ext_resource type="SpriteFrames" uid="uid://bl00pq1n2m2lo" path="res://Behaviour/water_effects_and_interractions/watersurface.tres" id="1_amqvk"]
+[ext_resource type="Script" uid="uid://bj80s4icnqk0c" path="res://Behaviour/water_effects_and_interractions/water_compatibility_effect_node.gd" id="1_rrwvp"]
+
+[node name="WaterCompatibilityEffectNode" type="Node2D"]
+position = Vector2(163, 73)
+script = ExtResource("1_rrwvp")
+
+[node name="AnimatedSprite2D" type="Node2D" parent="."]
+visible = false
+position = Vector2(-5.0000067, 2.5000026)
+
+[node name="visible_zombies" type="Control" parent="AnimatedSprite2D"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -204.63159
+offset_top = -854.08356
+offset_right = 221.68423
+offset_bottom = -9.333374
+
+[node name="Node2D" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_amqvk")
+autoplay = "default"
+frame_progress = 0.96202314

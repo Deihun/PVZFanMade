@@ -168,7 +168,7 @@ offset_left = 46.0
 offset_top = 1041.0
 offset_right = 387.0
 offset_bottom = 1067.0
-text = "Currently in development. By john Andrei S. Gopole"
+text = "Currently in development. By CNCookies <3"
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 1341.0

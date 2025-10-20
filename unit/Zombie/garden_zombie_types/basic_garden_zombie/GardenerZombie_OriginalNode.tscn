@@ -1,0 +1,118 @@
+[gd_scene load_steps=15 format=3 uid="uid://bmk74stoke87f"]
+
+[ext_resource type="PackedScene" uid="uid://ds3fu1ghjidxw" path="res://unit/Zombie/garden_zombie_types/basic_garden_zombie/garden_zombie_animation.tscn" id="1_1i7lk"]
+[ext_resource type="Script" uid="uid://bau6vvv5515h4" path="res://unit/Zombie/garden_zombie_types/basic_garden_zombie/gardener_zombie_original_node.gd" id="1_sabnx"]
+[ext_resource type="Texture2D" uid="uid://gqvca3i123ss" path="res://unit/shadow_for_unit.png" id="2_xpimr"]
+[ext_resource type="PackedScene" uid="uid://b8lpneub1dg61" path="res://Behaviour/projectile_behaviour/zombie_hp_management.tscn" id="4_nocv5"]
+[ext_resource type="Shader" uid="uid://cjkbfojy8py64" path="res://unit/Zombie/waterline_shader.gdshader" id="4_t7qf6"]
+[ext_resource type="PackedScene" uid="uid://dlfnwlf3x2t7t" path="res://Behaviour/zombie_movement_management.tscn" id="5_t7qf6"]
+[ext_resource type="PackedScene" uid="uid://b3a0hlbafc4gr" path="res://unit/Zombie/bite_detection.tscn" id="6_a60dt"]
+[ext_resource type="PackedScene" uid="uid://bij2oewthoccu" path="res://Behaviour/water_effects_and_interractions/water_compatibility_effect_node.tscn" id="7_rfs0g"]
+[ext_resource type="Texture2D" uid="uid://b0756tn4rmgy5" path="res://unit/crowed_control_effects/freeze_effect.png" id="8_w0kcc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a60dt"]
+shader = ExtResource("4_t7qf6")
+shader_parameter/affected_float = 1.10000002384186
+shader_parameter/fade_height = 40.0
+shader_parameter/line_thickness = 0.009
+shader_parameter/time = 0.0
+shader_parameter/white_override = false
+shader_parameter/darkblue_override = false
+shader_parameter/purple_override = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjdla"]
+size = Vector2(115, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpimr"]
+size = Vector2(83, 109)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dklnv"]
+size = Vector2(46, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jffvp"]
+size = Vector2(45.5, 104)
+
+[node name="GardenerZombieOriginalNode" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_sabnx")
+
+[node name="ShadowForUnit" type="Sprite2D" parent="."]
+position = Vector2(1, -7)
+scale = Vector2(2.16, 2.0217392)
+texture = ExtResource("2_xpimr")
+
+[node name="animation_node" parent="." node_paths=PackedStringArray("_arm_position", "_head_position") instance=ExtResource("1_1i7lk")]
+material = SubResource("ShaderMaterial_a60dt")
+position = Vector2(-5, -5)
+_arm_position = NodePath("../arm_position")
+_head_position = NodePath("../head_position")
+
+[node name="head_position" type="Node2D" parent="."]
+position = Vector2(1, -213)
+
+[node name="arm_position" type="Node2D" parent="."]
+position = Vector2(13, -105)
+
+[node name="zombie_hp_management" parent="." node_paths=PackedStringArray("zombie_animation_node") instance=ExtResource("4_nocv5")]
+zombie_animation_node = NodePath("../animation_node")
+
+[node name="zombie_movement_management" parent="." node_paths=PackedStringArray("animation_node", "_freeze_visual_effect") instance=ExtResource("5_t7qf6")]
+animation_node = NodePath("../animation_node")
+_freeze_visual_effect = NodePath("../FreezeEffect")
+
+[node name="Bite_Detection" parent="." instance=ExtResource("6_a60dt")]
+collision_layer = 2147483648
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bite_Detection"]
+position = Vector2(-17, -85)
+shape = SubResource("RectangleShape2D_vjdla")
+debug_color = Color(0.504058, 0.0862229, 4.81308e-08, 0.42)
+
+[node name="lawnmower_collision" type="Area2D" parent="."]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lawnmower_collision"]
+position = Vector2(-121.5, -48.5)
+shape = SubResource("RectangleShape2D_xpimr")
+disabled = true
+
+[node name="HitPoint" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitPoint"]
+position = Vector2(-2, -85)
+shape = SubResource("RectangleShape2D_dklnv")
+
+[node name="WaterCompatibilityEffectNode" parent="." node_paths=PackedStringArray("animation_node") instance=ExtResource("7_rfs0g")]
+position = Vector2(4, -23)
+animation_node = NodePath("../animation_node")
+adjusted_height_spawn_started = 0
+adjusted_wave_will_go_to = 100
+water_surface_vfx_scale = Vector2(1.25, 1)
+
+[node name="groan_value" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[node name="lawnmower_timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, -85)
+shape = SubResource("RectangleShape2D_jffvp")
+disabled = true
+debug_color = Color(0.83800673, 0.0012146276, 0.92894316, 0.41960785)
+
+[node name="FreezeEffect" type="Sprite2D" parent="."]
+position = Vector2(5, -4)
+scale = Vector2(1.18, 1)
+texture = ExtResource("8_w0kcc")
+
+[connection signal="eat" from="animation_node" to="." method="_on_garden_zombie_animation_eat"]
+[connection signal="lawnmower_release" from="animation_node" to="." method="_on_garden_zombie_animation_lawnmower_release"]
+[connection signal="queue_free_me" from="animation_node" to="." method="_on_garden_zombie_animation_queue_free_me"]
+[connection signal="remove_hitbox" from="animation_node" to="." method="_on_garden_zombie_animation_remove_hitbox"]
+[connection signal="when_zombie_died" from="zombie_hp_management" to="." method="_on_zombie_hp_management_when_zombie_died"]
+[connection signal="unable_to_move_for_given_seconds" from="zombie_movement_management" to="." method="_on_zombie_movement_management_unable_to_move_for_given_seconds"]
+[connection signal="body_entered" from="lawnmower_collision" to="." method="_on_lawnmower_collision_body_entered"]
+[connection signal="timeout" from="lawnmower_timer" to="." method="_on_lawnmower_timer_timeout"]

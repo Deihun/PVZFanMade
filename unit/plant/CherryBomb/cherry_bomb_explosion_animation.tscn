@@ -380,7 +380,7 @@ texture = ExtResource("4_mtskq")
 
 [node name="explosion_range" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 50
 
 [node name="collision" type="CollisionShape2D" parent="explosion_range"]
 position = Vector2(0.5, -5)

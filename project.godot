@@ -13,6 +13,9 @@ config_version=5
 config/name="Plant vs. Zombie: Fanmade WorldTrip"
 run/main_scene="uid://c83n7po5as7gv"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 
 [autoload]
 
@@ -25,6 +28,7 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=4
 window/size/initial_position_type=0
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 
 [input]
@@ -54,6 +58,7 @@ check_plant_in_details={
 2d_physics/layer_16="lane_6"
 2d_physics/layer_17="lane_7"
 2d_physics/layer_18="Seedpacket_interaction"
+2d_physics/layer_19="SmogLanes_interaction"
 
 [rendering]
 

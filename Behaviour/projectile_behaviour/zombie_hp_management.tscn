@@ -13,4 +13,9 @@ script = ExtResource("2_uq3vb")
 wait_time = 0.05
 one_shot = true
 
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "HP: "
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -29,6 +29,7 @@ position = Vector2(539, 404)
 script = ExtResource("1_r4qp0")
 
 [node name="Day" type="Sprite2D" parent="."]
+z_index = -5
 position = Vector2(1198, 136)
 texture = ExtResource("2_r4qp0")
 

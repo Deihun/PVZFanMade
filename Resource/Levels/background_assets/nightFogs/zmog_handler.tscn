@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d23bqrmtn00ov"]
+
+[ext_resource type="Script" uid="uid://fdtddxsy8g11" path="res://Behaviour/zmog_handler.gd" id="1_55oki"]
+
+[node name="zmog_handler" type="Node"]
+script = ExtResource("1_55oki")

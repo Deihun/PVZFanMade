@@ -6,6 +6,7 @@ var _detected_plants : Array[Node2D] = []
 
 
 func _on_body_entered(body: Node2D) -> void:
+	if !body.is_in_group("plant"): return
 	_detected_plants.append(body)
 	if i_detect_plants.is_valid():i_detect_plants.call()
 

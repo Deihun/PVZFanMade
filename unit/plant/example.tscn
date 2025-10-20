@@ -1,12 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dkw3a6x2gx41d"]
+[gd_scene load_steps=15 format=3 uid="uid://dbswi1rnjguh1"]
 
 [ext_resource type="PackedScene" uid="uid://d1bmnixb7oepy" path="res://Behaviour/sun_falling_behaviour.tscn" id="2_mt53y"]
 [ext_resource type="PackedScene" uid="uid://nqpa1jdoxd70" path="res://Behaviour/occupied_tile.tscn" id="4_sg7fg"]
 [ext_resource type="Script" uid="uid://b7xtie63ke36r" path="res://HUD/EvolutionUI/evolution_power_bank_ui.gd" id="5_5vjve"]
-[ext_resource type="PackedScene" uid="uid://cm3fbr5jbnjmq" path="res://Behaviour/basic_zombie.tscn" id="5_ltlly"]
+[ext_resource type="PackedScene" uid="uid://cm3fbr5jbnjmq" path="res://Behaviour/dummy_testing.tscn" id="5_ltlly"]
 [ext_resource type="PackedScene" uid="uid://b1gfd0gx8ncph" path="res://HUD/EvolutionUI/evolution_power_bank_ui.tscn" id="6_mt53y"]
 [ext_resource type="PackedScene" uid="uid://lnmsgs6icjsi" path="res://HUD/EvolutionUI/EvolutionPowerBoost.tscn" id="7_mt53y"]
-[ext_resource type="Script" uid="uid://n3ml3j34e5s0" path="res://unit/plant/testing.gd" id="8_70fp2"]
 [ext_resource type="Shader" uid="uid://cjkbfojy8py64" path="res://unit/Zombie/waterline_shader.gdshader" id="8_ltlly"]
 [ext_resource type="Texture2D" uid="uid://boo42rha4na5h" path="res://unit/plant/CherryBomb/cherrybomb_seedpacket.png" id="9_hxykm"]
 [ext_resource type="PackedScene" uid="uid://c4plv33152tx3" path="res://HUD/mode_hud/mode_normal_selection.tscn" id="9_sg7fg"]
@@ -23,6 +22,40 @@ shader_parameter/time = 2.505
 shader_parameter/white_override = false
 shader_parameter/darkblue_override = false
 shader_parameter/purple_override = false
+
+[sub_resource type="GDScript" id="GDScript_sg7fg"]
+script/source = "extends Area2D
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group(\"testing\"):return
+	if !body.is_in_group(\"zombie\"):return
+	print(\"detecting zombie????\")
+	var sprite : Sprite2D = body.get_node(\"final_render\")
+	var tween:Tween = create_tween()
+	if sprite.material is ShaderMaterial:
+		var shader_mat: ShaderMaterial = sprite.material
+
+		tween.tween_property(
+			sprite.material,
+			\"shader_parameter/affected_float\",
+			0.85,  # target value
+			 1.0  # duration
+		)
+
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group(\"testing\"):return
+	var sprite : Sprite2D = body.get_node(\"final_render\")
+	var tween:Tween = create_tween()
+	tween.tween_property(
+			sprite.material,
+			\"shader_parameter/affected_float\",
+			1.0,  # target value
+			 0.3   # duration
+	)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg7fg"]
 size = Vector2(438, 243)
@@ -282,7 +315,7 @@ texture = ExtResource("9_hxykm")
 position = Vector2(825, 593)
 collision_layer = 2147483648
 collision_mask = 2
-script = ExtResource("8_70fp2")
+script = SubResource("GDScript_sg7fg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(216, -65.5)

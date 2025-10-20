@@ -563,6 +563,7 @@ autoplay = "new_animation"
 
 [node name="receiving_power" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_scq1t")
+bus = &"SFX"
 
 [node name="evolving" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_pme5a")

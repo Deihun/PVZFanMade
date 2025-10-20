@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d0fjcu3vyoepo"]
+[gd_scene load_steps=21 format=3 uid="uid://d0fjcu3vyoepo"]
 
 [ext_resource type="Script" uid="uid://wshf27ehs74x" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_7.gd" id="1_pxwkb"]
 [ext_resource type="Texture2D" uid="uid://b8i58el7y56a0" path="res://Resource/Levels/background_assets/day.png" id="2_h05k5"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c2eos12l6ww5h" path="res://unit/Zombie/poleVaultingZombie/PoleVaulting_Zombie.tscn" id="9_noete"]
 [ext_resource type="PackedScene" uid="uid://c3mfdn3yeigf3" path="res://Behaviour/lane_.tscn" id="9_r3j7m"]
 [ext_resource type="PackedScene" uid="uid://d1bmnixb7oepy" path="res://Behaviour/sun_falling_behaviour.tscn" id="10_huhvm"]
-[ext_resource type="Texture2D" uid="uid://263vj11nyjjn" path="res://unit/plant/Sunflower/sunflower_seed_packet.png" id="10_noete"]
+[ext_resource type="Texture2D" uid="uid://bw0loto26qk1" path="res://unit/plant/Chomper/chomper_seedpacket.png" id="10_noete"]
 [ext_resource type="PackedScene" uid="uid://pspn4765e0xo" path="res://HUD/borders/level_manager/zombie_wave_management.tscn" id="11_wnsd6"]
 [ext_resource type="PackedScene" uid="uid://rvbwdqhikigs" path="res://HUD/borders/level_manager/wave.tscn" id="12_7o7vc"]
 [ext_resource type="PackedScene" uid="uid://y1wnytmunqr8" path="res://HUD/borders/level_manager/new_plant_unlock_reward_node.tscn" id="13_sth2l"]
@@ -20,9 +20,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewpwe"]
 size = Vector2(1295, 699)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bat4m"]
-bg_color = Color(0.981506, 0.928068, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mbpro"]
 size = Vector2(284, 148)
@@ -247,36 +244,17 @@ _number_of_zombies_in_big_wave = 25
 
 [node name="NewPlantUnlockRewardNode" parent="." instance=ExtResource("13_sth2l")]
 position = Vector2(523, -52)
-_reward_description = "Now you can evolve sunflower upto TIER3!"
+_reward_description = "devour zombie! takes time to chew"
 _next_scene_to_play = "uid://ksml1awpfuug"
 level_data_name = "day1-7"
-_plant_name = "sunflower"
-_unlock_plant_tier_2 = true
-_unlock_plant_tier_3 = true
+_plant_name = "chomper"
+_unlock_plant_tier_1 = true
 
 [node name="SeedPacket" type="Sprite2D" parent="NewPlantUnlockRewardNode"]
 z_index = 155
 position = Vector2(11.5, 16.5)
 scale = Vector2(1.27, 1.33)
 texture = ExtResource("10_noete")
-
-[node name="Panel" type="Panel" parent="NewPlantUnlockRewardNode/SeedPacket"]
-offset_left = 54.7244
-offset_top = 8.64662
-offset_right = 66.7244
-offset_bottom = 36.6466
-rotation = 0.751579
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bat4m")
-
-[node name="Panel2" type="Panel" parent="NewPlantUnlockRewardNode/SeedPacket"]
-offset_left = 51.0
-offset_top = 12.0
-offset_right = 63.0
-offset_bottom = 47.0
-rotation = -0.820532
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bat4m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NewPlantUnlockRewardNode"]
 position = Vector2(14, 12)

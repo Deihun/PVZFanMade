@@ -71,6 +71,8 @@ func _ready() -> void:
 	$Detection_Area.on_no_more_enemies_callable = Callable(self,"not_attack_mode")
 	$peashooter.trigger_attack_method = Callable(self,"spawn_pea") 
 	$peashooter._spawn()
+	await get_tree().create_timer(0.01).timeout
+	$hitbox.disabled=false
 	await get_tree().create_timer(0.6).timeout
 	$Detection_Area/CollisionShape2D.disabled = false
 

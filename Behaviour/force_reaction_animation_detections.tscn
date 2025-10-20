@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbwshmu16o47f"]
+
+[ext_resource type="Script" uid="uid://b5rmjy520emb1" path="res://Behaviour/force_reaction_animation_detections.gd" id="1_4npbk"]
+
+[node name="force_reaction_animation_detections" type="Area2D"]
+script = ExtResource("1_4npbk")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

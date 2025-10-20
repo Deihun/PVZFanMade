@@ -1,12 +1,14 @@
-[gd_scene load_steps=29 format=3 uid="uid://badjgdyi5c1oi"]
+[gd_scene load_steps=31 format=3 uid="uid://badjgdyi5c1oi"]
 
 [ext_resource type="Script" uid="uid://diendik221dtu" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_5.gd" id="1_731id"]
 [ext_resource type="Texture2D" uid="uid://b8i58el7y56a0" path="res://Resource/Levels/background_assets/day.png" id="2_731id"]
 [ext_resource type="Texture2D" uid="uid://d17d4ngwqf0r" path="res://Resource/Levels/background_assets/grass_layer.png" id="3_l5uth"]
 [ext_resource type="PackedScene" uid="uid://dols1i410thmc" path="res://HUD/borders/level_manager/main_camera.tscn" id="4_b1pv7"]
+[ext_resource type="Texture2D" uid="uid://binejdckon00r" path="res://Resource/Levels/background_assets/grass_redline_mark.png" id="4_uryax"]
 [ext_resource type="Script" uid="uid://d27xixl13o84o" path="res://HUD/mode_hud/shovel.gd" id="5_44csa"]
 [ext_resource type="PackedScene" uid="uid://bcip1rf4rl18u" path="res://HUD/mode_hud/ConveyorBelt_Main_Script.tscn" id="5_731id"]
 [ext_resource type="Texture2D" uid="uid://dednq0baij7wn" path="res://HUD/mode_hud/shovel_background.png" id="5_a6h8f"]
+[ext_resource type="Texture2D" uid="uid://cbl3dyb0sh2pf" path="res://Resource/Levels/background_assets/bowling_sign.png" id="5_cpoj6"]
 [ext_resource type="PackedScene" uid="uid://c3mfdn3yeigf3" path="res://Behaviour/lane_.tscn" id="5_cyqgx"]
 [ext_resource type="AudioStream" uid="uid://blxegebno1n0m" path="res://Resource/Levels/Tutorial_Part/Plants vs Zombies Soundtrack. [Mini Games].mp3" id="5_eww10"]
 [ext_resource type="Texture2D" uid="uid://blp5yuw8ekxdb" path="res://HUD/mode_hud/shovel.png" id="6_44csa"]
@@ -44,6 +46,7 @@ position = Vector2(539, 404)
 script = ExtResource("1_731id")
 
 [node name="Day" type="Sprite2D" parent="."]
+z_index = -5
 position = Vector2(1198, 136)
 texture = ExtResource("2_731id")
 metadata/_edit_lock_ = true
@@ -52,6 +55,14 @@ metadata/_edit_lock_ = true
 position = Vector2(-494, 117)
 texture = ExtResource("3_l5uth")
 metadata/_edit_lock_ = true
+
+[node name="GrassRedlineMark" type="Sprite2D" parent="Day/GrassLayer"]
+position = Vector2(-355, 11)
+texture = ExtResource("4_uryax")
+
+[node name="BowlingSign" type="Sprite2D" parent="Day"]
+position = Vector2(-853, -350)
+texture = ExtResource("5_cpoj6")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(2154, 346)
@@ -151,30 +162,75 @@ yet..."
 
 [node name="lane_1" parent="." instance=ExtResource("5_cyqgx")]
 position = Vector2(0, -13)
+_tile_column_4_disable = true
+_tile_column_5_disable = true
+_tile_column_6_disable = true
+_tile_column_7_disable = true
+_tile_column_8_disable = true
+_tile_column_9_disable = true
+_tile_column_10_disable = true
+_tile_column_11_disable = true
+_tile_column_12_disable = true
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="lane_2" parent="." instance=ExtResource("5_cyqgx")]
 position = Vector2(0, 160)
 lane_collision_layer = "lane2"
+_tile_column_4_disable = true
+_tile_column_5_disable = true
+_tile_column_6_disable = true
+_tile_column_7_disable = true
+_tile_column_8_disable = true
+_tile_column_9_disable = true
+_tile_column_10_disable = true
+_tile_column_11_disable = true
+_tile_column_12_disable = true
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="lane_3" parent="." instance=ExtResource("5_cyqgx")]
 position = Vector2(0, 332)
 lane_collision_layer = "lane3"
+_tile_column_4_disable = true
+_tile_column_5_disable = true
+_tile_column_6_disable = true
+_tile_column_7_disable = true
+_tile_column_8_disable = true
+_tile_column_9_disable = true
+_tile_column_10_disable = true
+_tile_column_11_disable = true
+_tile_column_12_disable = true
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="lane_4" parent="." instance=ExtResource("5_cyqgx")]
 position = Vector2(0, 505)
 lane_collision_layer = "lane4"
+_tile_column_4_disable = true
+_tile_column_5_disable = true
+_tile_column_6_disable = true
+_tile_column_7_disable = true
+_tile_column_8_disable = true
+_tile_column_9_disable = true
+_tile_column_10_disable = true
+_tile_column_11_disable = true
+_tile_column_12_disable = true
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="lane_5" parent="." instance=ExtResource("5_cyqgx")]
 position = Vector2(0, 677)
 lane_collision_layer = "lane5"
+_tile_column_4_disable = true
+_tile_column_5_disable = true
+_tile_column_6_disable = true
+_tile_column_7_disable = true
+_tile_column_8_disable = true
+_tile_column_9_disable = true
+_tile_column_10_disable = true
+_tile_column_11_disable = true
+_tile_column_12_disable = true
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
@@ -239,14 +295,14 @@ _delay_interval_between_spawn = 0.1
 
 [node name="wave5" parent="zombie_wave_management" instance=ExtResource("8_30mw8")]
 layout_mode = 2
-_delay_duration = 5.0
+_delay_duration = 15.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _number_of_zombies_in_big_wave = 5
 
 [node name="wave6" parent="zombie_wave_management" instance=ExtResource("8_30mw8")]
 layout_mode = 2
-_delay_duration = 5.0
+_delay_duration = 15.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 2.5
@@ -254,14 +310,14 @@ _number_of_zombies_in_big_wave = 5
 
 [node name="wave7" parent="zombie_wave_management" instance=ExtResource("8_30mw8")]
 layout_mode = 2
-_delay_duration = 5.0
+_delay_duration = 20.0
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 2.5
 _number_of_zombies_in_big_wave = 7
 
 [node name="wave8" parent="zombie_wave_management" instance=ExtResource("8_30mw8")]
 layout_mode = 2
-_delay_duration = 5.0
+_delay_duration = 20.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 3.0
@@ -269,7 +325,7 @@ _number_of_zombies_in_big_wave = 5
 
 [node name="wave9" parent="zombie_wave_management" instance=ExtResource("8_30mw8")]
 layout_mode = 2
-_delay_duration = 5.0
+_delay_duration = 20.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 0.75
@@ -332,21 +388,21 @@ _number_of_zombies_in_big_wave = 30
 
 [node name="wave17" parent="zombie_wave_management" instance=ExtResource("8_30mw8")]
 layout_mode = 2
-_delay_duration = 10.0
+_delay_duration = 40.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _number_of_zombies_in_big_wave = 30
 
 [node name="wave18" parent="zombie_wave_management" instance=ExtResource("8_30mw8")]
 layout_mode = 2
-_delay_duration = 10.0
+_delay_duration = 20.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _number_of_zombies_in_big_wave = 30
 
 [node name="wave19" parent="zombie_wave_management" instance=ExtResource("8_30mw8")]
 layout_mode = 2
-_delay_duration = 10.0
+_delay_duration = 20.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _number_of_zombies_in_big_wave = 30
@@ -360,14 +416,14 @@ _number_of_zombies_in_big_wave = 30
 
 [node name="wave21" parent="zombie_wave_management" instance=ExtResource("8_30mw8")]
 layout_mode = 2
-_delay_duration = 10.0
+_delay_duration = 120.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _number_of_zombies_in_big_wave = 30
 
 [node name="wave22" parent="zombie_wave_management" instance=ExtResource("8_30mw8")]
 layout_mode = 2
-_delay_duration = 60.0
+_delay_duration = 120.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _number_of_zombies_in_big_wave = 30
@@ -404,13 +460,13 @@ position = Vector2(-327, -441)
 position = Vector2(5743, 1646)
 
 [node name="ConeHead9" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(2176, 1966)
+position = Vector2(2159, 2020)
 
 [node name="ConeHead10" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
 position = Vector2(2140, 1377)
 
 [node name="BasicZombie39" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(2432, 1690)
+position = Vector2(2426, 1729)
 
 [node name="BasicZombie40" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
 position = Vector2(2665, 1827)
@@ -419,13 +475,10 @@ position = Vector2(2665, 1827)
 position = Vector2(2941, 2132)
 
 [node name="BucketHead3" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
-position = Vector2(2949, 1406)
+position = Vector2(2933, 1429)
 
 [node name="BucketHead4" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
-position = Vector2(3462, 1559)
-
-[node name="BucketHead5" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
-position = Vector2(3688, 1688)
+position = Vector2(3431, 1580)
 
 [node name="BucketHead6" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
 position = Vector2(3169, 2111)
@@ -433,68 +486,62 @@ position = Vector2(3169, 2111)
 [node name="ConeHead11" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
 position = Vector2(3149, 1818)
 
-[node name="BasicZombie41" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(3700, 1827)
-
 [node name="BasicZombie42" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
 position = Vector2(3474, 1378)
 
-[node name="ConeHead12" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(3740, 1696)
-
 [node name="BucketHead" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
-position = Vector2(637, 1809)
+position = Vector2(635, 1867)
 
 [node name="ConeHead7" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(1213, 1962)
+position = Vector2(1168, 2024)
 
 [node name="BasicZombie2" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(626, 1969)
+position = Vector2(622, 2014)
 
 [node name="BasicZombie3" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(692, 1381)
+position = Vector2(671, 1416)
 
 [node name="BasicZombie4" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(884, 2122)
+position = Vector2(870, 2157)
 
 [node name="BasicZombie5" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(904, 1528)
+position = Vector2(908, 1440)
 
 [node name="BasicZombie8" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(1416, 1655)
+position = Vector2(1420, 1722)
 
 [node name="BasicZombie9" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(1433, 1529)
+position = Vector2(1417, 1447)
 
 [node name="BasicZombie10" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(1409, 1791)
+position = Vector2(1409, 1867)
 
 [node name="BasicZombie7" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(1664, 2140)
+position = Vector2(1658, 2161)
 
 [node name="BasicZombie11" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
 position = Vector2(1889, 1381)
 
 [node name="BasicZombie12" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(1679, 1985)
+position = Vector2(1670, 2017)
 
 [node name="BasicZombie13" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
 position = Vector2(1678, 1433)
 
 [node name="BasicZombie14" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(2172, 1812)
+position = Vector2(2151, 1860)
 
 [node name="BasicZombie15" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
 position = Vector2(2191, 1494)
 
 [node name="ConeHead" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(1192, 1418)
+position = Vector2(1169, 1436)
 
 [node name="BasicZombie16" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(2427, 1375)
+position = Vector2(2433, 1435)
 
 [node name="BasicZombie6" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(386, 1517)
+position = Vector2(378, 1572)
 
 [node name="BasicZombie17" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
 position = Vector2(1728, 1407)
@@ -503,19 +550,19 @@ position = Vector2(1728, 1407)
 position = Vector2(1947, 1540)
 
 [node name="BasicZombie18" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(2238, 1350)
+position = Vector2(2185, 1436)
 
 [node name="BasicZombie19" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(2371, 1387)
+position = Vector2(2383, 1424)
 
 [node name="BasicZombie20" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(2671, 1393)
+position = Vector2(2671, 1436)
 
 [node name="BasicZombie21" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
 position = Vector2(2710, 2096)
 
 [node name="BasicZombie22" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(2680, 1516)
+position = Vector2(2688, 1580)
 
 [node name="BasicZombie23" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
 position = Vector2(2637, 1952)
@@ -530,7 +577,7 @@ position = Vector2(2946, 1683)
 position = Vector2(2953, 1924)
 
 [node name="BasicZombie27" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(3166, 1400)
+position = Vector2(3166, 1437)
 
 [node name="BasicZombie28" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
 position = Vector2(3202, 1690)
@@ -539,49 +586,31 @@ position = Vector2(3202, 1690)
 position = Vector2(3161, 1543)
 
 [node name="BasicZombie30" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(3470, 2100)
+position = Vector2(3426, 2165)
 
 [node name="BasicZombie31" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(3499, 1808)
-
-[node name="ConeHead2" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(3718, 2104)
-
-[node name="BasicZombie32" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
-position = Vector2(3679, 1961)
+position = Vector2(3434, 1865)
 
 [node name="BasicZombie33" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(124, 1356)
+position = Vector2(124, 1436)
 
 [node name="BasicZombie34" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(108, 1830)
+position = Vector2(110, 1865)
 
 [node name="BasicZombie35" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
-position = Vector2(403, 1682)
+position = Vector2(393, 1725)
 
 [node name="BasicZombie36" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
-position = Vector2(381, 1803)
+position = Vector2(379, 1863)
 
 [node name="ConeHead3" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(875, 1662)
+position = Vector2(867, 1709)
 
 [node name="ConeHead4" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(940, 1822)
-
-[node name="ConeHead5" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(3702, 1395)
-
-[node name="ConeHead6" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(3765, 1366)
-
-[node name="BasicZombie37" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
-position = Vector2(3648, 1371)
-
-[node name="BasicZombie38" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
-position = Vector2(3631, 1388)
+position = Vector2(901, 2008)
 
 [node name="BasicZombie43" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
-position = Vector2(915, 2272)
+position = Vector2(903, 1860)
 
 [node name="ConeHead8" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
 position = Vector2(1679, 1674)
@@ -596,31 +625,31 @@ position = Vector2(3919, 1407)
 position = Vector2(4011, 1395)
 
 [node name="BasicZombie47" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(3908, 1681)
+position = Vector2(3944, 1722)
 
 [node name="BasicZombie48" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(3959, 1966)
+position = Vector2(3929, 2011)
 
 [node name="BasicZombie49" parent="for_storing_groups_of_zombies" instance=ExtResource("11_fnane")]
-position = Vector2(3977, 2120)
+position = Vector2(3956, 2163)
 
 [node name="ConeHead13" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(4237, 1812)
+position = Vector2(4222, 1859)
 
 [node name="ConeHead14" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
 position = Vector2(4217, 1521)
 
 [node name="ConeHead15" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(4240, 2112)
+position = Vector2(4208, 2162)
 
 [node name="ConeHead16" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(4539, 1678)
+position = Vector2(4450, 1717)
 
 [node name="ConeHead17" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(4511, 1963)
+position = Vector2(4469, 2015)
 
 [node name="BucketHead7" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
-position = Vector2(4439, 1835)
+position = Vector2(4442, 1865)
 
 [node name="BucketHead8" parent="for_storing_groups_of_zombies" instance=ExtResource("13_cpoj6")]
 position = Vector2(4448, 1378)
@@ -644,13 +673,13 @@ position = Vector2(4750, 2240)
 position = Vector2(4984, 1972)
 
 [node name="ConeHead19" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(5181, 1826)
+position = Vector2(5183, 1868)
 
 [node name="ConeHead20" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(5270, 1809)
+position = Vector2(5241, 1878)
 
 [node name="ConeHead21" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
-position = Vector2(5241, 1815)
+position = Vector2(5225, 1859)
 
 [node name="ConeHead22" parent="for_storing_groups_of_zombies" instance=ExtResource("12_uryax")]
 position = Vector2(5264, 1370)

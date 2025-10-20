@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://crmsu5wuroi4j" path="res://unit/Zombie/basic_zombie/Coolz_zombie.tscn" id="9_afxdk"]
 [ext_resource type="PackedScene" uid="uid://y1wnytmunqr8" path="res://HUD/borders/level_manager/new_plant_unlock_reward_node.tscn" id="9_rxqt1"]
 [ext_resource type="PackedScene" uid="uid://yivwd3p0a1xq" path="res://unit/Zombie/basic_zombie/conehead_basic_zombie.tscn" id="9_yv50x"]
-[ext_resource type="Texture2D" uid="uid://p7axs27j7smr" path="res://unit/plant/Wallnut/wallnut_seed_packet.png" id="10_afxdk"]
+[ext_resource type="Texture2D" uid="uid://bw0loto26qk1" path="res://unit/plant/Chomper/chomper_seedpacket.png" id="11_afxdk"]
 [ext_resource type="PackedScene" uid="uid://bogab6oeo22f2" path="res://unit/Zombie/basic_zombie/normal_basic_zombie.tscn" id="11_rwwgb"]
 [ext_resource type="PackedScene" uid="uid://cbj6pyedst0gj" path="res://unit/Zombie/basic_zombie/buckethead_basic_zombie.tscn" id="12_a77ia"]
 [ext_resource type="PackedScene" uid="uid://2ws764pcbwav" path="res://Behaviour/power_boost_drop.tscn" id="13_vayw6"]
@@ -35,6 +35,7 @@ position = Vector2(539, 404)
 script = ExtResource("1_afxdk")
 
 [node name="Day" type="Sprite2D" parent="."]
+z_index = -5
 position = Vector2(1198, 136)
 texture = ExtResource("2_a77ia")
 
@@ -173,10 +174,10 @@ position = Vector2(2427, 734)
 
 [node name="NewPlantUnlockRewardNode" parent="." instance=ExtResource("9_rxqt1")]
 position = Vector2(523, -52)
-_reward_description = "Now you can evolve wallnut  upto TIER3!"
+_reward_description = "Now you can evolve chomper upto TIER3!"
 _next_scene_to_play = "uid://6rxyxasyxcub"
 level_data_name = "day1-8"
-_plant_name = "wallnut"
+_plant_name = "chomper"
 _unlock_plant_tier_2 = true
 _unlock_plant_tier_3 = true
 
@@ -184,7 +185,7 @@ _unlock_plant_tier_3 = true
 z_index = 155
 position = Vector2(11.5, 16.5)
 scale = Vector2(1.27, 1.33)
-texture = ExtResource("10_afxdk")
+texture = ExtResource("11_afxdk")
 
 [node name="Panel" type="Panel" parent="NewPlantUnlockRewardNode/SeedPacket"]
 offset_left = 54.7244

@@ -21,13 +21,14 @@ size = Vector2(1295, 699)
 size = Vector2(195, 111)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qw3k"]
-size = Vector2(798, 720.5)
+size = Vector2(798, 503.25)
 
 [node name="level_1_tutorial_day3" type="Node2D"]
 position = Vector2(539, 404)
 script = ExtResource("1_npdsi")
 
 [node name="Day" type="Sprite2D" parent="."]
+z_index = -5
 position = Vector2(1198, 136)
 texture = ExtResource("2_6qw3k")
 
@@ -97,21 +98,21 @@ collision_where_zombie_is_place_preview = NodePath("../preview_zombie")
 
 [node name="wave2" parent="zombie_wave_management" instance=ExtResource("9_76gbx")]
 layout_mode = 2
-_delay_duration = 25.0
+_delay_duration = 50.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 1.5
 
 [node name="wave" parent="zombie_wave_management" instance=ExtResource("9_76gbx")]
 layout_mode = 2
-_delay_duration = 30.0
+_delay_duration = 50.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 1.0
 
 [node name="wave3" parent="zombie_wave_management" instance=ExtResource("9_76gbx")]
 layout_mode = 2
-_delay_duration = 45.0
+_delay_duration = 10.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 2.0
@@ -125,7 +126,7 @@ _delay_interval_between_spawn = 1.5
 
 [node name="wave5" parent="zombie_wave_management" instance=ExtResource("9_76gbx")]
 layout_mode = 2
-_delay_duration = 30.0
+_delay_duration = 10.0
 _trigger_next_wave_if_this_is_clear = true
 _delay_interval_between_spawn = 2.5
 _number_of_zombies_in_big_wave = 5
@@ -139,7 +140,7 @@ _number_of_zombies_in_big_wave = 5
 
 [node name="wave7" parent="zombie_wave_management" instance=ExtResource("9_76gbx")]
 layout_mode = 2
-_delay_duration = 35.0
+_delay_duration = 15.0
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 2.5
 _mark_as_big_wave = true
@@ -148,7 +149,7 @@ _number_of_zombies_in_big_wave = 7
 
 [node name="wave8" parent="zombie_wave_management" instance=ExtResource("9_76gbx")]
 layout_mode = 2
-_delay_duration = 30.0
+_delay_duration = 10.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 5.0
@@ -156,7 +157,7 @@ _number_of_zombies_in_big_wave = 5
 
 [node name="wave9" parent="zombie_wave_management" instance=ExtResource("9_76gbx")]
 layout_mode = 2
-_delay_duration = 20.0
+_delay_duration = 10.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 2.5
@@ -164,7 +165,7 @@ _number_of_zombies_in_big_wave = 5
 
 [node name="wave10" parent="zombie_wave_management" instance=ExtResource("9_76gbx")]
 layout_mode = 2
-_delay_duration = 120.0
+_delay_duration = 30.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 3.0
@@ -186,6 +187,8 @@ _next_scene_to_play = "uid://xyiy46qtb1m7"
 level_data_name = "day1-3"
 _plant_name = "potatomine"
 _unlock_plant_tier_1 = true
+_unlock_plant_tier_2 = true
+_unlock_plant_tier_3 = true
 
 [node name="SeedPacket" type="Sprite2D" parent="NewPlantUnlockRewardNode"]
 z_index = 155
@@ -201,7 +204,6 @@ position = Vector2(-327, -441)
 
 [node name="BasicZombie" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
 position = Vector2(83, 1858)
-zombie_type_mode = "basic"
 
 [node name="BasicZombie2" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
 position = Vector2(411, 1362)
@@ -250,12 +252,11 @@ position = Vector2(2427, 1375)
 
 [node name="BasicZombie6" parent="for_storing_groups_of_zombies" instance=ExtResource("12_ai535")]
 position = Vector2(195, 1868)
-zombie_type_mode = "basic"
 
 [node name="DebugMode" parent="." instance=ExtResource("13_8mhye")]
 visible = false
 position = Vector2(-540, -404)
 
 [node name="preview_zombie" type="CollisionShape2D" parent="."]
-position = Vector2(2154, 119)
+position = Vector2(2154, 227.625)
 shape = SubResource("RectangleShape2D_6qw3k")

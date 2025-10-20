@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbnop5mmpshyp"]
+[gd_scene load_steps=16 format=3 uid="uid://bbnop5mmpshyp"]
 
 [ext_resource type="Script" uid="uid://dxrv64uck0wff" path="res://Resource/lawn_mower/lawnmower.gd" id="1_wr3gs"]
 [ext_resource type="Texture2D" uid="uid://d0iwfk6l0133c" path="res://Resource/lawn_mower/lawnmower_assets/lawnmower_handle.png" id="2_i3pfl"]
@@ -539,10 +539,13 @@ _data = {
 &"running": SubResource("Animation_6hjo6")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6jft"]
+size = Vector2(76, 86)
+
 [node name="Lawnmower" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 64
-collision_mask = 2
+collision_mask = 34
 script = ExtResource("1_wr3gs")
 
 [node name="trigger_area" type="Area2D" parent="."]
@@ -555,7 +558,7 @@ shape = SubResource("RectangleShape2D_fogbp")
 
 [node name="lawnmower_killer" type="Area2D" parent="."]
 collision_layer = 64
-collision_mask = 2
+collision_mask = 34
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lawnmower_killer"]
 position = Vector2(-53, -42)
@@ -603,6 +606,10 @@ autoplay = "idle"
 stream = ExtResource("8_h6jft")
 volume_db = 8.254
 bus = &"SFX"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -33)
+shape = SubResource("RectangleShape2D_h6jft")
 
 [connection signal="body_entered" from="trigger_area" to="." method="_on_trigger_area_body_entered"]
 [connection signal="body_entered" from="lawnmower_killer" to="." method="_on_lawnmower_killer_body_entered"]

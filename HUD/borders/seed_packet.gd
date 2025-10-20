@@ -4,6 +4,8 @@ extends Control
 @export var cooldown : int = 20
 @export var start_up_cooldown : int = 5
 @export var suncost : int = 100
+## Change the value to add limit on this plant and delete itself if theres no more plant.  (-1) == (if plant has no limit)
+@export var limited_amount := -1
 @export_file("*.png", "*.jpg", "*.jpeg", "*.webp") var image_path: String
 @export_file("*.tscn") var plant_tscn: String
 @export_file("*.tscn") var plant_animation_only_tscn: String
@@ -16,8 +18,11 @@ extends Control
 @export var delete_if_not_existing_in_progress := true
 
 var first_time_plant := true
+
 var current_timer : int = 0
 var call_plant_method : Callable
+
+signal _after_used
 
 
 func _ready() -> void:
@@ -25,12 +30,13 @@ func _ready() -> void:
 	_change_price_font_color_to_red()
 	if delete_if_not_existing_in_progress and !QuickDataManagement.savemanager.plant_exist(plant_name): queue_free()
 	if image_path: $SeedPacket.texture = load(image_path)
+	if limited_amount > 0: $AMOUNT.show()
 	if mode == "one-time-used":
 		suncost = 0
 		$SUNCOST.hide()
 	
 
-func start_cooldown():
+func start_cooldown() -> void:
 	current_timer = start_up_cooldown if first_time_plant else cooldown
 	$ContentFrame/ProgressBar.show()
 	$ContentFrame/ProgressBar.min_value = 0.0
@@ -79,7 +85,9 @@ func _on_click_button_button_down() -> void:
 			if QuickDataManagement._selected_data_in_seed_packet == self:
 				QuickDataManagement._remove_plant_for_queue_plant()
 				return
-			if current_timer > 0:return
+			if current_timer > 0:
+				$decline_audio.play()
+				return
 			if QuickDataManagement.sun >= suncost:
 				QuickDataManagement._add_plant_for_queue_plant(self,load(plant_animation_only_tscn).instantiate())
 				$pick_.play()
@@ -97,6 +105,7 @@ func _on_click_button_button_down() -> void:
 			call_plant_method.call()
 		"only-for-plant-selection":
 			if seed_selection_VBoxContainer:
+				if seed_selection_VBoxContainer.get_child_count() >= QuickDataManagement.savemanager.get_plant_limit_cap(): return
 				for child in seed_selection_VBoxContainer.get_children():
 					if child.plant_name == plant_name: return
 				var pickable_version_of_myself := self.duplicate()
@@ -112,8 +121,10 @@ func selected_as_object(is_it_selected := false):
 
 
 func successfully_planted() -> void:
+	_after_used.emit()
+	_handle_amount_function()
 	if mode == "one-time-used":
-		queue_free()
+		self.queue_free()
 		return
 	else:
 		current_timer = cooldown
@@ -130,3 +141,16 @@ func _change_price_font_color_to_red(value : bool = true)-> void:
 		else:
 			$SUNCOST.add_theme_color_override("font_color",Color.DARK_RED)
 			$VISUAL_AFFORD.show()
+
+func _handle_amount_function() ->void:
+	limited_amount = -1 if limited_amount <= -1 else limited_amount -1
+	_handle_amount_label()
+	if limited_amount <= -1 or limited_amount > 0: return
+	self.queue_free()
+
+func _handle_amount_label(amount : int = limited_amount) -> void:
+	limited_amount = amount
+	if limited_amount <= -1: return
+	if $AMOUNT: 
+		$AMOUNT.show()
+		$AMOUNT.text = str(amount,"x")

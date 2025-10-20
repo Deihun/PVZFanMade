@@ -1,12 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://cs1eh8rbbrj0r"]
+[gd_scene load_steps=22 format=3 uid="uid://cs1eh8rbbrj0r"]
 
 [ext_resource type="Script" uid="uid://brlmxjr7ooew5" path="res://potato_mine_animation.gd" id="1_i56mm"]
 [ext_resource type="Texture2D" uid="uid://bukcfrb56hulm" path="res://unit/plant/Potatomine/potatomine_body.png" id="2_lsi6x"]
+[ext_resource type="Texture2D" uid="uid://vvx8pp6ntgfh" path="res://unit/plant/Potatomine/t3a.png" id="3_c77y0"]
 [ext_resource type="Texture2D" uid="uid://dektx4tup77se" path="res://unit/plant/Potatomine/potatomine_eye_1.png" id="3_fkktp"]
+[ext_resource type="Texture2D" uid="uid://bxgv7414xg6uk" path="res://unit/plant/Potatomine/t1a.png" id="4_hm80h"]
 [ext_resource type="Texture2D" uid="uid://cy4e07vhf7b8o" path="res://unit/plant/Potatomine/potatomine_mouth.png" id="4_hof34"]
 [ext_resource type="Texture2D" uid="uid://cyiil4n7y8w5w" path="res://unit/plant/Potatomine/potatomine_non_alarm.png" id="5_nnufn"]
+[ext_resource type="Texture2D" uid="uid://4ed6cbrcybj1" path="res://unit/plant/Potatomine/t1b_1.png" id="6_g5den"]
 [ext_resource type="Texture2D" uid="uid://cvvxhkkf7r1kk" path="res://unit/plant/Potatomine/potatomine_alarm.png" id="6_oqiqv"]
 [ext_resource type="Texture2D" uid="uid://brhnrt37nf6pp" path="res://unit/plant/Potatomine/potatomine_eye_2.png" id="7_g5den"]
+[ext_resource type="Texture2D" uid="uid://d4adoc4m8pv1g" path="res://unit/plant/Potatomine/t1b_2.png" id="7_xylyh"]
 [ext_resource type="Texture2D" uid="uid://besrnqq3b0t0" path="res://unit/plant/Potatomine/potatomine_pebble_1.png" id="8_hof34"]
 [ext_resource type="Texture2D" uid="uid://24aaih17lgop" path="res://unit/plant/Potatomine/potatomine_pebble_2.png" id="9_nnufn"]
 [ext_resource type="Texture2D" uid="uid://d1gct7aaln52m" path="res://unit/plant/Potatomine/potatomine_pebble_3.png" id="10_oqiqv"]
@@ -1074,6 +1078,7 @@ _data = {
 }
 
 [node name="PotatoMine_animation" type="Node2D"]
+use_parent_material = true
 script = ExtResource("1_i56mm")
 
 [node name="Control" type="Control" parent="."]
@@ -1086,11 +1091,24 @@ offset_top = -73.0
 offset_right = 49.0
 offset_bottom = 2.0
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="PotatomineBody" type="Sprite2D" parent="Control"]
 use_parent_material = true
 position = Vector2(45, 36)
 texture = ExtResource("2_lsi6x")
+
+[node name="T2A" type="Sprite2D" parent="Control/PotatomineBody"]
+visible = false
+use_parent_material = true
+position = Vector2(3, 7)
+texture = ExtResource("3_c77y0")
+
+[node name="T1a" type="Sprite2D" parent="Control/PotatomineBody"]
+visible = false
+use_parent_material = true
+position = Vector2(2, 1)
+texture = ExtResource("4_hm80h")
 
 [node name="PotatomineEye1" type="Sprite2D" parent="Control/PotatomineBody"]
 use_parent_material = true
@@ -1107,6 +1125,13 @@ use_parent_material = true
 position = Vector2(-1.5, -14)
 texture = ExtResource("5_nnufn")
 
+[node name="T1b1" type="Sprite2D" parent="Control/PotatomineBody/PotatomineNonAlarm"]
+visible = false
+show_behind_parent = true
+use_parent_material = true
+position = Vector2(-0.5, 4)
+texture = ExtResource("6_g5den")
+
 [node name="PotatomineNonAlarm" type="Sprite2D" parent="Control/PotatomineBody/PotatomineNonAlarm"]
 visible = false
 show_behind_parent = true
@@ -1116,6 +1141,19 @@ rotation = -0.274972
 scale = Vector2(0.6156, 0.592415)
 texture = ExtResource("5_nnufn")
 
+[node name="T1b1" type="Sprite2D" parent="Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm"]
+visible = false
+show_behind_parent = true
+use_parent_material = true
+position = Vector2(-0.5, 4)
+texture = ExtResource("6_g5den")
+
+[node name="T1b2" type="Sprite2D" parent="Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm"]
+visible = false
+use_parent_material = true
+position = Vector2(0.5, 2)
+texture = ExtResource("7_xylyh")
+
 [node name="PotatomineNonAlarm2" type="Sprite2D" parent="Control/PotatomineBody/PotatomineNonAlarm"]
 visible = false
 show_behind_parent = true
@@ -1124,6 +1162,25 @@ position = Vector2(-10, 5.748)
 rotation = -0.33172
 scale = Vector2(0.780691, 0.743048)
 texture = ExtResource("5_nnufn")
+
+[node name="T1b1" type="Sprite2D" parent="Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm2"]
+visible = false
+show_behind_parent = true
+use_parent_material = true
+position = Vector2(-0.5, 4)
+texture = ExtResource("6_g5den")
+
+[node name="T1b2" type="Sprite2D" parent="Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm2"]
+visible = false
+use_parent_material = true
+position = Vector2(0.5, 2)
+texture = ExtResource("7_xylyh")
+
+[node name="T1b2" type="Sprite2D" parent="Control/PotatomineBody/PotatomineNonAlarm"]
+visible = false
+use_parent_material = true
+position = Vector2(0.5, 2)
+texture = ExtResource("7_xylyh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

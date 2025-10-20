@@ -477,6 +477,18 @@ tracks/37/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/38/type = "value"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath(".:self_modulate")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_f1o5g"]
 resource_name = "death_while_running"
@@ -1576,6 +1588,30 @@ tracks/26/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath(".:self_modulate")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath(".:modulate")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ihsx0"]
 resource_name = "running_with_pole"
@@ -2371,7 +2407,7 @@ tracks/3/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg:position
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.34, 0.433333, 0.55, 0.553333, 0.656667, 0.75, 0.87),
+"times": PackedFloat32Array(0, 0.233333, 0.4419957, 0.61219406, 0.8, 0.803333, 0.96416473, 1.1, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(5, 34), Vector2(5, 34), Vector2(5, 34), Vector2(4, 29), Vector2(5, 34), Vector2(5, 34), Vector2(5, 34), Vector2(4, 29), Vector2(5, 34)]
@@ -2395,7 +2431,7 @@ tracks/5/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight:positi
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.27, 0.333333, 0.413333, 0.50073, 0.566667, 0.63, 0.71, 0.767396),
+"times": PackedFloat32Array(0, 0.27, 0.37767032, 0.5466667, 0.679591, 0.816667, 0.93749774, 1.1333333, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(23, 27), Vector2(23, 27), Vector2(27, 20), Vector2(24, 24), Vector2(21, 17), Vector2(23, 27), Vector2(27, 20), Vector2(24, 24), Vector2(23, 27)]
@@ -2491,7 +2527,7 @@ tracks/13/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg:rotatio
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.333333, 0.533333, 0.55, 0.65, 0.85),
+"times": PackedFloat32Array(0, 0.233333, 0.37767032, 0.783333, 0.8, 1.0333333, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.734888, 0.734888, 0.401426, 0.734888, 0.734888, 0.401426, 0.734888]
@@ -2503,7 +2539,7 @@ tracks/14/path = NodePath("main_control/legs_group/PoleVaultZombieLegLeg/PoleVau
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0, 0.26, 0.366667, 0.466667, 0.6, 0.733333),
+"times": PackedFloat32Array(0, 0.26, 0.4686627, 0.645528, 1.0666667, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0, -0.469494, 0.0, -0.469494, 0.0]
@@ -2515,7 +2551,7 @@ tracks/15/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight:rotat
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0, 0.27, 0.333333, 0.50073, 0.566667, 0.63, 0.767396),
+"times": PackedFloat32Array(0, 0.27, 0.37767032, 0.679591, 0.816667, 1.0333333, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [-1.2824, -1.2824, -0.923689, -1.53524, -1.2824, -0.923689, -1.2824]
@@ -2527,7 +2563,7 @@ tracks/16/path = NodePath("main_control/legs_group/PoleVaultZombieLegRight/PoleV
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0, 0.276062, 0.332529, 0.388996, 0.470559, 0.508204, 0.564671, 0.621139, 0.677606, 0.759169, 0.815636),
+"times": PackedFloat32Array(0, 0.276062, 0.37686634, 0.5223297, 0.64942, 0.73333335, 0.814671, 0.9286367, 0.9851037, 1.1333333, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.657989, 0.657989, 0.188496, 0.314159, 0.610865, -0.20944, 0.657989, 0.188496, 0.314159, 0.610865, 0.657989]
@@ -2728,6 +2764,9 @@ shape = SubResource("CircleShape2D_a6tk0")
 use_parent_material = true
 position = Vector2(-8.5, -40.5)
 texture = ExtResource("3_ns6if")
+
+[node name="armor" type="Node2D" parent="main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceUpperLayer"]
+position = Vector2(1.0016761, -17.92869)
 
 [node name="PoleVaultZombieFaceLowerLayer" type="Sprite2D" parent="main_control/PoleVaultZombieMainBody/head"]
 use_parent_material = true

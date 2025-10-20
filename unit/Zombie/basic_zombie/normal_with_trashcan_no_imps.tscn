@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://c6b5p7lqufyd0"]
+
+[ext_resource type="Script" uid="uid://biamhuvv1sdpj" path="res://unit/Zombie/basic_zombie/Basic_zombie.gd" id="1_ajsrx"]
+[ext_resource type="Texture2D" uid="uid://gqvca3i123ss" path="res://unit/shadow_for_unit.png" id="2_ajsrx"]
+[ext_resource type="Shader" uid="uid://cjkbfojy8py64" path="res://unit/Zombie/waterline_shader.gdshader" id="3_agm1y"]
+[ext_resource type="PackedScene" uid="uid://dlfnwlf3x2t7t" path="res://Behaviour/zombie_movement_management.tscn" id="3_qqm1b"]
+[ext_resource type="PackedScene" uid="uid://y5yyy3rt1el1" path="res://unit/Zombie/basic_zombie/Basic_Zombie_Animation.tscn" id="5_haiw8"]
+[ext_resource type="PackedScene" uid="uid://b8lpneub1dg61" path="res://Behaviour/projectile_behaviour/zombie_hp_management.tscn" id="6_pqtfp"]
+[ext_resource type="PackedScene" uid="uid://b3a0hlbafc4gr" path="res://unit/Zombie/bite_detection.tscn" id="7_j4sg4"]
+[ext_resource type="Texture2D" uid="uid://b0756tn4rmgy5" path="res://unit/crowed_control_effects/freeze_effect.png" id="8_jbfh6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ajsrx"]
+shader = ExtResource("3_agm1y")
+shader_parameter/affected_float = 1.10000002384186
+shader_parameter/fade_height = 40.0
+shader_parameter/line_thickness = 0.009
+shader_parameter/time = 0.0
+shader_parameter/white_override = false
+shader_parameter/darkblue_override = false
+shader_parameter/purple_override = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xk55e"]
+size = Vector2(115, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8ghd"]
+size = Vector2(46, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1b3j"]
+size = Vector2(71, 104)
+
+[node name="basic_wish_trashcan_no_imps" type="CharacterBody2D"]
+z_index = 2
+position = Vector2(1267, 639)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_ajsrx")
+zombie_type_mode = "trashcan noImps"
+metadata/_edit_horizontal_guides_ = [382.0]
+
+[node name="ShadowForUnit" type="Sprite2D" parent="."]
+position = Vector2(13, -41)
+scale = Vector2(2.16, 2.0217392)
+texture = ExtResource("2_ajsrx")
+
+[node name="animation_node" parent="." node_paths=PackedStringArray("arm_position", "head_position") instance=ExtResource("5_haiw8")]
+material = SubResource("ShaderMaterial_ajsrx")
+position = Vector2(18, -26)
+arm_position = NodePath("../arm_position")
+head_position = NodePath("../head_position")
+
+[node name="arm_position" type="Node2D" parent="."]
+position = Vector2(1, -109)
+
+[node name="head_position" type="Node2D" parent="."]
+position = Vector2(1, -213)
+
+[node name="zombie_movement_management" parent="." node_paths=PackedStringArray("animation_node", "_freeze_visual_effect") instance=ExtResource("3_qqm1b")]
+animation_node = NodePath("../animation_node")
+_freeze_visual_effect = NodePath("../FreezeEffect")
+
+[node name="zombie_hp_management" parent="." node_paths=PackedStringArray("zombie_animation_node") instance=ExtResource("6_pqtfp")]
+zombie_animation_node = NodePath("../animation_node")
+
+[node name="Bite_Detection" parent="." instance=ExtResource("7_j4sg4")]
+collision_layer = 2147483648
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bite_Detection"]
+position = Vector2(-17, -85)
+shape = SubResource("RectangleShape2D_xk55e")
+debug_color = Color(0.504058, 0.0862229, 4.81308e-08, 0.42)
+
+[node name="HitPoint" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitPoint"]
+position = Vector2(-2, -85)
+shape = SubResource("RectangleShape2D_v8ghd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-15, -85)
+shape = SubResource("RectangleShape2D_j1b3j")
+disabled = true
+debug_color = Color(0.83800673, 0.0012146276, 0.92894316, 0.41960785)
+
+[node name="groan_value" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[node name="FreezeEffect" type="Sprite2D" parent="."]
+position = Vector2(12, -36)
+scale = Vector2(1.18, 1)
+texture = ExtResource("8_jbfh6")
+
+[connection signal="area_shape_entered" from="HitPoint" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="timeout" from="groan_value" to="." method="_on_groan_value_timeout"]

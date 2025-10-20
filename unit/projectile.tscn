@@ -3,8 +3,13 @@
 [ext_resource type="Script" uid="uid://bv6u3mux6ig5w" path="res://unit/projectile.gd" id="1_5e0dr"]
 
 [node name="Projectile" type="Area2D"]
+z_index = 5
+collision_layer = 4
+collision_mask = 50
 script = ExtResource("1_5e0dr")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

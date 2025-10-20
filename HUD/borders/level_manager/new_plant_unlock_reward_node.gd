@@ -4,6 +4,7 @@ extends Node2D
 @export_category("DETAILS ON THIS REWARD")
 @export_multiline var _reward_description : String
 @export_file("*.tscn") var _next_scene_to_play
+@export var _play_the_inserted_callable_instead := false
 @export var level_data_name : String
 @export_category("PLANTS UNLOCK")
 @export var _plant_name : String
@@ -17,6 +18,7 @@ extends Node2D
 var _already_happen := false
 var _method_when_confirm_click : Callable 
 var _call_this_when_collecting_reward_ArrayCallable:  Array[Callable] =[]
+var _alternate_call_when_switching_level : Callable
 
 func unlock_something() -> void:
 	if !_plant_name.is_empty() or _plant_name:
@@ -62,6 +64,9 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 
 func _on_button_pressed() -> void:
 	if _method_when_confirm_click.is_valid(): _method_when_confirm_click.call()
+	if _play_the_inserted_callable_instead and _alternate_call_when_switching_level.is_valid():
+		_alternate_call_when_switching_level.call()
+		return
 	get_tree().change_scene_to_file(_next_scene_to_play)
 
 #

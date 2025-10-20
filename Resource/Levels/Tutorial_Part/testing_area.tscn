@@ -1,17 +1,23 @@
-[gd_scene load_steps=19 format=3 uid="uid://th7jb6irnykc"]
+[gd_scene load_steps=25 format=3 uid="uid://th7jb6irnykc"]
 
 [ext_resource type="Script" uid="uid://cyqxg3e8vus4f" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_10.gd" id="1_ij5o2"]
-[ext_resource type="PackedScene" uid="uid://cm3fbr5jbnjmq" path="res://Behaviour/basic_zombie.tscn" id="2_rglp2"]
-[ext_resource type="Texture2D" uid="uid://b8i58el7y56a0" path="res://Resource/Levels/background_assets/day.png" id="3_4mbqr"]
-[ext_resource type="Texture2D" uid="uid://d17d4ngwqf0r" path="res://Resource/Levels/background_assets/grass_layer.png" id="4_1oo8d"]
+[ext_resource type="Texture2D" uid="uid://cm6o05tr14hpg" path="res://Resource/Levels/background_assets/complete_bg.png" id="2_1oo8d"]
+[ext_resource type="PackedScene" uid="uid://cm3fbr5jbnjmq" path="res://Behaviour/dummy_testing.tscn" id="2_rglp2"]
 [ext_resource type="PackedScene" uid="uid://dols1i410thmc" path="res://HUD/borders/level_manager/main_camera.tscn" id="5_xxrpo"]
 [ext_resource type="PackedScene" uid="uid://c3mfdn3yeigf3" path="res://Behaviour/lane_.tscn" id="6_4j2rf"]
 [ext_resource type="PackedScene" uid="uid://d1bmnixb7oepy" path="res://Behaviour/sun_falling_behaviour.tscn" id="7_wil0c"]
+[ext_resource type="PackedScene" uid="uid://rvbwdqhikigs" path="res://HUD/borders/level_manager/wave.tscn" id="8_1oo8d"]
 [ext_resource type="PackedScene" uid="uid://pspn4765e0xo" path="res://HUD/borders/level_manager/zombie_wave_management.tscn" id="8_musfg"]
 [ext_resource type="PackedScene" uid="uid://y1wnytmunqr8" path="res://HUD/borders/level_manager/new_plant_unlock_reward_node.tscn" id="9_wvy7l"]
+[ext_resource type="PackedScene" uid="uid://c2eos12l6ww5h" path="res://unit/Zombie/poleVaultingZombie/PoleVaulting_Zombie.tscn" id="9_xxrpo"]
+[ext_resource type="PackedScene" uid="uid://c6b5p7lqufyd0" path="res://unit/Zombie/basic_zombie/normal_with_trashcan_no_imps.tscn" id="10_4j2rf"]
 [ext_resource type="Texture2D" uid="uid://cicfplhte2rh4" path="res://Resource/Levels/Tutorial_Part/award_for_demo.png" id="10_pd1qh"]
 [ext_resource type="PackedScene" uid="uid://bj5p7r8n80cn" path="res://HUD/debug_mode.tscn" id="11_4hq3w"]
 [ext_resource type="Script" uid="uid://bho6kxnwdxc1g" path="res://Resource/Levels/Tutorial_Part/test_tool.gd" id="12_rglp2"]
+[ext_resource type="PackedScene" uid="uid://b8f4g5q88omyv" path="res://unit/Zombie/garden_zombie_types/zombie_lawnmower/Z_lawnmower.tscn" id="15_xxrpo"]
+[ext_resource type="PackedScene" uid="uid://l0ap6weeoiby" path="res://unit/plant/peashooter/Peashooter_script.tscn" id="16_4j2rf"]
+[ext_resource type="PackedScene" uid="uid://bmk74stoke87f" path="res://unit/Zombie/garden_zombie_types/basic_garden_zombie/GardenerZombie_OriginalNode.tscn" id="17_wil0c"]
+[ext_resource type="PackedScene" uid="uid://xeuq18wltltm" path="res://unit/plant/Sunflower/sunflower.tscn" id="18_musfg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mbqr"]
 bg_color = Color(0, 0, 0, 1)
@@ -37,18 +43,14 @@ position = Vector2(539, 404)
 script = ExtResource("1_ij5o2")
 
 [node name="Day" type="Sprite2D" parent="."]
+z_index = -5
 position = Vector2(1198, 136)
-texture = ExtResource("3_4mbqr")
-
-[node name="GrassLayer" type="Sprite2D" parent="Day"]
-y_sort_enabled = true
-position = Vector2(-494, 117)
-texture = ExtResource("4_1oo8d")
+texture = ExtResource("2_1oo8d")
 
 [node name="main_camera" parent="." instance=ExtResource("5_xxrpo")]
 position = Vector2(421, 136)
 _mode = "normal_mode_with_pick"
-sun_on_start = 500
+sun_on_start = 9999
 
 [node name="test_tool" type="Panel" parent="main_camera"]
 self_modulate = Color(1, 1, 1, 0.627451)
@@ -274,9 +276,11 @@ offset_top = 382.0
 offset_right = 541.0
 offset_bottom = 413.0
 selected = 0
-item_count = 1
+item_count = 2
 popup/item_0/text = "DAY HOUSE"
 popup/item_0/id = 0
+popup/item_1/text = "NIGHT HOUSE"
+popup/item_1/id = 1
 
 [node name="PROJECTILE_SELECTION" type="OptionButton" parent="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls"]
 layout_mode = 0
@@ -457,7 +461,7 @@ offset_bottom = 2004.0
 mouse_filter = 2
 progress_bar_wave_scene = "uid://dr682qf7yx8v2"
 main_camera = NodePath("../main_camera")
-delay_before_game_start = 1.0
+delay_before_game_start = 60.0
 final_as_reward = NodePath("../NewPlantUnlockRewardNode")
 lane_1 = NodePath("../lane_1")
 lane_2 = NodePath("../lane_2")
@@ -466,6 +470,18 @@ lane_4 = NodePath("../lane_4")
 lane_5 = NodePath("../lane_5")
 collision_where_zombie_is_place_preview = NodePath("../preview_zombie")
 metadata/_edit_lock_ = true
+
+[node name="wave" parent="zombie_wave_management" instance=ExtResource("8_1oo8d")]
+layout_mode = 2
+_mark_as_big_wave = true
+_automatically_spawn_basic_zombies = true
+_number_of_zombies_in_big_wave = 10
+
+[node name="PoleVaultingZombie" parent="zombie_wave_management" instance=ExtResource("9_xxrpo")]
+position = Vector2(423, 617)
+
+[node name="basic_wish_trashcan_no_imps" parent="zombie_wave_management" instance=ExtResource("10_4j2rf")]
+position = Vector2(425, 916)
 
 [node name="NewPlantUnlockRewardNode" parent="." instance=ExtResource("9_wvy7l")]
 visible = false
@@ -501,8 +517,40 @@ visible = false
 z_index = 20
 position = Vector2(1, -2)
 
+[node name="PeashooterScript" parent="." instance=ExtResource("16_4j2rf")]
+position = Vector2(167, 494)
+
+[node name="GardenerZombieOriginalNode" parent="." instance=ExtResource("17_wil0c")]
+position = Vector2(1342, 511)
+zombie_type_mode = "lawn_mower_gardener"
+
+[node name="PeashooterScript2" parent="." instance=ExtResource("16_4j2rf")]
+position = Vector2(283, 490)
+
+[node name="PeashooterScript3" parent="." instance=ExtResource("16_4j2rf")]
+position = Vector2(409, 494)
+
+[node name="basic_wish_trashcan_no_imps" parent="." instance=ExtResource("10_4j2rf")]
+position = Vector2(833, 507)
+
+[node name="basic_wish_trashcan_no_imps2" parent="." instance=ExtResource("10_4j2rf")]
+position = Vector2(630, 503)
+
+[node name="basic_wish_trashcan_no_imps3" parent="." instance=ExtResource("10_4j2rf")]
+position = Vector2(987, 512)
+
+[node name="basic_wish_trashcan_no_imps4" parent="." instance=ExtResource("10_4j2rf")]
+position = Vector2(1038, 508)
+
+[node name="ZLawnmower" parent="." instance=ExtResource("15_xxrpo")]
+position = Vector2(2095, -52)
+
+[node name="Sunflower" parent="." instance=ExtResource("18_musfg")]
+position = Vector2(71, 499)
+
 [connection signal="gui_input" from="main_camera/test_tool" to="." method="_on_test_tool_gui_input"]
 [connection signal="toggled" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/BACKGROUND_VISIBILITY" to="main_camera/test_tool" method="_on_background_visibility_toggled"]
+[connection signal="item_selected" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/BACKGROUND_SELECTION" to="main_camera/test_tool" method="_on_background_selection_item_selected"]
 [connection signal="item_selected" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/PROJECTILE_SELECTION" to="main_camera/test_tool" method="_on_projectile_selection_item_selected"]
 [connection signal="value_changed" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/DEBUG_VISIBILITY" to="main_camera/test_tool" method="_on_debug_visibility_value_changed"]
 [connection signal="pressed" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/RESET_SAVE_DATA" to="main_camera/test_tool" method="_on_reset_save_data_pressed"]

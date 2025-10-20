@@ -1,0 +1,370 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8f4g5q88omyv"]
+
+[ext_resource type="Texture2D" uid="uid://dlao5k00vtats" path="res://unit/Zombie/garden_zombie_types/zombie_lawnmower/lawnmower_base.png" id="1_dwbi4"]
+[ext_resource type="Script" uid="uid://8ai3qhfy4dp7" path="res://unit/Zombie/garden_zombie_types/zombie_lawnmower/z_lawnmower.gd" id="1_edsk3"]
+[ext_resource type="Texture2D" uid="uid://rtj2e8vquajc" path="res://unit/Zombie/garden_zombie_types/zombie_lawnmower/lawnmower_left.png" id="2_edsk3"]
+[ext_resource type="Texture2D" uid="uid://bsmbr8cg2qskb" path="res://unit/Zombie/garden_zombie_types/zombie_lawnmower/lawnmower_right.png" id="3_ws6l1"]
+
+[sub_resource type="Animation" id="Animation_u1jkn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/LawnmowerLeft:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/LawnmowerRight:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/LawnmowerBase:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, -16)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/LawnmowerBase:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, -16)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("lawnmower_killer/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Node2D:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Node2D:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_guo2u"]
+resource_name = "onrun"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/LawnmowerLeft:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.2831855]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/LawnmowerRight:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.2831855]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/LawnmowerBase:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.041862234, 0.08372447, 0.12326102, 0.16512325, 0.20698549, 0.24419636, 0.2860586, 0.32792082, 0.37210873, 0.41397095, 0.4558332),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(8, -16), Vector2(8.3, -16), Vector2(8, -16), Vector2(8, -16), Vector2(8.3, -16), Vector2(8, -16), Vector2(8, -16), Vector2(8.3, -16), Vector2(8, -16), Vector2(8, -16), Vector2(8.3, -16), Vector2(8, -16)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/LawnmowerBase:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.039536554, 0.06977039, 0.10698126, 0.15, 0.17907733, 0.21628821, 0.2511734, 0.2953613, 0.3325722, 0.37559092, 0.40466824),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.017453292, 0.0, 0.017453292, -0.01745329251994329, 0.03490658503988659, -0.01745329251994329, 0.017453292, 0.0, 0.017453292, -0.01745329251994329, 0.03490658503988659]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("lawnmower_killer/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Node2D:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_edsk3"]
+resource_name = "stop_"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53, 1.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-0.86, -16), Vector2(49.999985, -15), Vector2(120, -15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.53, 1.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.19024089, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("lawnmower_killer/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.53, 1.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.415, 1), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/LawnmowerRight:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(0.51763254, 1),
+"update": 0,
+"values": [0.0, 5.5449110335859855]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D/LawnmowerLeft:rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(0.3186402, 1),
+"update": 0,
+"values": [-1.2374384, 4.658283773572865]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Node2D:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5knx"]
+_data = {
+&"RESET": SubResource("Animation_u1jkn"),
+&"onrun": SubResource("Animation_guo2u"),
+&"stop_": SubResource("Animation_edsk3")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edsk3"]
+size = Vector2(49, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws6l1"]
+size = Vector2(6, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lat4"]
+size = Vector2(38, 68)
+
+[node name="ZLawnmower" type="CharacterBody2D"]
+position = Vector2(400, 136)
+collision_layer = 64
+collision_mask = 35
+script = ExtResource("1_edsk3")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(8, -16)
+
+[node name="LawnmowerBase" type="Sprite2D" parent="Node2D"]
+position = Vector2(8, -16)
+texture = ExtResource("1_dwbi4")
+flip_h = true
+
+[node name="LawnmowerLeft" type="Sprite2D" parent="Node2D"]
+position = Vector2(19, 24)
+texture = ExtResource("2_edsk3")
+offset = Vector2(-14, -34)
+flip_h = true
+
+[node name="LawnmowerRight" type="Sprite2D" parent="Node2D"]
+position = Vector2(-30, 22)
+texture = ExtResource("3_ws6l1")
+offset = Vector2(34, -34)
+flip_h = true
+
+[node name="on_run" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w5knx")
+}
+autoplay = "onrun"
+
+[node name="lawnmower_killer" type="Area2D" parent="."]
+collision_layer = 65
+collision_mask = 35
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lawnmower_killer"]
+position = Vector2(-1.5, -9.5)
+shape = SubResource("RectangleShape2D_edsk3")
+
+[node name="getting_speedup" type="Timer" parent="."]
+one_shot = true
+
+[node name="encounter_anotherlawnmower" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="encounter_anotherlawnmower"]
+position = Vector2(-30, -9.5)
+shape = SubResource("RectangleShape2D_ws6l1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_0lat4")
+
+[connection signal="animation_finished" from="on_run" to="." method="_on_on_run_animation_finished"]
+[connection signal="body_entered" from="lawnmower_killer" to="." method="_on_lawnmower_killer_body_entered"]
+[connection signal="timeout" from="getting_speedup" to="." method="_on_getting_speedup_timeout"]
+[connection signal="body_entered" from="encounter_anotherlawnmower" to="." method="_on_encounter_anotherlawnmower_body_entered"]

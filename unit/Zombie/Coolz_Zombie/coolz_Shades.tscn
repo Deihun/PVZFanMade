@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc04vfev22svf"]
+
+[ext_resource type="Texture2D" uid="uid://dt4368gtnurku" path="res://HUD/borders/level_manager/_white_shine_reward2.png" id="1_5c8ph"]
+[ext_resource type="Texture2D" uid="uid://dqbhk4sm5wyjq" path="res://HUD/borders/level_manager/_white_shine_reward1.png" id="1_fd6m8"]
+[ext_resource type="Texture2D" uid="uid://drr8pw0cqiyt3" path="res://unit/Zombie/Coolz_Zombie/coolz_shade.png" id="2_fd6m8"]
+
+[sub_resource type="Animation" id="Animation_u15cu"]
+resource_name = "new_animation"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_gy5lv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xyw2o"]
+_data = {
+&"RESET": SubResource("Animation_gy5lv"),
+&"new_animation": SubResource("Animation_u15cu")
+}
+
+[node name="CoolzShades" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.41960785)
+position = Vector2(4, -1)
+
+[node name="WhiteShineReward1" type="Sprite2D" parent="Node2D"]
+position = Vector2(-3.8731499, -1.3463001)
+texture = ExtResource("1_fd6m8")
+
+[node name="WhiteShineReward2" type="Sprite2D" parent="Node2D"]
+position = Vector2(0.12685013, -1.3462982)
+scale = Vector2(0.14743203, 0.15687999)
+texture = ExtResource("1_5c8ph")
+offset = Vector2(17, -208)
+
+[node name="WhiteShineReward3" type="Sprite2D" parent="Node2D"]
+position = Vector2(0.12685108, -1.3463001)
+rotation = 0.81350154
+scale = Vector2(0.14743203, 0.15687999)
+texture = ExtResource("1_5c8ph")
+offset = Vector2(17, -208)
+
+[node name="WhiteShineReward4" type="Sprite2D" parent="Node2D"]
+position = Vector2(0.12684822, -1.3462982)
+rotation = -0.9143521
+scale = Vector2(0.14743203, 0.15687999)
+texture = ExtResource("1_5c8ph")
+offset = Vector2(17, -208)
+
+[node name="WhiteShineReward5" type="Sprite2D" parent="Node2D"]
+position = Vector2(0.12685013, -1.3462982)
+rotation = -1.8996397
+scale = Vector2(0.14743203, 0.15687999)
+texture = ExtResource("1_5c8ph")
+offset = Vector2(17, -208)
+
+[node name="WhiteShineReward6" type="Sprite2D" parent="Node2D"]
+position = Vector2(0.12685013, -1.3463001)
+rotation = -2.9343698
+scale = Vector2(0.14743203, 0.15687999)
+texture = ExtResource("1_5c8ph")
+offset = Vector2(17, -208)
+
+[node name="WhiteShineReward7" type="Sprite2D" parent="Node2D"]
+position = Vector2(0.12684822, -1.3462973)
+rotation = 2.3927705
+scale = Vector2(0.14743203, 0.15687999)
+texture = ExtResource("1_5c8ph")
+offset = Vector2(17, -208)
+
+[node name="WhiteShineReward8" type="Sprite2D" parent="Node2D"]
+position = Vector2(0.12684822, -1.3462982)
+rotation = 1.6019272
+scale = Vector2(0.14743203, 0.15687999)
+texture = ExtResource("1_5c8ph")
+offset = Vector2(17, -208)
+
+[node name="CoolzShade" type="Sprite2D" parent="."]
+position = Vector2(5, 2)
+texture = ExtResource("2_fd6m8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xyw2o")
+}
+autoplay = "new_animation"

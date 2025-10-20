@@ -5,7 +5,7 @@ extends Node2D
 func _ready() -> void:
 	set_process(false)
 	$lane_1.tile_column_2.place_plant_without_cost(load("res://unit/plant/peashooter/Peashooter_script.tscn").instantiate())
-	$lane_1.tile_column_4.place_plant_without_cost(load("res://unit/plant/peashooter/Peashooter_script.tscn").instantiate())
+	$lane_3.tile_column_1.place_plant_without_cost(load("res://unit/plant/peashooter/Peashooter_script.tscn").instantiate())
 	$main_camera.get_node("HUD_normal_selection").hide_shovel=true
 	await get_tree().create_timer(1.0).timeout
 	$main_camera/Bubble.show()

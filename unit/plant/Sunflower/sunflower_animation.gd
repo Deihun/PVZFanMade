@@ -31,7 +31,9 @@ func _play_twin_sunflower():
 	twin_sunflower_ = true
 	$AnimationPlayer.play("twin_sunflower_idle")
 
-
+func react_on_lawnmowerKill() -> void:
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("react_on_lawnmower_killer")
 
 func release_sun():
 	$AnimationPlayer.stop()
@@ -43,5 +45,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		if anim_name == "twin_sunflower_releasing_sun" or anim_name == "twin_sunflower_idle":
 			$AnimationPlayer.play("twin_sunflower_idle")
 			return
-	if anim_name == "spawn" or anim_name == "sun_release":
-		$AnimationPlayer.play("idle")
+	if anim_name in ["spawn","sun_release","react_on_lawnmower_killer"]: $AnimationPlayer.play("idle")
+	if anim_name == "idle" or anim_name == "idle_2":
+		if randf_range(0.0,1.0) < 0.3: $AnimationPlayer.play("idle_2")
+		else: $AnimationPlayer.play("idle")

@@ -23,10 +23,12 @@ func check_for_damage_number():
 		var behavior = load("res://Behaviour/projectile_behaviour/thrown_spawn_behavior.tscn").instantiate()
 		self.top_level = false
 		self.visible = false
+		start_position  = global_position
 		get_tree().current_scene.add_child(target)
-		target.position = Vector2.ZERO
 		target.global_position = start_position
 		behavior.disappear_after_3s =true
 		target.add_child(behavior)
+		target.z_index = 2
+		target.y_sort_enabled =true
 		await get_tree().create_timer(3).timeout
 		queue_free()

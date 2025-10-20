@@ -35,6 +35,11 @@ func _ready() -> void:
 		audio.bus = "SFX"
 		$play_explosion_sfx_1.add_child(audio)
 		a+=1
+	for a in 3:
+		var audio:= AudioStreamPlayer.new()
+		audio.bus = "SFX"
+		$zombie_bite_sfx.add_child(audio)
+		a+=1
 
 func start_up_adjust_bus()-> void:
 	var value_sfx = $"../save_manager".get_value("sfx")
@@ -180,3 +185,14 @@ func play_explosion_sound_SFX(_audio : AudioStream):
 				child.stream=_audio
 				child.play()
 				break
+
+
+
+func play_bite_sound_effect() -> void:
+	var audio_sample = ["res://unit/Zombie/basic_zombie/bite_1.mp3", "res://unit/Zombie/basic_zombie/bite_2.mp3"]
+	for i in $zombie_bite_sfx.get_children():
+		if i is AudioStreamPlayer:
+			if i.playing: continue
+			i.stream = load(audio_sample.pick_random())
+			i.play()
+			break

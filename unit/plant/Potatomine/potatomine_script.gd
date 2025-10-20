@@ -8,7 +8,7 @@ extends CharacterBody2D
 
 
 var current_time_it_takes_to_arm := 20
-var can_reduce_arming_tier1b := false
+var can_reduce_arming_tier1b := true
 
 func _ready() -> void:
 	add_to_group("plant")
@@ -19,9 +19,10 @@ func _ready() -> void:
 	$EvolutionSenderSupportBehavior.tier1B_callable= Callable(self,"tier1b")
 	$EvolutionSenderSupportBehavior.tier2B_callable= Callable(self,"tier2b")
 	$EvolutionSenderSupportBehavior.tier3B_callable= Callable(self,"tier3b")
+	await get_tree().create_timer(0.01).timeout
+	$CollisionShape2D2.disabled=false
 
 func potato_arm():
-	print("potatomine arm")
 	$PotatoMine_animation.arming()
 	$check_for_explosion/CollisionShape2D.disabled = false
 	if $EvolutionSenderSupportBehavior._tier2b_obtain: $plant_health_management_behaviour.gain_shield(500)
@@ -29,7 +30,6 @@ func potato_arm():
 	$EvolutionSenderSupportBehavior.increase_progress_evolution(100)
 
 func potato_unarmed():
-	print("potatomine unarm")
 	$PotatoMine_animation.play_idle_unarmed()
 	current_time_it_takes_to_arm = time_it_take_to_unarmed
 	$check_for_explosion/CollisionShape2D.disabled = true
@@ -66,9 +66,11 @@ func explode():
 
 
 func tier1a():
+	$PotatoMine_animation._tier1a()
 	potato_unarmed()
 	damage += 500
 func tier2a():
+	$PotatoMine_animation._tier2a()
 	potato_unarmed()
 func tier3a():
 	$PotatoMine_animation._tier3a()
@@ -77,6 +79,7 @@ func tier3a():
 func tier1b():
 	potato_unarmed()
 	can_reduce_arming_tier1b=true
+	$PotatoMine_animation._tier1b()
 	$zombie_sensor_tier1b/CollisionShape2D.disabled= false
 func tier2b():
 	potato_unarmed()
@@ -100,31 +103,36 @@ func _on_check_for_explosion_body_entered(body: Node2D) -> void:
 
 
 func _on_zombie_sensor_tier_1b_body_entered(body: Node2D) -> void:
-	if body.is_in_group("zombie") and can_reduce_arming_tier1b: 
+	if body.is_in_group("zombie") and can_reduce_arming_tier1b and !body.is_in_group("testing"): 
+		$zombie_sensor_tier1b/t1b_animation/AnimationPlayer.play("detected")
 		current_time_it_takes_to_arm -= 7 if $EvolutionSenderSupportBehavior._tier3b_obtain else 2
 		can_reduce_arming_tier1b = false
 		$tier1b_cooldown_reduction.start()
 		if $EvolutionSenderSupportBehavior._tier2b_obtain:
-			$Tier2B_impulse.time_left = max($Tier2B_impulse.time_left-3.0, 0.1)
+			t2b_current_count -= randi_range(1,2)
 
 func _on_tier_1b_cooldown_reduction_timeout() -> void:
 	can_reduce_arming_tier1b = true
 
 
+var t2b_current_count:= 10
+
 func _on_tier_2b_impulse_timeout() -> void:
-	if $EvolutionSenderSupportBehavior._tier1a_obtain: $Tier2B_impulse.wait_time = randf_range(15.0,20.0)
-	else: $Tier2B_impulse.wait_time = 16.5
-	_adjust_t2b_space_texture()
-	$CollisionShape2D2.disabled=true
-	$Tier2B_impulse.start()
+	t2b_current_count -=1
+	if t2b_current_count <= 0:
+		_adjust_t2b_space_texture(true)
+		$CollisionShape2D2.disabled=true
+		if $EvolutionSenderSupportBehavior._tier1a_obtain: t2b_current_count = randi_range(12,20)
+		else: t2b_current_count = 16
+		$Tier2B_impulse/Tier2B_Cooldown_duration.start()
 
 
-func _adjust_t2b_space_texture():
+func _adjust_t2b_space_texture(visible_texture := true):
 	var tweem = create_tween()
 	if material is ShaderMaterial:
 		var mat := material as ShaderMaterial
 		var value: float = mat.get_shader_parameter("mix_strength") 
-		if value < 0.5:
+		if visible_texture:
 			tweem.tween_property(mat, "shader_parameter/mix_strength", 1.0, 0.3)
 		else:
 			tweem.tween_property(mat, "shader_parameter/mix_strength", 0.0, 0.3)
@@ -132,4 +140,4 @@ func _adjust_t2b_space_texture():
 
 func _on_tier_2b_cooldown_duration_timeout() -> void:
 	$CollisionShape2D2.disabled=false
-	_adjust_t2b_space_texture()
+	_adjust_t2b_space_texture(false)

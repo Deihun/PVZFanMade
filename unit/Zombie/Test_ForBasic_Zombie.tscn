@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://d01f0jaw0i1us"]
 
 [ext_resource type="Material" uid="uid://6oip4scmqd8a" path="res://Behaviour/Debuff_Shader_Material_For_zombies.tres" id="1_xjnxx"]
-[ext_resource type="Script" uid="uid://bysphchhx8yod" path="res://unit/Zombie/basic_zombie_animation.gd" id="2_6mg1l"]
+[ext_resource type="Script" uid="uid://bysphchhx8yod" path="res://unit/Zombie/basic_zombie/Basic_zombie_animation.gd" id="2_6mg1l"]
 [ext_resource type="Texture2D" uid="uid://cdikhowani8uw" path="res://unit/Zombie/basic_zombie/basic_zombie_foot_back.png" id="3_2eq41"]
 [ext_resource type="Texture2D" uid="uid://b0u7ptrrs7yyq" path="res://unit/Zombie/basic_zombie/basic_zombie_foot_front.png" id="4_1l8d2"]
 [ext_resource type="Texture2D" uid="uid://ci6fq5bl1mdh0" path="res://unit/Zombie/basic_zombie/arm_back_2.png" id="5_w5676"]

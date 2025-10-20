@@ -8,7 +8,7 @@
 size = Vector2(20, 168.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7qxlj"]
-size = Vector2(170, 180)
+size = Vector2(916, 556)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ua7g3"]
 size = Vector2(2695, 41)
@@ -17,7 +17,7 @@ size = Vector2(2695, 41)
 size = Vector2(840, 89)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ux24r"]
-size = Vector2(886, 89)
+size = Vector2(953, 89)
 
 [node name="lane_" type="Node2D"]
 script = ExtResource("1_q3gxs")
@@ -84,13 +84,12 @@ metadata/_edit_lock_ = true
 [node name="untargettable_area" type="Area2D" parent="."]
 position = Vector2(1501, -106)
 collision_layer = 0
-collision_mask = 6
+collision_mask = 38
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="untargettable_area"]
-position = Vector2(31, 29)
+position = Vector2(408, 26)
 shape = SubResource("RectangleShape2D_7qxlj")
-metadata/_edit_lock_ = true
 
 [node name="zombie_spawn_area" type="Node2D" parent="."]
 position = Vector2(1502, -2)
@@ -107,11 +106,11 @@ shape = SubResource("RectangleShape2D_ua7g3")
 metadata/_edit_lock_ = true
 
 [node name="Lawnmower" parent="." instance=ExtResource("3_7qxlj")]
-position = Vector2(-84, -2)
+position = Vector2(-47, -2)
 
 [node name="plant_decoy" type="CharacterBody2D" parent="."]
 position = Vector2(-47, 0)
-collision_mask = 2
+collision_mask = 34
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plant_decoy"]
 position = Vector2(-603, -34.5)
@@ -119,14 +118,15 @@ shape = SubResource("RectangleShape2D_4lqat")
 debug_color = Color(0, 0, 0, 0.41960785)
 
 [node name="trigger_game_over" type="Area2D" parent="."]
-collision_layer = 2147483648
-collision_mask = 2
+collision_layer = 262144
+collision_mask = 34
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="trigger_game_over"]
-position = Vector2(-626, -34.5)
+position = Vector2(-592.5, -34.5)
 shape = SubResource("RectangleShape2D_ux24r")
 
 [connection signal="area_entered" from="Catch_projectiles" to="." method="_on_catch_projectiles_area_entered"]
 [connection signal="body_entered" from="Catch_projectiles" to="." method="_on_catch_projectiles_body_entered"]
+[connection signal="body_entered" from="untargettable_area" to="." method="_on_untargettable_area_body_entered"]
 [connection signal="body_exited" from="untargettable_area" to="." method="_on_untargettable_area_body_exited"]
 [connection signal="body_entered" from="trigger_game_over" to="." method="_on_trigger_game_over_body_entered"]

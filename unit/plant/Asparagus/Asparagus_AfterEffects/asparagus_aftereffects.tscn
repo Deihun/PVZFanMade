@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://buuxvgs4tmgqb"]
+
+[ext_resource type="Script" uid="uid://4qy7ay7cdmte" path="res://unit/plant/Asparagus/asparagus_aftereffects.gd" id="1_jwqu4"]
+[ext_resource type="Texture2D" uid="uid://dgjjororcb151" path="res://unit/plant/Asparagus/Asparagus_AfterEffects/3.png" id="2_if7tr"]
+[ext_resource type="Texture2D" uid="uid://d0mxg5v6x66a3" path="res://unit/plant/Asparagus/Asparagus_AfterEffects/1.png" id="3_xx4iu"]
+[ext_resource type="Texture2D" uid="uid://c5yn7kn6giip1" path="res://unit/plant/Asparagus/Asparagus_AfterEffects/2.png" id="4_3h82k"]
+
+[sub_resource type="Animation" id="Animation_l8xm2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_xx4iu")]
+}
+
+[sub_resource type="Animation" id="Animation_t0fg8"]
+resource_name = "idle"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_xx4iu"), ExtResource("4_3h82k"), ExtResource("2_if7tr")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x84wf"]
+_data = {
+&"RESET": SubResource("Animation_l8xm2"),
+&"idle": SubResource("Animation_t0fg8")
+}
+
+[node name="asparagus_aftereffects" type="Node2D"]
+script = ExtResource("1_jwqu4")
+
+[node name="1" type="Sprite2D" parent="."]
+position = Vector2(38, -6)
+texture = ExtResource("3_xx4iu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x84wf")
+}
+autoplay = "idle"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,568 @@
+[gd_scene load_steps=25 format=3 uid="uid://c7vrs5tcruwsq"]
+
+[ext_resource type="PackedScene" uid="uid://bejflwycfdkfm" path="res://unit/plant/Asparagus/asparagus_animation.tscn" id="1_nelmi"]
+[ext_resource type="Script" uid="uid://bob6bpveauqsj" path="res://unit/plant/Asparagus/asparagus.gd" id="1_ybslu"]
+[ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="2_ybslu"]
+[ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="3_js62h"]
+[ext_resource type="Texture2D" uid="uid://gqvca3i123ss" path="res://unit/shadow_for_unit.png" id="3_ucbfh"]
+[ext_resource type="PackedScene" uid="uid://dfs20jb32fvmc" path="res://unit/projectile.tscn" id="3_yg31u"]
+[ext_resource type="Texture2D" uid="uid://c05myr553vra0" path="res://unit/plant/Asparagus/projectile_asparagus.png" id="5_oo77s"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="7_4j10p"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="9_t3mj2"]
+[ext_resource type="Texture2D" uid="uid://djbtf65qccxve" path="res://unit/plant/Asparagus/asparagus_target_ui_Tier2A/flame_base.png" id="10_2vlgd"]
+[ext_resource type="Texture2D" uid="uid://dqbhk4sm5wyjq" path="res://HUD/borders/level_manager/_white_shine_reward1.png" id="10_aaiyr"]
+[ext_resource type="Texture2D" uid="uid://d1qvu668fc2g4" path="res://unit/plant/Asparagus/asparagus_progressbar.png" id="10_t0fg8"]
+[ext_resource type="Texture2D" uid="uid://cm6ijmdbf0qjr" path="res://unit/plant/Asparagus/asparagus_target_ui_Tier2A/flame_releasing.png" id="11_aaiyr"]
+[ext_resource type="Texture2D" uid="uid://b5cupj0tvc7ph" path="res://unit/plant/Asparagus/tier1B_grass/grass_2.png" id="11_ou6ya"]
+[ext_resource type="Texture2D" uid="uid://3jnb4jo6yrix" path="res://unit/plant/Asparagus/asparagus_target_ui_Tier2A/cross_hair.png" id="12_t0fg8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oo77s"]
+size = Vector2(43, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucbfh"]
+size = Vector2(63, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lweir"]
+size = Vector2(2113, 50)
+
+[sub_resource type="Animation" id="Animation_t0fg8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlameReleasing:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlameReleasing:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlameReleasing:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 7)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlameReleasing2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 7)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlameReleasing2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FlameReleasing2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FlameReleasing3:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FlameReleasing3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FlameReleasing3:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FlameReleasing4:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FlameReleasing4:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 14)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("FlameReleasing4:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:self_modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.5921569)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath(".:skew")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../CrossHair:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_l8xm2"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlameReleasing:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlameReleasing:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlameReleasing:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 7), Vector2(3, -24.06)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlameReleasing2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(18, 7), Vector2(18, -15.675)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlameReleasing2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FlameReleasing2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FlameReleasing3:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FlameReleasing3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.17, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(10, -26.31), Vector2(10, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FlameReleasing3:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FlameReleasing4:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.16, 0.49),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FlameReleasing4:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.1616634, 0.49414095),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(10, -27.11), Vector2(10, 14)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("FlameReleasing4:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.1616634, 0.49414095, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.4), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.4)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:self_modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.4605882),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.5921569), Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath(".:skew")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.4605882),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.28274333882308145, 0.099483766]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../CrossHair:position")
+tracks/14/interp = 2
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.51244247),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -7), Vector2(0, -7.955)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x84wf"]
+_data = {
+&"RESET": SubResource("Animation_t0fg8"),
+&"idle": SubResource("Animation_l8xm2")
+}
+
+[sub_resource type="Animation" id="Animation_2vlgd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.16580628]
+}
+
+[sub_resource type="Animation" id="Animation_idjhn"]
+resource_name = "grass_wave"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:skew")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5068249),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.16580628, -0.1675516]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2vlgd"]
+_data = {
+&"RESET": SubResource("Animation_2vlgd"),
+&"grass_wave": SubResource("Animation_idjhn")
+}
+
+[node name="Asparagus" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_ybslu")
+
+[node name="AsparagusAnimation" parent="." instance=ExtResource("1_nelmi")]
+position = Vector2(7, -29)
+scale = Vector2(1.2, 1.2)
+
+[node name="ShadowForUnit" type="Sprite2D" parent="AsparagusAnimation"]
+show_behind_parent = true
+position = Vector2(-6.666667, 14.999998)
+scale = Vector2(1.8000001, 1.6847826)
+texture = ExtResource("3_ucbfh")
+
+[node name="PlantDamageNodeManager" parent="." instance=ExtResource("3_js62h")]
+damage = 35
+base_attack_cooldown = 1.75
+
+[node name="projectile_spawn_location" type="Node2D" parent="."]
+position = Vector2(44, -83)
+
+[node name="Projectile" parent="projectile_spawn_location" instance=ExtResource("3_yg31u")]
+visible = false
+position = Vector2(-1, -1)
+monitoring = false
+monitorable = false
+speed = 900.0
+after_splash_effect_scene = "uid://buuxvgs4tmgqb"
+
+[node name="ProjectileAsparagus" type="Sprite2D" parent="projectile_spawn_location/Projectile"]
+position = Vector2(8, 12)
+texture = ExtResource("5_oo77s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="projectile_spawn_location/Projectile"]
+position = Vector2(17.5, 19.5)
+shape = SubResource("RectangleShape2D_oo77s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-2.5, -33)
+shape = SubResource("RectangleShape2D_ucbfh")
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("7_4j10p")]
+position = Vector2(60.5, -64.5)
+
+[node name="Detection_Area" parent="." instance=ExtResource("2_ybslu")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area"]
+position = Vector2(1046.5, -15)
+shape = SubResource("RectangleShape2D_lweir")
+debug_color = Color(1, 1, 1, 0.17254902)
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("9_t3mj2")]
+plant_name = "asparagus"
+description_Tier1A = "Immediate increase damage"
+description_Tier1B = "Whenever I kill, my damage grows until i receive damage"
+description_Tier2A = "I deal more damage when theres only one target."
+description_Tier2B = "Asparagus projectile can lightly damage all other zombies passing it."
+description_Tier3A = "For every thirdshot: Shoot two asparagus instead, one is prioritizing the last zombie and the second prioritizing the first"
+description_Tier3B = "Whenever I kill a zombie, It will explode releasing 8 projectiles on each different location."
+description_evolve_requirement = "When I kill a zombie, I progress"
+plant_evolve_meter_texture = ExtResource("10_t0fg8")
+_tier1_max_value = 3.0
+_tier2_max_value = 7.0
+_tier3_max_value = 25.0
+
+[node name="tier2A_innerflame_focus" type="Node2D" parent="."]
+visible = false
+position = Vector2(-8, -146)
+
+[node name="WhiteShineReward1" type="Sprite2D" parent="tier2A_innerflame_focus"]
+modulate = Color(0.9843137, 0.52156866, 0, 0.4)
+position = Vector2(-6, 3)
+texture = ExtResource("10_aaiyr")
+
+[node name="FlameBase" type="Sprite2D" parent="tier2A_innerflame_focus"]
+self_modulate = Color(1, 1, 1, 0.5921569)
+position = Vector2(1.9999981, 13.999996)
+scale = Vector2(1.0520722, 0.4866865)
+texture = ExtResource("10_2vlgd")
+
+[node name="FlameReleasing" type="Sprite2D" parent="tier2A_innerflame_focus/FlameBase"]
+position = Vector2(3, 7)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_aaiyr")
+
+[node name="FlameReleasing2" type="Sprite2D" parent="tier2A_innerflame_focus/FlameBase"]
+visible = false
+position = Vector2(18, 7)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_aaiyr")
+
+[node name="FlameReleasing3" type="Sprite2D" parent="tier2A_innerflame_focus/FlameBase"]
+visible = false
+position = Vector2(10, 1)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_aaiyr")
+
+[node name="FlameReleasing4" type="Sprite2D" parent="tier2A_innerflame_focus/FlameBase"]
+visible = false
+position = Vector2(10, 14)
+texture = ExtResource("11_aaiyr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="tier2A_innerflame_focus/FlameBase"]
+libraries = {
+&"": SubResource("AnimationLibrary_x84wf")
+}
+autoplay = "idle"
+
+[node name="CrossHair" type="Sprite2D" parent="tier2A_innerflame_focus"]
+position = Vector2(0, -7)
+texture = ExtResource("12_t0fg8")
+
+[node name="Tier1B_Grass" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 6)
+scale = Vector2(1.2588652, 1)
+skew = 0.16580628
+texture = ExtResource("11_ou6ya")
+offset = Vector2(24.02817, -64)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tier1B_Grass"]
+libraries = {
+&"": SubResource("AnimationLibrary_2vlgd")
+}
+
+[connection signal="_shoot_signal" from="AsparagusAnimation" to="." method="_on_asparagus_animation__shoot_signal"]
+[connection signal="_special_shooted_projectile_signal" from="AsparagusAnimation" to="." method="_on_asparagus_animation__special_shooted_projectile_signal"]

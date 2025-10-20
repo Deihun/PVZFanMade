@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bpnwr5oe20tfl"]
+[gd_scene load_steps=11 format=3 uid="uid://bpnwr5oe20tfl"]
 
 [ext_resource type="PackedScene" uid="uid://1586jc7ht8x0" path="res://unit/plant/Wallnut/Wallnut_animation.tscn" id="1_r3nnr"]
 [ext_resource type="Script" uid="uid://c4i8sivw4b70j" path="res://unit/plant/Wallnut/wallnut_plant.gd" id="1_v4b73"]
+[ext_resource type="Texture2D" uid="uid://gqvca3i123ss" path="res://unit/shadow_for_unit.png" id="2_1okp1"]
 [ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="2_hspts"]
 [ext_resource type="Texture2D" uid="uid://ccbg5x8x7jwu4" path="res://unit/plant/Wallnut/wallnut_empower_behind.png" id="2_n3peg"]
 [ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="3_hc25i"]
@@ -21,6 +22,11 @@ z_index = 1
 y_sort_enabled = true
 collision_mask = 5
 script = ExtResource("1_v4b73")
+
+[node name="ShadowForUnit" type="Sprite2D" parent="."]
+position = Vector2(-1, -6)
+scale = Vector2(2.16, 2.0217392)
+texture = ExtResource("2_1okp1")
 
 [node name="Tallnut_blocking" type="Area2D" parent="."]
 visible = false
@@ -67,6 +73,7 @@ max_health = 1500
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -53.5)
 shape = SubResource("RectangleShape2D_hc25i")
+disabled = true
 
 [node name="starts_evolution_when_progress" type="Timer" parent="."]
 

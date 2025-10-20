@@ -24,8 +24,8 @@ func add_attackspeed_with_tracker(attackspeed_value: float, code_name : String, 
 		"code_name": code_name,
 		"attackspeed_value" : attackspeed_value,
 		"auto_remove_within_set_duration" : auto_remove_within_set_duration}
-	_compute_total_attackspeed_of_tracker()
 	_bonus_attackspeed_tracker.append(dictionary_stored_value)
+	_compute_total_attackspeed_of_tracker()
 
 func remove_attackspeed_with_tracker(code_name : String) ->void:
 	for item in _bonus_attackspeed_tracker:
@@ -57,8 +57,8 @@ func add_damage_with_tracker(damage_value: float, code_name : String, auto_remov
 		"code_name": code_name,
 		"damage_value" : damage_value,
 		"auto_remove_within_set_duration" : auto_remove_within_set_duration}
-	_compute_total_bonusdamage_of_tracker()
 	_bonus_damage_tracker.append(dictionary_stored_value)
+	_compute_total_bonusdamage_of_tracker()
 
 func remove_damage_with_tracker(code_name : String) ->void:
 	for item in _bonus_damage_tracker:
@@ -77,7 +77,6 @@ func _compute_total_bonusdamage_of_tracker()-> void:
 	for item in _bonus_damage_tracker: 
 		start_bonusdamage_count += item["damage_value"]
 	bonus_damage = start_bonusdamage_count
-
 func get_total_computed_bonus_speed(attack_speed_cap : float = 0.1) -> float: 
 	return base_attack_cooldown / (1.0+(bonus_attackspeed / 100.0))
 

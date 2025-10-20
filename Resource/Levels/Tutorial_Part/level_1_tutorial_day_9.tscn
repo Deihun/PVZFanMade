@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://6rxyxasyxcub"]
+[gd_scene load_steps=20 format=3 uid="uid://6rxyxasyxcub"]
 
 [ext_resource type="Script" uid="uid://ctm5240pb6a1v" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_9.gd" id="1_doi2b"]
 [ext_resource type="Texture2D" uid="uid://b8i58el7y56a0" path="res://Resource/Levels/background_assets/day.png" id="2_8jnri"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://rvbwdqhikigs" path="res://HUD/borders/level_manager/wave.tscn" id="8_6vgnb"]
 [ext_resource type="PackedScene" uid="uid://y1wnytmunqr8" path="res://HUD/borders/level_manager/new_plant_unlock_reward_node.tscn" id="9_2awrw"]
 [ext_resource type="PackedScene" uid="uid://yivwd3p0a1xq" path="res://unit/Zombie/basic_zombie/conehead_basic_zombie.tscn" id="9_i7hqv"]
-[ext_resource type="Texture2D" uid="uid://ds5acfqn0heye" path="res://unit/plant/Potatomine/potatomine_seed_packet.png" id="10_doi2b"]
+[ext_resource type="Texture2D" uid="uid://chhucy1wbrd5g" path="res://unit/plant/SnowPea/snowpea_seed_packet.png" id="10_e3t1i"]
 [ext_resource type="PackedScene" uid="uid://c2eos12l6ww5h" path="res://unit/Zombie/poleVaultingZombie/PoleVaulting_Zombie.tscn" id="10_lb23s"]
 [ext_resource type="PackedScene" uid="uid://2ws764pcbwav" path="res://Behaviour/power_boost_drop.tscn" id="13_e3t1i"]
 [ext_resource type="PackedScene" uid="uid://cbj6pyedst0gj" path="res://unit/Zombie/basic_zombie/buckethead_basic_zombie.tscn" id="13_lb23s"]
@@ -20,20 +20,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewpwe"]
 size = Vector2(1295, 699)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bat4m"]
-bg_color = Color(0.981506, 0.928068, 0, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbpro"]
-size = Vector2(284, 148)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3t1i"]
+size = Vector2(245, 137)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r4qp0"]
 size = Vector2(798, 579.25)
 
 [node name="level_1_tutorial_day9" type="Node2D"]
+y_sort_enabled = true
 position = Vector2(539, 404)
 script = ExtResource("1_doi2b")
 
 [node name="Day" type="Sprite2D" parent="."]
+z_index = -5
+y_sort_enabled = true
 position = Vector2(1198, 136)
 texture = ExtResource("2_8jnri")
 
@@ -263,10 +263,11 @@ _number_of_zombies_in_big_wave = 7
 
 [node name="NewPlantUnlockRewardNode" parent="." instance=ExtResource("9_2awrw")]
 position = Vector2(523, -52)
-_reward_description = "Now you can evolve potatomine upto TIER3!"
+_reward_description = "Slow zombies"
 _next_scene_to_play = "uid://l4wpjr31cg66"
 level_data_name = "day1-9"
-_plant_name = "potatomine"
+_plant_name = "snowpea"
+_unlock_plant_tier_1 = true
 _unlock_plant_tier_2 = true
 _unlock_plant_tier_3 = true
 
@@ -274,29 +275,11 @@ _unlock_plant_tier_3 = true
 z_index = 155
 position = Vector2(11.5, 16.5)
 scale = Vector2(1.27, 1.33)
-texture = ExtResource("10_doi2b")
-
-[node name="Panel" type="Panel" parent="NewPlantUnlockRewardNode/SeedPacket"]
-offset_left = 54.7244
-offset_top = 8.64662
-offset_right = 66.7244
-offset_bottom = 36.6466
-rotation = 0.751579
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bat4m")
-
-[node name="Panel2" type="Panel" parent="NewPlantUnlockRewardNode/SeedPacket"]
-offset_left = 51.0
-offset_top = 12.0
-offset_right = 63.0
-offset_bottom = 47.0
-rotation = -0.820532
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bat4m")
+texture = ExtResource("10_e3t1i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NewPlantUnlockRewardNode"]
-position = Vector2(14, 12)
-shape = SubResource("RectangleShape2D_mbpro")
+position = Vector2(8.5, 16.5)
+shape = SubResource("RectangleShape2D_e3t1i")
 
 [node name="for_storing_groups_of_zombies" type="Node2D" parent="."]
 position = Vector2(-327, -441)

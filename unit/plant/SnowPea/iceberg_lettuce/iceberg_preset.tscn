@@ -1,0 +1,223 @@
+[gd_scene load_steps=12 format=3 uid="uid://c3nh14sq2xkky"]
+
+[ext_resource type="Script" uid="uid://big2eulomdme6" path="res://HUD/borders/seed_packet.gd" id="1_53yt4"]
+[ext_resource type="Texture2D" uid="uid://t0jw8nmdvhwu" path="res://HUD/borders/seed_packet.png" id="2_04mhn"]
+[ext_resource type="AudioStream" uid="uid://bwji678b23lvy" path="res://HUD/borders/planting_seed_pick_sfx.mp3" id="3_f00rh"]
+[ext_resource type="AudioStream" uid="uid://cwhn0fff74onu" path="res://HUD/borders/decline_sfx.ogg" id="4_gebd7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t63ia"]
+bg_color = Color(1, 0.799199, 0.357, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ba2lq"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_ba2lq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shine:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-105, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_t63ia"]
+resource_name = "idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shine:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667, 2.82, 3.26667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-105, -1), Vector2(210, -1), Vector2(210, -1), Vector2(-105, -1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jau7s"]
+_data = {
+&"RESET": SubResource("Animation_ba2lq"),
+&"idle": SubResource("Animation_t63ia")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk3x6"]
+bg_color = Color(0, 0, 0, 0.411765)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fds4k"]
+bg_color = Color(0, 0, 0, 0.498039)
+
+[node name="SeedPacket" type="Control"]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1720.0
+offset_bottom = -960.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_53yt4")
+mode = "ingame-seed-pick"
+plant_name = "iceberg_lettuce"
+cooldown = 5
+suncost = 0
+image_path = "uid://dpdjuj10xwwno"
+plant_tscn = "uid://b2atiu6tgdc2y"
+plant_animation_only_tscn = "uid://k5wgaitx5qdj"
+delete_if_not_existing_in_progress = false
+
+[node name="SeedPacket" type="Sprite2D" parent="."]
+position = Vector2(100, 59)
+texture = ExtResource("2_04mhn")
+
+[node name="selected_visuals" type="Node2D" parent="SeedPacket"]
+visible = false
+
+[node name="gold" type="Panel" parent="SeedPacket/selected_visuals"]
+offset_left = -100.0
+offset_top = -61.0
+offset_right = -94.0
+offset_bottom = 61.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t63ia")
+
+[node name="gold2" type="Panel" parent="SeedPacket/selected_visuals"]
+offset_left = 94.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = 62.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t63ia")
+
+[node name="gold3" type="Panel" parent="SeedPacket/selected_visuals"]
+offset_left = -95.0
+offset_top = 53.0
+offset_right = 100.0
+offset_bottom = 61.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t63ia")
+
+[node name="gold4" type="Panel" parent="SeedPacket/selected_visuals"]
+offset_left = -95.0
+offset_top = -61.0
+offset_right = 100.0
+offset_bottom = -53.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t63ia")
+
+[node name="limiter_shine" type="Control" parent="SeedPacket/selected_visuals"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = 60.0
+mouse_filter = 2
+
+[node name="shine" type="Panel" parent="SeedPacket/selected_visuals/limiter_shine"]
+self_modulate = Color(1, 1, 1, 0.542)
+layout_mode = 0
+offset_left = -105.0
+offset_top = -1.0
+offset_right = -65.0
+offset_bottom = 160.0
+rotation = -0.465651
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ba2lq")
+
+[node name="shine_idle" type="AnimationPlayer" parent="SeedPacket/selected_visuals/limiter_shine"]
+libraries = {
+&"": SubResource("AnimationLibrary_jau7s")
+}
+autoplay = "idle"
+
+[node name="ContentFrame" type="Control" parent="."]
+clip_contents = true
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 193.0
+offset_bottom = 112.0
+
+[node name="Plant_Face" type="Sprite2D" parent="ContentFrame"]
+position = Vector2(51, 96)
+
+[node name="ProgressBar" type="ProgressBar" parent="ContentFrame"]
+visible = false
+layout_mode = 0
+offset_left = -5.0
+offset_top = 1.0
+offset_right = 191.0
+offset_bottom = 118.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jk3x6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fds4k")
+max_value = 10.0
+step = 0.0
+value = 3.305
+fill_mode = 3
+show_percentage = false
+
+[node name="cooldown" type="Timer" parent="."]
+
+[node name="SUNCOST" type="Label" parent="."]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 73.0
+offset_right = 199.0
+offset_bottom = 130.0
+theme_override_constants/line_spacing = 280
+theme_override_constants/shadow_offset_x = 20
+theme_override_constants/shadow_offset_y = 50
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 41
+text = "100"
+horizontal_alignment = 2
+
+[node name="VISUAL_AFFORD" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 199.0
+offset_bottom = 118.0
+
+[node name="click_button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 118.0
+
+[node name="AMOUNT" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -20.0
+offset_top = -29.0
+offset_right = 75.0
+offset_bottom = 48.0
+theme_override_constants/line_spacing = 280
+theme_override_constants/shadow_offset_x = 20
+theme_override_constants/shadow_offset_y = 50
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 56
+text = "50x"
+
+[node name="pick_" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_f00rh")
+bus = &"SFX"
+
+[node name="decline_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gebd7")
+bus = &"SFX"
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="button_down" from="click_button" to="." method="_on_click_button_button_down"]

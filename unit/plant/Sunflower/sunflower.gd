@@ -14,7 +14,6 @@ var _t2a_current_seen_collected_sun := 0
 var _total_produce_sun_by_me := 0
 
 func _ready() -> void:
-	position =Vector2(0,0)
 	add_to_group("plant")
 	$"Sunflower Animation".producing_sun_callable = Callable(self,"produce_sun")
 	$"Sunflower Animation".spawn()
@@ -25,6 +24,8 @@ func _ready() -> void:
 	$EvolutionSenderSupportBehavior.tier2B_callable =Callable(self,"tier2b")
 	$EvolutionSenderSupportBehavior.tier3A_callable =Callable(self,"tier3a")
 	$EvolutionSenderSupportBehavior.tier3B_callable =Callable(self,"tier3b")
+	await get_tree().create_timer(0.01).timeout
+	$CollisionShape2D.disabled = false
 	await get_tree().create_timer(0.8).timeout
 	$evolve_timer.start()
 
@@ -138,14 +139,12 @@ func  _when_you_collect_current_sun():
 		get_tree().current_scene.add_child(powerboost)
 		$T2A_collecting_power_animation/T2A_visual_when_producing.start()
 		$"Sunflower Animation".modulate = Color("1ba300")
-		await get_tree().create_timer(0.8).timeout
 		powerboost.global_position = $T2A_collecting_power_animation.global_position
 		if $EvolutionSenderSupportBehavior._tier1a_obtain and randf() < 0.05:
 			var powerboost_2 = load("res://HUD/EvolutionUI/EvolutionPowerBoost.tscn").instantiate()
 			get_tree().current_scene.add_child(powerboost_2)
 			$T2A_collecting_power_animation/T2A_visual_when_producing.start()
 			$"Sunflower Animation".modulate = Color("1ba300")
-			await get_tree().create_timer(0.8).timeout
 			powerboost_2.global_position = $T2A_collecting_power_animation.global_position
 	
 
@@ -182,3 +181,7 @@ func set_dictionary_stats():
 
 	}
 	$EvolutionSenderSupportBehavior.stats = details.duplicate()
+
+
+func _on_force_reaction_animation_detections_reaction_is_trigger() -> void:
+	$"Sunflower Animation".react_on_lawnmowerKill()

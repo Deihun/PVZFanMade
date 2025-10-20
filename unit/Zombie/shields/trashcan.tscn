@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxtx6sub0v6uq"]
+
+[ext_resource type="Script" uid="uid://dcw015she50mi" path="res://unit/Zombie/trashcan.gd" id="1_jr63y"]
+[ext_resource type="Texture2D" uid="uid://bhjsh78fkgrux" path="res://unit/Zombie/shields/trashcan_hp_full.png" id="2_rux2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsojr"]
+size = Vector2(80.34494, 125.93741)
+
+[node name="trashcan" type="Area2D"]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_jr63y")
+
+[node name="TrashcanHpFull" type="Sprite2D" parent="."]
+position = Vector2(-8.506577, 30.788254)
+texture = ExtResource("2_rux2x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-12.82753, 69.031296)
+shape = SubResource("RectangleShape2D_jsojr")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://nqpa1jdoxd70"]
+[gd_scene load_steps=7 format=3 uid="uid://nqpa1jdoxd70"]
 
 [ext_resource type="Script" uid="uid://cekbjq14pnxox" path="res://HUD/borders/occupied_tile.gd" id="1_1kvgc"]
 [ext_resource type="Texture2D" uid="uid://cdt57v8vx5aaj" path="res://HUD/option_wheel.png" id="2_d1o4q"]
@@ -15,7 +15,12 @@ border_color = Color(0.360518, 0.476292, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40oju"]
 size = Vector2(114.875, 170.25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1o4q"]
+size = Vector2(177, 155)
+
 [node name="Occupied_Tile" type="Area2D"]
+collision_layer = 2147483648
+collision_mask = 3
 script = ExtResource("1_1kvgc")
 
 [node name="OptionWheel" type="Sprite2D" parent="."]
@@ -151,6 +156,16 @@ shape = SubResource("RectangleShape2D_40oju")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
+[node name="zmog_detection" type="Area2D" parent="."]
+collision_layer = 262144
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="zmog_detection"]
+visible = false
+position = Vector2(66.5, -21.5)
+shape = SubResource("RectangleShape2D_d1o4q")
+debug_color = Color(0, 0, 0, 0.79607844)
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="tier_A_option" to="." method="_on_tier_a_option_mouse_entered"]
 [connection signal="mouse_exited" from="tier_A_option" to="." method="_on_tier_a_option_mouse_exited"]
@@ -158,3 +173,5 @@ shape = SubResource("RectangleShape2D_40oju")
 [connection signal="mouse_exited" from="tier_B_option" to="." method="_on_tier_b_option_mouse_exited"]
 [connection signal="mouse_entered" from="more_option" to="." method="_on_more_option_mouse_entered"]
 [connection signal="mouse_exited" from="more_option" to="." method="_on_more_option_mouse_exited"]
+[connection signal="body_entered" from="zmog_detection" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="zmog_detection" to="." method="_on_body_exited"]

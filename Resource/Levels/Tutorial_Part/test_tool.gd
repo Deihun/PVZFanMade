@@ -46,3 +46,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):
 		direction += 1
 	get_parent().position.x += direction * 50 * delta
+
+
+func _on_background_selection_item_selected(index: int) -> void:
+	match index:
+		0: $"../../Day".texture=preload("res://Resource/Levels/background_assets/complete_bg.png")
+		1: $"../../Day".texture=preload("res://Resource/Levels/background_assets/night.png")

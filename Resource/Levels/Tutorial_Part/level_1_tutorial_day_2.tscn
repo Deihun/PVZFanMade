@@ -28,6 +28,7 @@ position = Vector2(539, 404)
 script = ExtResource("1_s8whd")
 
 [node name="Day" type="Sprite2D" parent="."]
+z_index = -5
 position = Vector2(1198, 136)
 texture = ExtResource("2_le7bo")
 
@@ -91,12 +92,12 @@ collision_where_zombie_is_place_preview = NodePath("../preview_zombie")
 
 [node name="wave2" parent="zombie_wave_management" instance=ExtResource("8_tocaj")]
 layout_mode = 2
-_delay_duration = 15.0
+_delay_duration = 50.0
 _trigger_next_wave_if_this_is_clear = true
 
 [node name="wave" parent="zombie_wave_management" instance=ExtResource("8_tocaj")]
 layout_mode = 2
-_delay_duration = 20.0
+_delay_duration = 50.0
 _trigger_next_wave_if_this_is_clear = true
 _delay_interval_between_spawn = 1.0
 
@@ -110,14 +111,14 @@ _number_of_zombies_in_big_wave = 12
 
 [node name="wave4" parent="zombie_wave_management" instance=ExtResource("8_tocaj")]
 layout_mode = 2
-_delay_duration = 40.0
+_delay_duration = 20.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 1.787
 
 [node name="wave5" parent="zombie_wave_management" instance=ExtResource("8_tocaj")]
 layout_mode = 2
-_delay_duration = 20.0
+_delay_duration = 10.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 2.5
@@ -125,7 +126,7 @@ _number_of_zombies_in_big_wave = 5
 
 [node name="wave6" parent="zombie_wave_management" instance=ExtResource("8_tocaj")]
 layout_mode = 2
-_delay_duration = 30.0
+_delay_duration = 10.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 2.5
@@ -133,7 +134,7 @@ _number_of_zombies_in_big_wave = 5
 
 [node name="wave7" parent="zombie_wave_management" instance=ExtResource("8_tocaj")]
 layout_mode = 2
-_delay_duration = 20.0
+_delay_duration = 10.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 2.5
@@ -141,7 +142,7 @@ _number_of_zombies_in_big_wave = 5
 
 [node name="wave8" parent="zombie_wave_management" instance=ExtResource("8_tocaj")]
 layout_mode = 2
-_delay_duration = 5.0
+_delay_duration = 10.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 2.5
@@ -149,7 +150,7 @@ _number_of_zombies_in_big_wave = 5
 
 [node name="wave9" parent="zombie_wave_management" instance=ExtResource("8_tocaj")]
 layout_mode = 2
-_delay_duration = 30.0
+_delay_duration = 10.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 2.5
@@ -157,7 +158,7 @@ _number_of_zombies_in_big_wave = 5
 
 [node name="wave10" parent="zombie_wave_management" instance=ExtResource("8_tocaj")]
 layout_mode = 2
-_delay_duration = 50.0
+_delay_duration = 10.0
 _trigger_next_wave_if_this_is_clear = true
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 4.0
@@ -165,7 +166,7 @@ _number_of_zombies_in_big_wave = 5
 
 [node name="wave11" parent="zombie_wave_management" instance=ExtResource("8_tocaj")]
 layout_mode = 2
-_delay_duration = 30.0
+_delay_duration = 0.0
 _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 2.5
 _mark_as_big_wave = true
@@ -179,6 +180,8 @@ _next_scene_to_play = "uid://bin6y2016lxn3"
 level_data_name = "day1-2"
 _plant_name = "wallnut"
 _unlock_plant_tier_1 = true
+_unlock_plant_tier_2 = true
+_unlock_plant_tier_3 = true
 
 [node name="SeedPacket" type="Sprite2D" parent="NewPlantUnlockRewardNode"]
 z_index = 155
@@ -256,7 +259,7 @@ position = Vector2(2164, 937)
 position = Vector2(2046, 963)
 
 [node name="BasicZombie22" parent="for_storing_groups_of_zombies" instance=ExtResource("11_hf4da")]
-position = Vector2(2389, 1509)
+position = Vector2(2361, 1573)
 zombie_type_mode = "conehead"
 
 [node name="BasicZombie23" parent="for_storing_groups_of_zombies" instance=ExtResource("11_hf4da")]

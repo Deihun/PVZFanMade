@@ -16,6 +16,8 @@ func _ready() -> void:
 	$EvolutionSenderSupportBehavior.tier2B_callable= Callable(self,"tier2b")
 	$EvolutionSenderSupportBehavior.tier3B_callable= Callable(self,"tier3b")
 	$Wallnut._spawn()
+	await get_tree().create_timer(0.01).timeout
+	$CollisionShape2D.disabled=false
 
 func tier1a():
 	$plant_health_management_behaviour.gain_extra_max_health(500)

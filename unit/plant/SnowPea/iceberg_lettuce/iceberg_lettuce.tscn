@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2atiu6tgdc2y"]
+
+[ext_resource type="Script" uid="uid://c2um7qm5gd23l" path="res://unit/plant/SnowPea/iceberg_lettuce/iceberg_lettuce.gd" id="1_v4r88"]
+[ext_resource type="PackedScene" uid="uid://k5wgaitx5qdj" path="res://unit/plant/SnowPea/iceberg_lettuce/iceberg_as_group.tscn" id="2_oafjm"]
+[ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="8_q0166"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4r88"]
+size = Vector2(140, 62.5)
+
+[node name="Iceberg Lettuce" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(94, 189)
+script = ExtResource("1_v4r88")
+
+[node name="iceberg_as_group" parent="." instance=ExtResource("2_oafjm")]
+
+[node name="Detection_Area" parent="." instance=ExtResource("8_q0166")]
+collision_layer = 4
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area"]
+position = Vector2(26, -30.75)
+shape = SubResource("RectangleShape2D_v4r88")
+
+[connection signal="enemy_detected" from="Detection_Area" to="." method="_on_detection_area_enemy_detected"]

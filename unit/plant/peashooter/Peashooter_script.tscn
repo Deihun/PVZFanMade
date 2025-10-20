@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://l0ap6weeoiby"]
+[gd_scene load_steps=19 format=3 uid="uid://l0ap6weeoiby"]
 
 [ext_resource type="Script" uid="uid://mms5i2ts6tp2" path="res://unit/plant/peashooter/peashooter_script.gd" id="1_gtqde"]
 [ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="2_7a0e4"]
+[ext_resource type="Texture2D" uid="uid://gqvca3i123ss" path="res://unit/shadow_for_unit.png" id="2_v6f0d"]
 [ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="3_pl8vp"]
 [ext_resource type="Texture2D" uid="uid://c0p3aialfs44i" path="res://unit/plant/peashooter/peashooter_evolve_meter.png" id="4_ontxa"]
 [ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="4_qm7ql"]
@@ -21,7 +22,7 @@ size = Vector2(2132, 59)
 size = Vector2(20, 44.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3mxyb"]
-radius = 1.41421
+radius = 11.401754
 
 [sub_resource type="Animation" id="Animation_ontxa"]
 length = 0.001
@@ -127,7 +128,7 @@ tier2B_callable = null
 tier3A_callable = null
 tier3B_callable = null
 _tier1_max_value = 2.0
-_tier2_max_value = 5.0
+_tier2_max_value = 6.0
 _tier3_max_value = 20.0
 dev_mode_ignore_locked_restriction = null
 
@@ -144,9 +145,16 @@ metadata/_edit_lock_ = true
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-24, -61.75)
 shape = SubResource("RectangleShape2D_yhv4u")
+disabled = true
 
 [node name="peashooter" parent="." instance=ExtResource("5_3tpum")]
 position = Vector2(-47, -114)
+
+[node name="ShadowForUnit" type="Sprite2D" parent="peashooter"]
+show_behind_parent = true
+position = Vector2(23.972599, 69.178085)
+scale = Vector2(1.479452, 1.3847528)
+texture = ExtResource("2_v6f0d")
 
 [node name="pea_spawn_location" type="Node2D" parent="."]
 position = Vector2(36, -58)
@@ -164,11 +172,11 @@ one_shot = true
 
 [node name="Projectile" parent="." instance=ExtResource("7_l2aks")]
 visible = false
-z_index = 1
+z_index = 20
 position = Vector2(95, -92)
 collision_layer = 5
-collision_mask = 2
 speed = 600.0
+after_splash_effect_scene = "uid://odttunmk17i4"
 
 [node name="PeaBullet" type="Sprite2D" parent="Projectile"]
 position = Vector2(-1, 0)

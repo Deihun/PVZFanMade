@@ -4,7 +4,7 @@ var detected:=0
 
 
 func _process(delta: float) -> void:
-	if detected<=0 : position.y -= 200 * delta#this still work even after time_scale zero
+	if detected<=0 : position.y -= 275 * delta#this still work even after time_scale zero
 	
 
 

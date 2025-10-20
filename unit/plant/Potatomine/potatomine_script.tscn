@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8jsaoed5yq02"]
+[gd_scene load_steps=16 format=3 uid="uid://c8jsaoed5yq02"]
 
 [ext_resource type="Script" uid="uid://b0o5rdt50pppj" path="res://unit/plant/Potatomine/potatomine_script.gd" id="1_jur8w"]
 [ext_resource type="Shader" uid="uid://py6lxba25pq3" path="res://unit/plant/Potatomine/spacelike.gdshader" id="1_ww56q"]
@@ -6,19 +6,274 @@
 [ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="3_tesfl"]
 [ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="3_tkiar"]
 [ext_resource type="Texture2D" uid="uid://55opumwlu843" path="res://unit/plant/Potatomine/potatomine_power_meter.png" id="4_grgtt"]
+[ext_resource type="Texture2D" uid="uid://bssodx5o77jbc" path="res://unit/plant/Potatomine/t1b_signal.png" id="7_kh7el"]
+[ext_resource type="Texture2D" uid="uid://gqvca3i123ss" path="res://unit/shadow_for_unit.png" id="8_5nu3d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_grgtt"]
 shader = ExtResource("1_ww56q")
 shader_parameter/mix_strength = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jphgr"]
-size = Vector2(85, 63)
+size = Vector2(119, 63)
+
+[sub_resource type="Animation" id="Animation_tf366"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("T1bSignal:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("T1bSignal:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -68)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("T1bSignal:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("T1bSignal2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("T1bSignal2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, -67)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("T1bSignal2:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("T1bSignal3:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("T1bSignal3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9, -69)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("T1bSignal3:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5nu3d"]
+resource_name = "detected"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("T1bSignal:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.8333333, 0.9534042),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("T1bSignal:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, -68), Vector2(26, -96)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("T1bSignal:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.525, 1.525)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("T1bSignal2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 0.6333333, 1.3881253, 1.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("T1bSignal2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.53333336, 1.5333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5, -67), Vector2(24, -95)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("T1bSignal2:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.53333336, 1.5333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.37, 1.37)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("T1bSignal3:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.0666667, 1.2326102, 2.1333334, 2.3666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("T1bSignal3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.0586625, 2.3666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(9, -69), Vector2(22, -90)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("T1bSignal3:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.0666667, 2.3666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.325, 1.325)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gicqd"]
+_data = {
+&"RESET": SubResource("Animation_tf366"),
+&"detected": SubResource("Animation_5nu3d")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tesfl"]
 size = Vector2(320.5, 80.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ww56q"]
-size = Vector2(52, 41)
+size = Vector2(33, 41)
 
 [node name="potatomine_script" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -43,7 +298,6 @@ _tier2_max_value = 1.0
 _tier3_max_value = 1.0
 
 [node name="PotatoMine_animation" parent="." instance=ExtResource("2_jphgr")]
-use_parent_material = true
 
 [node name="plant_health_management_behaviour" parent="." instance=ExtResource("3_tesfl")]
 collision_mask = 2
@@ -53,11 +307,36 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="check_for_explosion"]
-position = Vector2(0.5, -33.5)
+position = Vector2(17.5, -33.5)
 shape = SubResource("RectangleShape2D_jphgr")
 disabled = true
 
 [node name="zombie_sensor_tier1b" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 34
+
+[node name="t1b_animation" type="Node2D" parent="zombie_sensor_tier1b"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(19.999998, -6)
+rotation = -0.5009095
+
+[node name="T1bSignal" type="Sprite2D" parent="zombie_sensor_tier1b/t1b_animation"]
+position = Vector2(3, -68)
+texture = ExtResource("7_kh7el")
+
+[node name="T1bSignal2" type="Sprite2D" parent="zombie_sensor_tier1b/t1b_animation"]
+position = Vector2(5, -67)
+texture = ExtResource("7_kh7el")
+
+[node name="T1bSignal3" type="Sprite2D" parent="zombie_sensor_tier1b/t1b_animation"]
+position = Vector2(9, -69)
+texture = ExtResource("7_kh7el")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="zombie_sensor_tier1b/t1b_animation"]
+libraries = {
+&"": SubResource("AnimationLibrary_gicqd")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="zombie_sensor_tier1b"]
 position = Vector2(118.75, -41.75)
@@ -65,8 +344,9 @@ shape = SubResource("RectangleShape2D_tesfl")
 disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-24, -21)
+position = Vector2(-33.5, -21)
 shape = SubResource("RectangleShape2D_ww56q")
+disabled = true
 
 [node name="arming_timer" type="Timer" parent="."]
 autostart = true
@@ -76,12 +356,15 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Tier2B_impulse" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
 
 [node name="Tier2B_Cooldown_duration" type="Timer" parent="Tier2B_impulse"]
 wait_time = 2.0
 one_shot = true
+
+[node name="ShadowForUnit" type="Sprite2D" parent="."]
+position = Vector2(-3, -4)
+scale = Vector2(2.16, 2.0217392)
+texture = ExtResource("8_5nu3d")
 
 [connection signal="body_entered" from="check_for_explosion" to="." method="_on_check_for_explosion_body_entered"]
 [connection signal="body_entered" from="zombie_sensor_tier1b" to="." method="_on_zombie_sensor_tier_1b_body_entered"]

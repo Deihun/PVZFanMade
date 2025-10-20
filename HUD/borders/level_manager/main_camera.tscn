@@ -28,14 +28,14 @@ music_last_wave_intro = ExtResource("8_entfn")
 music_last_wave = ExtResource("9_6ul2m")
 
 [node name="PauseButton" parent="." instance=ExtResource("6_27rbg")]
-position = Vector2(891, -473)
+position = Vector2(896.00006, -478)
 scale = Vector2(1.25, 1.25)
 
 [node name="HUD_normal_selection" parent="." instance=ExtResource("2_hif5h")]
-offset_left = -939.0
-offset_top = -524.0
-offset_right = -939.0
-offset_bottom = -524.0
+offset_left = -934.0
+offset_top = -529.0
+offset_right = -934.0
+offset_bottom = -529.0
 
 [node name="Ready" type="Sprite2D" parent="."]
 visible = false

@@ -69,6 +69,7 @@ position = Vector2(539, 404)
 script = ExtResource("1_g82a1")
 
 [node name="Day" type="Sprite2D" parent="."]
+z_index = -5
 position = Vector2(1198, 136)
 texture = ExtResource("1_6ptqh")
 
@@ -171,8 +172,10 @@ position = Vector2(523, -52)
 _reward_description = "Produce sun continuesly"
 _next_scene_to_play = "uid://2rxynntrbfee"
 level_data_name = "day1-1"
-_plant_name = "Sunflower"
+_plant_name = "sunflower"
 _unlock_plant_tier_1 = true
+_unlock_plant_tier_2 = true
+_unlock_plant_tier_3 = true
 
 [node name="SeedPacket" type="Sprite2D" parent="NewPlantUnlockRewardNode"]
 z_index = 155

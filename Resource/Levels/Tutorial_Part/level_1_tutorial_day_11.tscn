@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c40dpkv245grp"]
+[gd_scene load_steps=23 format=3 uid="uid://c40dpkv245grp"]
 
 [ext_resource type="Script" uid="uid://cyqxg3e8vus4f" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_10.gd" id="1_4fsti"]
 [ext_resource type="Texture2D" uid="uid://b8i58el7y56a0" path="res://Resource/Levels/background_assets/day.png" id="2_p8jl8"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://c2eos12l6ww5h" path="res://unit/Zombie/poleVaultingZombie/PoleVaulting_Zombie.tscn" id="15_dyi83"]
 [ext_resource type="PackedScene" uid="uid://cbj6pyedst0gj" path="res://unit/Zombie/basic_zombie/buckethead_basic_zombie.tscn" id="16_ur0d0"]
 [ext_resource type="PackedScene" uid="uid://bj5p7r8n80cn" path="res://HUD/debug_mode.tscn" id="17_wbahx"]
+[ext_resource type="PackedScene" uid="uid://c6b5p7lqufyd0" path="res://unit/Zombie/basic_zombie/normal_with_trashcan_no_imps.tscn" id="19_gglp1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewpwe"]
 size = Vector2(1295, 699)
@@ -33,6 +34,7 @@ position = Vector2(539, 404)
 script = ExtResource("1_4fsti")
 
 [node name="Day" type="Sprite2D" parent="."]
+z_index = -5
 position = Vector2(1198, 136)
 texture = ExtResource("2_p8jl8")
 
@@ -602,3 +604,18 @@ position = Vector2(-540, -404)
 [node name="preview_zombie" type="CollisionShape2D" parent="."]
 position = Vector2(2154, 189.625)
 shape = SubResource("RectangleShape2D_r4qp0")
+
+[node name="basic_wish_trashcan_no_imps" parent="." instance=ExtResource("19_gglp1")]
+position = Vector2(1086, 1580)
+
+[node name="basic_wish_trashcan_no_imps2" parent="." instance=ExtResource("19_gglp1")]
+position = Vector2(3376, 1280)
+
+[node name="basic_wish_trashcan_no_imps3" parent="." instance=ExtResource("19_gglp1")]
+position = Vector2(4893, 1132)
+
+[node name="basic_wish_trashcan_no_imps4" parent="." instance=ExtResource("19_gglp1")]
+position = Vector2(5140, 1632)
+
+[node name="basic_wish_trashcan_no_imps5" parent="." instance=ExtResource("19_gglp1")]
+position = Vector2(5937, 1139)

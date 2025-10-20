@@ -1,20 +1,405 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvit4ralcstj5"]
+[gd_scene load_steps=18 format=3 uid="uid://cvit4ralcstj5"]
 
 [ext_resource type="Script" uid="uid://cofxtuydrcif6" path="res://HUD/preview_when_no_progress.gd" id="1_j4gvx"]
-[ext_resource type="VideoStream" uid="uid://bybiqninmjcj0" path="res://HUD/main_menu/PVZ_PREVIEW (1).ogv" id="1_vf4wr"]
+[ext_resource type="Texture2D" uid="uid://bojyf1dretss7" path="res://Behaviour/PVZ_LOGO.png" id="2_8v84b"]
+[ext_resource type="Texture2D" uid="uid://cm6o05tr14hpg" path="res://Resource/Levels/background_assets/complete_bg.png" id="2_c8i76"]
+[ext_resource type="PackedScene" uid="uid://c3mfdn3yeigf3" path="res://Behaviour/lane_.tscn" id="4_dpgum"]
+[ext_resource type="PackedScene" uid="uid://d1bmnixb7oepy" path="res://Behaviour/sun_falling_behaviour.tscn" id="5_fbdgt"]
+[ext_resource type="FontFile" uid="uid://bssrwcl60ngnh" path="res://ComicSansMS3.ttf" id="5_gctrh"]
+[ext_resource type="PackedScene" uid="uid://cbj6pyedst0gj" path="res://unit/Zombie/basic_zombie/buckethead_basic_zombie.tscn" id="7_wdf0h"]
+[ext_resource type="PackedScene" uid="uid://yivwd3p0a1xq" path="res://unit/Zombie/basic_zombie/conehead_basic_zombie.tscn" id="8_c8i76"]
+[ext_resource type="PackedScene" uid="uid://c2eos12l6ww5h" path="res://unit/Zombie/poleVaultingZombie/PoleVaulting_Zombie.tscn" id="9_c8i76"]
+[ext_resource type="AudioStream" uid="uid://bdp68c0d7epy5" path="res://HUD/borders/level_manager/zombies_are_coming_sfx.mp3" id="11_dpgum"]
+[ext_resource type="PackedScene" uid="uid://bogab6oeo22f2" path="res://unit/Zombie/basic_zombie/normal_basic_zombie.tscn" id="11_fbdgt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gctrh"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_850oo"]
+size = Vector2(1295, 699)
+
+[sub_resource type="Animation" id="Animation_bifu8"]
+resource_name = "10.0"
+length = 18.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D2:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D2/Label:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4.8833337),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-772, -16), Vector2(-619.79, -16)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera2D2/Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4.316667, 4.896667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(5.9666667, 16.963333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(421, 137), Vector2(500, 137)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera2D/Panel:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 15.866667, 17),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera2D:zoom")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5.9674387, 6.1474385),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera2D/PvzLogo:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 5.96),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Camera2D/PvzLogo:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(5.97, 6.16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2.535, 2.535), Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AudioStreamPlayer:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(5.96),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gctrh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D2:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D2/Label:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-772, -16)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera2D2/Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(421, 137)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera2D/Panel:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera2D:zoom")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera2D/PvzLogo:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Camera2D/PvzLogo:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AudioStreamPlayer:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gctrh"]
+_data = {
+&"10.0": SubResource("Animation_bifu8"),
+&"RESET": SubResource("Animation_gctrh")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbfv7"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="preview_when_no_progress" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_j4gvx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(960, 539)
+position = Vector2(421, 137)
+enabled = false
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
-offset_top = -9.0
-offset_right = 1920.0
-offset_bottom = 1089.0
-stream = ExtResource("1_vf4wr")
-autoplay = true
-expand = true
+[node name="Panel" type="Panel" parent="Camera2D"]
+z_index = 350
+offset_left = -963.0
+offset_top = -556.0
+offset_right = 1471.0
+offset_bottom = 655.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gctrh")
 
-[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[node name="PvzLogo" type="Sprite2D" parent="Camera2D"]
+visible = false
+z_index = 300
+position = Vector2(75.97603, -1.000001)
+texture = ExtResource("2_8v84b")
+
+[node name="Day" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(1198, 136)
+texture = ExtResource("2_c8i76")
+
+[node name="lane_1" parent="." instance=ExtResource("4_dpgum")]
+position = Vector2(0, -13)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="lane_2" parent="." instance=ExtResource("4_dpgum")]
+position = Vector2(0, 160)
+lane_collision_layer = "lane2"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="lane_3" parent="." instance=ExtResource("4_dpgum")]
+position = Vector2(0, 332)
+lane_collision_layer = "lane3"
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="lane_4" parent="." instance=ExtResource("4_dpgum")]
+position = Vector2(0, 505)
+lane_collision_layer = "lane4"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="lane_5" parent="." instance=ExtResource("4_dpgum")]
+position = Vector2(0, 677)
+lane_collision_layer = "lane5"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="sun_falling_behaviour" parent="." node_paths=PackedStringArray("sun_location_where_it_land") instance=ExtResource("5_fbdgt")]
+position = Vector2(0, -3)
+sun_location_where_it_land = NodePath("CollisionShape2D")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sun_falling_behaviour"]
+position = Vector2(654.5, 219.5)
+shape = SubResource("RectangleShape2D_850oo")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gctrh")
+}
+autoplay = "10.0"
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(-3308, 6)
+
+[node name="Panel" type="Panel" parent="Camera2D2"]
+offset_left = -963.0
+offset_top = -556.0
+offset_right = 1471.0
+offset_bottom = 655.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jbfv7")
+
+[node name="Label" type="Label" parent="Camera2D2"]
+offset_left = -772.0
+offset_top = -16.0
+offset_right = -205.0
+offset_bottom = 53.0
+theme_override_fonts/font = ExtResource("5_gctrh")
+theme_override_font_sizes/font_size = 40
+text = "C_N_Cookies presents..."
+
+[node name="BucketHead" parent="." instance=ExtResource("7_wdf0h")]
+z_index = 1
+position = Vector2(1019, 182)
+
+[node name="ConeHead" parent="." instance=ExtResource("8_c8i76")]
+z_index = 1
+position = Vector2(921, 501)
+
+[node name="ConeHead2" parent="." instance=ExtResource("8_c8i76")]
+z_index = 1
+position = Vector2(1229, 168)
+
+[node name="ConeHead3" parent="." instance=ExtResource("8_c8i76")]
+z_index = 1
+position = Vector2(1680, 679)
+
+[node name="PoleVaultingZombie" parent="." instance=ExtResource("9_c8i76")]
+position = Vector2(3221, 653)
+
+[node name="PoleVaultingZombie2" parent="." instance=ExtResource("9_c8i76")]
+position = Vector2(1931, 323)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_dpgum")
+
+[node name="BasicZombie" parent="." instance=ExtResource("11_fbdgt")]
+position = Vector2(1096, 688)
+
+[node name="BasicZombie2" parent="." instance=ExtResource("11_fbdgt")]
+position = Vector2(1101, -1)
+
+[node name="BasicZombie3" parent="." instance=ExtResource("11_fbdgt")]
+position = Vector2(1492, 367)
+
+[node name="BasicZombie4" parent="." instance=ExtResource("11_fbdgt")]
+position = Vector2(1653, 374)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -11,6 +11,9 @@ var _can_be_stop_callable : Callable
 var _change_hitbox_callable : Callable
 var _vaulting_callable : Callable
 
+func get_armor_node()-> Node2D:
+	return $main_control/PoleVaultZombieMainBody/head/PoleVaultZombieFaceUpperLayer/armor
+
 func get_animation_player()->AnimationPlayer:
 	return $AnimationPlayer
 
@@ -44,6 +47,7 @@ func walk_animation():
 	$AnimationPlayer.play("walking_animation")
 
 func run_animation():
+	if $AnimationPlayer.current_animation == "idle": return
 	if $AnimationPlayer.current_animation == "death_while_running" or _already_trigger_death:return
 	if $AnimationPlayer.current_animation == "running_with_pole":return
 	$AnimationPlayer.stop()

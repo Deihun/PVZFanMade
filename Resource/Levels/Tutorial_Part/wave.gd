@@ -30,12 +30,8 @@ var lane7_array := []
 
 
 func _ready() -> void:
-	set_up_lane()
+	_set_up_lane()
 	if _mark_as_big_wave:
-		var flag_zombie = load("res://unit/Zombie/Flag_Zombie/FlagZombie.tscn").instantiate()
-		flag_zombie.position =Vector2.ZERO
-		flag_zombie.global_position =Vector2.ZERO
-		_add_this_char_on_reserve_array(flag_zombie)
 		if _automatically_spawn_basic_zombies and _number_of_zombies_in_big_wave > 0:
 			var count := 0
 			while count < _number_of_zombies_in_big_wave:
@@ -45,7 +41,7 @@ func _ready() -> void:
 				basic_zombie.global_position =Vector2.ZERO
 				_add_this_char_on_reserve_array(basic_zombie)
 
-func set_up_lane():
+func _set_up_lane() -> void:
 	lane_1_node = get_parent().lane_1
 	lane_2_node = get_parent().lane_2
 	lane_3_node = get_parent().lane_3
@@ -54,9 +50,19 @@ func set_up_lane():
 	lane_6_node = get_parent().lane_6
 	lane_7_node = get_parent().lane_7
 
+func _spawn_flag_zombie() -> void:
+	if !_mark_as_big_wave: return
+	var flag_zombie = load("res://unit/Zombie/Flag_Zombie/FlagZombie.tscn").instantiate()
+	var lane_randoms = [lane_1_node,lane_2_node,lane_3_node,lane_4_node,lane_5_node,lane_6_node,lane_7_node]
+	for lane in lane_randoms: if !lane: lane_randoms.erase(lane)
+	flag_zombie.position =Vector2.ZERO
+	flag_zombie.global_position =Vector2.ZERO
+	_spawn_given_zombies(flag_zombie,lane_randoms.pick_random().spawn_position.global_position)
+
 
 func start_this_wave():
 	if _mark_as_big_wave: await get_tree().create_timer(3.0).timeout
+	_spawn_flag_zombie()
 	$spawn_next.wait_time = _delay_duration
 	get_parent().wave_progress()
 	var _lane_overall = [
@@ -86,10 +92,7 @@ func start_this_wave():
 		var carry_power_boost: bool = (entry[1] == 1)
 
 		lane_array.remove_at(idx)
-
-		get_tree().current_scene.add_child(char_enemy)
-		if carry_power_boost: char_enemy.add_child(load("res://Behaviour/power_boost_drop.tscn").instantiate())
-		char_enemy.global_position = lane_info.pos.spawn_position.global_position
+		_spawn_given_zombies(char_enemy,lane_info.pos.spawn_position.global_position, carry_power_boost)
 		
 		char_enemy.get_node("zombie_hp_management").lane_rigidbody_collision = lane_info.pos.physic_body_interaction
 		char_enemy.visible = true
@@ -102,20 +105,40 @@ func start_this_wave():
 				if char_enemy in QuickDataManagement._amount_of_current_zombie_in_board:
 					QuickDataManagement._amount_of_current_zombie_in_board.erase(char_enemy)
 		)
-				#stored_enemy.append(char_enemy)
-
-
 		if _zombie_spawn_with_delay_in_between: await get_tree().create_timer(_delay_interval_between_spawn).timeout
 		if _trigger_next_wave_if_this_is_clear:     
 			if char_enemy: 
 				char_enemy.tree_exited.connect(
 				Callable(self, "_on_enemy_removed").bind(char_enemy))
-	$spawn_next.start()
+	if _delay_duration <= 0.0: 
+		play_next_wave()
+		self.queue_free()
+	else: $spawn_next.start()
+
+
+var _already_played_next_queue := false
+func play_next_wave()-> void:
+	if _already_played_next_queue: return
+	_already_played_next_queue = true
+	get_parent().play_queue_next()
+
+
+# --------------
+# HANDLE SPAWNING
+# --------------
+
+func _spawn_given_zombies(zombie : Node2D, target_position: Vector2, carrying_powerboost := false)-> Node2D:
+	get_tree().current_scene.add_child(zombie)
+	if carrying_powerboost: zombie.add_child(load("res://Behaviour/power_boost_drop.tscn").instantiate())
+	zombie.global_position = target_position
+	return
+
+
 
 func _on_enemy_removed(char_enemy : CharacterBody2D):
 	stored_enemy.erase(char_enemy)
 	if _trigger_next_wave_if_this_is_clear and stored_enemy.size() <= 0:
-		get_parent().play_queue_next()
+		play_next_wave()
 
 func _add_this_char_on_reserve_array(body : Node2D, lane_number := 0):
 	if lane_number == 0:
@@ -199,4 +222,5 @@ func _on_lane_7_body_entered(body: Node2D) -> void:
 
 
 func _on_spawn_next_timeout() -> void:
-	get_parent().play_queue_next()
+	play_next_wave()
+	self.queue_free()

@@ -2,9 +2,14 @@ extends Node
 @export var _amount_of_movement : float = 2.55
 @export var _movement_repeatition : int = 20
 @export var animation_node : Node2D
-@export var final_render : Node2D
 @export_enum("LEFT","RIGHT") var zombie_direction := "LEFT"
+
+@export_category("crowed_control_visual_assets")
+@export var _freeze_visual_effect : Node2D
 var __im_eating := false
+
+signal position_changed(new_position: Vector2, amount_of_movement : float)
+signal unable_to_move_for_given_seconds(seconds : float)
 
 var animation_player: AnimationPlayer
 var active_cc := {
@@ -18,6 +23,7 @@ var shader_mat: ShaderMaterial = null
 
 
 func _ready() -> void:
+	_initialie_visual_effects()
 	if animation_node:
 		if animation_node.has_method("get_animation_player"):
 			animation_player = animation_node.get_animation_player()
@@ -27,7 +33,8 @@ func _ready() -> void:
 			animation_node.material = shader_mat
 
 
-
+func _initialie_visual_effects()-> void:
+	if _freeze_visual_effect: _freeze_visual_effect.hide()
 
 # --------------------
 # MOVEMENT
@@ -41,11 +48,13 @@ func move() -> void:
 		if __im_eating: return
 		if _is_disabled():
 			_update_animation_state()
+			
 			await get_tree().create_timer(0.05).timeout
 			continue
 
 		var final_movement = movement * _get_slow_multiplier() * _get_chill_multiplier()
 		zombie.position.x += final_movement
+		position_changed.emit(get_parent().global_position,final_movement)
 		_update_animation_state()
 		await get_tree().create_timer(0.05).timeout  #why this state that tree is null when its not null
 		if !is_inside_tree(): return 
@@ -79,11 +88,11 @@ func apply_chill(duration: float, multiplier: float = 0.5) -> void:
 	_add_cc("chill", duration, multiplier)
 
 
-
 # --------------------
 # CC CORE
 # --------------------
 func _add_cc(type: String, duration: float, multiplier := 1.0) -> void:
+	unable_to_move_for_given_seconds.emit(duration)
 	var timer := get_tree().create_timer(duration)
 
 	if type == "slow" or type == "chill":
@@ -102,16 +111,36 @@ func _add_cc(type: String, duration: float, multiplier := 1.0) -> void:
 		else:
 			active_cc[type].erase(timer)
 
-		if type == "chill" and active_cc["chill"].is_empty():
-			_set_chill_strength(0.0)
+		if type == "chill" and active_cc["chill"].is_empty(): _chill_visual_exist(false)
+		elif type == "freeze" and active_cc["freeze"].is_empty(): _freeze_visual_exist(false)
 
 		_update_animation_state()
 	)
 
-	if type == "chill":
-		_set_chill_strength(0.5)  # apply visual
-
+	if type == "chill": _chill_visual_exist()
+	elif type == "freeze" : _freeze_visual_exist()
 	_update_animation_state()
+
+
+#-------------------
+#HANDLE VISUAL EFFECTS
+#
+func _chill_visual_exist(value:=true)-> void:
+	if value:
+		_set_chill_strength(0.5) 
+	else:
+		if active_cc["chill"].is_empty() and active_cc["freeze"].is_empty():
+			_set_chill_strength(0.0)
+
+func _freeze_visual_exist(value:= true)-> void:
+	if value:
+		_set_chill_strength(0.5) 
+		if _freeze_visual_effect: _freeze_visual_effect.show()
+	else:
+		if _freeze_visual_effect: _freeze_visual_effect.hide()
+		if active_cc["chill"].is_empty() and active_cc["freeze"].is_empty():
+			_set_chill_strength(0.0)
+			
 
 
 # --------------------
@@ -133,7 +162,7 @@ func _get_chill_multiplier() -> float:
 	return active_cc["chill"][0]["multiplier"]
 
 func _set_chill_strength(value: float) -> void:
-	final_render.material.set("shader_parameter/darkblue_override", (value != 0.0))
+	animation_node.material.set("shader_parameter/darkblue_override", (value != 0.0))
 
 
 

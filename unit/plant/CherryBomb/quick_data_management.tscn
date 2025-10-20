@@ -44,4 +44,6 @@ one_shot = true
 
 [node name="play_explosion_sfx_1" type="Node" parent="sound_manager"]
 
+[node name="zombie_bite_sfx" type="Node" parent="sound_manager"]
+
 [connection signal="timeout" from="sound_manager/zombie_groan/zombie_groan_cooldown" to="sound_manager" method="_on_zombie_groan_cooldown_timeout"]

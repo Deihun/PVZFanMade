@@ -1,14 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://rvbwdqhikigs"]
+[gd_scene load_steps=6 format=3 uid="uid://rvbwdqhikigs"]
 
 [ext_resource type="Script" uid="uid://bxo8rlom88abp" path="res://Resource/Levels/Tutorial_Part/wave.gd" id="1_nwmhy"]
+[ext_resource type="Script" uid="uid://dr37wcuomyx6a" path="res://HUD/borders/level_manager/live_indications.gd" id="2_fbgmt"]
+[ext_resource type="Texture2D" uid="uid://b0yhr7nvtkd56" path="res://unit/Zombie/Flag_Zombie/Flag.png" id="3_vsbug"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fbgmt"]
+bg_color = Color(0.3774802, 0.2851485, 0.2215789, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hwwk8"]
 size = Vector2(248, 129)
 
 [node name="wave" type="Panel"]
 custom_minimum_size = Vector2(250, 1200)
+offset_right = 250.0
+offset_bottom = 1264.0
 script = ExtResource("1_nwmhy")
 _delay_duration = 4.0
+
+[node name="live_indications" type="Node2D" parent="."]
+script = ExtResource("2_fbgmt")
+
+[node name="Panel" type="Panel" parent="live_indications"]
+offset_left = 2.0
+offset_top = 1185.0
+offset_right = 250.0
+offset_bottom = 1350.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fbgmt")
+
+[node name="Label" type="Label" parent="live_indications"]
+offset_left = 5.0
+offset_top = 1188.0
+offset_right = 179.0
+offset_bottom = 1216.0
+theme_override_colors/font_color = Color(1, 0.98039216, 0.5686275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.40392157)
+theme_override_colors/font_outline_color = Color(0.35962415, 0.35020196, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "SET AS FLAGWAVE"
+
+[node name="Polygon2D" type="Polygon2D" parent="live_indications/Label"]
+position = Vector2(7, 3.9999998)
+scale = Vector2(0.98342043, 0.7195673)
+polygon = PackedVector2Array(205, 11, 201, 2, 189, -3, 180, 1, 174, 12, 179, 24, 191, 30, 203, 22)
+
+[node name="Flag" type="Sprite2D" parent="live_indications/Label/Polygon2D"]
+position = Vector2(196.25381, 18.066368)
+scale = Vector2(0.50741786, 0.4898069)
+texture = ExtResource("3_vsbug")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

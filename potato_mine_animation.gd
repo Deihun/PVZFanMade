@@ -5,6 +5,14 @@ func _ready() -> void:
 	$Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm.hide()
 	$Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm2.hide()
 
+func _tier1a() ->void:
+	$Control/PotatomineBody/T1a.show()
+func _tier1b() -> void:
+	for i in [$Control/PotatomineBody/PotatomineNonAlarm/T1b1, $Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm/T1b1, $Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm/T1b2, $Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm2/T1b1, $Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm2/T1b2, $Control/PotatomineBody/PotatomineNonAlarm/T1b2]:
+		i.show()
+func _tier2a() -> void:
+	$Control/PotatomineBody/T2A.show()
+
 func _tier3a():
 	$Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm.show()
 	$Control/PotatomineBody/PotatomineNonAlarm/PotatomineNonAlarm2.show()

@@ -72,7 +72,10 @@ func _setup_hud_plantselection_scaling() -> void:
 	var new_size : Vector2 = Vector2(250,80)
 	for seedslot in  $mode_normal_pick/plant_seed_selection/VBoxContainer.get_children():
 		new_size.y += seedslot.size.y
+	var color : Color = Color("ceb402") if QuickDataManagement.savemanager.get_plant_limit_cap() > $mode_normal_pick/plant_seed_selection/VBoxContainer.get_child_count() else Color.FIREBRICK
 	$mode_normal_pick/plant_seed_selection.size = new_size
+	$seed_picker_boarder/for_label/plant_count.text = str($mode_normal_pick/plant_seed_selection/VBoxContainer.get_child_count(),"/",QuickDataManagement.savemanager.get_plant_limit_cap())
+	$seed_picker_boarder/for_label/plant_count.add_theme_color_override("font_color", color)
 
 func _show_seedslot_affordable_indicator():
 	pass
@@ -84,3 +87,16 @@ func _on_v_box_container_child_entered_tree(node: Node) -> void:
 
 func _on_lets_rock_pressed() -> void:
 	get_parent()._done_after_picking()
+
+
+func _on_v_box_container_child_exiting_tree(node: Node) -> void:
+	await get_tree().create_timer(0.01).timeout
+	_setup_hud_plantselection_scaling()
+
+
+func _on_seed_selection_mouse_mouse_entered() -> void:
+	var tween := create_tween()
+	tween.tween_property($seed_picker_boarder, "modulate:a", 1.0, 0.5) 
+func _on_seed_selection_mouse_mouse_exited() -> void:
+	var tween := create_tween()
+	tween.tween_property($seed_picker_boarder, "modulate:a", 0.3, 0.5) 

@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://cunlmaiawaufl"]
+
+[ext_resource type="Script" uid="uid://dchks58mtcc0q" path="res://unit/plant/Chomper/chomper.gd" id="1_4lb10"]
+[ext_resource type="PackedScene" uid="uid://nj8qkqp1tvrr" path="res://unit/plant/Chomper/chomper_animation.tscn" id="1_arn0e"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="2_0vlyt"]
+[ext_resource type="Texture2D" uid="uid://gqvca3i123ss" path="res://unit/shadow_for_unit.png" id="2_eb5bc"]
+[ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="2_gv56u"]
+[ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="3_if587"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="6_mwg8j"]
+[ext_resource type="Texture2D" uid="uid://cisrowvy8ught" path="res://unit/plant/Chomper/chomper_evolution_progress.png" id="8_s0our"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vlyt"]
+size = Vector2(78, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_if587"]
+size = Vector2(256, 115)
+
+[node name="Chomper" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
+collision_mask = 2
+script = ExtResource("1_4lb10")
+
+[node name="ShadowForUnit" type="Sprite2D" parent="."]
+position = Vector2(7, -5)
+scale = Vector2(2.16, 2.0217392)
+texture = ExtResource("2_eb5bc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17, -35)
+shape = SubResource("RectangleShape2D_0vlyt")
+
+[node name="ChomperAnimation" parent="." instance=ExtResource("1_arn0e")]
+position = Vector2(11, 0)
+
+[node name="PlantDamageNodeManager" parent="." instance=ExtResource("2_gv56u")]
+position = Vector2(17, -35)
+damage = 50
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("2_0vlyt")]
+position = Vector2(17, -35)
+
+[node name="Detection_Area" parent="." instance=ExtResource("3_if587")]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area"]
+position = Vector2(118, -25.5)
+shape = SubResource("RectangleShape2D_if587")
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("6_mwg8j")]
+plant_name = "chomper"
+description_Tier1A = "Decrease time it takes to chew"
+description_Tier1B = "Increase bite amage by additional 250"
+description_Tier2A = "When I bite, I also release a goo that slow zombies"
+description_Tier2B = "After I devour a zombie: Heal me; For the first time you trigger T2B increase my MaxHP "
+description_Tier3A = "I can now eat two zombies at once!	"
+description_Tier3B = "After I devour a zombie, permanently increase my max HP"
+description_evolve_requirement = "When I successfully devour a zombie"
+plant_evolve_meter_texture = ExtResource("8_s0our")
+_tier1_max_value = 300.0
+_tier2_max_value = 600.0
+_tier3_max_value = 1200.0
+
+[node name="time_for_goo" type="Timer" parent="."]
+wait_time = 12.0
+one_shot = true
+
+[connection signal="enemy_detected" from="Detection_Area" to="." method="_on_detection_area_enemy_detected"]
+[connection signal="timeout" from="time_for_goo" to="." method="_on_time_for_goo_timeout"]

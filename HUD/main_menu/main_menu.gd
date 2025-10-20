@@ -1,6 +1,6 @@
 extends Node2D
 func _ready() -> void:
-	QuickDataManagement.sound_manager.play_music(load("res://HUD/main_menu/Plants vs. Zombies (Main Theme).mp3"))
+	QuickDataManagement.sound_manager.play_music(load("res://HUD/main_menu/Plantsvs.Zombies(MainTheme).mp3"))
 
 func play_is_press():
 	if QuickDataManagement.savemanager.save_data.has("level_complete"):
@@ -8,7 +8,6 @@ func play_is_press():
 		var is_really_empty = level_complete.is_empty() or (level_complete.size() == 1 and level_complete[0].is_empty())
 
 		if is_really_empty:
-			print("No progress yet!")
 			QuickDataManagement.common_called_method.enter_new_scene("res://HUD/preview_when_no_progress.tscn")
 			return
 	var level := 1
@@ -18,6 +17,13 @@ func play_is_press():
 			continue
 		else:
 			QuickDataManagement.common_called_method.enter_new_scene(str("res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_",level,".tscn"))
+			return
+	var random_level = [
+		"res://Resource/Levels/random_endless_level/level_random_1.tscn",
+		"res://Resource/Levels/random_endless_level/level_random_2.tscn",
+		"res://Resource/Levels/random_endless_level/level_random_3.tscn"
+	]
+	QuickDataManagement.common_called_method.enter_new_scene(random_level.pick_random())
 
 		#if QuickDataManagement.savemanager.level_exist(str("day1-",level)):
 			#get_tree().change_scene_to_file(str("res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_",level+1,".tscn"))

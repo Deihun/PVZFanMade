@@ -5,6 +5,10 @@ extends Area2D
 @export var can_land_be_planted := true
 @export var can_water_be_planted := false
 
+var disable_planting := false
+var _apply_zmog_on_start := false
+
+var _applied_zmog:= false
 var obstacles
 
 var tile_ground_occupy
@@ -16,8 +20,23 @@ var is_holding: bool = false
 const HOLD_THRESHOLD := 0.3
 var hold_elapsed: float = 0.0
 
+func _ready() -> void:
+	add_to_group("plant_tile")
+	if _apply_zmog_on_start: _add_zmog()
+
+func _add_zmog()-> void:
+	if !$nightfog_visual:
+		add_child(preload("res://Resource/Levels/background_assets/nightFogs/zmog.tscn").instantiate())
+	elif $nightfog_visual.about_to_disappear: add_child(preload("res://Resource/Levels/background_assets/nightFogs/zmog.tscn").instantiate())
+	_applied_zmog = true
+
+func remove_zmog()->void:
+	if $nightfog_visual:$nightfog_visual.got_litted()
+	_applied_zmog = false
+
 
 func plant_on_this_tile(seed_packet:Control):
+	if disable_planting: return
 	if obstacles:return
 	if seed_packet.land_type and !can_land_be_planted: return 
 	if !can_water_be_planted and seed_packet.water_type:return
@@ -42,6 +61,7 @@ func plant_on_this_tile(seed_packet:Control):
 
 
 func place_plant_without_cost(node:Node2D, occupy_tile:= true):
+	if disable_planting: return
 	get_tree().current_scene.add_child(node) 
 	node.z_index = 1
 	node.y_sort_enabled = true
@@ -72,8 +92,7 @@ func remove_top_plant():
 	if tile_ground_occupy: tile_ground_occupy.queue_free()
 
 
-func _ready() -> void:
-	add_to_group("plant_tile")
+
 
 
 
@@ -185,3 +204,16 @@ func _on_more_option_mouse_entered() -> void:
 func _on_more_option_mouse_exited() -> void:
 	$more_option/WhiteShineReward1.hide()
 	selected_option =0
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if !_applied_zmog  or !body.is_in_group("zombie"): return
+	if !body.has_node("zmog_handler"): body.add_child(preload("res://Resource/Levels/background_assets/nightFogs/zmog_handler.tscn").instantiate())
+	var zmog_handler = body.get_node("zmog_handler")
+	zmog_handler.add_new_zmog(self)
+
+func _on_body_exited(body: Node2D) -> void:
+	if !_applied_zmog  or !body.is_in_group("zombie"): return
+	if !body.has_node("zmog_handler"): body.add_child(preload("res://Resource/Levels/background_assets/nightFogs/zmog_handler.tscn").instantiate())
+	var zmog_handler = body.get_node("zmog_handler")
+	zmog_handler.remove_zmog(self)

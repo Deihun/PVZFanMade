@@ -11,15 +11,77 @@ extends Node2D
 @onready var tile_column_10 := $Occupied_Tile10
 @onready var tile_column_11 := $Occupied_Tile11
 @onready var tile_column_12 := $Occupied_Tile12
-
-@export_enum("lane1","lane2","lane3","lane4","lane5","lane6","lane7") var lane_collision_layer : String="lane1"
 @onready var spawn_position := $zombie_spawn_area
 @onready var physic_body_interaction := $physics_body_interaction
 
-#func _on_untargettable_area_body_exited(body: Node2D) -> void:
-	#if body.is_in_group("spawn_protection"):body.remove_from_group("spawn_protection")
+
+@export_enum("lane1","lane2","lane3","lane4","lane5","lane6","lane7") var lane_collision_layer : String="lane1"
+@export_category("DISABLE PLANTING")
+@export var _tile_column_1_disable := false
+@export var _tile_column_2disable := false
+@export var _tile_column_3_disable := false
+@export var _tile_column_4_disable := false
+@export var _tile_column_5_disable := false
+@export var _tile_column_6_disable := false
+@export var _tile_column_7_disable := false
+@export var _tile_column_8_disable := false
+@export var _tile_column_9_disable := false
+@export var _tile_column_10_disable := false
+@export var _tile_column_11_disable := false
+@export var _tile_column_12_disable := false
+@export_category("ZMOG APPLIED")
+@export var _tile_column_1_zmog_applied := false
+@export var _tile_column_2_zmog_applied := false
+@export var _tile_column_3_zmog_applied := false
+@export var _tile_column_4_zmog_applied := false
+@export var _tile_column_5_zmog_applied := false
+@export var _tile_column_6_zmog_applied := false
+@export var _tile_column_7_zmog_applied := false
+@export var _tile_column_8_zmog_applied := false
+@export var _tile_column_9_zmog_applied := false
+@export var _tile_column_10_zmog_applied := false
+@export var _tile_column_11_zmog_applied := false
+@export var _tile_column_12_zmog_applied := false
+
+func handle_zmog_lanes()-> void:
+	var disable_arrays : Array[bool] = [_tile_column_1_disable,
+		_tile_column_2_zmog_applied,
+		_tile_column_3_zmog_applied,
+		_tile_column_4_zmog_applied,
+		_tile_column_5_zmog_applied,
+		_tile_column_6_zmog_applied,
+		_tile_column_7_zmog_applied,
+		_tile_column_8_zmog_applied,
+		_tile_column_9_zmog_applied,
+		_tile_column_10_zmog_applied,
+		_tile_column_11_zmog_applied,
+		_tile_column_12_zmog_applied]
+	var index = 0
+	for i in [$Occupied_Tile, $Occupied_Tile2, $Occupied_Tile3, $Occupied_Tile4, $Occupied_Tile5, $Occupied_Tile6, $Occupied_Tile7, $Occupied_Tile8, $Occupied_Tile9, $Occupied_Tile10, $Occupied_Tile11, $Occupied_Tile12]:
+		if disable_arrays[index]: i._add_zmog()
+		index += 1
+
+func handles_disable()-> void:
+	var disable_arrays : Array[bool] = [_tile_column_1_disable,
+		_tile_column_2disable,
+		_tile_column_3_disable,
+		_tile_column_4_disable,
+		_tile_column_5_disable,
+		_tile_column_6_disable,
+		_tile_column_7_disable,
+		_tile_column_8_disable,
+		_tile_column_9_disable,
+		_tile_column_10_disable,
+		_tile_column_11_disable,
+		_tile_column_12_disable]
+	var index = 0
+	for i in [$Occupied_Tile, $Occupied_Tile2, $Occupied_Tile3, $Occupied_Tile4, $Occupied_Tile5, $Occupied_Tile6, $Occupied_Tile7, $Occupied_Tile8, $Occupied_Tile9, $Occupied_Tile10, $Occupied_Tile11, $Occupied_Tile12]:
+		i.disable_planting = disable_arrays[index]
+		index += 1
 
 func _ready() -> void:
+	handles_disable()
+	handle_zmog_lanes()
 	$plant_decoy.add_to_group("plant")
 	match lane_collision_layer:
 		"lane1":
@@ -55,3 +117,18 @@ func _on_trigger_game_over_body_entered(body: Node2D) -> void:
 				camera = scene.find_child("main_camera", true, false)
 			if camera and camera is Camera2D:
 				if camera.has_method("game_over"): camera.game_over(body)
+
+
+
+func _on_untargettable_area_body_entered(body: Node2D) -> void:
+	if !body.is_in_group("zombie"): return
+	if !body.has_node("zmog_handler"): body.add_child(preload("res://Resource/Levels/background_assets/nightFogs/zmog_handler.tscn").instantiate())
+	var zmog_handler = body.get_node("zmog_handler")
+	zmog_handler.add_new_zmog(self)
+
+
+func _on_untargettable_area_body_exited(body: Node2D) -> void:
+	if !body.is_in_group("zombie"): return
+	if !body.has_node("zmog_handler"): body.add_child(preload("res://Resource/Levels/background_assets/nightFogs/zmog_handler.tscn").instantiate())
+	var zmog_handler = body.get_node("zmog_handler")
+	zmog_handler.remove_zmog(self)

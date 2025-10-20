@@ -1,0 +1,132 @@
+[gd_scene load_steps=17 format=3 uid="uid://ds1p0vccse514"]
+
+[ext_resource type="PackedScene" uid="uid://ckqxwp0beocpe" path="res://unit/plant/SnowPea/snowpea_animation.tscn" id="1_2j62w"]
+[ext_resource type="Script" uid="uid://cqdxtp1a06fxi" path="res://unit/plant/SnowPea/snowpea.gd" id="1_a1the"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="2_c7qi6"]
+[ext_resource type="Texture2D" uid="uid://gqvca3i123ss" path="res://unit/shadow_for_unit.png" id="2_lv4pq"]
+[ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="3_rgjba"]
+[ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="4_vojq1"]
+[ext_resource type="PackedScene" uid="uid://dfs20jb32fvmc" path="res://unit/projectile.tscn" id="4_wwx81"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="4_yc1js"]
+[ext_resource type="Texture2D" uid="uid://do4xvjf7k7tsp" path="res://unit/plant/SnowPea/snowpea_effect.png" id="5_vojq1"]
+[ext_resource type="Texture2D" uid="uid://jrnqdv2bentb" path="res://unit/plant/SnowPea/T3A/icicle_shot.png" id="8_eii4g"]
+[ext_resource type="Script" uid="uid://clvq0di36nrum" path="res://unit/plant/SnowPea/snowpea_tier_2b_pop_handler.gd" id="9_vw25g"]
+[ext_resource type="Texture2D" uid="uid://ov4q1na3jo0f" path="res://unit/plant/SnowPea/t2b_stack_assets/no_stack.png" id="10_excww"]
+[ext_resource type="Texture2D" uid="uid://cg1wequgp2m75" path="res://unit/plant/SnowPea/snowpea_levelup_indication.png" id="11_ap14x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vojq1"]
+size = Vector2(2133, 56)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c7qi6"]
+radius = 17.491537
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yc1js"]
+size = Vector2(47, 72)
+
+[node name="Snowpea" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_a1the")
+
+[node name="ShadowForUnit" type="Sprite2D" parent="."]
+position = Vector2(-2, -8)
+scale = Vector2(2.16, 2.0217392)
+texture = ExtResource("2_lv4pq")
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("2_c7qi6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plant_health_management_behaviour"]
+
+[node name="SnowpeaAnimation" parent="." instance=ExtResource("1_2j62w")]
+position = Vector2(-4, -5)
+
+[node name="Detection_Area2" parent="." instance=ExtResource("3_rgjba")]
+position = Vector2(4, 17)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area2"]
+position = Vector2(1032.5, -30)
+shape = SubResource("RectangleShape2D_vojq1")
+debug_color = Color(1, 1, 1, 0.08235294)
+
+[node name="PlantDamageNodeManager" parent="." instance=ExtResource("4_vojq1")]
+base_attack_cooldown = 2.0
+
+[node name="projectile_spawn_position" type="Node2D" parent="."]
+position = Vector2(-10, -48)
+
+[node name="Projectile" parent="projectile_spawn_position" instance=ExtResource("4_wwx81")]
+visible = false
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1.0508534, 1.0523291)
+monitoring = false
+monitorable = false
+speed = 600.0
+after_splash_effect_scene = "uid://djmtrqmfvx3bu"
+
+[node name="SnowpeaEffect" type="Sprite2D" parent="projectile_spawn_position/Projectile"]
+scale = Vector2(0.23, 0.25)
+texture = ExtResource("5_vojq1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="projectile_spawn_position/Projectile"]
+shape = SubResource("CircleShape2D_c7qi6")
+
+[node name="T3A_Icicle" parent="projectile_spawn_position" instance=ExtResource("4_wwx81")]
+visible = false
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(1.0508534, 1.0523291)
+monitoring = false
+monitorable = false
+_after_hit_spawn_trigger_USE_PATH = Array[String](["res://unit/plant/SnowPea/T3A/icicle_after_effects.tscn"])
+speed = 600.0
+
+[node name="SnowpeaEffect" type="Sprite2D" parent="projectile_spawn_position/T3A_Icicle"]
+position = Vector2(0.694376, 2.1747255)
+scale = Vector2(0.6179926, 0.5431202)
+texture = ExtResource("8_eii4g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="projectile_spawn_position/T3A_Icicle"]
+position = Vector2(0.43714142, 0)
+shape = SubResource("CircleShape2D_c7qi6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-23.5, -23)
+shape = SubResource("RectangleShape2D_yc1js")
+disabled = true
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("4_yc1js")]
+plant_name = "snowpea"
+description_Tier1A = "Chill zombie effectiveness is bit more slower"
+description_Tier1B = "Increase damage slightly"
+description_Tier2A = "Chill duration now last almost indefinitely"
+description_Tier2B = "Hitting zombies with 5 consecutive snowpea for the first time: Freeze them for 5s"
+description_Tier3A = "Every thirdshots shoots a big icicle that freeze the first zombie hit, it will have a splash damage that also apply slow."
+description_Tier3B = "I produce iceberg lettuce through time."
+description_evolve_requirement = "Progress for each zombies I applied slow for the first time."
+plant_evolve_meter_texture = ExtResource("11_ap14x")
+_tier1_max_value = 50.0
+_tier2_max_value = 60.0
+_tier3_max_value = 250.0
+
+[node name="snowpea_tier2b_pop_handler" type="Node2D" parent="."]
+visible = false
+script = ExtResource("9_vw25g")
+
+[node name="NoStack" type="Sprite2D" parent="snowpea_tier2b_pop_handler"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_excww")
+
+[node name="cooldown" type="Timer" parent="snowpea_tier2b_pop_handler"]
+wait_time = 20.0
+one_shot = true
+
+[node name="T3B_iceberg_spawn" type="Node2D" parent="."]
+scale = Vector2(0.75, 0.75)
+
+[node name="timer_spawner_of_t3B" type="Timer" parent="T3B_iceberg_spawn"]
+wait_time = 30.0
+
+[connection signal="timeout" from="snowpea_tier2b_pop_handler/cooldown" to="snowpea_tier2b_pop_handler" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="T3B_iceberg_spawn/timer_spawner_of_t3B" to="." method="_on_timer_spawner_of_t_3b_timeout"]
