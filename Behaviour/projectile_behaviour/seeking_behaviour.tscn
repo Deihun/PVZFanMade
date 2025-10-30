@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://blklsoia51r3l"]
+
+[ext_resource type="Script" uid="uid://cni4arr7u6ake" path="res://Behaviour/projectile_behaviour/seeking_behaviour.gd" id="1_avd78"]
+
+[node name="Seeking_behaviour" type="Node"]
+script = ExtResource("1_avd78")

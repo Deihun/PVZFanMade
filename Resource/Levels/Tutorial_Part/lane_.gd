@@ -111,12 +111,15 @@ func _on_trigger_game_over_body_entered(body: Node2D) -> void:
 	if body.is_in_group("zombie") and not body.is_in_group("testing") and not body.is_in_group("ignore"):
 		var scene := get_tree().current_scene
 		if scene:
-			# Look for the first Camera2D in the current scene
 			var camera := scene.get_node_or_null("main_camera")
+			var wave_management = get_tree().current_scene.get_node("zombie_wave_management")
+			if wave_management: 
+				wave_management.gameover = true
 			if camera == null:
 				camera = scene.find_child("main_camera", true, false)
 			if camera and camera is Camera2D:
 				if camera.has_method("game_over"): camera.game_over(body)
+				
 
 
 

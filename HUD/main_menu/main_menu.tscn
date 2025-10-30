@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://c83n7po5as7gv"]
+[gd_scene load_steps=18 format=3 uid="uid://c83n7po5as7gv"]
 
 [ext_resource type="Script" uid="uid://waimpkh87bbo" path="res://HUD/main_menu/main_menu.gd" id="1_m78mv"]
 [ext_resource type="Texture2D" uid="uid://balh6rhwl44em" path="res://HUD/main_menu/play_button_hover.png" id="1_o7lmo"]
 [ext_resource type="Texture2D" uid="uid://k8b22v2upmhx" path="res://HUD/main_menu/2b3d6e67-437c-4318-9aa2-5a57871c2e5a.jpg" id="2_1noea"]
 [ext_resource type="Texture2D" uid="uid://cb4cfl8jeyjwr" path="res://HUD/main_menu/play_button_unhover.png" id="2_m78mv"]
 [ext_resource type="Texture2D" uid="uid://dcw71rp7l2nyj" path="res://HUD/main_menu/logo.png" id="2_qrxmq"]
+[ext_resource type="Texture2D" uid="uid://7h0yfrchxfqv" path="res://HUD/main_menu/house_mainmenu.png" id="3_atsdg"]
 [ext_resource type="Texture2D" uid="uid://bhryrnyb053wt" path="res://HUD/main_menu/gradient_black.png" id="5_fcdgt"]
 [ext_resource type="Texture2D" uid="uid://32qyvbeppmy" path="res://HUD/main_menu/QUIT_button_hover.png" id="6_csj2l"]
 [ext_resource type="Texture2D" uid="uid://tt7wvwpk6w5r" path="res://HUD/main_menu/SETTINGS_button_hover.png" id="6_p77yh"]
@@ -26,6 +27,10 @@ script = ExtResource("1_m78mv")
 position = Vector2(967, 543.5)
 scale = Vector2(1.4172767, 1.4205729)
 texture = ExtResource("2_1noea")
+
+[node name="HouseMainmenu" type="Sprite2D" parent="."]
+position = Vector2(961, 540)
+texture = ExtResource("3_atsdg")
 
 [node name="GradientBlack" type="Sprite2D" parent="."]
 position = Vector2(412, 540)

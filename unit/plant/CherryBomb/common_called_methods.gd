@@ -49,6 +49,7 @@ func pop_arm_if_half(original_arm : Node, arm_where_it_will_start : Node2D)->voi
 var next_in_line_scene : String 
 func enter_new_scene(scene : String) -> void:
 	next_in_line_scene = scene
+	Engine.time_scale = 1.0
 	get_tree().change_scene_to_file("res://HUD/loading_screen/loading_screen.tscn")
 
 func add_limited_plants_on_seeds(seed_packet : Control, effect_when_added : Node2D = null) -> void:

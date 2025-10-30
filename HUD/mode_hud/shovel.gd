@@ -16,6 +16,7 @@ func _on_clickable_area_input_event(viewport: Node, event: InputEvent, shape_idx
 		shovel.z_index = 200
 
 		QuickDataManagement._add_object_for_queue(shovel,self)
+		QuickDataManagement._when_shovel_is_selected.emit()
 		shovel.name = "shovel_icon"
 
 func selected_as_object(is_it_selected := false):

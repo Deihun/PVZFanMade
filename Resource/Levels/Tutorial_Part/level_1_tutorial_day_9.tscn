@@ -34,7 +34,7 @@ script = ExtResource("1_doi2b")
 [node name="Day" type="Sprite2D" parent="."]
 z_index = -5
 y_sort_enabled = true
-position = Vector2(1198, 136)
+position = Vector2(1206, 128)
 texture = ExtResource("2_8jnri")
 
 [node name="GrassLayer" type="Sprite2D" parent="Day"]

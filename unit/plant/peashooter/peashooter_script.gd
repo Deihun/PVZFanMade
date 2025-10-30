@@ -122,6 +122,8 @@ func spawn_three_pea():
 	var pea = get_pea()
 	var second_pea = get_pea()
 	var third_pea = get_pea()
+	var tween_1 = create_tween()
+	var tween_2 = create_tween()
 	pea.true_damage = set_to_true_damage
 	second_pea.true_damage = set_to_true_damage
 	third_pea.true_damage = set_to_true_damage
@@ -131,21 +133,11 @@ func spawn_three_pea():
 	var first_behaviour_up = load("res://Behaviour/projectile_behaviour/projectile_moving_steadily.tscn").instantiate()
 	var second_behaviour_up = load("res://Behaviour/projectile_behaviour/projectile_moving_steadily.tscn").instantiate()
 	var third_behaviour_up = load("res://Behaviour/projectile_behaviour/projectile_moving_steadily.tscn").instantiate()
-	first_behaviour_up.travel_limit_enable = true
-	first_behaviour_up.auto_start=true
-	first_behaviour_up.travel_limit_value = 8
-	first_behaviour_up.direction = "DOWN"
-	second_behaviour_up.travel_limit_enable = true
-	second_behaviour_up.auto_start=true
-	second_behaviour_up.travel_limit_value = 20
-	second_behaviour_up.direction = "UP"
-	third_behaviour_up.travel_limit_enable = true
-	third_behaviour_up.auto_start=true
-	third_behaviour_up.travel_limit_value = 35
-	third_behaviour_up.direction = "DOWN"
 	pea.add_child(first_behaviour_up)
 	second_pea.add_child(second_behaviour_up)
 	third_pea.add_child(third_behaviour_up)
+	tween_1.tween_property(second_pea,"global_position:y",second_pea.global_position.y + 170, 0.1)
+	tween_2.tween_property(third_pea,"global_position:y",third_pea.global_position.y - 170, 0.1)
 	tier2B_in_action()
 	$EvolutionSenderSupportBehavior.update_current_evolution_ui()
 
@@ -209,12 +201,15 @@ func _tier3B():
 
 func _on_plant_boost_body_entered(body: Node2D) -> void:
 	if body.is_in_group("plant"):
+		var evolution_manager = body.get_node("EvolutionSenderSupportBehavior")
 		if plant_to_be_boost <= 0: return
+		if !evolution_manager: return
 		if plant_to_be_boost > 5: $Tier2A_indicator/PeashooterBuffReceivedVisual.texture=load("res://unit/plant/peashooter/peashooter_buff_received_visual.png")
 		elif plant_to_be_boost >= 2 and plant_to_be_boost < 5: $Tier2A_indicator/PeashooterBuffReceivedVisual.texture=load("res://unit/plant/peashooter/peashooter_buff_received_visual_abouttoDeplete.png")
 		elif plant_to_be_boost < 2 and plant_to_be_boost > 0:$Tier2A_indicator/PeashooterBuffReceivedVisual.texture=load("res://unit/plant/peashooter/peashooter_buff_received_visual_last.png")
 		$Tier2A_indicator/plant.play("play")
-		var evolution_manager = body.get_node("EvolutionSenderSupportBehavior")
+		
+		
 		var evolution_buff_visualeffect = load("res://unit/plant/peashooter/tier_2a_peashooter_buff.tscn").instantiate()
 		evolution_manager.boost_plants_percentage(0.35)
 		body.add_child(evolution_buff_visualeffect)

@@ -171,6 +171,7 @@ _zombie_spawn_with_delay_in_between = true
 _delay_interval_between_spawn = 10.0
 
 [node name="wave14" parent="zombie_wave_management" instance=ExtResource("9_fobq1")]
+y_sort_enabled = true
 layout_mode = 2
 _delay_duration = 20.0
 _trigger_next_wave_if_this_is_clear = true

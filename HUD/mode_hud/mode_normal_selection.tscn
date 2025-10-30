@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c4plv33152tx3"]
+[gd_scene load_steps=17 format=3 uid="uid://c4plv33152tx3"]
 
 [ext_resource type="Script" uid="uid://b28pydk6w0crq" path="res://HUD/mode_hud/mode_normal_selection.gd" id="1_7rrtk"]
 [ext_resource type="Script" uid="uid://dxi0jr3mbci1s" path="res://HUD/mode_hud/location_where_evolution_tree_goes.gd" id="2_lt5ew"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dednq0baij7wn" path="res://HUD/mode_hud/shovel_background.png" id="7_euww4"]
 [ext_resource type="Texture2D" uid="uid://blp5yuw8ekxdb" path="res://HUD/mode_hud/shovel.png" id="8_68cfs"]
 [ext_resource type="PackedScene" uid="uid://6jgrs4q1aq01" path="res://HUD/borders/seed_packet.tscn" id="8_ugelk"]
+[ext_resource type="Texture2D" uid="uid://cqi7vkajpgvxn" path="res://HUD/mode_hud/level_selection_plant_details and_UI_interface.png" id="12_yuy1j"]
+[ext_resource type="Texture2D" uid="uid://cf0adl7hpvmmv" path="res://HUD/mode_hud/grass_preview.png" id="13_oairl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68cfs"]
 size = Vector2(334, 84.5)
@@ -96,6 +98,7 @@ offset_left = 285.0
 offset_top = 11.0
 offset_right = 635.0
 offset_bottom = 711.0
+metadata/_edit_lock_ = true
 
 [node name="EvolutionPowerBank" type="Control" parent="Tools_UI"]
 visible = false
@@ -169,7 +172,7 @@ shape = SubResource("RectangleShape2D_yuy1j")
 [node name="GridContainer" type="GridContainer" parent="seed_picker_boarder"]
 layout_mode = 0
 offset_left = 35.0
-offset_top = 118.0
+offset_top = 348.0
 offset_right = 867.0
 offset_bottom = 933.0
 columns = 4
@@ -178,6 +181,7 @@ columns = 4
 layout_mode = 2
 mode = "only-for-plant-selection"
 plant_name = "peashooter"
+description = "Shoot peas at zombies in lane"
 cooldown = 5
 start_up_cooldown = 2
 suncost = 100
@@ -190,6 +194,7 @@ seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_se
 layout_mode = 2
 mode = "only-for-plant-selection"
 plant_name = "sunflower"
+description = "Produce normal amount of sun through time"
 cooldown = 5
 start_up_cooldown = 0
 image_path = "uid://263vj11nyjjn"
@@ -201,6 +206,7 @@ seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_se
 layout_mode = 2
 mode = "only-for-plant-selection"
 plant_name = "wallnut"
+description = "Stall zombies by blocking them"
 cooldown = 30
 image_path = "uid://p7axs27j7smr"
 plant_tscn = "uid://bpnwr5oe20tfl"
@@ -211,6 +217,7 @@ seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_se
 layout_mode = 2
 mode = "only-for-plant-selection"
 plant_name = "potatomine"
+description = "Takes time to arm then explode on contact of zombies"
 cooldown = 40
 suncost = 25
 image_path = "uid://ds5acfqn0heye"
@@ -222,6 +229,7 @@ seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_se
 layout_mode = 2
 mode = "only-for-plant-selection"
 plant_name = "chomper"
+description = "Devour zombies, becomes vulnerable while chewing"
 cooldown = 15
 suncost = 175
 image_path = "uid://bw0loto26qk1"
@@ -233,6 +241,7 @@ seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_se
 layout_mode = 2
 mode = "only-for-plant-selection"
 plant_name = "snowpea"
+description = "Shoot ice pea that slow and damage zombies"
 cooldown = 12
 start_up_cooldown = 30
 suncost = 175
@@ -245,8 +254,9 @@ seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_se
 layout_mode = 2
 mode = "only-for-plant-selection"
 plant_name = "asparagus"
-cooldown = 40
-start_up_cooldown = 75
+description = "Shoot asparagus that prioritize the last zombie in lane"
+cooldown = 30
+start_up_cooldown = 45
 suncost = 100
 image_path = "uid://ca5d4jywkv1rk"
 plant_tscn = "uid://c7vrs5tcruwsq"
@@ -257,11 +267,76 @@ seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_se
 layout_mode = 2
 mode = "only-for-plant-selection"
 plant_name = "cherrybomb"
+description = "Explode dealing massive damage in area."
 cooldown = 80
 suncost = 150
 image_path = "uid://boo42rha4na5h"
 plant_tscn = "uid://crnr4m2b2ilqr"
 plant_animation_only_tscn = "uid://dsyw8ad0cd20q"
+seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")
+
+[node name="Puffshroom" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
+layout_mode = 2
+mode = "only-for-plant-selection"
+plant_name = "puffshroom"
+description = "Shoot puff within 3 range in front of  it. Disappear if out of combat for few more seconds"
+cooldown = 7
+start_up_cooldown = 0
+suncost = 0
+image_path = "uid://dtm8rjiugnf0s"
+plant_tscn = "uid://cw86hhndccl3v"
+plant_animation_only_tscn = "uid://o1anv26txs85"
+seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")
+
+[node name="Sunshroom" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
+layout_mode = 2
+mode = "only-for-plant-selection"
+plant_name = "sunshroom"
+description = "Produce small amount of sun, grows later to produce regular sun."
+cooldown = 7
+start_up_cooldown = 0
+suncost = 25
+image_path = "uid://bor1x5fllx0he"
+plant_tscn = "uid://dpqui2vikikly"
+plant_animation_only_tscn = "uid://dej76pet0mgoh"
+seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")
+
+[node name="Fumeshroom" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
+layout_mode = 2
+mode = "only-for-plant-selection"
+plant_name = "fumeshroom"
+description = "Shoot fumes that pierce through zombies"
+start_up_cooldown = 10
+suncost = 75
+image_path = "uid://d2uakbngjstg"
+plant_tscn = "uid://b6hwyyug6lpyu"
+plant_animation_only_tscn = "uid://bt51xqm75makb"
+seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")
+
+[node name="Scaredyshroom" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
+layout_mode = 2
+mode = "only-for-plant-selection"
+plant_name = "scaredyshroom"
+description = "Shoot zombies in lane, get scared  if zombies are close or other near plants died"
+cooldown = 7
+start_up_cooldown = 7
+suncost = 25
+image_path = "uid://dexnbwtvmvr48"
+plant_tscn = "uid://d2u7cbuj1aqn"
+plant_animation_only_tscn = "uid://d31ajta8g7j3p"
+seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")
+
+[node name="Rose" parent="seed_picker_boarder/GridContainer" node_paths=PackedStringArray("seed_selection_VBoxContainer") instance=ExtResource("8_ugelk")]
+layout_mode = 2
+mode = "only-for-plant-selection"
+plant_name = "rose"
+description = "Shoot a magic missile that follows you!"
+cooldown = 30
+start_up_cooldown = 10
+suncost = 400
+image_path = "uid://bgwoqnwpj1s1f"
+plant_tscn = "uid://bsmy8ma84etik"
+plant_animation_only_tscn = "uid://bbkgs7tsgyto5"
 seed_selection_VBoxContainer = NodePath("../../../mode_normal_pick/plant_seed_selection/VBoxContainer")
 
 [node name="LETS ROCK!" type="Button" parent="seed_picker_boarder"]
@@ -272,20 +347,76 @@ offset_right = 258.0
 offset_bottom = 1019.0
 text = "LETS ROCK!"
 
+[node name="LevelSelectionPlantDetailsAndUiInterface" type="Sprite2D" parent="seed_picker_boarder"]
+position = Vector2(422.5, 180.24998)
+scale = Vector2(2.35363, 2.2412791)
+texture = ExtResource("12_yuy1j")
+
+[node name="Control" type="Control" parent="seed_picker_boarder/LevelSelectionPlantDetailsAndUiInterface"]
+show_behind_parent = true
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -165.48904
+offset_top = -63.02204
+offset_right = -35.901978
+offset_bottom = 45.398193
+mouse_filter = 2
+
+[node name="GrassPreview" type="Sprite2D" parent="seed_picker_boarder/LevelSelectionPlantDetailsAndUiInterface/Control"]
+position = Vector2(61.18209, 70.49545)
+scale = Vector2(0.44681737, 0.44410723)
+texture = ExtResource("13_oairl")
+
+[node name="Indication_viewer" type="Node2D" parent="seed_picker_boarder"]
+position = Vector2(-313, 0)
+
+[node name="plant_name" type="Label" parent="seed_picker_boarder/Indication_viewer"]
+offset_left = 652.0
+offset_top = 17.0
+offset_right = 969.0
+offset_bottom = 94.0
+theme_override_colors/font_color = Color(0.4265633, 0.41294515, 0.15360337, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.45882353)
+theme_override_colors/font_outline_color = Color(0.2783116, 0.26735437, 0.08686934, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 56
+
+[node name="plant_description" type="Label" parent="seed_picker_boarder/Indication_viewer"]
+offset_left = 676.0
+offset_top = 77.0
+offset_right = 1160.0
+offset_bottom = 267.0
+theme_override_colors/font_color = Color(0.34053677, 0.32757914, 0.11403216, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 40
+autowrap_mode = 3
+
 [node name="for_label" type="Node2D" parent="seed_picker_boarder"]
 position = Vector2(41, 14)
 skew = 0.30892327
 
 [node name="plant_count" type="Label" parent="seed_picker_boarder/for_label"]
-offset_left = -0.31914073
-offset_top = -1.0496908
-offset_right = 108.68086
-offset_bottom = 95.95031
+offset_left = 81.295715
+offset_top = 273.9693
+offset_right = 190.29572
+offset_bottom = 370.9693
 theme_override_colors/font_color = Color(0.80779976, 0.7045845, 0.0063894535, 1)
 theme_override_colors/font_outline_color = Color(0.32012945, 0.19017684, 2.4065375e-08, 1)
 theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 71
+theme_override_font_sizes/font_size = 51
 text = "0/5"
+
+[node name="choose-your-seed" type="Label" parent="seed_picker_boarder/for_label"]
+offset_left = 369.57404
+offset_top = 289.71463
+offset_right = 677.5741
+offset_bottom = 392.71463
+theme_override_colors/font_color = Color(0.4260886, 0.36625984, 3.85046e-07, 1)
+theme_override_font_sizes/font_size = 36
+text = "Choose your seed
+"
 
 [connection signal="child_entered_tree" from="mode_normal_pick/plant_seed_selection/VBoxContainer" to="." method="_on_v_box_container_child_entered_tree"]
 [connection signal="child_exiting_tree" from="mode_normal_pick/plant_seed_selection/VBoxContainer" to="." method="_on_v_box_container_child_exiting_tree"]

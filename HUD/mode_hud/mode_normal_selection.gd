@@ -21,7 +21,8 @@ func pick_mode():
 func _ready() -> void:
 	QuickDataManagement._sun_bank_position = get_sun_when_claim_animation_position()
 	QuickDataManagement.mode_normal_selection = self
-	QuickDataManagement.global_calls_manager._when_sun_value_change.append(Callable(self,"update_all_hud"))
+	QuickDataManagement.global_calls_manager._when_sun_value_change.connect(func(sun_value_change :int): update_all_hud())
+	#QuickDataManagement.global_calls_manager._when_sun_value_change.append(Callable(self,"update_all_hud"))
 	QuickDataManagement.location_where_evolutionUI_place = $location_where_evolution_tree_goes.global_position
 	
 	if get_parent() and get_parent() is Camera2D: 
@@ -83,6 +84,13 @@ func _show_seedslot_affordable_indicator():
 
 func _on_v_box_container_child_entered_tree(node: Node) -> void:
 	_setup_hud_plantselection_scaling()
+	$seed_picker_boarder/Indication_viewer/plant_name.text = str(node.plant_name).capitalize()
+	$seed_picker_boarder/Indication_viewer/plant_description.text= str(node.description).capitalize()
+	var animation = load(node.plant_animation_only_tscn).instantiate()
+	for child in $seed_picker_boarder/LevelSelectionPlantDetailsAndUiInterface/Control/GrassPreview.get_children(): child.queue_free()
+	$seed_picker_boarder/LevelSelectionPlantDetailsAndUiInterface/Control/GrassPreview.add_child(animation)
+
+
 
 
 func _on_lets_rock_pressed() -> void:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c3mfdn3yeigf3"]
 
 [ext_resource type="Script" uid="uid://b6wytcyu2u6yr" path="res://Resource/Levels/Tutorial_Part/lane_.gd" id="1_q3gxs"]
-[ext_resource type="PackedScene" uid="uid://nqpa1jdoxd70" path="res://Behaviour/occupied_tile.tscn" id="2_7qxlj"]
+[ext_resource type="PackedScene" uid="uid://nqpa1jdoxd70" path="res://Behaviour/OccupiedTiles/occupied_tile.tscn" id="2_7qxlj"]
 [ext_resource type="PackedScene" uid="uid://bbnop5mmpshyp" path="res://Resource/lawn_mower/lawnmower.tscn" id="3_7qxlj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3gxs"]

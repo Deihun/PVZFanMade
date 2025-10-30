@@ -5,6 +5,7 @@ extends Node2D
 @export var sun_location_where_it_land: CollisionShape2D
 
 @export_category("Sun Spawn Behaviour")
+@export var enable := true
 @export var sun_quality: int = 25
 @export var spawn_height: float = -100.0
 @export var cooldown_time: float = 15.0
@@ -13,9 +14,11 @@ extends Node2D
 var rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
+	if enable: get_tree().current_scene.add_to_group("daytime")
 	if auto_start : start()
 
 func start():
+	if !enable: return
 	_spawn_sun()
 	var timer = Timer.new()
 	timer.wait_time = cooldown_time

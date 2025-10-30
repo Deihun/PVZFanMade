@@ -30,6 +30,12 @@ window/size/mode=4
 window/size/initial_position_type=0
 window/size/resizable=false
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://da7352mj8r7or"
+
+[global_group]
+
+seed_packet=""
+plant=""
 
 [input]
 

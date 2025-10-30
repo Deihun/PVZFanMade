@@ -1,6 +1,7 @@
 extends Control
 @export_enum("ingame-seed-pick","one-time-used","only-for-plant-selection","click-to-delete-only") var mode :String 
 @export var plant_name : String
+@export_multiline var description : String = ""
 @export var cooldown : int = 20
 @export var start_up_cooldown : int = 5
 @export var suncost : int = 100
@@ -17,10 +18,18 @@ extends Control
 @export var seed_selection_VBoxContainer : Node
 @export var delete_if_not_existing_in_progress := true
 
+var seed_selection_columncontainer : Node
 var first_time_plant := true
 
 var current_timer : int = 0
 var call_plant_method : Callable
+
+var _is_holding := false
+var _hold_elapsed : float = 0.0
+var _press_time: float = 0.0
+const _HOLD_THRESHOLD := 0.12
+var _select_the_plant_trigger := false
+
 
 signal _after_used
 
@@ -28,13 +37,29 @@ signal _after_used
 func _ready() -> void:
 	add_to_group("seed_packet")
 	_change_price_font_color_to_red()
+	if get_parent() is GridContainer: seed_selection_columncontainer = get_parent()
 	if delete_if_not_existing_in_progress and !QuickDataManagement.savemanager.plant_exist(plant_name): queue_free()
 	if image_path: $SeedPacket.texture = load(image_path)
 	if limited_amount > 0: $AMOUNT.show()
 	if mode == "one-time-used":
 		suncost = 0
 		$SUNCOST.hide()
-	
+
+func _process(delta: float) -> void:
+	if _is_holding:
+		var unscaled_delta = delta
+		if Engine.time_scale != 0.0:
+			unscaled_delta = delta / Engine.time_scale
+		_hold_elapsed += unscaled_delta
+		if _hold_elapsed >= _HOLD_THRESHOLD:
+			_select_the_plant() 
+
+
+
+func _select_the_plant() -> void:
+	if _select_the_plant_trigger: return
+	_select_the_plant_trigger = true
+	_click_trigger()
 
 func start_cooldown() -> void:
 	current_timer = start_up_cooldown if first_time_plant else cooldown
@@ -45,9 +70,6 @@ func start_cooldown() -> void:
 	first_time_plant=false
 
 
-func _on_cooldown_timeout() -> void:
-	current_timer-= 1
-	_check_if_cd_finished()
 
 func _check_if_cd_finished()-> void:
 	if current_timer <= 0:
@@ -78,8 +100,7 @@ func _refund_cooldown_current_percentage_value(value : float = 0.1):
 	_spawn_refund_cooldown_animation()
 	_check_if_cd_finished()
 
-
-func _on_click_button_button_down() -> void:
+func _click_trigger(_is_hold:= false) -> void:
 	match mode:
 		"ingame-seed-pick":
 			if QuickDataManagement._selected_data_in_seed_packet == self:
@@ -111,11 +132,14 @@ func _on_click_button_button_down() -> void:
 				var pickable_version_of_myself := self.duplicate()
 				pickable_version_of_myself.mode="click-to-delete-only"
 				seed_selection_VBoxContainer.add_child(pickable_version_of_myself)
+				pickable_version_of_myself.seed_selection_columncontainer = get_parent()
+				self.modulate = Color("5d5d5d")
 		"click-to-delete-only":
+			if seed_selection_columncontainer:
+				for child in seed_selection_columncontainer.get_children(): if child.plant_name == self.plant_name: child.modulate = Color("ffffff")
 			self.queue_free()
 
-
-func selected_as_object(is_it_selected := false):
+func selected_as_object(is_it_selected := false) -> void:
 	$SeedPacket/selected_visuals.visible = is_it_selected
 
 
@@ -132,7 +156,11 @@ func successfully_planted() -> void:
 		start_cooldown()
 
 func _change_price_font_color_to_red(value : bool = true)-> void:
-	$SUNCOST.text = str(suncost)
+	if mode in ["only-for-plant-selection","click-to-delete-only"]:
+		$SUNCOST.remove_theme_color_override("font_color")
+		$VISUAL_AFFORD.hide()
+		$SUNCOST.text = str(suncost)
+		return
 	if value: 
 		if (QuickDataManagement.sun >= suncost):
 			$SUNCOST.remove_theme_color_override("font_color")
@@ -154,3 +182,43 @@ func _handle_amount_label(amount : int = limited_amount) -> void:
 	if $AMOUNT: 
 		$AMOUNT.show()
 		$AMOUNT.text = str(amount,"x")
+
+func change_mode(_mode : String = mode) -> void:
+	mode = _mode
+	match mode:
+		"ingame-seed-pick":
+			pass
+		"only-for-plant-selection":
+			pass
+		"click-to-delete-only":
+			pass
+
+
+func _on_click_button_button_up() -> void:
+	if _hold_elapsed >= _HOLD_THRESHOLD:
+		var tile = QuickDataManagement.get_tile_under_mouse()
+		if tile:
+			if QuickDataManagement._selected_plant_node_as_icon:
+				if QuickDataManagement._selected_plant_node_as_icon.name.begins_with("shovel"):
+					if tile.has_method("remove_top_plant"):
+						tile.remove_top_plant()
+					QuickDataManagement._remove_plant_for_queue_plant()
+				elif QuickDataManagement._selected_plant_node_as_icon.name.begins_with("power"):
+					if tile.has_method("power_occupied_tile"):
+						tile.power_occupied_tile()
+					QuickDataManagement._remove_plant_for_queue_plant()
+				elif QuickDataManagement._selected_data_in_seed_packet:
+					if tile.has_method("plant_on_this_tile"):
+						tile.plant_on_this_tile(QuickDataManagement._selected_data_in_seed_packet)
+					QuickDataManagement._remove_plant_for_queue_plant()
+		else:
+			QuickDataManagement._remove_plant_for_queue_plant()
+	else: _click_trigger()
+	_hold_elapsed = 0.0
+	_is_holding = false
+func _on_click_button_button_down() -> void:
+	_select_the_plant_trigger = false
+	_is_holding = true
+func _on_cooldown_timeout() -> void:
+	current_timer-= 1
+	_check_if_cd_finished()

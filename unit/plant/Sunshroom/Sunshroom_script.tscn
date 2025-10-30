@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpqui2vikikly"]
+
+[ext_resource type="PackedScene" uid="uid://dej76pet0mgoh" path="res://unit/plant/Sunshroom/sunshroom_animation.tscn" id="1_dyuv2"]
+[ext_resource type="Script" uid="uid://qust8dmrngcx" path="res://unit/plant/Sunshroom/sunshroom_script.gd" id="1_tklxl"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="3_imqg7"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="4_s1dku"]
+[ext_resource type="Texture2D" uid="uid://cg1wequgp2m75" path="res://unit/plant/SnowPea/snowpea_levelup_indication.png" id="5_2r72e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tklxl"]
+
+[node name="SunshroomScript" type="CharacterBody2D"]
+script = ExtResource("1_tklxl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_tklxl")
+
+[node name="SunshroomAnimation" parent="." instance=ExtResource("1_dyuv2")]
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("3_imqg7")]
+position = Vector2(1, -12)
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("4_s1dku")]
+position = Vector2(1, -12)
+plant_name = "Fumeshroom"
+description_Tier1A = "Increase my pierce"
+description_Tier1B = "When I kill a zombie, spawn a puffshroom"
+description_Tier2A = "Gain more attackspeed"
+description_Tier2B = "Increase my range"
+description_Tier3A = "Transform into Gloomshroom: Release fume damaging zombies around me instead."
+description_Tier3B = "YourLawn gains permanent effect: Planting puffshroom now has a chance to transform it into fumeshroom! Stack number of this upgrade increases the chance."
+description_evolve_requirement = "Progress for each zombies I applied slow for the first time."
+plant_evolve_meter_texture = ExtResource("5_2r72e")
+_tier1_max_value = 50.0
+_tier2_max_value = 60.0
+_tier3_max_value = 250.0
+
+[node name="sun_production" type="Timer" parent="."]
+wait_time = 27.0
+one_shot = true
+
+[node name="_grow_to_phase2" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="_grow_to_phase3" type="Timer" parent="."]
+wait_time = 90.0
+one_shot = true
+
+[node name="_evolve_timer" type="Timer" parent="."]
+
+[connection signal="produce_sun" from="SunshroomAnimation" to="." method="_on_sunshroom_animation_produce_sun"]
+[connection signal="timeout" from="sun_production" to="." method="_on_sun_production_timeout"]
+[connection signal="timeout" from="_grow_to_phase2" to="." method="_on__grow_to_phase_2_timeout"]
+[connection signal="timeout" from="_grow_to_phase3" to="." method="_on__grow_to_phase_3_timeout"]

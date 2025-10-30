@@ -14,6 +14,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		shovel.z_index = 200 
 		QuickDataManagement._add_object_for_queue(shovel,self)
 		shovel.name = "power"
+		QuickDataManagement._when_ability_plantrequirement_is_selected.emit()
 		QuickDataManagement.sound_manager.play_high_priority_audio(load("res://HUD/EvolutionUI/power_selected.ogg"))
 		
 

@@ -25,6 +25,7 @@ size = Vector2(942, 573)
 size = Vector2(138, 184)
 
 [node name="random_level" type="Node2D"]
+y_sort_enabled = true
 position = Vector2(539, 404)
 script = ExtResource("1_fk4oo")
 

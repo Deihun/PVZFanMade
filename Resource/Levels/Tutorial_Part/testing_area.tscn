@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://th7jb6irnykc"]
+[gd_scene load_steps=23 format=3 uid="uid://th7jb6irnykc"]
 
 [ext_resource type="Script" uid="uid://cyqxg3e8vus4f" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_10.gd" id="1_ij5o2"]
 [ext_resource type="Texture2D" uid="uid://cm6o05tr14hpg" path="res://Resource/Levels/background_assets/complete_bg.png" id="2_1oo8d"]
@@ -10,14 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://pspn4765e0xo" path="res://HUD/borders/level_manager/zombie_wave_management.tscn" id="8_musfg"]
 [ext_resource type="PackedScene" uid="uid://y1wnytmunqr8" path="res://HUD/borders/level_manager/new_plant_unlock_reward_node.tscn" id="9_wvy7l"]
 [ext_resource type="PackedScene" uid="uid://c2eos12l6ww5h" path="res://unit/Zombie/poleVaultingZombie/PoleVaulting_Zombie.tscn" id="9_xxrpo"]
-[ext_resource type="PackedScene" uid="uid://c6b5p7lqufyd0" path="res://unit/Zombie/basic_zombie/normal_with_trashcan_no_imps.tscn" id="10_4j2rf"]
 [ext_resource type="Texture2D" uid="uid://cicfplhte2rh4" path="res://Resource/Levels/Tutorial_Part/award_for_demo.png" id="10_pd1qh"]
 [ext_resource type="PackedScene" uid="uid://bj5p7r8n80cn" path="res://HUD/debug_mode.tscn" id="11_4hq3w"]
 [ext_resource type="Script" uid="uid://bho6kxnwdxc1g" path="res://Resource/Levels/Tutorial_Part/test_tool.gd" id="12_rglp2"]
-[ext_resource type="PackedScene" uid="uid://b8f4g5q88omyv" path="res://unit/Zombie/garden_zombie_types/zombie_lawnmower/Z_lawnmower.tscn" id="15_xxrpo"]
-[ext_resource type="PackedScene" uid="uid://l0ap6weeoiby" path="res://unit/plant/peashooter/Peashooter_script.tscn" id="16_4j2rf"]
-[ext_resource type="PackedScene" uid="uid://bmk74stoke87f" path="res://unit/Zombie/garden_zombie_types/basic_garden_zombie/GardenerZombie_OriginalNode.tscn" id="17_wil0c"]
-[ext_resource type="PackedScene" uid="uid://xeuq18wltltm" path="res://unit/plant/Sunflower/sunflower.tscn" id="18_musfg"]
+[ext_resource type="PackedScene" uid="uid://bogab6oeo22f2" path="res://unit/Zombie/basic_zombie/normal_basic_zombie.tscn" id="14_1oo8d"]
+[ext_resource type="PackedScene" uid="uid://d2u7cbuj1aqn" path="res://unit/plant/Scaredyshroom/Scaredyshroom_script.tscn" id="15_xxrpo"]
+[ext_resource type="PackedScene" uid="uid://bsmy8ma84etik" path="res://unit/plant/Rose/Rose.tscn" id="16_4j2rf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mbqr"]
 bg_color = Color(0, 0, 0, 1)
@@ -53,6 +51,7 @@ _mode = "normal_mode_with_pick"
 sun_on_start = 9999
 
 [node name="test_tool" type="Panel" parent="main_camera"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.627451)
 z_index = 350
 offset_left = -977.0
@@ -461,7 +460,7 @@ offset_bottom = 2004.0
 mouse_filter = 2
 progress_bar_wave_scene = "uid://dr682qf7yx8v2"
 main_camera = NodePath("../main_camera")
-delay_before_game_start = 60.0
+delay_before_game_start = 10.0
 final_as_reward = NodePath("../NewPlantUnlockRewardNode")
 lane_1 = NodePath("../lane_1")
 lane_2 = NodePath("../lane_2")
@@ -473,15 +472,24 @@ metadata/_edit_lock_ = true
 
 [node name="wave" parent="zombie_wave_management" instance=ExtResource("8_1oo8d")]
 layout_mode = 2
-_mark_as_big_wave = true
+_delay_duration = 40.0
 _automatically_spawn_basic_zombies = true
 _number_of_zombies_in_big_wave = 10
 
 [node name="PoleVaultingZombie" parent="zombie_wave_management" instance=ExtResource("9_xxrpo")]
-position = Vector2(423, 617)
+position = Vector2(856, 622)
 
-[node name="basic_wish_trashcan_no_imps" parent="zombie_wave_management" instance=ExtResource("10_4j2rf")]
-position = Vector2(425, 916)
+[node name="wave2" parent="zombie_wave_management" instance=ExtResource("8_1oo8d")]
+layout_mode = 2
+_delay_duration = 40.0
+_automatically_spawn_basic_zombies = true
+_number_of_zombies_in_big_wave = 10
+
+[node name="wave3" parent="zombie_wave_management" instance=ExtResource("8_1oo8d")]
+layout_mode = 2
+_mark_as_big_wave = true
+_automatically_spawn_basic_zombies = true
+_number_of_zombies_in_big_wave = 10
 
 [node name="NewPlantUnlockRewardNode" parent="." instance=ExtResource("9_wvy7l")]
 visible = false
@@ -516,37 +524,22 @@ metadata/_edit_lock_ = true
 visible = false
 z_index = 20
 position = Vector2(1, -2)
+collision_layer = 0
 
-[node name="PeashooterScript" parent="." instance=ExtResource("16_4j2rf")]
-position = Vector2(167, 494)
+[node name="BasicZombie2" parent="." instance=ExtResource("14_1oo8d")]
+position = Vector2(-227, 1426)
 
-[node name="GardenerZombieOriginalNode" parent="." instance=ExtResource("17_wil0c")]
-position = Vector2(1342, 511)
-zombie_type_mode = "lawn_mower_gardener"
+[node name="BasicZombie3" parent="." instance=ExtResource("14_1oo8d")]
+position = Vector2(-176, 1431)
 
-[node name="PeashooterScript2" parent="." instance=ExtResource("16_4j2rf")]
-position = Vector2(283, 490)
+[node name="BasicZombie4" parent="." instance=ExtResource("14_1oo8d")]
+position = Vector2(-137, 1431)
 
-[node name="PeashooterScript3" parent="." instance=ExtResource("16_4j2rf")]
-position = Vector2(409, 494)
+[node name="ScaredyShroom" parent="." instance=ExtResource("15_xxrpo")]
+position = Vector2(295, 264)
 
-[node name="basic_wish_trashcan_no_imps" parent="." instance=ExtResource("10_4j2rf")]
-position = Vector2(833, 507)
-
-[node name="basic_wish_trashcan_no_imps2" parent="." instance=ExtResource("10_4j2rf")]
-position = Vector2(630, 503)
-
-[node name="basic_wish_trashcan_no_imps3" parent="." instance=ExtResource("10_4j2rf")]
-position = Vector2(987, 512)
-
-[node name="basic_wish_trashcan_no_imps4" parent="." instance=ExtResource("10_4j2rf")]
-position = Vector2(1038, 508)
-
-[node name="ZLawnmower" parent="." instance=ExtResource("15_xxrpo")]
-position = Vector2(2095, -52)
-
-[node name="Sunflower" parent="." instance=ExtResource("18_musfg")]
-position = Vector2(71, 499)
+[node name="Rose" parent="." instance=ExtResource("16_4j2rf")]
+position = Vector2(189, 279)
 
 [connection signal="gui_input" from="main_camera/test_tool" to="." method="_on_test_tool_gui_input"]
 [connection signal="toggled" from="main_camera/test_tool/ScrollContainer/VBoxContainer/common_controls/BACKGROUND_VISIBILITY" to="main_camera/test_tool" method="_on_background_visibility_toggled"]

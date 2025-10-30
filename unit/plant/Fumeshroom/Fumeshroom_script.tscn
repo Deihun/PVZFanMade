@@ -1,0 +1,127 @@
+[gd_scene load_steps=16 format=3 uid="uid://b6hwyyug6lpyu"]
+
+[ext_resource type="Script" uid="uid://dgyt2bos1v864" path="res://unit/plant/Fumeshroom/gloomshroom/fumeshroom_script.gd" id="1_eykm8"]
+[ext_resource type="PackedScene" uid="uid://bt51xqm75makb" path="res://unit/plant/Fumeshroom/Fumeshroom_animation.tscn" id="1_m17vv"]
+[ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="2_eykm8"]
+[ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="3_15aqa"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="3_kqcmq"]
+[ext_resource type="PackedScene" uid="uid://dfs20jb32fvmc" path="res://unit/projectile.tscn" id="4_ot8vl"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="5_318c0"]
+[ext_resource type="Texture2D" uid="uid://ibufs2q6xcs0" path="res://unit/plant/Fumeshroom/projectile_1.png" id="5_kqcmq"]
+[ext_resource type="Texture2D" uid="uid://cg1wequgp2m75" path="res://unit/plant/SnowPea/snowpea_levelup_indication.png" id="6_g5rrc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvy7l"]
+size = Vector2(560, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pd1qh"]
+size = Vector2(144, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5rrc"]
+size = Vector2(521, 385)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_musfg"]
+size = Vector2(53, 94)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ot8vl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_318c0"]
+size = Vector2(521, 384)
+
+[node name="Fumeshroom" type="CharacterBody2D"]
+script = ExtResource("1_eykm8")
+
+[node name="FumeshroomAnimation" parent="." instance=ExtResource("1_m17vv")]
+
+[node name="PlantDamageNodeManager" parent="." instance=ExtResource("3_15aqa")]
+base_attack_cooldown = 2.0
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("3_kqcmq")]
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("5_318c0")]
+plant_name = "Fumeshroom"
+description_Tier1A = "Increase my pierce"
+description_Tier1B = "When I kill a zombie, spawn a puffshroom"
+description_Tier2A = "Gain more attackspeed"
+description_Tier2B = "Increase my range"
+description_Tier3A = "Transform into Gloomshroom: Release fume damaging zombies around me instead."
+description_Tier3B = "YourLawn gains permanent effect: Planting puffshroom now has a chance to transform it into fumeshroom! Stack number of this upgrade increases the chance."
+description_evolve_requirement = "Progress for each zombies I applied slow for the first time."
+plant_evolve_meter_texture = ExtResource("6_g5rrc")
+_tier1_max_value = 50.0
+_tier2_max_value = 60.0
+_tier3_max_value = 250.0
+
+[node name="Detection_Area2" parent="." instance=ExtResource("2_eykm8")]
+position = Vector2(4, 17)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area2"]
+position = Vector2(246, -30)
+shape = SubResource("RectangleShape2D_wvy7l")
+debug_color = Color(1, 1, 1, 0.08235294)
+
+[node name="Tier2B" type="CollisionShape2D" parent="Detection_Area2"]
+position = Vector2(599, -30.5)
+shape = SubResource("RectangleShape2D_pd1qh")
+disabled = true
+debug_color = Color(1, 1, 1, 0.43137255)
+
+[node name="gloomshroom_detection" type="CollisionShape2D" parent="Detection_Area2"]
+position = Vector2(-14.5, -72.5)
+shape = SubResource("RectangleShape2D_g5rrc")
+disabled = true
+debug_color = Color(1, 1, 1, 0.08235294)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-36, -57)
+shape = SubResource("RectangleShape2D_musfg")
+disabled = true
+
+[node name="projectile_spawn_position" type="Node2D" parent="."]
+position = Vector2(96, -67)
+
+[node name="Projectile" parent="projectile_spawn_position" instance=ExtResource("4_ot8vl")]
+visible = false
+z_index = 7
+y_sort_enabled = true
+position = Vector2(-32, 0)
+scale = Vector2(1.0508534, 1.0523291)
+monitoring = false
+monitorable = false
+speed = 600.0
+
+[node name="projectile" type="Sprite2D" parent="projectile_spawn_position/Projectile"]
+position = Vector2(47.580376, 1.537636)
+scale = Vector2(0.74151236, 0.6494335)
+texture = ExtResource("5_kqcmq")
+
+[node name="projectile" type="Sprite2D" parent="projectile_spawn_position/Projectile/projectile"]
+position = Vector2(-40.909218, 2.3676586)
+scale = Vector2(0.77075624, 1.5199357)
+texture = ExtResource("5_kqcmq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="projectile_spawn_position/Projectile"]
+position = Vector2(5.7096443, 0.2244525)
+shape = SubResource("CircleShape2D_ot8vl")
+
+[node name="Gloomshroom_attacks" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gloomshroom_attacks"]
+position = Vector2(-9.5, -56)
+shape = SubResource("RectangleShape2D_318c0")
+disabled = true
+
+[node name="Timer" type="Timer" parent="Gloomshroom_attacks"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="shoot_additional_fume" from="FumeshroomAnimation" to="." method="_on_fumeshroom_animation_shoot_additional_fume"]
+[connection signal="shoot_fume_1" from="FumeshroomAnimation" to="." method="_on_fumeshroom_animation_shoot_fume_1"]
+[connection signal="shoot_fume_2" from="FumeshroomAnimation" to="." method="_on_fumeshroom_animation_shoot_fume_2"]
+[connection signal="shoot_fume_3" from="FumeshroomAnimation" to="." method="_on_fumeshroom_animation_shoot_fume_3"]
+[connection signal="shoot_fume_4" from="FumeshroomAnimation" to="." method="_on_fumeshroom_animation_shoot_fume_4"]
+[connection signal="shoot_gloomshroom_fume" from="FumeshroomAnimation" to="." method="_on_fumeshroom_animation_shoot_gloomshroom_fume"]
+[connection signal="body_entered" from="Gloomshroom_attacks" to="." method="_on_gloomshroom_attacks_body_entered"]
+[connection signal="timeout" from="Gloomshroom_attacks/Timer" to="." method="_on_timer_timeout"]

@@ -18,6 +18,7 @@ extends HBoxContainer
 
 @export var allow_six_lane := false
 @export var allow_seven_lane := false
+var gameover := false
 
 var play_once := false
 
@@ -59,7 +60,7 @@ func _play() -> void:
 	QuickDataManagement.sound_manager.play_high_priority_audio(load("res://HUD/borders/level_manager/wave_sfx.mp3"))
 	initialize_wave_indicator()
 	progress_bar_wave.start_wave()
-	setup_queue_waves()
+	await setup_queue_waves()
 	play_queue_next()
 
 
@@ -70,7 +71,7 @@ func setup_queue_waves() -> void:
 	_has_started = true
 
 func play_queue_next():
-	if !is_inside_tree(): return
+	if !is_inside_tree() and !gameover: return
 	await get_tree().process_frame  #this line causes an error if i interrupt the scene like either changing the scene or quiting the game
 	var next_wave = _stored_waves.pop_front()
 	if next_wave: 
@@ -106,7 +107,7 @@ func _if_zombie_die(node: Node2D):
 
 var _has_started := false
 func check_if_win():
-	if _has_started and _stored_waves.size() <= 0 and QuickDataManagement._amount_of_current_zombie_in_board.size() <= 0:
+	if _has_started and _stored_waves.size() == 0 and QuickDataManagement._amount_of_current_zombie_in_board.size() <= 0:
 		final_as_reward.show()
 		QuickDataManagement.sound_manager.play_music(game_reward_music,false)
 		set_process(false)

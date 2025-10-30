@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=3 uid="uid://cw86hhndccl3v"]
+
+[ext_resource type="Script" uid="uid://dms2o775bpg2m" path="res://unit/plant/Puffshroom/puffshroom_script.gd" id="1_brxk3"]
+[ext_resource type="PackedScene" uid="uid://o1anv26txs85" path="res://unit/plant/Puffshroom/puffshroom_animation.tscn" id="1_celul"]
+[ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="2_brxk3"]
+[ext_resource type="PackedScene" uid="uid://dfs20jb32fvmc" path="res://unit/projectile.tscn" id="3_5ufiv"]
+[ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="3_wycuh"]
+[ext_resource type="Texture2D" uid="uid://dgbu15akrpo3h" path="res://unit/plant/Puffshroom/puffshroom_projectile.png" id="4_wycuh"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="6_l8p6h"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="7_p3485"]
+[ext_resource type="Texture2D" uid="uid://cg1wequgp2m75" path="res://unit/plant/SnowPea/snowpea_levelup_indication.png" id="8_0fmlg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8p6h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wycuh"]
+size = Vector2(106, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pd1qh"]
+size = Vector2(441, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brxk3"]
+size = Vector2(34, 49)
+
+[node name="Puffshroom" type="CharacterBody2D"]
+script = ExtResource("1_brxk3")
+
+[node name="PuffshroomAnimation" parent="." instance=ExtResource("1_celul")]
+
+[node name="PlantDamageNodeManager" parent="." instance=ExtResource("3_wycuh")]
+damage = 25
+base_attack_cooldown = 2.0
+
+[node name="projectile_spawn_position" type="Node2D" parent="."]
+position = Vector2(13, -16)
+
+[node name="Projectile" parent="projectile_spawn_position" instance=ExtResource("3_5ufiv")]
+visible = false
+z_index = 7
+y_sort_enabled = true
+position = Vector2(-32, 0)
+scale = Vector2(1.0508534, 1.0523291)
+monitoring = false
+monitorable = false
+speed = 600.0
+
+[node name="PuffshroomProjectile" type="Sprite2D" parent="projectile_spawn_position/Projectile"]
+position = Vector2(5.7096443, 0.9502728)
+scale = Vector2(0.9516075, 0.9502731)
+texture = ExtResource("4_wycuh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="projectile_spawn_position/Projectile"]
+position = Vector2(5.7096443, 0.2244525)
+shape = SubResource("CircleShape2D_l8p6h")
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("6_l8p6h")]
+position = Vector2(4, -27)
+max_health = 1
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("7_p3485")]
+plant_name = "Puffshroom"
+description_Tier1A = "Shoot two puff instead"
+description_Tier1B = "When I damage a zombie, I weakened them to take more  damage against mushrooms"
+description_Tier2A = "Upon death, release a two more puff"
+description_Tier2B = "Upon death, boost all puffshrooms attackspeed near me for short time"
+description_Tier3A = "I can last forever until trampled. My attack are now like shotgun"
+description_Tier3B = "I can last forever until trampled. I occasionally create 1 \"SpecialPuffshroom\". Change my attack to: I can attack anywhere as long  as detected by my \"SpecializePuffshroom\""
+description_evolve_requirement = "Progress for each zombies I applied slow for the first time."
+plant_evolve_meter_texture = ExtResource("8_0fmlg")
+_tier1_max_value = 50.0
+_tier2_max_value = 60.0
+_tier3_max_value = 250.0
+
+[node name="Death_On_trample" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death_On_trample"]
+position = Vector2(22, -27)
+shape = SubResource("RectangleShape2D_wycuh")
+
+[node name="Detection_Area2" parent="." instance=ExtResource("2_brxk3")]
+position = Vector2(4, 17)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area2"]
+position = Vector2(186.5, -40.5)
+shape = SubResource("RectangleShape2D_pd1qh")
+debug_color = Color(1, 1, 1, 0.08235294)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-57, -27)
+shape = SubResource("RectangleShape2D_brxk3")
+
+[node name="ExpirationCountdown" type="Timer" parent="."]
+autostart = true
+
+[connection signal="death" from="PuffshroomAnimation" to="." method="_on_puffshroom_animation_death"]
+[connection signal="puffshoot" from="PuffshroomAnimation" to="." method="_on_puffshroom_animation_puffshoot"]
+[connection signal="body_entered" from="Death_On_trample" to="." method="_on_death_on_trample_body_entered"]
+[connection signal="timeout" from="ExpirationCountdown" to="." method="_on_expiration_countdown_timeout"]

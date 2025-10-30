@@ -1,0 +1,137 @@
+[gd_scene load_steps=14 format=3 uid="uid://bsmy8ma84etik"]
+
+[ext_resource type="Script" uid="uid://bknmja8i7mmal" path="res://unit/plant/Rose/rose.gd" id="1_5j1yp"]
+[ext_resource type="PackedScene" uid="uid://bbkgs7tsgyto5" path="res://unit/plant/Rose/rose_animation.tscn" id="1_h6l02"]
+[ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="2_brq6r"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="3_c72qs"]
+[ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="4_or4nh"]
+[ext_resource type="PackedScene" uid="uid://dfs20jb32fvmc" path="res://unit/projectile.tscn" id="4_qqldo"]
+[ext_resource type="Texture2D" uid="uid://ci10kryg1ib8d" path="res://unit/plant/Rose/projectile.png" id="5_or4nh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5j1yp"]
+size = Vector2(5283, 1318)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c72qs"]
+
+[sub_resource type="Animation" id="Animation_c72qs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/projectile:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(15.226, -12.515)]
+}
+
+[sub_resource type="Animation" id="Animation_or4nh"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/projectile:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(15.226, -12.515), Vector2(15.226, -21.16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oaw30"]
+_data = {
+&"RESET": SubResource("Animation_c72qs"),
+&"idle": SubResource("Animation_or4nh")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c72qs"]
+size = Vector2(36, 52)
+
+[node name="Rose" type="CharacterBody2D" groups=["plant"]]
+collision_mask = 0
+script = ExtResource("1_5j1yp")
+
+[node name="RoseAnimation" parent="." instance=ExtResource("1_h6l02")]
+position = Vector2(0, -2)
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("3_c72qs")]
+
+[node name="Detection_Area2" parent="." instance=ExtResource("2_brq6r")]
+position = Vector2(4, 17)
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area2"]
+position = Vector2(-17.5, -37)
+shape = SubResource("RectangleShape2D_5j1yp")
+debug_color = Color(1, 1, 1, 0.08235294)
+
+[node name="PlantDamageNodeManager" parent="." instance=ExtResource("4_or4nh")]
+damage = 40
+base_attack_cooldown = 2.0
+
+[node name="projectile_spawn_position" type="Node2D" parent="."]
+position = Vector2(9, -30)
+
+[node name="Projectile" parent="projectile_spawn_position" instance=ExtResource("4_qqldo")]
+visible = false
+z_index = 7
+y_sort_enabled = true
+position = Vector2(-1, -1)
+scale = Vector2(1.0508534, 1.0523291)
+monitoring = false
+monitorable = false
+speed = 600.0
+
+[node name="Node2D" type="Node2D" parent="projectile_spawn_position/Projectile"]
+
+[node name="projectile" type="Sprite2D" parent="projectile_spawn_position/Projectile/Node2D"]
+position = Vector2(15.226, -12.515)
+scale = Vector2(1.1568668, 1.109725)
+texture = ExtResource("5_or4nh")
+offset = Vector2(-7.403157, -0.8563137)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="projectile_spawn_position/Projectile"]
+position = Vector2(5.7096443, 0.2244525)
+shape = SubResource("CircleShape2D_c72qs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="projectile_spawn_position/Projectile"]
+libraries = {
+&"": SubResource("AnimationLibrary_oaw30")
+}
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -16)
+shape = SubResource("RectangleShape2D_c72qs")
+
+[connection signal="attack" from="RoseAnimation" to="." method="_on_rose_animation_attack"]

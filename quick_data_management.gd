@@ -6,6 +6,12 @@ extends Node # Autoload
 @onready var common_called_method := $common_called_methods
 @onready var sound_manager := $sound_manager
 
+signal _when_seed_packet_is_selected
+signal _when_shovel_is_selected
+signal _when_ability_plantrequirement_is_selected
+signal _when_selected_seedpacket_is_remove
+
+
 var sun : int = 300
 var zombie_killed : int = 0
 var plant_killed : int = 0
@@ -16,8 +22,10 @@ var _evolution_bank_position := Vector2.ZERO
 var location_where_evolutionUI_place : Vector2
 var mode_normal_selection
 
+# FOR SEED SELECTION MECHANICS
 var _selected_data_in_seed_packet : Control 
 var _selected_plant_node_as_icon : Node2D
+var _is_it_tap := false
 
 var _amount_of_current_zombie_in_board : Array[Node2D]= []
 
@@ -54,14 +62,11 @@ func get_tile_under_mouse():
 	var scene_root = get_tree().current_scene
 	if not scene_root:
 		return null
-
 	var space_state = scene_root.get_world_2d().direct_space_state
-
 	var query = PhysicsPointQueryParameters2D.new()
 	query.position = mouse_pos
 	query.collide_with_areas = true
 	query.collide_with_bodies = false
-
 	var result = space_state.intersect_point(query, 32)
 	for hit in result:
 		if hit.collider.is_in_group("plant_tile"):
@@ -72,7 +77,6 @@ func get_tile_under_mouse():
 func get_seedpacket_under_mouse():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var scene_root = get_tree().current_scene
-
 	if scene_root:
 		var space_state = scene_root.get_world_2d().direct_space_state
 		var query = PhysicsPointQueryParameters2D.new()
@@ -107,6 +111,7 @@ func _select_plant_to_boost():
 	_selected_plant_node_as_icon = evolution_icon
 
 func _add_plant_for_queue_plant(seed_packet : Control, animation_node:Node2D):
+	_when_seed_packet_is_selected.emit()
 	var selected_plant = animation_node
 	get_tree().current_scene.add_child(selected_plant)
 	_selected_plant_node_as_icon = selected_plant
@@ -131,16 +136,17 @@ func _remove_plant_for_queue_plant(value : bool = false):
 		_selected_plant_node_as_icon = null
 	if not value:
 		_selected_data_in_seed_packet = null
+	_when_selected_seedpacket_is_remove.emit()
 
 var _value_of_last_collected_sun = 0
 func change_sun_value(_sun : int) -> void:
 	sun = _sun
-	global_calls_manager.when_sun_value_change_trigger()
+	global_calls_manager._when_sun_value_change.emit(_sun)
 
 func add_sun(value : int = 25):
 	change_sun_value(sun + value)
 	_value_of_last_collected_sun = value
-	global_calls_manager.when_sun_collected_trigger()
+	global_calls_manager._when_sun_is_collected.emit()
 
 func _reset_all_data()->void:
 	sun = 50
@@ -157,13 +163,13 @@ func gain_evolution_power_point() -> bool:
 	if evolution_power_point >= 4:
 		return false
 	evolution_power_point += 1
-	global_calls_manager.plant_boost_value_change_trigger()
+	global_calls_manager._when_plant_boost_value_change.emit(evolution_power_point)
 	return true
 
 func get_evolution_power() -> bool:
 	if evolution_power_point > 0:
 		evolution_power_point -= 1
-		global_calls_manager.plant_boost_value_change_trigger()
+		global_calls_manager._when_plant_boost_value_change.emit(evolution_power_point)
 		return true
-	global_calls_manager.plant_boost_value_change_trigger()
+	global_calls_manager._when_plant_boost_value_change.emit(evolution_power_point)
 	return false

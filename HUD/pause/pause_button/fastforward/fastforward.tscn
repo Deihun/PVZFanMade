@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbdbb44sowyvd"]
+
+[ext_resource type="Script" uid="uid://c73e1k27rqa3q" path="res://HUD/pause/pause_button/fastforward/fastforward.gd" id="1_fpr5v"]
+[ext_resource type="Texture2D" uid="uid://c1qn1jbivhkuy" path="res://HUD/pause/pause_button/fastforward/normal_mode_hover.png" id="2_fpr5v"]
+[ext_resource type="Texture2D" uid="uid://bvllrv4p82sr2" path="res://HUD/pause/pause_button/fastforward/normal_mode_unhover.png" id="3_ydkro"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qki1q"]
+size = Vector2(68, 64)
+
+[node name="Fastforward_button" type="Node2D"]
+script = ExtResource("1_fpr5v")
+
+[node name="button_unhover" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(0.553571, 0.527273)
+texture = ExtResource("3_ydkro")
+
+[node name="button_hover" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 3)
+scale = Vector2(0.553571, 0.527273)
+texture = ExtResource("2_fpr5v")
+
+[node name="interactable" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_qki1q")
+
+[connection signal="input_event" from="interactable" to="." method="_on_interactable_input_event"]
+[connection signal="mouse_entered" from="interactable" to="." method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="interactable" to="." method="_on_interactable_mouse_exited"]

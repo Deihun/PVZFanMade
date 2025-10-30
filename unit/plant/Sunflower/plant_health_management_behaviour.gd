@@ -4,6 +4,7 @@ var _taking_damage : Array[Callable] = []
 var _when_shield_broken : Array[Callable] = []
 var _when_i_receive_heal_call_other_methods : Array[Callable] = []
 var _when_you_plant_on_me : Array[Callable] = []
+var _alternative_for_death : Array[Callable]=[]
 var _my_seed_packet : Control
 
 @export var max_health : int = 80
@@ -14,6 +15,7 @@ var _my_seed_packet : Control
 @export var indicate_when_damage : bool = true
 var current_health : int = 80
 
+signal plant_death()
 
 
 
@@ -70,9 +72,14 @@ func _damage_shield(value: int) -> int:
 
 func check_if_death():
 	if current_health <= 0:
+		plant_death.emit()
 		for method in _on_death_announce:
 			if method.is_valid(): method.call()
-		get_parent().queue_free()
+		if _alternative_for_death.size() > 0:
+			for call in _alternative_for_death: 
+				if call.is_valid(): call.call()
+				else: _alternative_for_death.erase(call)
+		else: get_parent().queue_free()
 
 func _show_getting_damage() -> void:
 	if !indicate_when_damage:

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://centjs1xiedcx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ox2rx"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="StartUp" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -10.0
+offset_right = 1935.0
+offset_bottom = 1095.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ox2rx")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 695.0
+offset_top = 389.0
+offset_right = 990.0
+offset_bottom = 412.0
+text = "This game is still in early development"

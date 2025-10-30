@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://c40dpkv245grp"]
 
-[ext_resource type="Script" uid="uid://cyqxg3e8vus4f" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_10.gd" id="1_4fsti"]
+[ext_resource type="Script" uid="uid://bd231imj6vpei" path="res://Resource/Levels/Tutorial_Part/level_1_tutorial_day_11.gd" id="1_gglp1"]
 [ext_resource type="Texture2D" uid="uid://b8i58el7y56a0" path="res://Resource/Levels/background_assets/day.png" id="2_p8jl8"]
 [ext_resource type="Texture2D" uid="uid://d17d4ngwqf0r" path="res://Resource/Levels/background_assets/grass_layer.png" id="3_gglp1"]
 [ext_resource type="PackedScene" uid="uid://dols1i410thmc" path="res://HUD/borders/level_manager/main_camera.tscn" id="4_qx1hg"]
@@ -29,9 +29,9 @@ size = Vector2(138, 184)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r4qp0"]
 size = Vector2(798, 579.25)
 
-[node name="level_1_tutorial_day9" type="Node2D"]
+[node name="level_1_tutorial_day_11" type="Node2D"]
 position = Vector2(539, 404)
-script = ExtResource("1_4fsti")
+script = ExtResource("1_gglp1")
 
 [node name="Day" type="Sprite2D" parent="."]
 z_index = -5

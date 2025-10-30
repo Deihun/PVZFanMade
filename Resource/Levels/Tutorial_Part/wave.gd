@@ -53,8 +53,9 @@ func _set_up_lane() -> void:
 func _spawn_flag_zombie() -> void:
 	if !_mark_as_big_wave: return
 	var flag_zombie = load("res://unit/Zombie/Flag_Zombie/FlagZombie.tscn").instantiate()
-	var lane_randoms = [lane_1_node,lane_2_node,lane_3_node,lane_4_node,lane_5_node,lane_6_node,lane_7_node]
-	for lane in lane_randoms: if !lane: lane_randoms.erase(lane)
+	var preset_lanes = [lane_1_node,lane_2_node,lane_3_node,lane_4_node,lane_5_node,lane_6_node,lane_7_node]
+	var lane_randoms = []
+	for lane in preset_lanes: if lane or lane != null: lane_randoms.append(lane)
 	flag_zombie.position =Vector2.ZERO
 	flag_zombie.global_position =Vector2.ZERO
 	_spawn_given_zombies(flag_zombie,lane_randoms.pick_random().spawn_position.global_position)

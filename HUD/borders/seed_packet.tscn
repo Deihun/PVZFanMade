@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://6jgrs4q1aq01"]
+[gd_scene load_steps=13 format=3 uid="uid://6jgrs4q1aq01"]
 
 [ext_resource type="Script" uid="uid://big2eulomdme6" path="res://HUD/borders/seed_packet.gd" id="1_jk3x6"]
 [ext_resource type="Texture2D" uid="uid://t0jw8nmdvhwu" path="res://HUD/borders/seed_packet.png" id="1_jknsb"]
 [ext_resource type="AudioStream" uid="uid://bwji678b23lvy" path="res://HUD/borders/planting_seed_pick_sfx.mp3" id="3_fds4k"]
 [ext_resource type="AudioStream" uid="uid://cwhn0fff74onu" path="res://HUD/borders/decline_sfx.ogg" id="4_t63ia"]
+[ext_resource type="Script" uid="uid://cox2g85bgvr3o" path="res://HUD/borders/live_showing_picture.gd" id="5_ba2lq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t63ia"]
 bg_color = Color(1, 0.799199, 0.357, 1)
@@ -184,7 +185,7 @@ offset_left = 2.0
 offset_right = 199.0
 offset_bottom = 118.0
 
-[node name="click_button" type="Button" parent="."]
+[node name="click_button" type="Button" parent="." groups=["seed_packet"]]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 200.0
@@ -213,5 +214,10 @@ bus = &"SFX"
 stream = ExtResource("4_t63ia")
 bus = &"SFX"
 
+[node name="liveShowingPicture" type="Node" parent="."]
+script = ExtResource("5_ba2lq")
+
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 [connection signal="button_down" from="click_button" to="." method="_on_click_button_button_down"]
+[connection signal="button_up" from="click_button" to="." method="_on_click_button_button_up"]
+[connection signal="pressed" from="click_button" to="." method="_on_click_button_pressed"]

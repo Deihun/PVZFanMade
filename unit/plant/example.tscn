@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dbswi1rnjguh1"]
 
 [ext_resource type="PackedScene" uid="uid://d1bmnixb7oepy" path="res://Behaviour/sun_falling_behaviour.tscn" id="2_mt53y"]
-[ext_resource type="PackedScene" uid="uid://nqpa1jdoxd70" path="res://Behaviour/occupied_tile.tscn" id="4_sg7fg"]
+[ext_resource type="PackedScene" uid="uid://nqpa1jdoxd70" path="res://Behaviour/OccupiedTiles/occupied_tile.tscn" id="4_sg7fg"]
 [ext_resource type="Script" uid="uid://b7xtie63ke36r" path="res://HUD/EvolutionUI/evolution_power_bank_ui.gd" id="5_5vjve"]
 [ext_resource type="PackedScene" uid="uid://cm3fbr5jbnjmq" path="res://Behaviour/dummy_testing.tscn" id="5_ltlly"]
 [ext_resource type="PackedScene" uid="uid://b1gfd0gx8ncph" path="res://HUD/EvolutionUI/evolution_power_bank_ui.tscn" id="6_mt53y"]

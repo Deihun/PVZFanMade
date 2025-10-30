@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=3 uid="uid://d2u7cbuj1aqn"]
+
+[ext_resource type="Script" uid="uid://b74rqcj8ad51n" path="res://unit/plant/Scaredyshroom/scaredyshroom_script.gd" id="1_aghi8"]
+[ext_resource type="PackedScene" uid="uid://d31ajta8g7j3p" path="res://unit/plant/Scaredyshroom/scaredyshroom_animation.tscn" id="1_h1emi"]
+[ext_resource type="PackedScene" uid="uid://cetkfp2k83ixw" path="res://Behaviour/plant_damage_node_manager.tscn" id="2_ypmtq"]
+[ext_resource type="PackedScene" uid="uid://cf7ii0b4cvm6o" path="res://Behaviour/plant_health_management_behaviour.tscn" id="3_h3m26"]
+[ext_resource type="PackedScene" uid="uid://cbh38lp0g4kv8" path="res://Behaviour/evolution_sender_support_behavior.tscn" id="4_4mf21"]
+[ext_resource type="Texture2D" uid="uid://cg1wequgp2m75" path="res://unit/plant/SnowPea/snowpea_levelup_indication.png" id="5_l4f83"]
+[ext_resource type="PackedScene" uid="uid://bli1subbiqoo5" path="res://Behaviour/detection_area.tscn" id="6_bp3up"]
+[ext_resource type="PackedScene" uid="uid://dfs20jb32fvmc" path="res://unit/projectile.tscn" id="8_wammg"]
+[ext_resource type="Texture2D" uid="uid://ws7w7c3ky5pp" path="res://unit/plant/Scaredyshroom/scaredyshroom_projectile.png" id="9_fnnqh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wammg"]
+size = Vector2(49, 69)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xckxr"]
+size = Vector2(794, 863)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aghi8"]
+size = Vector2(386, 451)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_euruc"]
+size = Vector2(1948, 56)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yq248"]
+
+[node name="ScaredyShroom" type="CharacterBody2D"]
+script = ExtResource("1_aghi8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-14.5, -24.5)
+shape = SubResource("RectangleShape2D_wammg")
+disabled = true
+
+[node name="ScaredyshroomAnimation" parent="." instance=ExtResource("1_h1emi")]
+
+[node name="PlantDamageNodeManager" parent="." instance=ExtResource("2_ypmtq")]
+base_attack_cooldown = 2.0
+
+[node name="plant_health_management_behaviour" parent="." instance=ExtResource("3_h3m26")]
+
+[node name="EvolutionSenderSupportBehavior" parent="." instance=ExtResource("4_4mf21")]
+plant_name = "Scaredy Shroom"
+description_Tier1A = "Increase my pierce"
+description_Tier1B = "When I kill a zombie, spawn a puffshroom"
+description_Tier2A = "Gain more attackspeed"
+description_Tier2B = "Increase my range"
+description_Tier3A = "Transform into Gloomshroom: Release fume damaging zombies around me instead."
+description_Tier3B = "YourLawn gains permanent effect: Planting puffshroom now has a chance to transform it into fumeshroom! Stack number of this upgrade increases the chance."
+description_evolve_requirement = "Progress for each zombies I applied slow for the first time."
+plant_evolve_meter_texture = ExtResource("5_l4f83")
+_tier1_max_value = 50.0
+_tier2_max_value = 60.0
+_tier3_max_value = 250.0
+
+[node name="DeathPlants_detection_nearby" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathPlants_detection_nearby"]
+position = Vector2(-5, -18.5)
+shape = SubResource("RectangleShape2D_xckxr")
+
+[node name="Scaredyshroom_get_scared_by" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scaredyshroom_get_scared_by"]
+position = Vector2(-5, -34.5)
+shape = SubResource("RectangleShape2D_aghi8")
+debug_color = Color(0.972174, 0.16906568, 5.7756904e-07, 0.41960785)
+
+[node name="Detection_Area2" parent="." instance=ExtResource("6_bp3up")]
+position = Vector2(4, 17)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area2"]
+position = Vector2(940, -30)
+shape = SubResource("RectangleShape2D_euruc")
+debug_color = Color(1, 1, 1, 0.08235294)
+
+[node name="projectile_spawn_position" type="Node2D" parent="."]
+position = Vector2(5, -49)
+
+[node name="Projectile" parent="projectile_spawn_position" instance=ExtResource("8_wammg")]
+visible = false
+z_index = 7
+y_sort_enabled = true
+position = Vector2(0, 1)
+scale = Vector2(1.0508534, 1.0523291)
+monitoring = false
+monitorable = false
+speed = 600.0
+
+[node name="projectile" type="Sprite2D" parent="projectile_spawn_position/Projectile"]
+position = Vector2(5.7096443, -2.3841858e-07)
+scale = Vector2(0.74151236, 0.6494335)
+texture = ExtResource("9_fnnqh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="projectile_spawn_position/Projectile"]
+position = Vector2(5.7096443, 0.2244525)
+shape = SubResource("CircleShape2D_yq248")
+
+[connection signal="shoot" from="ScaredyshroomAnimation" to="." method="_on_scaredyshroom_animation_shoot"]
+[connection signal="body_entered" from="DeathPlants_detection_nearby" to="." method="_on_death_plants_detection_nearby_body_entered"]
+[connection signal="body_entered" from="Scaredyshroom_get_scared_by" to="." method="_on_scaredyshroom_get_scared_by_body_entered"]
+[connection signal="body_exited" from="Scaredyshroom_get_scared_by" to="." method="_on_scaredyshroom_get_scared_by_body_exited"]

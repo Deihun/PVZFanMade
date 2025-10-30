@@ -67,7 +67,7 @@ func _play_mid_wave_a()->void:
 	if !mid_wave_a: return
 	if mid_wave_a_intro:
 		play_music(mid_wave_a_intro,false)
-		await get_tree().create_timer(mid_wave_a_intro.get_length()).timeout
+		await get_tree().create_timer(mid_wave_a_intro.get_length(),false,true).timeout
 	_set_loop(mid_wave_a, false)
 	_switch_music(mid_wave_a, false, Callable(self, "_resume_startup_music"),false)
 
@@ -75,7 +75,7 @@ func _play_mid_wave_b()-> void:
 	if !mid_wave_b: return
 	if mid_wave_b_intro:
 		play_music(mid_wave_b_intro,false)
-		await get_tree().create_timer(mid_wave_b_intro.get_length() -0.1 ).timeout
+		await get_tree().create_timer(mid_wave_b_intro.get_length() -0.1,false,true).timeout
 	_set_loop(mid_wave_b, false)
 	_switch_music(mid_wave_b, false, Callable(self, "_resume_startup_music"),false)
 
@@ -83,7 +83,7 @@ func _play_mid_wave_b()-> void:
 func play_last_wave() -> void:
 	if last_wave_intro:
 		play_music(last_wave_intro,false)
-		await get_tree().create_timer(last_wave_intro.get_length()).timeout
+		await get_tree().create_timer(last_wave_intro.get_length(),false,true).timeout
 	if !last_wave:return
 	play_music(last_wave)
 

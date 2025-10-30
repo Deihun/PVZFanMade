@@ -94,7 +94,8 @@ func tier1b():
 	$"Sunflower Animation".tier1b()
 
 func tier2a():
-	QuickDataManagement.global_calls_manager._when_sun_collected.append(Callable(self,"_when_you_collect_current_sun"))
+	QuickDataManagement.global_calls_manager._when_sun_is_collected.connect(func(): _when_you_collect_current_sun())
+
 	$"Sunflower Animation".tier2a()
 
 func tier2b():

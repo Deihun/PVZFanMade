@@ -5,6 +5,9 @@ extends Area2D
 @export var can_land_be_planted := true
 @export var can_water_be_planted := false
 
+@export_enum("Land","Water") var _set_as_land = "Land"
+
+
 var disable_planting := false
 var _apply_zmog_on_start := false
 
@@ -23,6 +26,18 @@ var hold_elapsed: float = 0.0
 func _ready() -> void:
 	add_to_group("plant_tile")
 	if _apply_zmog_on_start: _add_zmog()
+	QuickDataManagement._when_seed_packet_is_selected.connect(func():
+		if _can_i_plant_here() and $TileOccupied_Effect/AnimationPlayer.current_animation != "show": $TileOccupied_Effect/AnimationPlayer.play("show")
+		)
+	QuickDataManagement._when_selected_seedpacket_is_remove.connect(func():
+		$TileOccupied_Effect/AnimationPlayer.play("hide")
+		)
+	QuickDataManagement._when_shovel_is_selected.connect(func():
+		if !_can_i_plant_here() and $TileOccupied_Effect/AnimationPlayer.current_animation != "show_as_delete_mode": $TileOccupied_Effect/AnimationPlayer.play("show_as_delete_mode")
+		)
+	QuickDataManagement._when_ability_plantrequirement_is_selected.connect(func():
+		if !_can_i_plant_here() and $TileOccupied_Effect/AnimationPlayer.current_animation != "show": $TileOccupied_Effect/AnimationPlayer.play("show")
+		)
 
 func _add_zmog()-> void:
 	if !$nightfog_visual:
@@ -67,8 +82,10 @@ func place_plant_without_cost(node:Node2D, occupy_tile:= true):
 	node.y_sort_enabled = true
 	node.connect("tree_exited", _delete_data.bind(node)) 
 	QuickDataManagement.global_calls_manager._plant_exist_in_game.append(node)
+	QuickDataManagement.global_calls_manager._when_plants_enter_the_board.emit(node)
 	if occupy_tile: tile_ground_occupy = node 
 	node.global_position = global_position 
+	_planted_effects()
 
 
 func power_occupied_tile()-> void:
@@ -146,7 +163,20 @@ func _run_evolution_boarder() -> void:
 func _on_short_click() -> void:
 	pass
 
+func _planted_effects()->void:
+	var effects : Node2D
+	match _set_as_land:
+		"Land":effects = preload("res://Behaviour/OccupiedTiles/EffectsWhenPlanted/dirt_scattered_vfx.tscn").instantiate()
+	self.add_child(effects)
+	await get_tree().create_timer(2.0).timeout
+	if effects: effects.queue_free()
 
+
+
+
+
+func _can_i_plant_here()-> bool: ## Improve it later
+	return !tile_ground_occupy
 
 func _get_the_UI_placement_evolutionboarder()-> Control:
 	var UI_placement_evolutionBoarder : Control = _get_node_prioritizing_camera().get_node("UI_placement_evolutionBoarder")

@@ -33,7 +33,7 @@ func _ready() -> void:
 
 
 func _on_expiration_timeout() -> void:
-	if master: master.sun_last_position=global_position
+	if master: master.sun_last_position = global_position
 	for methods in _when_I_expire_call_functions:
 		if methods.is_valid(): methods.call()
 	

@@ -284,6 +284,7 @@ _delay_interval_between_spawn = 0.75
 _number_of_zombies_in_big_wave = 12
 
 [node name="wave24" parent="zombie_wave_management" instance=ExtResource("8_j6vcj")]
+y_sort_enabled = true
 layout_mode = 2
 _delay_duration = 10.0
 _trigger_next_wave_if_this_is_clear = true
